@@ -1,0 +1,224 @@
+{
+  "common": {
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "confirmPassword": "Confirm Password",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "login": {
+    "title": "Welcome Back",
+    "subtitle": "Sign in to continue",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password",
+    "noAccount": "Don't have an account?",
+    "loginFailed": "Login Failed",
+    "invalidCredentials": "Invalid email or password",
+    "errorOccurred": "An error occurred. Please try again.",
+    "fillAllFields": "Please fill in all fields"
+  },
+  "register": {
+    "title": "Create Account",
+    "subtitle": "Sign up to get started",
+    "namePlaceholder": "Enter your full name",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "hasAccount": "Already have an account?",
+    "registrationFailed": "Registration Failed",
+    "passwordsNotMatch": "Passwords do not match",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "fillAllFields": "Please fill in all fields",
+    "toast": {
+      "success": "Customer registered successfully",
+      "error": "Registration failed"
+    },
+    "validation": {
+      "fullnameRequired": "Full name is required",
+      "ageRequired": "Age is required",
+      "agePositive": "Age must be positive",
+      "genderRequired": "Gender is required",
+      "phoneRequired": "Phone is required",
+      "addressRequired": "Address is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 8 characters",
+      "equipmentTypeRequired": "Equipment type is required",
+      "medicalReasonRequired": "Medical reason is required",
+      "durationRequired": "Duration is required",
+      "referenceNameRequired": "Reference name is required",
+      "referenceContactRequired": "Reference contact is required"
+    }
+  },
+  "language": {
+    "changeLanguage": "Change Language",
+    "english": "English",
+    "arabic": "Arabic",
+    "selectLanguage": "Select Language"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "selectTheme": "Select Theme",
+    "changeTheme": "Change Theme"
+  },
+  "home": {
+    "title": "Home Screen",
+    "featuredPartners": "Featured Partners",
+    "viewAll": "View All",
+    "welcomeBack": "Welcome back,",
+    "education": "Education",
+    "relief": "Relief",
+    "volunteers": "Volunteers",
+    "events": "Events",
+    "familyHealthCards": "Family Health Cards",
+    "requestNewCard": "+  Request for New Card"
+  },
+  "card": {
+    "healthCard": "HEALTH CARD",
+    "cardHolderName": "Card Holder Name",
+    "membershipId": "Membership ID",
+    "bloodGroup": "Blood Group",
+    "aadharNumber": "Aadhar Number",
+    "dateOfIssue": "Date of Issue",
+    "dateOfExpiry": "Date of Expiry"
+  },
+  "profile": {
+    "title": "Profile Screen"
+  },
+  "settings": {
+    "title": "Settings Screen"
+  },
+  "notifications": {
+    "title": "Notifications Screen"
+  },
+  "network": {
+    "noConnection": "No Internet Connection",
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "wifi": "WiFi",
+    "cellular": "Cellular",
+    "ethernet": "Ethernet",
+    "unknown": "Unknown"
+  },
+  "events": {
+    "title": "Events & Camps",
+    "subtitle": "Join our community health programs.",
+    "registerHeader": "Register for Events",
+    "upcoming": "Upcoming Events",
+    "registerNow": "Register Now",
+    "impactTitle": "Our Impact",
+    "impact": {
+      "events": "Events Held",
+      "people": "People Served",
+      "volunteers": "Active Volunteers"
+    },
+    "items": {
+      "medical": {
+        "title": "Free Medical Health Camp",
+        "date": "November 26, 2025",
+        "time": "10:00 AM - 6:00 PM",
+        "location": "Community Center, Malad",
+        "desc": "Comprehensive health check-ups including BP, blood sugar, BMI, basic consultation and specialist. Free services available.",
+        "tag1": "General Checkup",
+        "tag2": "Lab Tests",
+        "tag3": "Consultation",
+        "tag4": "Blood Sugar Test",
+        "stats": "50 registrations"
+      },
+      "blood": {
+        "title": "Blood Donation Drive",
+        "date": "November 28, 2025",
+        "time": "10:00 AM - 4:00 PM",
+        "location": "SGP Garden, Andheri",
+        "desc": "Blood donation camp in collaboration with certified blood bank. On-site medical support. Free refreshments provided.",
+        "tag1": "Volunteers Needed",
+        "tag2": "On-site Doctors",
+        "tag3": "Certificates",
+        "tag4": "Refreshments",
+        "stats": "100+ donors expected"
+      },
+      "awareness": {
+        "title": "Health Awareness Session",
+        "date": "November 30, 2025",
+        "time": "2:00 PM - 5:00 PM",
+        "location": "Virtual on Zoom",
+        "desc": "Educational session on preventive healthcare, nutrition, sanitation, and mental wellness. Interactive session with expert Q&A.",
+        "tag1": "Free Entry",
+        "tag2": "Live Session",
+        "tag3": "Free Materials",
+        "stats": "200+ registrations"
+      }
+    }
+  },
+  "relief": {
+    "apply": "Apply for Relief",
+    "donate": "Donate Now",
+    "activePrograms": "Active Relief Programs",
+    "howToApply": "How to Apply for Relief",
+    "impactTitle": "Relief Impact",
+    "requestNewCard": "+  Request for New Card",
+    "steps": {
+      "formTitle": "Fill Application Form",
+      "formDesc": "Submit your relief request with required details",
+      "verifyTitle": "Verification Process",
+      "verifyDesc": "Our team will verify your request and documents",
+      "distributeTitle": "Relief Distribution",
+      "distributeDesc": "Approved beneficiaries will be contacted for distribution"
+    },
+    "impact": {
+      "families": "Families Helped",
+      "drives": "Relief Drives",
+      "aid": "Worth of Aid"
+    },
+    "programs": {
+      "food": {
+        "title": "Food Distribution Drive",
+        "locations": "Multiple locations",
+        "desc": "Daily food distribution for families in need. Each kit usually includes rice, pulses, oil, and essential grocery items for a week.",
+        "tag1": "Daily",
+        "tag2": "Multiple Locations",
+        "tag3": "Family Kits",
+        "stats": "500+ families supported"
+      },
+      "flood": {
+        "title": "Flood Relief Support",
+        "locations": "Disaster-affected areas",
+        "desc": "Immediate relief to flood-affected families including clean water, dry ration, temporary shelter, and medical services.",
+        "tag1": "Flood Relief",
+        "tag2": "Shelter",
+        "tag3": "Medical",
+        "stats": "200+ families served"
+      },
+      "winter": {
+        "title": "Winter Relief Campaign",
+        "locations": "Urban & rural areas",
+        "desc": "Distribution of blankets, sweaters, and essential items to those in need, especially elderly residents during harsh winters.",
+        "tag1": "Blankets",
+        "tag2": "Sweaters",
+        "tag3": "Elderly",
+        "stats": "300+ people covered"
+      },
+      "medical": {
+        "title": "Emergency Medical Relief",
+        "locations": "All relief zones",
+        "desc": "Emergency medical assistance including medicines, first aid, and medical transportation support for critical cases.",
+        "tag1": "Medical",
+        "tag2": "Emergency",
+        "tag3": "Ambulance",
+        "stats": "150+ cases"
+      }
+    }
+  }
+}

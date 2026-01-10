@@ -1,0 +1,115 @@
+{
+  "common": {
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "name": "الاسم",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "signIn": "تسجيل الدخول",
+    "signUp": "إنشاء حساب",
+    "signOut": "تسجيل الخروج",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجح"
+  },
+  "login": {
+    "title": "مرحباً بعودتك",
+    "subtitle": "قم بتسجيل الدخول للمتابعة",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "noAccount": "ليس لديك حساب؟",
+    "loginFailed": "فشل تسجيل الدخول",
+    "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+    "errorOccurred": "حدث خطأ. يرجى المحاولة مرة أخرى.",
+    "fillAllFields": "يرجى ملء جميع الحقول"
+  },
+  "register": {
+    "title": "إنشاء حساب",
+    "subtitle": "قم بالتسجيل للبدء",
+    "namePlaceholder": "أدخل اسمك الكامل",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "confirmPasswordPlaceholder": "أكد كلمة المرور",
+    "hasAccount": "لديك حساب بالفعل؟",
+    "registrationFailed": "فشل التسجيل",
+    "passwordsNotMatch": "كلمات المرور غير متطابقة",
+    "passwordMinLength": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+    "fillAllFields": "يرجى ملء جميع الحقول",
+    "toast": {
+      "success": "تم تسجيل العميل بنجاح",
+      "error": "فشل التسجيل"
+    },
+    "validation": {
+      "fullnameRequired": "الاسم الكامل مطلوب",
+      "ageRequired": "العمر مطلوب",
+      "agePositive": "يجب أن يكون العمر رقماً موجباً",
+      "genderRequired": "الجنس مطلوب",
+      "phoneRequired": "رقم الهاتف مطلوب",
+      "addressRequired": "العنوان مطلوب",
+      "emailRequired": "البريد الإلكتروني مطلوب",
+      "emailInvalid": "يرجى إدخال بريد إلكتروني صالح",
+      "passwordRequired": "كلمة المرور مطلوبة",
+      "passwordMin": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+      "equipmentTypeRequired": "نوع المعدات مطلوب",
+      "medicalReasonRequired": "السبب الطبي مطلوب",
+      "durationRequired": "المدة مطلوبة",
+      "referenceNameRequired": "اسم المرجع مطلوب",
+      "referenceContactRequired": "رقم اتصال المرجع مطلوب"
+    }
+  },
+  "language": {
+    "changeLanguage": "تغيير اللغة",
+    "english": "الإنجليزية",
+    "arabic": "العربية",
+    "selectLanguage": "اختر اللغة"
+  },
+  "theme": {
+    "light": "فاتح",
+    "dark": "داكن",
+    "system": "النظام",
+    "selectTheme": "اختر المظهر",
+    "changeTheme": "تغيير المظهر"
+  },
+  "home": {
+    "title": "الشاشة الرئيسية",
+    "featuredPartners": "الشركاء المميزون",
+    "viewAll": "عرض الكل",
+    "welcomeBack": "مرحباً بعودتك،",
+    "education": "التعليم",
+    "relief": "الإغاثة",
+    "volunteers": "المتطوعون",
+    "events": "الفعاليات",
+    "familyHealthCards": "بطاقات العائلة الصحية",
+    "requestNewCard": "+ اطلب بطاقة جديدة"
+  },
+  "card": {
+    "healthCard": "بطاقة صحية",
+    "cardHolderName": "اسم حامل البطاقة",
+    "membershipId": "معرف العضوية",
+    "bloodGroup": "فصيلة الدم",
+    "aadharNumber": "رقم آدهار",
+    "dateOfIssue": "تاريخ الإصدار",
+    "dateOfExpiry": "تاريخ انتهاء الصلاحية"
+  },
+  "profile": {
+    "title": "شاشة الملف الشخصي"
+  },
+  "settings": {
+    "title": "شاشة الإعدادات"
+  },
+  "notifications": {
+    "title": "شاشة الإشعارات"
+  },
+  "network": {
+    "noConnection": "لا يوجد اتصال بالإنترنت",
+    "connected": "متصل",
+    "disconnected": "غير متصل",
+    "wifi": "واي فاي",
+    "cellular": "خلوي",
+    "ethernet": "إيثرنت",
+    "unknown": "غير معروف"
+  }
+}
