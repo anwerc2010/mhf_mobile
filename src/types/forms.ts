@@ -2,20 +2,21 @@ import { ViewStyle } from 'react-native';
 import React from 'react';
 
 // Form Field Types
-export type FormFieldType = 
-  | 'text' 
-  | 'email' 
-  | 'password' 
-  | 'number' 
-  | 'phone' 
+export type FormFieldType =
+  | 'text'
+  | 'email'
+  | 'password'
+  | 'number'
+  | 'phone'
   | 'tel'
-  | 'textarea' 
-  | 'switch' 
-  | 'select' 
-  | 'multiselect' 
+  | 'textarea'
+  | 'switch'
+  | 'select'
+  | 'multiselect'
   | 'radio'
-  | 'date' 
-  | 'time';
+  | 'date'
+  | 'time'
+  | 'file';
 
 // Form Field Option
 export interface FormFieldOption {
@@ -60,6 +61,10 @@ export interface FormField {
   style?: ViewStyle;
   helpText?: string;
   showSeparator?: boolean;
+  // File picker specific properties
+  accept?: string[];
+  multiple?: boolean;
+  maxSizeMB?: number;
 }
 
 // Form Section

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, KeyboardAvoidingView, Platform, Alert, I18nManager } from 'react-native';
+import { View, Text, StyleSheet, KeyboardAvoidingView, Platform, Alert, I18nManager, ImageBackground, Image } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../store/hook';
 import { useLoginMutation } from '@psi/shared-api';
@@ -22,8 +22,8 @@ function LoginScreen({ navigation }: LoginScreenProps) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const currentLanguage = useAppSelector((state) => state.language.currentLanguage);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');//('customer101@gmail.com');
+  const [password, setPassword] = useState(''); //('Test@123');
   const [loginMutation, { isLoading, error }] = useLoginMutation();
 
   // Update RTL layout when language changes
@@ -78,78 +78,90 @@ function LoginScreen({ navigation }: LoginScreenProps) {
 
   return (
     <PTContainer safeArea>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.container}
+      <ImageBackground
+        source={require('../../assets/images/background.png')}
+        style={styles.backgroundImage}
+        resizeMode="cover"
       >
-        <View style={styles.content}>
-          <View style={{ flexDirection: 'row', marginBottom: 16 }}>
-            <View style={{ flex: 1, marginRight: 8 }}>
-              <LanguageSwitcher />
-            </View>
-            <View style={{ flex: 1 }}>
-              <ThemeSwitcher />
-            </View>
-          </View>
-
-          <PTText variant="h1" style={styles.title}>
-            {t('login.title')}
-          </PTText>
-          <PTText variant="body" style={styles.subtitle}>
-            {t('login.subtitle')}
-          </PTText>
-
-          <View style={styles.form}>
-            <PTInput
-              label={t('common.email')}
-              placeholder={t('login.emailPlaceholder')}
-              value={email}
-              onChangeText={setEmail}
-              keyboardType="email-address"
-              autoCapitalize="none"
-              autoComplete="email"
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={styles.container}
+        >
+          <View style={styles.content}>
+            <Image
+              source={require('../../assets/images/logo-hd.png')}
+              style={styles.logo}
+              resizeMode="contain"
             />
 
-            <PTInput
-              label={t('common.password')}
-              placeholder={t('login.passwordPlaceholder')}
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry
-              autoCapitalize="none"
-              autoComplete="password"
-            />
+            <PTText variant="h1" style={styles.title}>
+              {t('login.title')}
+            </PTText>
 
-            <View style={styles.button}>
-              <PTButton
-                title={t('common.signIn')}
-                onPress={handleLogin}
-                loading={isLoading}
-                disabled={!email || !password}
+            <View style={styles.form}>
+              <PTInput
+                label={t('common.email')}
+                placeholder={t('login.emailPlaceholder')}
+                value={email}
+                onChangeText={setEmail}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoComplete="email"
               />
-            </View>
 
-            <View style={styles.footer}>
-              <PTText variant="body" style={styles.footerText}>
-                {t('login.noAccount')}{' '}
-              </PTText>
-              <Text
-                style={styles.link}
-                onPress={() => navigation.navigate('Register')}
-              >
-                {t('common.signUp')}
-              </Text>
+              <PTInput
+                label={t('common.password')}
+                placeholder={t('login.passwordPlaceholder')}
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry
+                autoCapitalize="none"
+                autoComplete="password"
+              />
+
+              <View style={styles.button}>
+                <PTButton
+                  title={t('common.signIn')}
+                  variant='success'
+                  onPress={handleLogin}
+                  loading={isLoading}
+                  disabled={!email || !password}
+                />
+              </View>
+
+              <View style={styles.footer}>
+                <PTText variant="body" style={styles.footerText}>
+                  {t('login.noAccount')}{' '}
+                </PTText>
+                <Text
+                  style={styles.link}
+                  onPress={() => navigation.navigate('Register')}
+                >
+                  {t('common.signUp')}
+                </Text>
+              </View>
             </View>
           </View>
-        </View>
-      </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+      </ImageBackground>
     </PTContainer>
   );
 }
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
   container: {
     flex: 1,
+  },
+  logo: {
+    width: 120,
+    height: 120,
+    alignSelf: 'center',
+    marginBottom: 40,
   },
   content: {
     flex: 1,
@@ -159,17 +171,17 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 8,
     textAlign: 'center',
-  },
-  subtitle: {
-    marginBottom: 32,
-    textAlign: 'center',
-    color: '#666',
+    color: '#020050ff',
+    fontWeight: '700',
   },
   form: {
     width: '100%',
   },
   button: {
     marginTop: 16,
+    width: '60%',
+    alignSelf: 'center',
+    color: '#4d9734ff',
   },
   footer: {
     flexDirection: 'row',

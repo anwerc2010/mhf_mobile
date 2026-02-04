@@ -4,6 +4,7 @@ import HomeScreen from '../screens/Home';
 import ProfileScreen from '../screens/Profile';
 import CardScreen from '../screens/Card';
 import ServicesScreen from '../screens/Services';
+import NotificationsScreen from '../screens/Notifications';
 
 const Drawer = createDrawerNavigator();
 
@@ -56,7 +57,7 @@ export default function DrawerNavigator() {
       />
       <Drawer.Screen
         name="Notifications"
-        component={ServicesScreen}
+        component={NotificationsScreen}
         options={{
           title: 'Notifications',
           drawerLabel: 'Notifications',

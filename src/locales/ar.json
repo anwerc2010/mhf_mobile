@@ -13,7 +13,28 @@
     "edit": "تعديل",
     "loading": "جاري التحميل...",
     "error": "خطأ",
-    "success": "نجح"
+    "success": "نجح",
+    "step": "خطوة"
+  },
+  "filePicker": {
+    "chooseUploadType": "اختر نوع التحميل",
+    "imageFromGallery": "صورة من المعرض",
+    "file": "ملف",
+    "uploadFile": "انقر للتحميل",
+    "selectFile": "اختر ملف",
+    "simulatedFile": "لأغراض العرض، تم إنشاء ملف محاكى.",
+    "useSimulatedFile": "استخدم الملف المحاكى",
+    "noFileSelected": "لم يتم اختيار ملف",
+    "pleaseSelectFile": "يرجى اختيار ملف واحد على الأقل.",
+    "fileTooLarge": "الملف كبير جداً",
+    "fileExceedsSize": "يتجاوز بعض الملفات الحد الأقصى للحجم {{size}}. يرجى اختيار ملفات أصغر.",
+    "tooManyFiles": "عدد الملفات كبير جداً",
+    "maxFilesAllowed": "الحد الأقصى {{max}} ملف مسموح. يمكنك إضافة {{remaining}} ملف آخر.",
+    "maximumFilesReached": "تم الوصول إلى الحد الأقصى من الملفات ({{max}})",
+    "filepickerNotAvailable": "FilePickerModule غير متاح، استخدام منتقي الملفات المحاكى",
+    "failedToPickFile": "فشل في اختيار الملف: {{error}}. يرجى المحاولة مرة أخرى.",
+    "failedToOpenPicker": "فشل في فتح منتقي الملفات: {{error}}. يرجى المحاولة مرة أخرى.",
+    "filePickerFuture": "سيتم تنفيذ منتقي الملفات لهذا النظام الأساسي مع تحديث مستقبلي."
   },
   "login": {
     "title": "مرحباً بعودتك",
@@ -83,7 +104,22 @@
     "volunteers": "المتطوعون",
     "events": "الفعاليات",
     "familyHealthCards": "بطاقات العائلة الصحية",
-    "requestNewCard": "+ اطلب بطاقة جديدة"
+    "requestNewCard": "+ اطلب بطاقة جديدة",
+    "errorLoadingData": "خطأ في تحميل بيانات لوحة القيادة",
+    "guest": "ضيف",
+    "noCardsFound": "لم يتم العثور على بطاقات",
+    "cardRequests": "طلبات البطاقة",
+    "cardRequestDetails": "تفاصيل طلب البطاقة",
+    "requestId": "معرف الطلب:",
+    "status": "الحالة:",
+    "requested": "تاريخ الطلب:",
+    "updated": "تاريخ التحديث:",
+    "reviewNotes": "ملاحظات المراجعة:",
+    "noReviewNotes": "لا توجد ملاحظات مراجعة متاحة",
+    "close": "إغلاق",
+    "applyForCard": "التقدم للحصول على بطاقة",
+    "notAvailable": "غير متاح",
+    "primaryMember": "العضو الأساسي"
   },
   "card": {
     "healthCard": "بطاقة صحية",
@@ -92,16 +128,90 @@
     "bloodGroup": "فصيلة الدم",
     "aadharNumber": "رقم آدهار",
     "dateOfIssue": "تاريخ الإصدار",
-    "dateOfExpiry": "تاريخ انتهاء الصلاحية"
+    "dateOfExpiry": "تاريخ انتهاء الصلاحية",
+    "title": "بطاقات العائلة الصحية",
+    "downloadCard": "تحميل",
+    "emailCard": "البريد الإلكتروني",
+    "loading": "جاري تحميل البطاقات...",
+    "loadError": "فشل في تحميل البطاقات",
+    "swipeHint": "اسحب لعرض جميع بطاقات أفراد العائلة الأربعة",
+    "cardBenefits": "مزايا البطاقة",
+    "benefits": {
+      "freeConsultations": "استشارات مجانية في أكثر من 100 عيادة شريكة",
+      "discount": "خصم يصل إلى 50٪ على الأدوية",
+      "checkup": "فحص صحي سنوي مجاني",
+      "helpline": "دعم الخط الساخن للطوارئ على مدار الساعة"
+    },
+    "howToUse": {
+      "title": "كيفية الاستخدام",
+      "step1": "قم بزيارة أي منشأة رعاية صحية شريكة",
+      "step2": "أظهر بطاقتك الصحية الرقمية أو معرف العضو",
+      "step3": "احصل على الخدمات وفقًا لمزايا بطاقتك"
+    }
   },
   "profile": {
-    "title": "شاشة الملف الشخصي"
+    "title": "ملفي الشخصي",
+    "memberSince": "عضو منذ",
+    "activeMember": "عضو",
+    "memberId": "معرف العضو",
+    "bloodGroup": "فصيلة الدم",
+    "dateOfBirth": "تاريخ الميلاد",
+    "contact": "جهة الاتصال",
+    "email": "البريد الإلكتروني",
+    "medicalInfo": "المعلومات الطبية",
+    "allergies": "الحساسية",
+    "chronicConditions": "الحالات المزمنة",
+    "emergencyContact": "جهة اتصال الطوارئ",
+    "editProfile": "تعديل الملف الشخصي",
+    "logout": "تسجيل الخروج",
+    "logoutConfirm": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+    "about": "حول مؤسسة MHF",
+    "aboutMHF": "حول MHF",
+    "ourVision": "رؤيتنا",
+    "ourMission": "مهمتنا",
+    "ourBoard": "مجلس إدارتنا",
+    "ourTeam": "فريقنا",
+    "ourVolunteers": "متطوعونا",
+    "contactInfo": "معلومات الاتصال",
+    "user": "مستخدم"
   },
   "settings": {
     "title": "شاشة الإعدادات"
   },
   "notifications": {
-    "title": "شاشة الإشعارات"
+    "title": "الإشعارات",
+    "unread": "إشعار غير مقروء",
+    "unreadPlural": "إشعارات غير مقروءة",
+    "allCaughtUp": "كل شيء على ما يرام!",
+    "noNotifications": "لا توجد إشعارات",
+    "noNotificationsText": "أنت على اطلاع دائم! تحقق لاحقًا للحصول على التحديثات.",
+    "samples": {
+      "cardApproved": {
+        "title": "تمت الموافقة على طلب البطاقة",
+        "message": "تمت الموافقة على طلب بطاقتك ويتم معالجته."
+      },
+      "newEvent": {
+        "title": "حدث جديد متاح",
+        "message": "معسكر التوعية الصحية مجدول للأسبوع المقبل. سجل الآن!"
+      },
+      "profileIncomplete": {
+        "title": "الملف الشخصي غير مكتمل",
+        "message": "يرجى إكمال ملفك الشخصي للوصول إلى جميع الميزات."
+      },
+      "reliefUpdate": {
+        "title": "تحديث طلب الإغاثة",
+        "message": "طلب الإغاثة الخاص بك قيد المراجعة. سيتم إخطارك بمجرد معالجته."
+      },
+      "trainingRegistered": {
+        "title": "تم التسجيل في التدريب",
+        "message": "لقد قمت بالتسجيل بنجاح في برنامج تطوير المهارات."
+      }
+    },
+    "timeAgo": {
+      "hoursAgo": "منذ ساعات",
+      "dayAgo": "منذ يوم",
+      "daysAgo": "منذ أيام"
+    }
   },
   "network": {
     "noConnection": "لا يوجد اتصال بالإنترنت",
@@ -111,5 +221,160 @@
     "cellular": "خلوي",
     "ethernet": "إيثرنت",
     "unknown": "غير معروف"
+  },
+  "services": {
+    "title": "الخدمات ومقدمو الخدمة",
+    "subtitle": "ابحث عن مقدمي الرعاية الصحية المعتمدين بالقرب منك",
+    "searchPlaceholder": "البحث عن مقدمي الخدمة، التخصصات، الموقع...",
+    "resultsFound": "مقدمو خدمة",
+    "loading": "جاري تحميل مقدمي الخدمة...",
+    "loadError": "فشل في تحميل مقدمي الخدمة",
+    "tab": {
+      "providers": "مقدمو الخدمة",
+      "blood": "الدم",
+      "equipment": "المعدات",
+      "ambulance": "الإسعاف",
+      "benefits": "المزايا"
+    },
+    "categories": {
+      "all": "الكل",
+      "hospital": "مستشفى",
+      "diagnostics": "التشخيص",
+      "pharmacy": "صيدلية",
+      "clinics": "عيادات",
+      "rehab": "التأهيل"
+    },
+    "provider": {
+      "unknown": "مقدم خدمة غير معروف",
+      "noAddress": "العنوان غير متوفر",
+      "noPhone": "غير متاح"
+    },
+    "blood": {
+      "emergency": "حاجة طارئة للدم!",
+      "cta": "اطلب الدم من شبكة المتبرعين لدينا",
+      "requestNow": "اطلب الدم الآن",
+      "loading": "جاري تحميل طلبات الدم...",
+      "loadError": "فشل في تحميل طلبات الدم",
+      "noRequests": "لم يتم العثور على طلبات دم",
+      "yourRequests": "طلبات الدم الخاصة بك",
+      "myRequests": "طلبات الدم الخاصة بي",
+      "patient": "المريض",
+      "bloodGroup": "فصيلة الدم:",
+      "units": "الوحدات:",
+      "required": "مطلوب:",
+      "urgency": "الإلحاح:",
+      "hospital": "المستشفى:",
+      "contact": "جهة الاتصال:"
+    },
+    "benefits": {
+      "free": {
+        "title": "استشارات مجانية",
+        "subtitle": "الوصول إلى الأطباء العامين والمتخصصين"
+      },
+      "medicine": {
+        "title": "المساعدة في الأدوية",
+        "subtitle": "أدوية مدعومة للحالات المزمنة"
+      },
+      "emergency": {
+        "title": "النقل الطارئ",
+        "subtitle": "خدمات الإسعاف الطارئة على مدار الساعة"
+      },
+      "checkups": {
+        "title": "الفحوصات الصحية",
+        "subtitle": "المراقبة الصحية المنتظمة والتشخيص"
+      },
+      "records": {
+        "title": "السجلات الطبية",
+        "subtitle": "إدارة السجلات الصحية الرقمية"
+      },
+      "find": {
+        "title": "البحث عن العيادات",
+        "subtitle": "حدد موقع مراكز الرعاية الصحية الشريكة القريبة"
+      }
+    },
+    "help": {
+      "title": "تحتاج مساعدة؟",
+      "desc": "فريق الدعم لدينا متاح على مدار الساعة لمساعدتك",
+      "contact": "اتصل بالدعم"
+    }
+  },
+  "providerDetails": {
+    "error": "خطأ",
+    "phoneError": "غير قادر على إجراء مكالمة هاتفية",
+    "mapError": "غير قادر على فتح الخريطة",
+    "emailError": "غير قادر على فتح البريد الإلكتروني",
+    "shareError": "غير قادر على مشاركة تفاصيل مقدم الخدمة"
+  },
+  "equipment": {
+    "subtitle": "عرض سجل طلبات المعدات الخاصة بك",
+    "loading": "جاري تحميل الطلبات...",
+    "error": "فشل في تحميل الطلبات",
+    "submit": {
+      "success": "نجح",
+      "successMessage": "تم تقديم طلب المعدات بنجاح! سيقوم فريقنا بمراجعة طلبك.",
+      "error": "خطأ",
+      "errorMessage": "فشل في تقديم طلب المعدات. يرجى المحاولة مرة أخرى.",
+      "submitting": "جاري الإرسال...",
+      "submitButton": "إرسال الطلب"
+    },
+    "need": "تحتاج معدات طبية؟",
+    "needSubtitle": "طلب دعم المعدات للرعاية المنزلية",
+    "request": "طلب المعدات",
+    "myRequests": "طلبات المعدات الخاصة بي",
+    "viewAll": "عرض جميع الطلبات",
+    "items": "العناصر"
+  },
+  "ambulance": {
+    "loading": "جاري تحميل الإسعافات...",
+    "error": "فشل في تحميل الإسعافات",
+    "title": "خدمات الإسعاف الطارئة",
+    "subtitle": "دعم الإسعاف الطارئ على مدار الساعة",
+    "view": "عرض الخدمات"
+  },
+  "events": {
+    "title": "الفعاليات والمعسكرات",
+    "subtitle": "انضم إلى برامج المجتمع الصحية لدينا.",
+    "registerHeader": "التسجيل للفعاليات",
+    "upcoming": "الفعاليات القادمة",
+    "registerNow": "سجل الآن",
+    "impactTitle": "تأثيرنا",
+    "impact": {
+      "events": "الفعاليات المقامة",
+      "people": "الأشخاص المخدومين",
+      "volunteers": "المتطوعين النشطين"
+    },
+    "register": {
+      "title": "تسجيل الفعالية",
+      "subtitle": "يرجى ملء جميع التفاصيل لتسجيل الفعالية",
+      "personalInfo": "المعلومات الشخصية",
+      "fullName": "الاسم الكامل",
+      "fullNamePlaceholder": "أدخل اسمك الكامل",
+      "phoneNumber": "رقم الهاتف",
+      "phoneNumberPlaceholder": "+91-XXXXXXXXXX",
+      "phoneInvalid": "أدخل رقم صحيح من 10 أرقام",
+      "emailAddress": "عنوان البريد الإلكتروني",
+      "emailPlaceholder": "your.email@example.com",
+      "emailInvalid": "عنوان بريد إلكتروني غير صحيح",
+      "dateOfBirth": "تاريخ الميلاد",
+      "age": "العمر",
+      "gender": "الجنس",
+      "genderMale": "ذكر",
+      "genderFemale": "أنثى",
+      "genderOther": "آخر",
+      "address": "العنوان",
+      "addressPlaceholder": "أدخل عنوانك الكامل",
+      "participationType": "اختر كيف تريد المشاركة",
+      "participant": "مشارك",
+      "volunteer": "متطوع",
+      "declaration": "الإقرار",
+      "declarationText": "أقر بموجب هذا أن المعلومات المقدمة صحيحة. أوافق على اتباع مبادئ وإرشادات مؤسسة مجتبى للمساعدة والمشاركة بمسؤولية في الفعالية(ات) المختارة.",
+      "iAgree": "أوافق",
+      "saveDetails": "حفظ التفاصيل",
+      "submitting": "جاري الإرسال...",
+      "successTitle": "نجح",
+      "successMessage": "تم تقديم تسجيل الفعالية بنجاح",
+      "errorTitle": "خطأ",
+      "errorMessage": "فشل في تقديم تسجيل الفعالية"
+    }
   }
 }

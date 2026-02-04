@@ -1,8 +1,9 @@
 
 import 'react-native-gesture-handler';
-import { StatusBar, StyleSheet, useColorScheme, SafeAreaView, I18nManager } from 'react-native';
+import { StatusBar, StyleSheet, useColorScheme, I18nManager } from 'react-native';
 import {
   SafeAreaProvider,
+  SafeAreaView,
 } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
@@ -40,8 +41,8 @@ function AppContent() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
+          <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
           <NetworkStatusBanner />
           <NavigationContainer>
             <RootNavigator />

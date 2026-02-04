@@ -235,6 +235,22 @@ const convertValidations = (field: FormField): RegisterOptions => {
 };
 
 /**
+ * Check if a field is required
+ */
+const isFieldRequired = (field: FormField): boolean => {
+    if (field.required) return true;
+    return field.validations?.some((v) => v.name === 'required' && v.value) || false;
+};
+
+/**
+ * Get label with required indicator if needed
+ */
+const getFieldLabel = (field: FormField): string => {
+    if (!field.label) return '';
+    return isFieldRequired(field) ? `${field.label} *` : field.label;
+};
+
+/**
  * Get default value for a field based on its type
  */
 const getDefaultValue = (field: FormField): any => {
@@ -590,7 +606,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                 render={({ field: { onChange, onBlur, value, ref } }) => (
                                     <PTInput
                                         ref={ref}
-                                        label={field.label}
+                                        label={getFieldLabel(field)}
                                         placeholder={field.placeholder}
                                         value={value !== null && value !== undefined ? String(value) : ''}
                                         onChangeText={(text) => {
@@ -623,7 +639,6 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                 )}
                             />
                         );
-
                     case 'textarea':
                         return (
                             <Controller
@@ -634,7 +649,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                 render={({ field: { onChange, onBlur, value, ref } }) => (
                                     <PTInput
                                         ref={ref}
-                                        label={field.label}
+                                        label={getFieldLabel(field)}
                                         placeholder={field.placeholder}
                                         value={value !== null && value !== undefined ? String(value) : ''}
                                         onChangeText={(text) => {
@@ -672,7 +687,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                                 onChange(newValue);
                                                 handleValueChange(fieldId, newValue);
                                             }}
-                                            label={field.label}
+                                            label={getFieldLabel(field)}
                                             disabled={field.disabled}
                                         />
                                         {(errorMessage || field.error) && (
@@ -706,6 +721,9 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                                 style={{ marginBottom: theme.spacing.sm, fontWeight: '600' }}
                                             >
                                                 {field.label}
+                                                {isFieldRequired(field) && (
+                                                    <PTText variant="caption" style={{ color: theme.colors.error }}> *</PTText>
+                                                )}
                                             </PTText>
                                         )}
                                         <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
@@ -780,7 +798,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                 render={({ field: { onChange, value } }) => (
                                     <View style={field.style}>
                                         <PTDatePicker
-                                            label={field.label}
+                                            label={getFieldLabel(field)}
                                             placeholder={field.placeholder || 'Select date'}
                                             value={value ? new Date(value) : null}
                                             onDateChange={(date) => {
@@ -812,7 +830,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                 render={({ field: { onChange, value } }) => (
                                     <View style={field.style}>
                                         <PTSelect
-                                            label={field.label}
+                                            label={getFieldLabel(field)}
                                             placeholder={field.placeholder || 'Select an option'}
                                             value={value}
                                             options={selectOptions as any}
@@ -835,7 +853,9 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                         );
 
                     case 'multiselect':
-                        const multiselectOptions = (field.options || []).map((opt) => ({
+                        // Support both 'options' and 'values' for consistency with radio
+                        const multiselectSource = field.values || field.options || [];
+                        const multiselectOptions = multiselectSource.map((opt: any) => ({
                             label: opt.label || opt.name || String(opt.value !== undefined ? opt.value : opt.id),
                             value: opt.value !== undefined ? opt.value : opt.id,
                         }));
@@ -849,7 +869,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                 render={({ field: { onChange, value } }) => (
                                     <View style={field.style}>
                                         <PTSelect
-                                            label={field.label}
+                                            label={getFieldLabel(field)}
                                             placeholder={field.placeholder || 'Select options'}
                                             value={null}
                                             options={multiselectOptions as any}
@@ -884,7 +904,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                 render={({ field: { onChange, value } }) => (
                                     <View style={field.style}>
                                         <PTFilePicker
-                                            label={field.label}
+                                            label={getFieldLabel(field)}
                                             value={value as FileData | FileData[] | null}
                                             onFileSelect={(files) => {
                                                 onChange(files);

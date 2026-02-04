@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   View,
   Text,
@@ -7,9 +7,12 @@ import {
   TouchableOpacity,
   TextInput,
   Dimensions,
+  ActivityIndicator,
 } from 'react-native';
 import { MagnifyingGlass, Star, Wrench, CaretRight, PhoneCall, Hospital, Syringe, Pill, Stethoscope, FolderPlus } from 'phosphor-react-native';
 import { useTranslation } from 'react-i18next';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useGetBloodRequestsQuery, useGetProvidersQuery } from '@psi/shared-api';
 
 const { width } = Dimensions.get('window');
 
@@ -21,60 +24,59 @@ const CHIP_WIDTH = Math.floor((width - CHIP_CONTAINER_HORIZONTAL_PADDING * 2 - (
 
 const TABS = ['Providers', 'Blood', 'Equipment', 'Ambulance', 'Benefits'];
 
-const sampleProviders = [
-  {
-    id: 1,
-    name: 'Medicare Clinic',
-    address: '789 Green Park, South Delhi',
-    specialties: ['General Practice', 'Dermatology'],
-    distanceKm: 0.8,
-    offerPercent: 20,
-    phone: '+91-11-2345-6791',
-    hours: '9 AM - 8 PM',
-    rating: '4.3',
-  },
-  {
-    id: 2,
-    name: 'MedPlus Pharmacy',
-    address: '999 Market Street, Lajpat Nagar, New Delhi',
-    specialties: ['Prescription Medicines', 'OTC Products'],
-    distanceKm: 1.1,
-    offerPercent: 10,
-    phone: '+91-11-2345-6798',
-    hours: '8 AM - 10 PM',
-    rating: '4.3',
-  },
-  {
-    id: 3,
-    name: 'City General Hospital',
-    address: '123 Main Street, Sector 15, New Delhi',
-    specialties: ['Cardiology', 'Orthopedics'],
-    distanceKm: 1.2,
-    offerPercent: 30,
-    phone: '+91-11-2345-6789',
-    hours: '24/7',
-    rating: '4.5',
-  },
-  {
-    id: 4,
-    name: 'HealthPlus Pharmacy',
-    address: '567 Shopping Complex, Karol Bagh',
-    specialties: ['Generic Medicines', 'Surgical Items'],
-    distanceKm: 1.5,
-    offerPercent: 15,
-    phone: '+91-11-2345-6793',
-    hours: '8 AM - 11 PM',
-    rating: '4.4',
-  },
-];
-
 export default function ServicesScreen() {
   const { t } = useTranslation();
+  const navigation = useNavigation<any>();
   const [activeTab, setActiveTab] = useState('Providers');
   const [query, setQuery] = useState('');
   const [activeChip, setActiveChip] = useState('All');
 
-  const filtered = sampleProviders.filter(p => p.name.toLowerCase().includes(query.toLowerCase()) || p.address.toLowerCase().includes(query.toLowerCase()));
+  // Fetch providers from API
+  const { data: providersData, isLoading, error, refetch } = useGetProvidersQuery();
+  const {
+    data: bloodRequestsData,
+    isLoading: bloodLoading,
+    error: bloodError,
+    refetch: refetchBlood,
+  } = useGetBloodRequestsQuery();
+
+  // Refetch providers when screen comes into focus
+  useFocusEffect(
+    React.useCallback(() => {
+      refetch();
+      refetchBlood();
+    }, [refetch, refetchBlood])
+  );
+
+  // Filter providers based on activeChip and search query
+  const filtered = useMemo(() => {
+    let providers = providersData?.data || [];
+
+    // Filter by category (activeChip)
+    if (activeChip !== 'All') {
+      providers = providers.filter((p: any) => {
+        const category = p.category?.toLowerCase() || p.type?.toLowerCase() || '';
+        return category === activeChip.toLowerCase();
+      });
+    }
+
+    // Filter by search query
+    if (query.trim()) {
+      const searchLower = query.toLowerCase();
+      providers = providers.filter((p: any) => {
+        const name = (p.provider_name || '').toLowerCase();
+        const address = (p.address || '').toLowerCase();
+        const specialties = (p.specialities || []).join(' ').toLowerCase();
+        return name.includes(searchLower) || address.includes(searchLower) || specialties.includes(searchLower);
+      });
+    }
+
+    return providers;
+  }, [providersData?.data, activeChip, query]);
+
+  const handleProviderPress = (provider: any) => {
+    navigation.navigate('ProviderDetails', { provider: provider });
+  };
 
   const benefits = [
     { key: 'free', title: t('services.benefits.free.title', 'Free Consultations'), subtitle: t('services.benefits.free.subtitle', 'Access to general physicians and specialists'), icon: Stethoscope, bg: '#E0F2FE', color: '#0369A1' },
@@ -84,6 +86,23 @@ export default function ServicesScreen() {
     { key: 'records', title: t('services.benefits.records.title', 'Medical Records'), subtitle: t('services.benefits.records.subtitle', 'Digital health records management'), icon: FolderPlus, bg: '#EFF6FF', color: '#2563EB' },
     { key: 'find', title: t('services.benefits.find.title', 'Find Clinics'), subtitle: t('services.benefits.find.subtitle', 'Locate nearby partner healthcare centers'), icon: Hospital, bg: '#F3F4F6', color: '#0F172A' },
   ];
+
+  const getBloodStatusStyle = (status?: string) => {
+    const normalized = (status ?? '').toLowerCase();
+    switch (normalized) {
+      case 'approved':
+        return styles.bloodStatusApproved;
+      case 'rejected':
+        return styles.bloodStatusRejected;
+      case 'completed':
+        return styles.bloodStatusCompleted;
+      case 'hold':
+        return styles.bloodStatusHold;
+      case 'pending':
+      default:
+        return styles.bloodStatusPending;
+    }
+  };
 
   return (
     <View style={styles.page}>
@@ -107,73 +126,101 @@ export default function ServicesScreen() {
               <TouchableOpacity style={[styles.chip, activeChip === 'All' && styles.chipActive]} onPress={() => setActiveChip('All')}>
                 <Text style={[styles.chipText, activeChip === 'All' && styles.chipActiveText]}>All</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.chip, activeChip === 'Hospitals' && styles.chipActive]} onPress={() => setActiveChip('Hospitals')}>
-                <Hospital size={14} color={activeChip === 'Hospitals' ? '#0369A1' : '#0369A1'} /><Text style={[styles.chipText, activeChip === 'Hospitals' && styles.chipActiveText]}>Hospitals</Text>
+              <TouchableOpacity style={[styles.chip, activeChip === 'Hospital' && styles.chipActive]} onPress={() => setActiveChip('Hospital')}>
+                <Hospital size={14} color={activeChip === 'Hospital' ? '#0369A1' : '#0369A1'} />
+                <Text style={[styles.chipText, activeChip === 'Hospital' && styles.chipActiveText]}>Hospital</Text>
               </TouchableOpacity>
               <TouchableOpacity style={[styles.chip, activeChip === 'Diagnostics' && styles.chipActive]} onPress={() => setActiveChip('Diagnostics')}>
-                <Syringe size={14} color={activeChip === 'Diagnostics' ? '#0369A1' : '#0369A1'} /><Text style={[styles.chipText, activeChip === 'Diagnostics' && styles.chipActiveText]}>Diagnostics</Text>
+                <Syringe size={14} color={activeChip === 'Diagnostics' ? '#0369A1' : '#0369A1'} />
+                <Text style={[styles.chipText, activeChip === 'Diagnostics' && styles.chipActiveText]}>Diagnostics</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.chipsRow}>
               <TouchableOpacity style={[styles.chip, activeChip === 'Pharmacy' && styles.chipActive]} onPress={() => setActiveChip('Pharmacy')}>
-                <Pill size={14} color={activeChip === 'Pharmacy' ? '#0369A1' : '#0369A1'} /><Text style={[styles.chipText, activeChip === 'Pharmacy' && styles.chipActiveText]}>Pharmacy</Text>
+                <Pill size={14} color={activeChip === 'Pharmacy' ? '#0369A1' : '#0369A1'} />
+                <Text style={[styles.chipText, activeChip === 'Pharmacy' && styles.chipActiveText]}>Pharmacy</Text>
               </TouchableOpacity>
               <TouchableOpacity style={[styles.chip, activeChip === 'Clinics' && styles.chipActive]} onPress={() => setActiveChip('Clinics')}>
-                <Stethoscope size={14} color={activeChip === 'Clinics' ? '#0369A1' : '#0369A1'} /><Text style={[styles.chipText, activeChip === 'Clinics' && styles.chipActiveText]}>Clinics</Text>
+                <Stethoscope size={14} color={activeChip === 'Clinics' ? '#0369A1' : '#0369A1'} />
+                <Text style={[styles.chipText, activeChip === 'Clinics' && styles.chipActiveText]}>Clinics</Text>
               </TouchableOpacity>
               <TouchableOpacity style={[styles.chip, activeChip === 'Rehab' && styles.chipActive]} onPress={() => setActiveChip('Rehab')}>
-                <FolderPlus size={14} color={activeChip === 'Rehab' ? '#0369A1' : '#0369A1'} /><Text style={[styles.chipText, activeChip === 'Rehab' && styles.chipActiveText]}>Rehab</Text>
+                <FolderPlus size={14} color={activeChip === 'Rehab' ? '#0369A1' : '#0369A1'} />
+                <Text style={[styles.chipText, activeChip === 'Rehab' && styles.chipActiveText]}>Rehab</Text>
               </TouchableOpacity>
             </View>
           </View>
         )}
 
-        <View style={styles.searchRow}>
-          <MagnifyingGlass color="#9CA3AF" size={18} />
-          <TextInput placeholder={t('services.searchPlaceholder', 'Search providers, specialties, location...')} value={query} onChangeText={setQuery} style={styles.searchInput} />
-        </View>
+        {activeTab === 'Providers' && (
+          <View style={styles.searchRow}>
+            <MagnifyingGlass color="#9CA3AF" size={18} />
+            <TextInput placeholder={t('services.searchPlaceholder', 'Search providers, specialties, location...')} value={query} onChangeText={setQuery} style={styles.searchInput} />
+          </View>
+        )}
 
         {activeTab === 'Providers' && (
           <View>
-            <Text style={styles.resultsCount}>{filtered.length} {t('services.resultsFound', 'providers found')}</Text>
-            {filtered.map(p => (
-              <TouchableOpacity key={p.id} style={styles.providerCard} activeOpacity={0.85}>
-                <View style={styles.providerLeft}>
-                  <View style={styles.providerAvatar}><Text style={styles.avatarLetter}>{p.name.charAt(0)}</Text></View>
-                </View>
+            {isLoading ? (
+              <View style={{ padding: 20, alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="#0369A1" />
+                <Text style={{ marginTop: 8, color: '#6B7280' }}>Loading providers...</Text>
+              </View>
+            ) : error ? (
+              <View style={{ padding: 20, alignItems: 'center' }}>
+                <Text style={{ color: '#DC2626' }}>Failed to load providers</Text>
+              </View>
+            ) : (
+              <>
+                <Text style={styles.resultsCount}>{filtered.length} {t('services.resultsFound', 'providers found')}</Text>
+                {filtered.map((p: any) => (
+                  <TouchableOpacity
+                    key={p.id}
+                    style={styles.providerCard}
+                    activeOpacity={0.85}
+                    onPress={() => handleProviderPress(p)}
+                  >
+                    <View style={styles.providerLeft}>
+                      <View style={styles.providerAvatar}><Text style={styles.avatarLetter}>{p.provider_name?.charAt(0) || 'P'}</Text></View>
+                    </View>
 
-                <View style={styles.providerMain}>
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Text style={styles.providerName}>{p.name}</Text>
-                    <View style={styles.ratingBadge}><Text style={styles.ratingBadgeText}>{p.rating}</Text></View>
-                  </View>
+                    <View style={styles.providerMain}>
+                      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Text style={styles.providerName}>{p.provider_name || 'Unknown Provider'}</Text>
+                        {p.rating && <View style={styles.ratingBadge}><Text style={styles.ratingBadgeText}>{p.rating}</Text></View>}
+                      </View>
 
-                  <Text style={styles.providerAddress}>{p.address}</Text>
+                      <Text style={styles.providerAddress}>{p.address || 'Address not available'}</Text>
 
-                  <View style={styles.tagsRow}>
-                    {p.specialties.map((s, idx) => (
-                      <View key={idx} style={styles.tagPill}><Text style={styles.tagText}>{s}</Text></View>
-                    ))}
-                  </View>
+                      <View style={styles.tagsRow}>
+                        {(p.specialities || []).map((s, idx) => (
+                          <View key={idx} style={styles.tagPill}><Text style={styles.tagText}>{s}</Text></View>
+                        ))}
+                      </View>
 
-                  <View style={styles.bottomRow}>
-                    <Text style={styles.distanceText}>{p.distanceKm} km</Text>
-                    <View style={styles.offerPill}><Text style={styles.offerText}>{p.offerPercent}% OFF</Text></View>
-                  </View>
+                      {(p.distanceKm || p.offerPercent) && (
+                        <View style={styles.bottomRow}>
+                          {p.distanceKm && <Text style={styles.distanceText}>{p.distanceKm} km</Text>}
+                          {p.offerPercent && <View style={styles.offerPill}><Text style={styles.offerText}>{p.offerPercent}% OFF</Text></View>}
+                        </View>
+                      )}
 
-                  <View style={styles.contactRow}>
-                    <PhoneCall size={12} color="#6B7280" />
-                    <Text style={styles.contactText}>{p.phone}</Text>
-                    <Text style={styles.dot}>•</Text>
-                    <Text style={styles.contactText}>{p.hours}</Text>
-                  </View>
-                </View>
+                      <View style={styles.contactRow}>
+                        <PhoneCall size={12} color="#6B7280" />
+                        <Text style={styles.contactText}>
+                          {p.phone || 'N/A'}
+                          {p.hours && ` • ${p.hours}`}
+                        </Text>
+                      </View>
+                    </View>
 
-                <View style={styles.providerRight}>
-                  <CaretRight color="#9CA3AF" size={18} />
-                </View>
-              </TouchableOpacity>
-            ))}
+                    <View style={styles.providerRight}>
+                      <CaretRight color="#9CA3AF" size={18} />
+                    </View>
+                  </TouchableOpacity>
+                ))}
+              </>
+            )}
           </View>
         )}
 
@@ -182,13 +229,78 @@ export default function ServicesScreen() {
             <View style={styles.alertBox}>
               <Text style={styles.alertTitle}>{t('services.blood.emergency', 'Emergency Blood Required!')}</Text>
               <Text style={styles.alertText}>{t('services.blood.cta', 'Request blood from our donor network')}</Text>
-              <TouchableOpacity style={styles.alertButton}><Text style={styles.alertButtonText}>{t('services.blood.requestNow', 'Request Blood Now')}</Text></TouchableOpacity>
+              <TouchableOpacity
+                style={styles.alertButton}
+                onPress={() => navigation.navigate('BloodRequest')}
+              >
+                <Text style={styles.alertButtonText}>{t('services.blood.requestNow', 'Request Blood Now')}</Text>
+              </TouchableOpacity>
             </View>
 
-            <View style={styles.infoCard}>
-              <Text style={styles.infoTitle}>{t('services.blood.search', 'Search Blood Donors')}</Text>
-              <Text style={styles.infoLabel}>{t('services.blood.select', 'Select Blood Group')}</Text>
-            </View>
+            {(() => {
+              const bloodRequests = Array.isArray(bloodRequestsData?.data)
+                ? bloodRequestsData.data
+                : Array.isArray(bloodRequestsData)
+                  ? bloodRequestsData
+                  : [];
+
+              if (bloodLoading) {
+                return (
+                  <View style={{ padding: 20, alignItems: 'center' }}>
+                    <ActivityIndicator size="large" color="#DC2626" />
+                    <Text style={{ marginTop: 8, color: '#6B7280' }}>Loading blood requests...</Text>
+                  </View>
+                );
+              }
+
+              if (bloodError) {
+                return (
+                  <View style={{ padding: 20, alignItems: 'center' }}>
+                    <Text style={{ color: '#DC2626' }}>Failed to load blood requests</Text>
+                  </View>
+                );
+              }
+
+              if (bloodRequests.length === 0) {
+                return (
+                  <View style={{ padding: 20, alignItems: 'center' }}>
+                    <Text style={{ color: '#6B7280' }}>No blood requests found</Text>
+                  </View>
+                );
+              }
+
+              return (
+                <View style={{ marginTop: 12 }}>
+                  <Text style={styles.sectionHeader}>{t('services.blood.myRequests', 'My Blood Requests')}</Text>
+                  {bloodRequests.map((req: any, idx: number) => (
+                    <View key={`${req.blood_request.id ?? req.blood_request.id ?? idx}`} style={styles.bloodCard}>
+                      <View style={styles.bloodHeaderRow}>
+                        <Text style={styles.bloodTitle}>{req.blood_request.patient_name || 'Patient'}</Text>
+                        {!!req.blood_request.status && (
+                          <View style={[styles.bloodStatusBadge, getBloodStatusStyle(req.blood_request.status)]}>
+                            <Text style={styles.bloodStatusText}>{String(req.blood_request.status)}</Text>
+                          </View>
+                        )}
+                      </View>
+                      <Text style={styles.bloodMeta}>Blood Group: {req.blood_request.required_blood_group}</Text>
+                      <Text style={styles.bloodMeta}>Units: {req.blood_request.units_required}</Text>
+                      {!!req.blood_request.required_datetime && (
+                        <Text style={styles.bloodMeta}>Required: {req.blood_request.required_datetime}</Text>
+                      )}
+                      {!!req.blood_request.urgency_level && (
+                        <Text style={styles.bloodMeta}>Urgency: {req.blood_request.urgency_level}</Text>
+                      )}
+                      {!!req.blood_request.hospital_name && (
+                        <Text style={styles.bloodMeta}>Hospital: {req.blood_request.hospital_name}</Text>
+                      )}
+                      {!!req.blood_request.requester_mobile && (
+                        <Text style={styles.bloodMeta}>Contact: {req.blood_request.requester_mobile}</Text>
+                      )}
+                    </View>
+                  ))}
+                </View>
+              );
+            })()}
           </View>
         )}
 
@@ -200,10 +312,15 @@ export default function ServicesScreen() {
                 <Text style={styles.requestEquipmentTitle}>{t('services.equipment.need', 'Need Medical Equipment?')}</Text>
                 <Text style={styles.requestEquipmentSubtitle}>{t('services.equipment.subtitle', 'Request equipment support for home care')}</Text>
               </View>
-              <TouchableOpacity style={styles.requestEquipmentButton}><Text style={styles.requestEquipmentButtonText}>{t('services.equipment.request', 'Request Equipment')}</Text></TouchableOpacity>
+              <TouchableOpacity
+                style={styles.requestEquipmentButton}
+                onPress={() => navigation.navigate('EquipmentRequest')}
+              >
+                <Text style={styles.requestEquipmentButtonText}>{t('services.equipment.request', 'Request Equipment')}</Text>
+              </TouchableOpacity>
             </View>
 
-            <Text style={styles.sectionHeader}>{t('services.equipment.available', 'Available Equipment')}</Text>
+
             <View style={styles.equipmentGrid}>
               {[{ k: 'Mobility Aids', n: 5 }, { k: 'Hospital Beds', n: 4 }, { k: 'Monitoring Devices', n: 5 }, { k: 'Respiratory Equipment', n: 6 }].map((e) => (
                 <View key={e.k} style={styles.equipmentItem}>
@@ -212,11 +329,35 @@ export default function ServicesScreen() {
                 </View>
               ))}
             </View>
+
+            <Text style={styles.sectionHeader}>{t('services.equipment.myRequests', 'My Equipment Requests')}</Text>
+            <TouchableOpacity
+              style={styles.viewRequestsButton}
+              onPress={() => navigation.navigate('EquipmentRequestList')}
+            >
+              <Text style={styles.viewRequestsButtonText}>{t('services.equipment.viewAll', 'View All Requests')}</Text>
+              <CaretRight size={18} color="#fff" />
+            </TouchableOpacity>
+
           </View>
         )}
 
         {activeTab === 'Ambulance' && (
-          <View style={styles.infoCard}><Text style={styles.infoTitle}>{t('services.ambulance.title', 'Ambulance Services')}</Text><Text style={styles.infoLabel}>{t('services.ambulance.subtitle', 'Request on-demand ambulance support')}</Text></View>
+          <View>
+            <View style={styles.requestEquipmentCard}>
+              <PhoneCall color="#DC2626" size={18} weight="fill" />
+              <View style={{ marginLeft: 12, flex: 1 }}>
+                <Text style={styles.requestEquipmentTitle}>{t('services.ambulance.title', 'Emergency Ambulance Services')}</Text>
+                <Text style={styles.requestEquipmentSubtitle}>{t('services.ambulance.subtitle', '24/7 emergency ambulance support')}</Text>
+              </View>
+              <TouchableOpacity
+                style={[styles.requestEquipmentButton, { backgroundColor: '#DC2626' }]}
+                onPress={() => navigation.navigate('AmbulanceList')}
+              >
+                <Text style={styles.requestEquipmentButtonText}>{t('services.ambulance.view', 'View Services')}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         )}
 
         {activeTab === 'Benefits' && (
@@ -303,7 +444,32 @@ const styles = StyleSheet.create({
   requestEquipmentButton: { backgroundColor: '#0EA5A4', paddingHorizontal: 12, paddingVertical: 8, borderRadius: 10 },
   requestEquipmentButtonText: { color: '#fff', fontWeight: '700' },
   sectionHeader: { fontSize: 14, fontWeight: '700', marginTop: 12, marginBottom: 8 },
-  equipmentGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 12 },
+  bloodCard: { backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 10, borderWidth: 1, borderColor: '#FEE2E2' },
+  bloodHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 },
+  bloodTitle: { fontSize: 14, fontWeight: '700', color: '#0F172A' },
+  bloodMeta: { color: '#6B7280', fontSize: 12, marginTop: 2 },
+  bloodStatusBadge: { paddingHorizontal: 8, paddingVertical: 4, borderRadius: 8 },
+  bloodStatusText: { color: '#B91C1C', fontSize: 11, fontWeight: '700' },
+  bloodStatusPending: { backgroundColor: '#FEF3C7' },
+  bloodStatusApproved: { backgroundColor: '#DCFCE7' },
+  bloodStatusRejected: { backgroundColor: '#FEE2E2' },
+  bloodStatusCompleted: { backgroundColor: '#CCFBF1' },
+  bloodStatusHold: { backgroundColor: '#EDE9FE' },
+  viewRequestsButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#0369A1',
+    paddingVertical: 12,
+    borderRadius: 10,
+    gap: 8,
+  },
+  viewRequestsButtonText: {
+    color: '#fff',
+    fontWeight: '700',
+    fontSize: 15,
+  },
+  equipmentGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 12, marginTop: 8 },
   equipmentItem: { width: (width - 64) / 2, backgroundColor: '#fff', borderRadius: 12, padding: 12, marginBottom: 12 },
   equipmentTitle: { fontWeight: '700', color: '#075985' },
   equipmentCount: { marginTop: 8, backgroundColor: '#F1F5F9', alignSelf: 'flex-start', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 8 },

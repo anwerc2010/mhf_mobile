@@ -1,5 +1,6 @@
 package com.patrn
 
+import android.content.Intent
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
@@ -19,4 +20,17 @@ class MainActivity : ReactActivity() {
    */
   override fun createReactActivityDelegate(): ReactActivityDelegate =
       DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled)
-}
+
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+    // Update the activity reference in FilePickerHelper
+    FilePickerHelper.setActivity(this)
+    // Forward to FilePickerModule
+    try {
+      val context = reactDelegate?.reactHost?.currentReactContext
+      val filePickerModule = context?.getNativeModule(FilePickerModule::class.java)
+      filePickerModule?.onActivityResult(requestCode, resultCode, data)
+    } catch (e: Exception) {
+      e.printStackTrace()
+    }
+  }}

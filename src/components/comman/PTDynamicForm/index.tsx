@@ -7,21 +7,25 @@ import PTSwitch from '../PTSwitch';
 import PTText from '../PTText';
 import PTDivider from '../PTDivider';
 import PTSelect from '../PTSelect';
+import PTDatePicker from '../PTDatePicker';
+import PTTimePicker from '../PTTimePicker';
+import PTFilePicker, { FileData } from '../PTFilePicker';
 
-export type FormFieldType = 
-  | 'text' 
-  | 'email' 
-  | 'password' 
-  | 'number' 
-  | 'phone' 
+export type FormFieldType =
+  | 'text'
+  | 'email'
+  | 'password'
+  | 'number'
+  | 'phone'
   | 'tel'
-  | 'textarea' 
-  | 'switch' 
-  | 'select' 
-  | 'multiselect' 
+  | 'textarea'
+  | 'switch'
+  | 'select'
+  | 'multiselect'
   | 'radio'
-  | 'date' 
-  | 'time';
+  | 'date'
+  | 'time'
+  | 'file';
 
 export interface FormFieldOption {
   label: string;
@@ -141,6 +145,27 @@ export interface FormField {
    * Whether to show separator after field
    */
   showSeparator?: boolean;
+
+  /**
+   * Accepted file types (for file fields)
+   * e.g., ['application/pdf', 'image/*']
+   */
+  accept?: string[];
+
+  /**
+   * Maximum file size in MB (for file fields)
+   */
+  maxSizeMB?: number;
+
+  /**
+   * Allow multiple file selection (for file fields)
+   */
+  multiple?: boolean;
+
+  /**
+   * Maximum number of files (for file fields with multiple)
+   */
+  maxFiles?: number;
 }
 
 export interface PTDynamicFormRef {
@@ -308,617 +333,698 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
     },
     ref
   ) => {
-  const theme = useTheme();
+    const theme = useTheme();
 
-  // Initialize form values from initialValues and field defaults
-  const initializeValues = useCallback(() => {
-    const values: Record<string, any> = { ...initialValues };
-    
-    allFields.forEach((field) => {
-      const fieldId = getFieldId(field);
-      const fieldPath = getFieldPath(field);
-      
-      // Check if value already exists at path
-      const existingValue = getNestedValue(values, fieldPath);
-      
-      if (existingValue === undefined) {
-        if (field.value !== undefined) {
-          setNestedValue(values, fieldPath, field.value);
-        } else if (field.defaultValue !== undefined) {
-          setNestedValue(values, fieldPath, field.defaultValue);
-        } else {
-          // Set default based on field type
-          switch (field.type) {
-            case 'switch':
-            case 'radio':
-              setNestedValue(values, fieldPath, field.values?.find(v => v.selected)?.id || '');
-              break;
-            case 'multiselect':
-              setNestedValue(values, fieldPath, []);
-              break;
-            case 'number':
-              const minValidation = field.validations?.find((v) => v.name === 'min');
-              setNestedValue(values, fieldPath, minValidation?.value ?? 0);
-              break;
-            default:
-              setNestedValue(values, fieldPath, '');
+    // Helper function to get field ID
+    const getFieldId = (field: FormField): string => {
+      return field.id || field.name || field.key || field.path || '';
+    };
+
+    // Helper function to get field path for nested values
+    const getFieldPath = (field: FormField): string => {
+      return field.path || field.key || field.name || field.id || '';
+    };
+
+    // Helper function to get nested value from object using path
+    const getNestedValue = (obj: Record<string, any>, path: string): any => {
+      if (!path) return undefined;
+      const keys = path.split('.');
+      let value = obj;
+      for (const key of keys) {
+        if (value === null || value === undefined) return undefined;
+        value = value[key];
+      }
+      return value;
+    };
+
+    // Helper function to set nested value in object using path
+    const setNestedValue = (obj: Record<string, any>, path: string, value: any): void => {
+      if (!path) return;
+      const keys = path.split('.');
+      let current = obj;
+      for (let i = 0; i < keys.length - 1; i++) {
+        const key = keys[i];
+        if (!(key in current) || typeof current[key] !== 'object') {
+          current[key] = {};
+        }
+        current = current[key];
+      }
+      current[keys[keys.length - 1]] = value;
+    };
+
+    // Flatten all fields from sections or use fields directly
+    const allFields = React.useMemo(() => {
+      if (sections && sections.length > 0) {
+        return sections.flatMap((section) => section.fields);
+      }
+      return fields || [];
+    }, [fields, sections]);
+
+    // Initialize form values from initialValues and field defaults
+    const initializeValues = useCallback(() => {
+      const values: Record<string, any> = { ...initialValues };
+
+      allFields.forEach((field) => {
+        const fieldId = getFieldId(field);
+        const fieldPath = getFieldPath(field);
+
+        // Check if value already exists at path
+        const existingValue = getNestedValue(values, fieldPath);
+
+        if (existingValue === undefined) {
+          if (field.value !== undefined) {
+            setNestedValue(values, fieldPath, field.value);
+          } else if (field.defaultValue !== undefined) {
+            setNestedValue(values, fieldPath, field.defaultValue);
+          } else {
+            // Set default based on field type
+            switch (field.type) {
+              case 'switch':
+              case 'radio':
+                setNestedValue(values, fieldPath, field.values?.find((v: RadioOption) => v.selected)?.id || '');
+                break;
+              case 'multiselect':
+                setNestedValue(values, fieldPath, []);
+                break;
+              case 'number':
+                const minValidation = field.validations?.find((v: { name: string }) => v.name === 'min');
+                setNestedValue(values, fieldPath, minValidation?.value ?? 0);
+                break;
+              default:
+                setNestedValue(values, fieldPath, '');
+            }
           }
         }
-      }
-    });
-    return values;
-  }, [allFields, initialValues]);
-
-  const [formValues, setFormValues] = useState<Record<string, any>>(initializeValues);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
-  // Update form values when initialValues change
-  useEffect(() => {
-    setFormValues(initializeValues());
-  }, [initializeValues]);
-
-  // Internal setValue function
-  const internalSetValue = useCallback((nameOrPath: string, value: any) => {
-    setFormValues((prev) => {
-      const field = allFields.find((f) => {
-        const fieldId = getFieldId(f);
-        const path = getFieldPath(f);
-        return fieldId === nameOrPath || path === nameOrPath || f.name === nameOrPath;
       });
-      
-      if (field) {
-        const actualPath = getFieldPath(field);
-        const newValues = { ...prev };
-        setNestedValue(newValues, actualPath, value);
-        return newValues;
-      } else {
-        // Fallback: try to set directly
-        const newValues = { ...prev };
-        setNestedValue(newValues, nameOrPath, value);
-        return newValues;
-      }
-    });
-  }, [allFields]);
+      return values;
+    }, [allFields, initialValues]);
 
-  // Validate a single field
-  const validateField = useCallback((field: FormField, value: any, allValues: Record<string, any> = {}): string | undefined => {
-    // Backward compatibility: support deprecated required prop
-    if (field.required) {
-      if (value === null || value === undefined || value === '') {
-        return `${field.label || field.name} is required`;
-      }
-      if (Array.isArray(value) && value.length === 0) {
-        return `${field.label || field.name} is required`;
-      }
-    }
+    const [formValues, setFormValues] = useState<Record<string, any>>(initializeValues);
+    const [errors, setErrors] = useState<Record<string, string>>({});
 
-    // Type-specific built-in validation (email)
-    if (value !== null && value !== undefined && value !== '' && field.type === 'email') {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(String(value))) {
-        return 'Please enter a valid email address';
-      }
-    }
+    // Update form values when initialValues change
+    useEffect(() => {
+      setFormValues(initializeValues());
+    }, [initializeValues]);
 
-    // Process validation rules array
-    if (field.validations && Array.isArray(field.validations)) {
-      for (const validation of field.validations) {
-        let isValid = true;
-
-        switch (validation.name) {
-          case 'required':
-            if (value === null || value === undefined || value === '') {
-              isValid = false;
-            } else if (Array.isArray(value) && value.length === 0) {
-              isValid = false;
-            }
-            break;
-
-          case 'min':
-            if (value !== null && value !== undefined && value !== '') {
-              const numValue = Number(value);
-              if (isNaN(numValue) || numValue < validation.value) {
-                isValid = false;
-              }
-            }
-            break;
-
-          case 'max':
-            if (value !== null && value !== undefined && value !== '') {
-              const numValue = Number(value);
-              if (isNaN(numValue) || numValue > validation.value) {
-                isValid = false;
-              }
-            }
-            break;
-
-          case 'minLength':
-            if (value !== null && value !== undefined && value !== '') {
-              const strValue = String(value);
-              if (strValue.length < validation.value) {
-                isValid = false;
-              }
-            }
-            break;
-
-          case 'maxLength':
-            if (value !== null && value !== undefined && value !== '') {
-              const strValue = String(value);
-              if (strValue.length > validation.value) {
-                isValid = false;
-              }
-            }
-            break;
-
-          case 'pattern':
-            if (value !== null && value !== undefined && value !== '') {
-              const regex = validation.value instanceof RegExp 
-                ? validation.value 
-                : new RegExp(validation.value);
-              if (!regex.test(String(value))) {
-                isValid = false;
-              }
-            }
-            break;
-
-          case 'minValue':
-            if (value !== null && value !== undefined && value !== '') {
-              const numValue = Number(value);
-              if (isNaN(numValue) || numValue < validation.value) {
-                isValid = false;
-              }
-            }
-            break;
-
-          case 'custom':
-            if (validation.validator) {
-              isValid = validation.validator(value, allValues);
-            }
-            break;
-        }
-
-        if (!isValid) {
-          return validation.message;
-        }
-      }
-    }
-
-    return undefined;
-  }, []);
-
-  // Handle field value change
-  const handleValueChange = useCallback(
-    (fieldPath: string, value: any) => {
-      const field = allFields.find((f) => {
-        const fieldId = getFieldId(f);
-        const path = getFieldPath(f);
-        return fieldId === fieldPath || path === fieldPath || f.name === fieldPath;
-      });
-      if (!field) return;
-
-      const actualPath = getFieldPath(field);
-
-      // Update form values using nested path
+    // Internal setValue function
+    const internalSetValue = useCallback((nameOrPath: string, value: any) => {
       setFormValues((prev) => {
-        const newValues = { ...prev };
-        setNestedValue(newValues, actualPath, value);
-        return newValues;
-      });
-
-      // Clear error for this field
-      setErrors((prev) => {
-        const newErrors = { ...prev };
-        delete newErrors[actualPath];
-        return newErrors;
-      });
-
-      // Get updated values for callbacks
-      const updatedValues = { ...formValues };
-      setNestedValue(updatedValues, actualPath, value);
-
-      // Call onValueChange callback if provided
-      if (onValueChange) {
-        const fieldId = getFieldId(field);
-        onValueChange(fieldId || actualPath, value, updatedValues);
-      }
-
-      // Call onSelectionChange for select/multiselect/radio fields
-      if ((field.type === 'select' || field.type === 'multiselect' || field.type === 'radio') && onSelectionChange) {
-        const fieldId = getFieldId(field);
-        onSelectionChange(fieldId || actualPath, value, updatedValues);
-      }
-    },
-    [allFields, formValues, onValueChange, onSelectionChange]
-  );
-
-  // Handle form submission
-  const handleSubmit = useCallback(() => {
-    // Validate all fields
-    const newErrors: Record<string, string> = {};
-    let isValid = true;
-
-    allFields.forEach((field) => {
-      const fieldPath = getFieldPath(field);
-      const value = getNestedValue(formValues, fieldPath);
-      const error = validateField(field, value, formValues);
-      if (error) {
-        newErrors[fieldPath] = error;
-        isValid = false;
-      }
-    });
-
-    setErrors(newErrors);
-
-    if (isValid) {
-      onSubmit(formValues);
-    }
-  }, [allFields, formValues, validateField, onSubmit]);
-
-  // Expose form methods via ref
-  React.useImperativeHandle(
-    ref,
-    () => ({
-      setValue: internalSetValue,
-      getValues: () => formValues,
-      validate: () => {
-        const newErrors: Record<string, string> = {};
-        allFields.forEach((field) => {
-          const fieldPath = getFieldPath(field);
-          const value = getNestedValue(formValues, fieldPath);
-          const error = validateField(field, value, formValues);
-          if (error) {
-            newErrors[fieldPath] = error;
-          }
+        const field = allFields.find((f: FormField) => {
+          const fieldId = getFieldId(f);
+          const path = getFieldPath(f);
+          return fieldId === nameOrPath || path === nameOrPath || f.name === nameOrPath;
         });
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-      },
-      submit: handleSubmit,
-    }),
-    [internalSetValue, formValues, allFields, validateField, handleSubmit]
-  );
 
-  // Render a form field based on its type
-  const renderField = useCallback(
-    (field: FormField) => {
-      const fieldPath = getFieldPath(field);
-      const fieldId = getFieldId(field);
-      const value = getNestedValue(formValues, fieldPath);
-      const error = errors[fieldPath] || field.error;
+        if (field) {
+          const actualPath = getFieldPath(field);
+          const newValues = { ...prev };
+          setNestedValue(newValues, actualPath, value);
+          return newValues;
+        } else {
+          // Fallback: try to set directly
+          const newValues = { ...prev };
+          setNestedValue(newValues, nameOrPath, value);
+          return newValues;
+        }
+      });
+    }, [allFields]);
 
-      switch (field.type) {
-        case 'text':
-        case 'email':
-        case 'password':
-        case 'phone':
-        case 'tel':
-        case 'number':
-          return (
-            <PTInput
-              key={fieldId || fieldPath}
-              label={field.label}
-              placeholder={field.placeholder}
-              value={value !== null && value !== undefined ? String(value) : ''}
-              onChangeText={(text) => {
-                const processedValue =
-                  field.type === 'number' ? (text === '' ? '' : Number(text)) : text;
-                handleValueChange(fieldPath, processedValue);
-              }}
-              error={error}
-              editable={!field.disabled}
-              secureTextEntry={field.type === 'password'}
-              keyboardType={
-                field.type === 'email'
-                  ? 'email-address'
-                  : field.type === 'phone' || field.type === 'tel'
-                  ? 'phone-pad'
-                  : field.type === 'number'
-                  ? 'numeric'
-                  : 'default'
-              }
-              autoCapitalize={field.type === 'email' ? 'none' : 'sentences'}
-              maxLength={field.validations?.find((v) => v.name === 'maxLength')?.value}
-              style={field.style}
-            />
-          );
-
-        case 'textarea':
-          return (
-            <PTInput
-              key={fieldId || fieldPath}
-              label={field.label}
-              placeholder={field.placeholder}
-              value={value !== null && value !== undefined ? String(value) : ''}
-              onChangeText={(text) => handleValueChange(fieldPath, text)}
-              error={error}
-              editable={!field.disabled}
-              multiline
-              numberOfLines={4}
-              style={[{ minHeight: 100 }, field.style]}
-              maxLength={field.validations?.find((v) => v.name === 'maxLength')?.value}
-            />
-          );
-
-        case 'switch':
-          return (
-            <View key={fieldId || fieldPath} style={[{ marginBottom: theme.spacing.md }, field.style]}>
-              <PTSwitch
-                value={Boolean(value)}
-                onValueChange={(newValue) => handleValueChange(fieldPath, newValue)}
-                label={field.label}
-                disabled={field.disabled}
-              />
-              {error && (
-                <PTText variant="caption" color="error" style={{ marginTop: theme.spacing.xs }}>
-                  {error}
-                </PTText>
-              )}
-              {field.helpText && !error && (
-                <PTText
-                  variant="caption"
-                  color="textSecondary"
-                  style={{ marginTop: theme.spacing.xs }}
-                >
-                  {field.helpText}
-                </PTText>
-              )}
-            </View>
-          );
-
-        case 'radio':
-          return (
-            <View key={fieldId || fieldPath} style={[{ marginBottom: theme.spacing.md }, field.style]}>
-              {field.label && (
-                <PTText
-                  variant="caption"
-                  color="text"
-                  style={{ marginBottom: theme.spacing.sm, fontWeight: '600' }}
-                >
-                  {field.label}
-                </PTText>
-              )}
-              {field.values?.map((option) => (
-                <TouchableOpacity
-                  key={String(option.id)}
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    paddingVertical: theme.spacing.sm,
-                    paddingHorizontal: theme.spacing.md,
-                    marginBottom: theme.spacing.xs,
-                    borderRadius: theme.borderRadius.md,
-                    backgroundColor: value === option.id ? theme.colors.primaryLight : 'transparent',
-                  }}
-                  onPress={() => handleValueChange(fieldPath, option.id)}
-                  activeOpacity={0.7}
-                >
-                  <View
-                    style={{
-                      width: 20,
-                      height: 20,
-                      borderRadius: 10,
-                      borderWidth: 2,
-                      borderColor: value === option.id ? theme.colors.primary : theme.colors.border,
-                      backgroundColor: value === option.id ? theme.colors.primary : 'transparent',
-                      marginRight: theme.spacing.sm,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    {value === option.id && (
-                      <View
-                        style={{
-                          width: 10,
-                          height: 10,
-                          borderRadius: 5,
-                          backgroundColor: theme.colors.textInverse,
-                        }}
-                      />
-                    )}
-                  </View>
-                  <PTText variant="body" color={value === option.id ? 'primary' : 'text'}>
-                    {option.name}
-                  </PTText>
-                </TouchableOpacity>
-              ))}
-              {error && (
-                <PTText variant="caption" color="error" style={{ marginTop: theme.spacing.xs }}>
-                  {error}
-                </PTText>
-              )}
-              {field.helpText && !error && (
-                <PTText
-                  variant="caption"
-                  color="textSecondary"
-                  style={{ marginTop: theme.spacing.xs }}
-                >
-                  {field.helpText}
-                </PTText>
-              )}
-            </View>
-          );
-
-        case 'date':
-          return (
-            <PTInput
-              key={fieldId || fieldPath}
-              label={field.label}
-              placeholder={field.placeholder || 'Select date'}
-              value={value ? new Date(value).toLocaleDateString() : ''}
-              onChangeText={() => {
-                // Date picker would be handled by a modal or native date picker
-                // For now, this is a placeholder
-              }}
-              error={error}
-              editable={false}
-              onFocus={() => {
-                // Open date picker modal
-                // This would need a date picker component
-              }}
-              style={field.style}
-            />
-          );
-
-        case 'select':
-          // Convert options format if needed (support both {label, value} and {id, name})
-          const selectOptions = (field.options || []).map((opt) => ({
-            label: opt.label || opt.name || String(opt.value !== undefined ? opt.value : opt.id),
-            value: opt.value !== undefined ? opt.value : opt.id,
-          }));
-          
-          return (
-            <View key={fieldId || fieldPath} style={field.style}>
-              <PTSelect
-                label={field.label}
-                placeholder={field.placeholder || 'Select an option'}
-                value={value}
-                options={selectOptions}
-                onValueChange={(selectedValue) => handleValueChange(fieldPath, selectedValue)}
-                disabled={field.disabled}
-                error={error}
-                required={field.validations?.some((v) => v.name === 'required')}
-              />
-              {field.helpText && !error && (
-                <PTText
-                  variant="caption"
-                  color="textSecondary"
-                  style={{ marginTop: theme.spacing.xs }}
-                >
-                  {field.helpText}
-                </PTText>
-              )}
-            </View>
-          );
-
-        case 'multiselect':
-          // Convert options format if needed
-          const multiselectOptions = (field.options || []).map((opt) => ({
-            label: opt.label || opt.name || String(opt.value !== undefined ? opt.value : opt.id),
-            value: opt.value !== undefined ? opt.value : opt.id,
-          }));
-          
-          return (
-            <View key={fieldId || fieldPath} style={field.style}>
-              <PTSelect
-                label={field.label}
-                placeholder={field.placeholder || 'Select options'}
-                value={null}
-                options={multiselectOptions}
-                onValueChange={() => {}}
-                disabled={field.disabled}
-                error={error}
-                required={field.validations?.some((v) => v.name === 'required')}
-                multiple={true}
-                selectedValues={Array.isArray(value) ? value : []}
-                onMultipleValueChange={(selectedValues) =>
-                  handleValueChange(fieldPath, selectedValues)
-                }
-              />
-              {field.helpText && !error && (
-                <PTText
-                  variant="caption"
-                  color="textSecondary"
-                  style={{ marginTop: theme.spacing.xs }}
-                >
-                  {field.helpText}
-                </PTText>
-              )}
-            </View>
-          );
-
-        default:
-          return null;
+    // Validate a single field
+    const validateField = useCallback((field: FormField, value: any, allValues: Record<string, any> = {}): string | undefined => {
+      // Backward compatibility: support deprecated required prop
+      if (field.required) {
+        if (value === null || value === undefined || value === '') {
+          return `${field.label || field.name} is required`;
+        }
+        if (Array.isArray(value) && value.length === 0) {
+          return `${field.label || field.name} is required`;
+        }
       }
-    },
-    [formValues, errors, handleValueChange, theme]
-  );
 
-  const formContent = (
-    <View style={[{ padding: theme.spacing.md }, containerStyle]}>
-      {sections && sections.length > 0 ? (
-        // Render sections
-        sections.map((section, sectionIndex) => (
-          <View key={section.id || sectionIndex} style={{ marginBottom: theme.spacing.xl }}>
-            {section.title && (
-              <PTText
-                variant="h3"
-                color="text"
-                style={{ marginBottom: theme.spacing.lg, fontWeight: 'bold' }}
-              >
-                {section.title}
-              </PTText>
-            )}
-            {section.fields.map((field, fieldIndex) => {
-              const fieldId = getFieldId(field);
-              const fieldPath = getFieldPath(field);
-              return (
-                <React.Fragment key={fieldId || fieldPath || fieldIndex}>
-                  {renderField(field)}
-                  {field.showSeparator !== false && fieldIndex < section.fields.length - 1 && (
-                    <PTDivider spacing={theme.spacing.md} />
-                  )}
-                </React.Fragment>
-              );
-            })}
-            {sectionIndex < sections.length - 1 && (
-              <PTDivider spacing={theme.spacing.xl} />
-            )}
-          </View>
-        ))
-      ) : (
-        // Render flat fields (backward compatibility)
-        allFields.map((field, index) => {
+      // Type-specific built-in validation (email)
+      if (value !== null && value !== undefined && value !== '' && field.type === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(String(value))) {
+          return 'Please enter a valid email address';
+        }
+      }
+
+      // Process validation rules array
+      if (field.validations && Array.isArray(field.validations)) {
+        for (const validation of field.validations) {
+          let isValid = true;
+
+          switch (validation.name) {
+            case 'required':
+              if (value === null || value === undefined || value === '') {
+                isValid = false;
+              } else if (Array.isArray(value) && value.length === 0) {
+                isValid = false;
+              }
+              break;
+
+            case 'min':
+              if (value !== null && value !== undefined && value !== '') {
+                const numValue = Number(value);
+                if (isNaN(numValue) || numValue < validation.value) {
+                  isValid = false;
+                }
+              }
+              break;
+
+            case 'max':
+              if (value !== null && value !== undefined && value !== '') {
+                const numValue = Number(value);
+                if (isNaN(numValue) || numValue > validation.value) {
+                  isValid = false;
+                }
+              }
+              break;
+
+            case 'minLength':
+              if (value !== null && value !== undefined && value !== '') {
+                const strValue = String(value);
+                if (strValue.length < validation.value) {
+                  isValid = false;
+                }
+              }
+              break;
+
+            case 'maxLength':
+              if (value !== null && value !== undefined && value !== '') {
+                const strValue = String(value);
+                if (strValue.length > validation.value) {
+                  isValid = false;
+                }
+              }
+              break;
+
+            case 'pattern':
+              if (value !== null && value !== undefined && value !== '') {
+                const regex = validation.value instanceof RegExp
+                  ? validation.value
+                  : new RegExp(validation.value);
+                if (!regex.test(String(value))) {
+                  isValid = false;
+                }
+              }
+              break;
+
+            case 'minValue':
+              if (value !== null && value !== undefined && value !== '') {
+                const numValue = Number(value);
+                if (isNaN(numValue) || numValue < validation.value) {
+                  isValid = false;
+                }
+              }
+              break;
+
+            case 'custom':
+              if (validation.validator) {
+                isValid = validation.validator(value, allValues);
+              }
+              break;
+          }
+
+          if (!isValid) {
+            return validation.message;
+          }
+        }
+      }
+
+      return undefined;
+    }, []);
+
+    // Handle field value change
+    const handleValueChange = useCallback(
+      (fieldPath: string, value: any) => {
+        const field = allFields.find((f: FormField) => {
+          const fieldId = getFieldId(f);
+          const path = getFieldPath(f);
+          return fieldId === fieldPath || path === fieldPath || f.name === fieldPath;
+        });
+        if (!field) return;
+
+        const actualPath = getFieldPath(field);
+
+        // Update form values using nested path
+        setFormValues((prev) => {
+          const newValues = { ...prev };
+          setNestedValue(newValues, actualPath, value);
+          return newValues;
+        });
+
+        // Clear error for this field
+        setErrors((prev) => {
+          const newErrors = { ...prev };
+          delete newErrors[actualPath];
+          return newErrors;
+        });
+
+        // Get updated values for callbacks
+        const updatedValues = { ...formValues };
+        setNestedValue(updatedValues, actualPath, value);
+
+        // Call onValueChange callback if provided
+        if (onValueChange) {
           const fieldId = getFieldId(field);
-          const fieldPath = getFieldPath(field);
-          return (
-            <React.Fragment key={fieldId || fieldPath || index}>
-              {renderField(field)}
-              {field.showSeparator !== false && index < allFields.length - 1 && (
-                <PTDivider spacing={theme.spacing.md} />
+          onValueChange(fieldId || actualPath, value, updatedValues);
+        }
+
+        // Call onSelectionChange for select/multiselect/radio fields
+        if ((field.type === 'select' || field.type === 'multiselect' || field.type === 'radio') && onSelectionChange) {
+          const fieldId = getFieldId(field);
+          onSelectionChange(fieldId || actualPath, value, updatedValues);
+        }
+      },
+      [allFields, formValues, onValueChange, onSelectionChange]
+    );
+
+    // Handle form submission
+    const handleSubmit = useCallback(() => {
+      // Validate all fields
+      const newErrors: Record<string, string> = {};
+      let isValid = true;
+
+      allFields.forEach((field: FormField) => {
+        const fieldPath = getFieldPath(field);
+        const value = getNestedValue(formValues, fieldPath);
+        const error = validateField(field, value, formValues);
+        if (error) {
+          newErrors[fieldPath] = error;
+          isValid = false;
+        }
+      });
+
+      setErrors(newErrors);
+
+      if (isValid) {
+        onSubmit(formValues);
+      }
+    }, [allFields, formValues, validateField, onSubmit]);
+
+    // Expose form methods via ref
+    React.useImperativeHandle(
+      ref,
+      () => ({
+        setValue: internalSetValue,
+        getValues: () => formValues,
+        validate: () => {
+          const newErrors: Record<string, string> = {};
+          allFields.forEach((field: FormField) => {
+            const fieldPath = getFieldPath(field);
+            const value = getNestedValue(formValues, fieldPath);
+            const error = validateField(field, value, formValues);
+            if (error) {
+              newErrors[fieldPath] = error;
+            }
+          });
+          setErrors(newErrors);
+          return Object.keys(newErrors).length === 0;
+        },
+        submit: handleSubmit,
+      }),
+      [internalSetValue, formValues, allFields, validateField, handleSubmit]
+    );
+
+    // Render a form field based on its type
+    const renderField = useCallback(
+      (field: FormField) => {
+        const fieldPath = getFieldPath(field);
+        const fieldId = getFieldId(field);
+        const value = getNestedValue(formValues, fieldPath);
+        const error = errors[fieldPath] || field.error;
+
+        switch (field.type) {
+          case 'text':
+          case 'email':
+          case 'password':
+          case 'phone':
+          case 'tel':
+          case 'number':
+            return (
+              <PTInput
+                key={fieldId || fieldPath}
+                label={field.label}
+                placeholder={field.placeholder}
+                value={value !== null && value !== undefined ? String(value) : ''}
+                onChangeText={(text) => {
+                  const processedValue =
+                    field.type === 'number' ? (text === '' ? '' : Number(text)) : text;
+                  handleValueChange(fieldPath, processedValue);
+                }}
+                error={error}
+                editable={!field.disabled}
+                secureTextEntry={field.type === 'password'}
+                keyboardType={
+                  field.type === 'email'
+                    ? 'email-address'
+                    : field.type === 'phone' || field.type === 'tel'
+                      ? 'phone-pad'
+                      : field.type === 'number'
+                        ? 'numeric'
+                        : 'default'
+                }
+                autoCapitalize={field.type === 'email' ? 'none' : 'sentences'}
+                maxLength={field.validations?.find((v) => v.name === 'maxLength')?.value}
+                style={field.style}
+              />
+            );
+          case 'textarea':
+            return (
+              <PTInput
+                key={fieldId || fieldPath}
+                label={field.label}
+                placeholder={field.placeholder}
+                value={value !== null && value !== undefined ? String(value) : ''}
+                onChangeText={(text) => handleValueChange(fieldPath, text)}
+                error={error}
+                editable={!field.disabled}
+                multiline
+                numberOfLines={4}
+                style={[{ minHeight: 100 }, field.style]}
+                maxLength={field.validations?.find((v) => v.name === 'maxLength')?.value}
+              />
+            );
+          case 'switch':
+            return (
+              <View key={fieldId || fieldPath} style={[{ marginBottom: theme.spacing.md }, field.style]}>
+                <PTSwitch
+                  value={Boolean(value)}
+                  onValueChange={(newValue) => handleValueChange(fieldPath, newValue)}
+                  label={field.label}
+                  disabled={field.disabled}
+                />
+                {error && (
+                  <PTText variant="caption" color="error" style={{ marginTop: theme.spacing.xs }}>
+                    {error}
+                  </PTText>
+                )}
+                {field.helpText && !error && (
+                  <PTText
+                    variant="caption"
+                    color="textSecondary"
+                    style={{ marginTop: theme.spacing.xs }}
+                  >
+                    {field.helpText}
+                  </PTText>
+                )}
+              </View>
+            );
+          case 'radio':
+            return (
+              <View key={fieldId || fieldPath} style={[{ marginBottom: theme.spacing.md }, field.style]}>
+                {field.label && (
+                  <PTText
+                    variant="caption"
+                    color="text"
+                    style={{ marginBottom: theme.spacing.sm, fontWeight: '600' }}
+                  >
+                    {field.label}
+                  </PTText>
+                )}
+                {field.values?.map((option) => (
+                  <TouchableOpacity
+                    key={String(option.id)}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      paddingVertical: theme.spacing.sm,
+                      paddingHorizontal: theme.spacing.md,
+                      marginBottom: theme.spacing.xs,
+                      borderRadius: theme.borderRadius.md,
+                      backgroundColor: value === option.id ? theme.colors.primaryLight : 'transparent',
+                    }}
+                    onPress={() => handleValueChange(fieldPath, option.id)}
+                    activeOpacity={0.7}
+                  >
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 10,
+                        borderWidth: 2,
+                        borderColor: value === option.id ? theme.colors.primary : theme.colors.border,
+                        backgroundColor: value === option.id ? theme.colors.primary : 'transparent',
+                        marginRight: theme.spacing.sm,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {value === option.id && (
+                        <View
+                          style={{
+                            width: 10,
+                            height: 10,
+                            borderRadius: 5,
+                            backgroundColor: theme.colors.textInverse,
+                          }}
+                        />
+                      )}
+                    </View>
+                    <PTText variant="body" color={value === option.id ? 'primary' : 'text'}>
+                      {option.name}
+                    </PTText>
+                  </TouchableOpacity>
+                ))}
+                {error && (
+                  <PTText variant="caption" color="error" style={{ marginTop: theme.spacing.xs }}>
+                    {error}
+                  </PTText>
+                )}
+                {field.helpText && !error && (
+                  <PTText
+                    variant="caption"
+                    color="textSecondary"
+                    style={{ marginTop: theme.spacing.xs }}
+                  >
+                    {field.helpText}
+                  </PTText>
+                )}
+              </View>
+            );
+          case 'date':
+            return (
+              <View key={fieldId || fieldPath} style={field.style}>
+                <PTDatePicker
+                  label={field.label}
+                  placeholder={field.placeholder || 'Select date'}
+                  value={value || null}
+                  onDateChange={(date) => handleValueChange(fieldPath, date.toISOString())}
+                  disabled={field.disabled}
+                  error={error}
+                  required={field.validations?.some((v) => v.name === 'required')}
+                />
+                {field.helpText && !error && (
+                  <PTText
+                    variant="caption"
+                    color="textSecondary"
+                    style={{ marginTop: theme.spacing.xs }}
+                  >
+                    {field.helpText}
+                  </PTText>
+                )}
+              </View>
+            );
+          case 'time':
+            return (
+              <View key={fieldId || fieldPath} style={field.style}>
+                <PTTimePicker
+                  label={field.label}
+                  placeholder={field.placeholder || 'Select time'}
+                  value={value || null}
+                  onTimeChange={(time) => handleValueChange(fieldPath, time)}
+                  disabled={field.disabled}
+                  error={error}
+                  required={field.validations?.some((v) => v.name === 'required')}
+                />
+                {field.helpText && !error && (
+                  <PTText
+                    variant="caption"
+                    color="textSecondary"
+                    style={{ marginTop: theme.spacing.xs }}
+                  >
+                    {field.helpText}
+                  </PTText>
+                )}
+              </View>
+            );
+          case 'select':
+            // Convert options format if needed (support both {label, value} and {id, name})
+            const selectOptions = (field.options || []).map((opt) => ({
+              label: opt.label || opt.name || String(opt.value !== undefined ? opt.value : opt.id),
+              value: (opt.value !== undefined ? opt.value : opt.id) as string | number,
+            }));
+
+            return (
+              <View key={fieldId || fieldPath} style={field.style}>
+                <PTSelect
+                  label={field.label}
+                  placeholder={field.placeholder || 'Select an option'}
+                  value={value}
+                  options={selectOptions}
+                  onValueChange={(selectedValue) => handleValueChange(fieldPath, selectedValue)}
+                  disabled={field.disabled}
+                  error={error}
+                  required={field.validations?.some((v) => v.name === 'required')}
+                />
+                {field.helpText && !error && (
+                  <PTText
+                    variant="caption"
+                    color="textSecondary"
+                    style={{ marginTop: theme.spacing.xs }}
+                  >
+                    {field.helpText}
+                  </PTText>
+                )}
+              </View>
+            );
+          case 'multiselect':
+            // Convert options format if needed
+            const multiselectOptions = (field.options || []).map((opt) => ({
+              label: opt.label || opt.name || String(opt.value !== undefined ? opt.value : opt.id),
+              value: (opt.value !== undefined ? opt.value : opt.id) as string | number,
+            }));
+
+            return (
+              <View key={fieldId || fieldPath} style={field.style}>
+                <PTSelect
+                  label={field.label}
+                  placeholder={field.placeholder || 'Select options'}
+                  value={null}
+                  options={multiselectOptions}
+                  onValueChange={() => { }}
+                  disabled={field.disabled}
+                  error={error}
+                  required={field.validations?.some((v) => v.name === 'required')}
+                  multiple={true}
+                  selectedValues={Array.isArray(value) ? value : []}
+                  onMultipleValueChange={(selectedValues) =>
+                    handleValueChange(fieldPath, selectedValues)
+                  }
+                />
+                {field.helpText && !error && (
+                  <PTText
+                    variant="caption"
+                    color="textSecondary"
+                    style={{ marginTop: theme.spacing.xs }}
+                  >
+                    {field.helpText}
+                  </PTText>
+                )}
+              </View>
+            );
+          case 'file':
+            return (
+              <View key={fieldId || fieldPath} style={field.style}>
+                <PTFilePicker
+                  label={field.label}
+                  value={value}
+                  onFileSelect={(files) => handleValueChange(fieldPath, files)}
+                  multiple={field.multiple || false}
+                  maxFiles={field.maxFiles || 5}
+                  maxSize={(field.maxSizeMB || 10) * 1024 * 1024}
+                  acceptedTypes={field.accept}
+                  disabled={field.disabled}
+                  error={error}
+                  helpText={field.helpText}
+                />
+              </View>
+            );
+          default:
+            return null;
+        }
+      },
+      [formValues, errors, handleValueChange, theme]
+    );
+
+    const formContent = (
+      <View style={[{ padding: theme.spacing.md }, containerStyle]}>
+        {sections && sections.length > 0 ? (
+          // Render sections
+          sections.map((section, sectionIndex) => (
+            <View key={section.id || sectionIndex} style={{ marginBottom: theme.spacing.xl }}>
+              {section.title && (
+                <PTText
+                  variant="h3"
+                  color="text"
+                  style={{ marginBottom: theme.spacing.lg, fontWeight: 'bold' }}
+                >
+                  {section.title}
+                </PTText>
               )}
-            </React.Fragment>
-          );
-        })
-      )}
+              {section.fields.map((field, fieldIndex) => {
+                const fieldId = getFieldId(field);
+                const fieldPath = getFieldPath(field);
+                return (
+                  <React.Fragment key={fieldId || fieldPath || fieldIndex}>
+                    {renderField(field)}
+                    {field.showSeparator !== false && fieldIndex < section.fields.length - 1 && (
+                      <PTDivider spacing={theme.spacing.md} />
+                    )}
+                  </React.Fragment>
+                );
+              })}
+              {sectionIndex < sections.length - 1 && (
+                <PTDivider spacing={theme.spacing.xl} />
+              )}
+            </View>
+          ))
+        ) : (
+          // Render flat fields (backward compatibility)
+          allFields.map((field, index) => {
+            const fieldId = getFieldId(field);
+            const fieldPath = getFieldPath(field);
+            return (
+              <React.Fragment key={fieldId || fieldPath || index}>
+                {renderField(field)}
+                {field.showSeparator !== false && index < allFields.length - 1 && (
+                  <PTDivider spacing={theme.spacing.md} />
+                )}
+              </React.Fragment>
+            );
+          })
+        )}
 
-      {customSubmitButton || (
-        <View style={{ marginTop: theme.spacing.lg }}>
-          <PTButton
-            title={submitButtonText}
-            onPress={handleSubmit}
-            loading={submitLoading}
-            disabled={submitDisabled}
-          />
-        </View>
-      )}
-    </View>
-  );
+        {customSubmitButton || (
+          <View style={{ marginTop: theme.spacing.lg }}>
+            <PTButton
+              title={submitButtonText}
+              onPress={handleSubmit}
+              loading={submitLoading}
+              disabled={submitDisabled}
+            />
+          </View>
+        )}
+      </View>
+    );
 
-  if (scrollable) {
+    if (scrollable) {
+      return (
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={{ flex: 1 }}
+        >
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
+            contentContainerStyle={{ flexGrow: 1 }}
+          >
+            {formContent}
+          </ScrollView>
+        </KeyboardAvoidingView>
+      );
+    }
+
     return (
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}
       >
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          keyboardShouldPersistTaps="handled"
-          contentContainerStyle={{ flexGrow: 1 }}
-        >
-          {formContent}
-        </ScrollView>
+        {formContent}
       </KeyboardAvoidingView>
     );
-  }
-
-  return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={{ flex: 1 }}
-    >
-      {formContent}
-    </KeyboardAvoidingView>
-  );
   }
 );
 

@@ -13,7 +13,28 @@
     "edit": "Edit",
     "loading": "Loading...",
     "error": "Error",
-    "success": "Success"
+    "success": "Success",
+    "step": "Step"
+  },
+  "filePicker": {
+    "chooseUploadType": "Choose Upload Type",
+    "imageFromGallery": "Image from Gallery",
+    "file": "File",
+    "uploadFile": "Tap to upload",
+    "selectFile": "Select File",
+    "simulatedFile": "For demo purposes, a simulated file has been created.",
+    "useSimulatedFile": "Use Simulated File",
+    "noFileSelected": "No file selected",
+    "pleaseSelectFile": "Please select at least one file.",
+    "fileTooLarge": "File Too Large",
+    "fileExceedsSize": "Some files exceed the maximum size of {{size}}. Please select smaller files.",
+    "tooManyFiles": "Too Many Files",
+    "maxFilesAllowed": "Maximum {{max}} files allowed. You can add {{remaining}} more.",
+    "maximumFilesReached": "Maximum files reached ({{max}})",
+    "filepickerNotAvailable": "FilePickerModule not available, using simulated file picker",
+    "failedToPickFile": "Failed to pick file: {{error}}. Please try again.",
+    "failedToOpenPicker": "Failed to open file picker: {{error}}. Please try again.",
+    "filePickerFuture": "File picker for this platform will be implemented with a future update."
   },
   "login": {
     "title": "Welcome Back",
@@ -83,7 +104,22 @@
     "volunteers": "Volunteers",
     "events": "Events",
     "familyHealthCards": "Family Health Cards",
-    "requestNewCard": "+  Request for New Card"
+    "requestNewCard": "+  Request for New Card",
+    "errorLoadingData": "Error loading dashboard data",
+    "guest": "Guest",
+    "noCardsFound": "No cards found",
+    "cardRequests": "Card Requests",
+    "cardRequestDetails": "Card Request Details",
+    "requestId": "Request ID:",
+    "status": "Status:",
+    "requested": "Requested:",
+    "updated": "Updated:",
+    "reviewNotes": "Review Notes:",
+    "noReviewNotes": "No review notes available",
+    "close": "Close",
+    "applyForCard": "Apply for Card",
+    "notAvailable": "N/A",
+    "primaryMember": "Primary Member"
   },
   "card": {
     "healthCard": "HEALTH CARD",
@@ -92,16 +128,90 @@
     "bloodGroup": "Blood Group",
     "aadharNumber": "Aadhar Number",
     "dateOfIssue": "Date of Issue",
-    "dateOfExpiry": "Date of Expiry"
+    "dateOfExpiry": "Date of Expiry",
+    "title": "Family Health Cards",
+    "downloadCard": "Download",
+    "emailCard": "Email",
+    "loading": "Loading cards...",
+    "loadError": "Failed to load cards",
+    "swipeHint": "Swipe to view all 4 family member cards",
+    "cardBenefits": "Card Benefits",
+    "benefits": {
+      "freeConsultations": "Free consultations at 100+ partner clinics",
+      "discount": "Up to 50% discount on medicines",
+      "checkup": "Free annual health checkup",
+      "helpline": "24/7 emergency helpline support"
+    },
+    "howToUse": {
+      "title": "How to Use",
+      "step1": "Visit any partner healthcare facility",
+      "step2": "Show your digital health card or Member ID",
+      "step3": "Receive services as per your card benefits"
+    }
   },
   "profile": {
-    "title": "Profile Screen"
+    "title": "My Profile",
+    "memberSince": "Member since",
+    "activeMember": "Member",
+    "memberId": "Member ID",
+    "bloodGroup": "Blood Group",
+    "dateOfBirth": "Date of Birth",
+    "contact": "Contact",
+    "email": "Email",
+    "medicalInfo": "Medical Information",
+    "allergies": "Allergies",
+    "chronicConditions": "Chronic Conditions",
+    "emergencyContact": "Emergency Contact",
+    "editProfile": "Edit Profile",
+    "logout": "Logout",
+    "logoutConfirm": "Are you sure you want to logout?",
+    "about": "About MHF Foundation",
+    "aboutMHF": "About MHF",
+    "ourVision": "Our Vision",
+    "ourMission": "Our Mission",
+    "ourBoard": "Our Board",
+    "ourTeam": "Our Team",
+    "ourVolunteers": "Our Volunteers",
+    "contactInfo": "Contact Information",
+    "user": "User"
   },
   "settings": {
     "title": "Settings Screen"
   },
   "notifications": {
-    "title": "Notifications Screen"
+    "title": "Notifications",
+    "unread": "unread notification",
+    "unreadPlural": "unread notifications",
+    "allCaughtUp": "All caught up!",
+    "noNotifications": "No Notifications",
+    "noNotificationsText": "You're all caught up! Check back later for updates.",
+    "samples": {
+      "cardApproved": {
+        "title": "Card Request Approved",
+        "message": "Your card request has been approved and is being processed."
+      },
+      "newEvent": {
+        "title": "New Event Available",
+        "message": "Health awareness camp scheduled for next week. Register now!"
+      },
+      "profileIncomplete": {
+        "title": "Profile Incomplete",
+        "message": "Please complete your profile to access all features."
+      },
+      "reliefUpdate": {
+        "title": "Relief Application Update",
+        "message": "Your relief application is under review. You will be notified once processed."
+      },
+      "trainingRegistered": {
+        "title": "Training Registered",
+        "message": "You have successfully registered for the skill development training program."
+      }
+    },
+    "timeAgo": {
+      "hoursAgo": "hours ago",
+      "dayAgo": "day ago",
+      "daysAgo": "days ago"
+    }
   },
   "network": {
     "noConnection": "No Internet Connection",
@@ -123,6 +233,39 @@
       "events": "Events Held",
       "people": "People Served",
       "volunteers": "Active Volunteers"
+    },
+    "register": {
+      "title": "Event Registration",
+      "subtitle": "Please fill in all the details for event registration",
+      "personalInfo": "Personal Information",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Enter your full name",
+      "phoneNumber": "Phone Number",
+      "phoneNumberPlaceholder": "+91-XXXXXXXXXX",
+      "phoneInvalid": "Enter valid 10 digit number",
+      "emailAddress": "Email Address",
+      "emailPlaceholder": "your.email@example.com",
+      "emailInvalid": "Invalid email address",
+      "dateOfBirth": "Date of Birth",
+      "age": "Age",
+      "gender": "Gender",
+      "genderMale": "Male",
+      "genderFemale": "Female",
+      "genderOther": "Other",
+      "address": "Address",
+      "addressPlaceholder": "Enter your complete address",
+      "participationType": "Choose how you want to participate",
+      "participant": "Participant",
+      "volunteer": "Volunteer",
+      "declaration": "Declaration",
+      "declarationText": "I hereby declare that the information provided is true. I agree to follow the principles and guidelines of Mujtaba Helping Foundation and participate responsibly in the selected event(s).",
+      "iAgree": "I Agree",
+      "saveDetails": "Save Details",
+      "submitting": "Submitting...",
+      "successTitle": "Success",
+      "successMessage": "Event registration submitted successfully",
+      "errorTitle": "Error",
+      "errorMessage": "Failed to submit event registration"
     },
     "items": {
       "medical": {
@@ -220,5 +363,114 @@
         "stats": "150+ cases"
       }
     }
+  },
+  "services": {
+    "title": "Services & Providers",
+    "subtitle": "Find empaneled healthcare providers near you",
+    "searchPlaceholder": "Search providers, specialties, location...",
+    "resultsFound": "providers found",
+    "loading": "Loading providers...",
+    "loadError": "Failed to load providers",
+    "tab": {
+      "providers": "Providers",
+      "blood": "Blood",
+      "equipment": "Equipment",
+      "ambulance": "Ambulance",
+      "benefits": "Benefits"
+    },
+    "categories": {
+      "all": "All",
+      "hospital": "Hospital",
+      "diagnostics": "Diagnostics",
+      "pharmacy": "Pharmacy",
+      "clinics": "Clinics",
+      "rehab": "Rehab"
+    },
+    "provider": {
+      "unknown": "Unknown Provider",
+      "noAddress": "Address not available",
+      "noPhone": "N/A"
+    },
+    "blood": {
+      "emergency": "Emergency Blood Required!",
+      "cta": "Request blood from our donor network",
+      "requestNow": "Request Blood Now",
+      "loading": "Loading blood requests...",
+      "loadError": "Failed to load blood requests",
+      "noRequests": "No blood requests found",
+      "yourRequests": "Your Blood Requests",
+      "myRequests": "My Blood Requests",
+      "patient": "Patient",
+      "bloodGroup": "Blood Group:",
+      "units": "Units:",
+      "required": "Required:",
+      "urgency": "Urgency:",
+      "hospital": "Hospital:",
+      "contact": "Contact:"
+    },
+    "benefits": {
+      "free": {
+        "title": "Free Consultations",
+        "subtitle": "Access to general physicians and specialists"
+      },
+      "medicine": {
+        "title": "Medicine Assistance",
+        "subtitle": "Subsidized medicines for chronic conditions"
+      },
+      "emergency": {
+        "title": "Emergency Transport",
+        "subtitle": "24/7 emergency ambulance services"
+      },
+      "checkups": {
+        "title": "Health Checkups",
+        "subtitle": "Regular health monitoring and diagnostics"
+      },
+      "records": {
+        "title": "Medical Records",
+        "subtitle": "Digital health records management"
+      },
+      "find": {
+        "title": "Find Clinics",
+        "subtitle": "Locate nearby partner healthcare centers"
+      }
+    },
+    "help": {
+      "title": "Need Help?",
+      "desc": "Our support team is available 24/7 to assist you",
+      "contact": "Contact Support"
+    }
+  },
+  "providerDetails": {
+    "error": "Error",
+    "phoneError": "Unable to make phone call",
+    "mapError": "Unable to open map",
+    "emailError": "Unable to open email",
+    "shareError": "Unable to share provider details"
+  },
+  "equipment": {
+    "subtitle": "View your equipment request history",
+    "loading": "Loading requests...",
+    "error": "Failed to load requests",
+    "submit": {
+      "success": "Success",
+      "successMessage": "Equipment request submitted successfully! Our team will review your request.",
+      "error": "Error",
+      "errorMessage": "Failed to submit equipment request. Please try again.",
+      "submitting": "Submitting...",
+      "submitButton": "Submit Request"
+    },
+    "need": "Need Medical Equipment?",
+    "needSubtitle": "Request equipment support for home care",
+    "request": "Request Equipment",
+    "myRequests": "My Equipment Requests",
+    "viewAll": "View All Requests",
+    "items": "items"
+  },
+  "ambulance": {
+    "loading": "Loading ambulances...",
+    "error": "Failed to load ambulances",
+    "title": "Emergency Ambulance Services",
+    "subtitle": "24/7 emergency ambulance support",
+    "view": "View Services"
   }
 }

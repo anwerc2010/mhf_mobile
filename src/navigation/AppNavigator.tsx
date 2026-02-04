@@ -32,11 +32,14 @@ import HomeScreen from '../screens/Home';
 import ProfileScreen from '../screens/Profile';
 import CardScreen from '../screens/Card';
 import ServicesScreen from '../screens/Services';
+import ProviderDetailsScreen from '../screens/ProviderDetails';
+import NotificationsScreen from '../screens/Notifications';
 import ReliefScreen from '../screens/about/relief/Relief';
 import EducationScreen from '../screens/about/education/Education';
 import EventsScreen from '../screens/about/events/Events';
 import VolunteersScreen from '../screens/about/Volunteers';
 import NewCardRequest from '../screens/about/NewCardRequest';
+import ApplyCardRequest from '../screens/about/ApplyCardRequest';
 import RegisterForTraining from '../screens/about/education/RegisterForTraining';
 
 // Components
@@ -45,6 +48,10 @@ import i18n, { syncLanguageWithStore } from '../i18n';
 import { useState } from 'react';
 import ApplyNewRelief from '../screens/about/relief/ApplyNewRelief';
 import RegisterForEvent from '../screens/about/events/RegisterForEvent';
+import EquipmentRequest from '../screens/equipment/EquipmentRequest';
+import EquipmentRequestList from '../screens/equipment/EquipmentRequestList';
+import AmbulanceList from '../screens/ambulance/AmbulanceList';
+import BloodRequest from '../screens/blood/BloodRequest';
 
 // Navigation Types
 export type NavigationType = 'stack' | 'bottom-tabs' | 'top-tabs' | 'drawer';
@@ -124,7 +131,7 @@ function StackNavigator({ currentLanguage, onLanguageChange }: { currentLanguage
       />
       <Stack.Screen
         name="Notifications"
-        component={ServicesScreen}
+        component={NotificationsScreen}
         options={{ title: 'Notifications' }}
       />
     </Stack.Navigator>
@@ -283,6 +290,69 @@ function BottomTabNavigator({ currentLanguage, onLanguageChange }: { currentLang
 
         })}
       />
+      <BottomTabStack.Screen
+        name="ApplyCardRequest"
+        component={ApplyCardRequest}
+        options={({ navigation }) => ({
+          title: 'Apply for Card',
+          headerShown: true,
+          header: () => <BackButtonHeader navigation={navigation} title="Apply for Card" />,
+        })}
+      />
+      <BottomTabStack.Screen
+        name="ProviderDetails"
+        component={ProviderDetailsScreen}
+        options={({ navigation }) => ({
+          title: 'Provider Details',
+          headerShown: true,
+          header: () => <BackButtonHeader navigation={navigation} title="Provider Details" />,
+        })}
+      />
+      <BottomTabStack.Screen
+        name="EquipmentRequest"
+        component={EquipmentRequest}
+        options={({ navigation }) => ({
+          title: 'Equipment Request',
+          headerShown: true,
+          header: () => <BackButtonHeader navigation={navigation} title="Equipment Request" />,
+        })}
+      />
+      <BottomTabStack.Screen
+        name="BloodRequest"
+        component={BloodRequest}
+        options={({ navigation }) => ({
+          title: 'Blood Request',
+          headerShown: true,
+          header: () => <BackButtonHeader navigation={navigation} title="Blood Request" />,
+        })}
+      />
+      <BottomTabStack.Screen
+        name="AmbulanceList"
+        component={AmbulanceList}
+        options={({ navigation }) => ({
+          title: 'Ambulance Services',
+          headerShown: true,
+          header: () => <BackButtonHeader navigation={navigation} title="Ambulance Services" />,
+        })}
+      />
+      <BottomTabStack.Screen
+        name="EquipmentRequestList"
+        component={EquipmentRequestList}
+        options={({ navigation }) => ({
+          title: 'Equipment Requests',
+          headerShown: true,
+          header: () => <BackButtonHeader navigation={navigation} title="Equipment Requests" />,
+        })}
+      />
+      <BottomTabStack.Screen
+        name="Notifications"
+        component={NotificationsScreen}
+        options={({ navigation }) => ({
+          title: 'Notifications',
+          headerShown: true,
+          header: () => <BackButtonHeader navigation={navigation} title="Notifications" />,
+        })}
+      />
     </BottomTabStack.Navigator>
   );
 }
@@ -331,7 +401,7 @@ function TopTabNavigatorContent() {
       />
       <TopTab.Screen
         name="Notifications"
-        component={ServicesScreen}
+        component={NotificationsScreen}
         options={{
           title: 'Notifications',
         }}

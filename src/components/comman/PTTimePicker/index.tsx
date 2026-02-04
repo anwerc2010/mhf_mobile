@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, ViewStyle, ScrollView } from 'react-native';
+import { View, ViewStyle, ScrollView, TouchableOpacity, Platform } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { useTheme } from '../../../hooks/useTheme';
 import PTInput from '../PTInput';
 import PTModal from '../PTModal';
@@ -69,6 +70,23 @@ export default function PTTimePicker({
   const [selectedHour, setSelectedHour] = useState<number>(0);
   const [selectedMinute, setSelectedMinute] = useState<number>(0);
 
+  // For native picker, we need a Date object
+  const [nativePickerDate, setNativePickerDate] = useState<Date>(() => {
+    const now = new Date();
+    if (value) {
+      if (value instanceof Date) {
+        return value;
+      } else if (typeof value === 'object' && 'hour' in value && 'minute' in value) {
+        const date = new Date();
+        date.setHours(value.hour, value.minute, 0, 0);
+        return date;
+      } else if (typeof value === 'string') {
+        return new Date(value);
+      }
+    }
+    return now;
+  });
+
   React.useEffect(() => {
     if (value) {
       let hour = 0;
@@ -93,7 +111,7 @@ export default function PTTimePicker({
 
   const formatTime = (hour: number, minute: number): string => {
     const paddedMinute = minute.toString().padStart(2, '0');
-    
+
     if (format === '24h') {
       const paddedHour = hour.toString().padStart(2, '0');
       return `${paddedHour}:${paddedMinute}`;
@@ -110,6 +128,22 @@ export default function PTTimePicker({
     setSelectedMinute(minute);
     onTimeChange({ hour, minute });
     setModalVisible(false);
+  };
+
+  // Handle native picker change
+  const handleNativeTimeChange = (event: any, selectedTime?: Date) => {
+    if (Platform.OS === 'android') {
+      setModalVisible(false);
+    }
+
+    if (selectedTime) {
+      const hour = selectedTime.getHours();
+      const minute = selectedTime.getMinutes();
+      setNativePickerDate(selectedTime);
+      setSelectedHour(hour);
+      setSelectedMinute(minute);
+      onTimeChange({ hour, minute });
+    }
   };
 
   const getDisplayValue = () => {
@@ -145,23 +179,20 @@ export default function PTTimePicker({
                 // For display: show 1-12
                 // For storage: 0-23
                 const actualHour = format === '12h' ? (hour === 12 ? (selectedHour >= 12 ? 12 : 0) : hour) : hour;
-                const isSelected = format === '12h' 
+                const isSelected = format === '12h'
                   ? (selectedHour === 0 && hour === 12) || (selectedHour === hour && hour !== 12) || (selectedHour === 12 && hour === 12)
                   : selectedHour === hour;
-                
+
                 return (
-                  <PTButton
-                    key={hour}
-                    title={displayHour.toString().padStart(2, '0')}
-                    onPress={() => {
-                      handleTimeSelect(actualHour, selectedMinute);
-                    }}
-                    variant={isSelected ? 'primary' : 'outline'}
-                    style={{
-                      marginBottom: theme.spacing.xs,
-                      minHeight: 40,
-                    }}
-                  />
+                  <View key={hour} style={{ marginBottom: theme.spacing.xs }}>
+                    <PTButton
+                      title={displayHour.toString().padStart(2, '0')}
+                      onPress={() => {
+                        handleTimeSelect(actualHour, selectedMinute);
+                      }}
+                      variant={isSelected ? 'primary' : 'outline'}
+                    />
+                  </View>
                 );
               })}
             </ScrollView>
@@ -175,16 +206,13 @@ export default function PTTimePicker({
               {minutes.map((minute) => {
                 const isSelected = selectedMinute === minute;
                 return (
-                  <PTButton
-                    key={minute}
-                    title={minute.toString().padStart(2, '0')}
-                    onPress={() => handleTimeSelect(selectedHour, minute)}
-                    variant={isSelected ? 'primary' : 'outline'}
-                    style={{
-                      marginBottom: theme.spacing.xs,
-                      minHeight: 40,
-                    }}
-                  />
+                  <View key={minute} style={{ marginBottom: theme.spacing.xs }}>
+                    <PTButton
+                      title={minute.toString().padStart(2, '0')}
+                      onPress={() => handleTimeSelect(selectedHour, minute)}
+                      variant={isSelected ? 'primary' : 'outline'}
+                    />
+                  </View>
                 );
               })}
             </ScrollView>
@@ -196,19 +224,17 @@ export default function PTTimePicker({
                 Period
               </PTText>
               <View>
-                <PTButton
-                  title="AM"
-                  onPress={() => {
-                    if (selectedHour >= 12) {
-                      handleTimeSelect(selectedHour - 12, selectedMinute);
-                    }
-                  }}
-                  variant={selectedHour < 12 ? 'primary' : 'outline'}
-                  style={{
-                    marginBottom: theme.spacing.xs,
-                    minHeight: 40,
-                  }}
-                />
+                <View style={{ marginBottom: theme.spacing.xs }}>
+                  <PTButton
+                    title="AM"
+                    onPress={() => {
+                      if (selectedHour >= 12) {
+                        handleTimeSelect(selectedHour - 12, selectedMinute);
+                      }
+                    }}
+                    variant={selectedHour < 12 ? 'primary' : 'outline'}
+                  />
+                </View>
                 <PTButton
                   title="PM"
                   onPress={() => {
@@ -217,9 +243,6 @@ export default function PTTimePicker({
                     }
                   }}
                   variant={selectedHour >= 12 ? 'primary' : 'outline'}
-                  style={{
-                    minHeight: 40,
-                  }}
                 />
               </View>
             </View>
@@ -240,29 +263,48 @@ export default function PTTimePicker({
 
   return (
     <View style={style}>
-      <PTInput
-        label={label}
-        placeholder={placeholder}
-        value={getDisplayValue()}
-        onFocus={() => !disabled && setModalVisible(true)}
-        editable={false}
-        error={error}
-        style={{ marginBottom: 0 }}
-      />
+      <TouchableOpacity
+        onPress={() => !disabled && setModalVisible(true)}
+        activeOpacity={0.7}
+        disabled={disabled}
+      >
+        <View pointerEvents="none">
+          <PTInput
+            label={label}
+            placeholder={placeholder}
+            value={getDisplayValue()}
+            editable={false}
+            error={error}
+            style={{ marginBottom: 0 }}
+          />
+        </View>
+      </TouchableOpacity>
       {required && (
         <PTText variant="caption" color="error" style={{ marginTop: theme.spacing.xs }}>
           *
         </PTText>
       )}
 
-      <PTModal
-        visible={modalVisible}
-        onClose={() => setModalVisible(false)}
-        title="Select Time"
-        style={{ maxWidth: 400 }}
-      >
-        {renderTimePicker()}
-      </PTModal>
+      {Platform.OS === 'android' ? (
+        modalVisible && (
+          <DateTimePicker
+            value={nativePickerDate}
+            mode="time"
+            is24Hour={format === '24h'}
+            display="default"
+            onChange={handleNativeTimeChange}
+          />
+        )
+      ) : (
+        <PTModal
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}
+          title="Select Time"
+          style={{ maxWidth: 400 }}
+        >
+          {renderTimePicker()}
+        </PTModal>
+      )}
     </View>
   );
 }

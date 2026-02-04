@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, ViewStyle, Platform } from 'react-native';
+import { View, ViewStyle, Platform, TouchableOpacity } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { useTheme } from '../../../hooks/useTheme';
 import PTInput from '../PTInput';
 import PTModal from '../PTModal';
@@ -84,11 +85,11 @@ export default function PTDatePicker({
 
   const formatDate = (date: Date): string => {
     if (!date) return '';
-    
+
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear();
-    
+
     return displayFormat
       .replace('DD', day)
       .replace('MM', month)
@@ -96,7 +97,25 @@ export default function PTDatePicker({
       .replace('YY', year.toString().slice(-2));
   };
 
-  const handleDateSelect = (date: Date) => {
+  const handleDateSelect = (event: any, date?: Date) => {
+    // Handle Android native picker
+    if (Platform.OS === 'android') {
+      setModalVisible(false);
+    }
+
+    if (date) {
+      setSelectedDate(date);
+      onDateChange(date);
+
+      // Close modal for custom picker
+      if (Platform.OS === 'ios' && event instanceof Date) {
+        setModalVisible(false);
+      }
+    }
+  };
+
+  // Legacy handler for custom calendar
+  const handleCustomDateSelect = (date: Date) => {
     setSelectedDate(date);
     onDateChange(date);
     setModalVisible(false);
@@ -178,12 +197,11 @@ export default function PTDatePicker({
               (minimumDate && date < minimumDate) || (maximumDate && date > maximumDate);
 
             return (
-              <PTButton
+              <TouchableOpacity
                 key={day}
-                title={day.toString()}
-                onPress={() => !isDisabled && handleDateSelect(date)}
+                onPress={() => !isDisabled && handleCustomDateSelect(date)}
                 disabled={isDisabled}
-                variant={isSelected ? 'primary' : 'outline'}
+                activeOpacity={0.7}
                 style={{
                   width: '14.28%',
                   minHeight: 40,
@@ -192,49 +210,90 @@ export default function PTDatePicker({
                   backgroundColor: isSelected
                     ? theme.colors.primary
                     : isToday
-                    ? theme.colors.primaryLight
-                    : 'transparent',
+                      ? theme.colors.primaryLight
+                      : 'transparent',
+                  borderRadius: theme.borderRadius.sm,
+                  borderWidth: isSelected ? 0 : 1,
+                  borderColor: isToday ? theme.colors.primary : theme.colors.border,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  opacity: isDisabled ? 0.3 : 1,
                 }}
-              />
+              >
+                <PTText
+                  variant="body"
+                  style={{
+                    fontSize: 14,
+                    color: isSelected
+                      ? theme.colors.textInverse
+                      : isToday
+                        ? theme.colors.primary
+                        : theme.colors.text
+                  }}
+                >
+                  {day}
+                </PTText>
+              </TouchableOpacity>
             );
           })}
         </View>
 
-        <PTButton
-          title="Today"
-          onPress={() => handleDateSelect(new Date())}
-          variant="outline"
-          style={{ marginTop: theme.spacing.md }}
-        />
+        <View style={{ marginTop: theme.spacing.md }}>
+          <PTButton
+            title="Today"
+            onPress={() => handleCustomDateSelect(new Date())}
+            variant="outline"
+          />
+        </View>
       </View>
     );
   };
 
   return (
     <View style={style}>
-      <PTInput
-        label={label}
-        placeholder={placeholder}
-        value={getDisplayValue()}
-        onFocus={() => !disabled && setModalVisible(true)}
-        editable={false}
-        error={error}
-        style={{ marginBottom: 0 }}
-      />
+      <TouchableOpacity
+        onPress={() => !disabled && setModalVisible(true)}
+        activeOpacity={0.7}
+        disabled={disabled}
+      >
+        <View pointerEvents="none">
+          <PTInput
+            label={label}
+            placeholder={placeholder}
+            value={getDisplayValue()}
+            editable={false}
+            error={error}
+            style={{ marginBottom: 0 }}
+          />
+        </View>
+      </TouchableOpacity>
       {required && (
         <PTText variant="caption" color="error" style={{ marginTop: theme.spacing.xs }}>
           *
         </PTText>
       )}
 
-      <PTModal
-        visible={modalVisible}
-        onClose={() => setModalVisible(false)}
-        title="Select Date"
-        style={{ maxWidth: 400 }}
-      >
-        {renderDatePicker()}
-      </PTModal>
+      {Platform.OS === 'android' ? (
+        modalVisible && (
+          <DateTimePicker
+            value={selectedDate || new Date()}
+            mode="date"
+            display="default"
+            onChange={handleDateSelect}
+            minimumDate={minimumDate}
+            maximumDate={maximumDate}
+          />
+        )
+      ) : (
+        <PTModal
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}
+          title="Select Date"
+          style={{ maxWidth: 400 }}
+        >
+          {renderDatePicker()}
+        </PTModal>
+      )}
     </View>
   );
 }

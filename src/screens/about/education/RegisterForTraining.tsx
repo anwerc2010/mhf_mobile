@@ -1,37 +1,62 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, Alert } from 'react-native'
 import PTDynamicForm, { PTDynamicFormRef, FormSection } from '../../../components/general/DynamicForm/DynamicForm'
-import { useRef } from "react";
-import { useNavigation } from '@react-navigation/native';
+import { useRef, useEffect } from "react";
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { PTText } from '../../../components/comman';
+import { TrainingProgram, useRegisterEducationMutation } from '@psi/shared-api';
 
 function RegisterForTraining() {
     const navigation = useNavigation<any>()
+    const route = useRoute<any>();
     const formRef = useRef<PTDynamicFormRef>(null);
 
+    const [registerEducation, { isLoading: isSubmitting }] = useRegisterEducationMutation();
+    const program: TrainingProgram | null = route.params?.program || null;
+
+    // Generate course options from program topics
+    const getCourseOptions = () => {
+        if (!program?.topics_covered) {
+            return [
+                { id: 'Computer', name: 'Computer' },
+                { id: 'Tailoring', name: 'Tailoring' },
+                { id: 'SpokenEnglish', name: 'Spoken English' },
+                { id: 'HandmadeDesigning', name: 'Handmade Designing' },
+                { id: 'Other', name: 'Others (please specify)' },
+            ];
+        }
+
+        // Parse topics_covered - it can be comma-separated string or array
+        const topics = typeof program.topics_covered === 'string'
+            ? program.topics_covered.split(',').map(t => t.trim())
+            : Array.isArray(program.topics_covered) ? program.topics_covered : [];
+
+        return topics.map(topic => ({
+            id: topic,
+            name: topic,
+        }));
+    };
+
     const sections: FormSection[] = [
-        /* =======================
-           Personal Details
-        ======================== */
         {
             title: 'Personal Details',
             id: 'personalDetails',
             type: 'object',
             fields: [
                 {
-                    id: 'fullName',
+                    id: 'full_name',
                     label: 'Full Name',
                     type: 'text',
                     placeholder: 'Enter your full name',
                     validations: [{ name: 'required', value: true }],
-                    path: 'personal.fullName',
+                    path: 'personal.full_name',
                 },
                 {
-                    id: 'dob',
+                    id: 'date_of_birth',
                     label: 'Date of Birth',
                     type: 'date',
                     validations: [{ name: 'required', value: true }],
-                    path: 'personal.dob',
+                    path: 'personal.date_of_birth',
                 },
                 {
                     id: 'age',
@@ -45,15 +70,15 @@ function RegisterForTraining() {
                     label: 'Gender',
                     type: 'radio',
                     values: [
-                        { id: 'Male', name: 'Male' },
-                        { id: 'Female', name: 'Female' },
-                        { id: 'Other', name: 'Other' },
+                        { id: 'male', name: 'Male' },
+                        { id: 'female', name: 'Female' },
+                        { id: 'other', name: 'Other' },
                     ],
                     validations: [{ name: 'required', value: true }],
                     path: 'personal.gender',
                 },
                 {
-                    id: 'contactNumber',
+                    id: 'contact_number',
                     label: 'Contact Number (Phone / WhatsApp)',
                     type: 'tel',
                     placeholder: '+91-XXXXXXXXXX',
@@ -61,10 +86,10 @@ function RegisterForTraining() {
                         { name: 'required', value: true },
                         { name: 'pattern', value: /^[0-9]{10}$/, message: 'Enter valid 10 digit number' },
                     ],
-                    path: 'personal.contactNumber',
+                    path: 'personal.contact_number',
                 },
                 {
-                    id: 'parentContactNumber',
+                    id: 'parent_guardian_contact',
                     label: "Parent's / Guardian's Contact Number",
                     type: 'tel',
                     placeholder: '+91-XXXXXXXXXX',
@@ -72,10 +97,10 @@ function RegisterForTraining() {
                         { name: 'required', value: true },
                         { name: 'pattern', value: /^[0-9]{10}$/ },
                     ],
-                    path: 'personal.parentContactNumber',
+                    path: 'personal.parent_guardian_contact',
                 },
                 {
-                    id: 'maritalStatus',
+                    id: 'marital_status',
                     label: 'Marital Status',
                     type: 'select',
                     options: [
@@ -83,7 +108,7 @@ function RegisterForTraining() {
                         { id: 'Married', name: 'Married' },
                         { id: 'Other', name: 'Other' },
                     ],
-                    path: 'personal.maritalStatus',
+                    path: 'personal.marital_status',
                 },
                 {
                     id: 'email',
@@ -103,32 +128,66 @@ function RegisterForTraining() {
                     path: 'personal.address',
                 },
                 {
-                    id: 'guardianName',
-                    label: "Guardian's Name (If any)",
+                    id: 'district',
+                    label: 'District',
                     type: 'text',
-                    path: 'personal.guardianName',
+                    placeholder: 'Enter your District',
+                    validations: [{ name: 'required', value: true }],
+                    path: 'personal.district',
                 },
                 {
-                    id: 'idProof',
+                    id: 'city',
+                    label: 'City',
+                    type: 'text',
+                    placeholder: 'Enter your City',
+                    validations: [{ name: 'required', value: true }],
+                    path: 'personal.city',
+                },
+                {
+                    id: 'state',
+                    label: 'State',
+                    type: 'text',
+                    placeholder: 'Enter your State',
+                    validations: [{ name: 'required', value: true }],
+                    path: 'personal.state',
+                },
+                {
+                    id: 'pincode',
+                    label: 'Pin code',
+                    type: 'text',
+                    placeholder: 'Enter your Pin code',
+                    validations: [{ name: 'required', value: true }],
+                    path: 'personal.pincode',
+                },
+                {
+                    id: 'guardian_name',
+                    label: "Guardian's Name (If any)",
+                    type: 'text',
+                    path: 'personal.guardian_name',
+                },
+                {
+                    id: 'id_proof_type',
                     label: 'ID Proof (Aadhar / Other)',
                     type: 'text',
                     placeholder: 'Aadhar number or other ID proof number',
                     validations: [{ name: 'required', value: true }],
-                    path: 'personal.idProof',
+                    path: 'personal.id_proof_type',
+                },
+                {
+                    id: 'id_proof_number',
+                    label: "Identification Number",
+                    type: 'text',
+                    path: 'personal.id_proof_number',
                 },
             ],
         },
-
-        /* =======================
-           Educational Background
-        ======================== */
         {
             title: 'Educational Background',
             id: 'educationDetails',
             type: 'object',
             fields: [
                 {
-                    id: 'highestQualification',
+                    id: 'highest_qualification',
                     label: 'Highest Qualification',
                     type: 'radio',
                     values: [
@@ -138,10 +197,10 @@ function RegisterForTraining() {
                         { id: 'Other', name: 'Other' },
                     ],
                     validations: [{ name: 'required', value: true }],
-                    path: 'education.qualification',
+                    path: 'education.highest_qualification',
                 },
                 {
-                    id: 'mediumOfInstruction',
+                    id: 'medium_of_instruction',
                     label: 'Medium of Instruction',
                     type: 'radio',
                     values: [
@@ -150,89 +209,44 @@ function RegisterForTraining() {
                         { id: 'Other', name: 'Other' },
                     ],
                     validations: [{ name: 'required', value: true }],
-                    path: 'education.medium',
+                    path: 'education.medium_of_instruction',
                 },
                 {
-                    id: 'schoolCollegeName',
-                    label: 'School / College Name & Location',
+                    id: 'school_college_name',
+                    label: 'School / College Name',
                     type: 'text',
                     validations: [{ name: 'required', value: true }],
-                    path: 'education.institution',
+                    path: 'education.school_college_name',
                 },
                 {
-                    id: 'gapReason',
+                    id: 'school_college_location',
+                    label: 'Location',
+                    type: 'text',
+                    validations: [{ name: 'required', value: true }],
+                    path: 'education.school_college_location',
+                },
+                {
+                    id: 'education_gap_reason',
                     label: 'Gaps in Education / Dropout Reason',
                     type: 'textarea',
                     placeholder: 'If any gaps or dropout, please mention the reason',
-                    path: 'education.gapReason',
+                    path: 'education.education_gap_reason',
                 },
             ],
         },
-
-        /* =======================
-           Course Selection
-        ======================== */
         {
             title: 'Course Selection',
-            id: 'courseSelection',
+            id: 'courses',
             type: 'object',
             fields: [
                 {
                     id: 'preferredCourses',
                     label: 'Please tick your preferred training',
                     type: 'multiselect',
-                    options: [
-                        { id: 'Computer', name: 'Computer' },
-                        { id: 'Tailoring', name: 'Tailoring' },
-                        { id: 'SpokenEnglish', name: 'Spoken English' },
-                        { id: 'HandmadeDesigning', name: 'Handmade Designing' },
-                        { id: 'Other', name: 'Others (please specify)' },
-                    ],
+                    options: getCourseOptions(),
                     validations: [{ name: 'required', value: true }],
-                    path: 'course.preferred',
-                },
-            ],
-        },
-
-        /* =======================
-           Documents Required
-        ======================== */
-        {
-            title: 'Documents Required',
-            id: 'documents',
-            type: 'object',
-            fields: [
-                {
-                    id: 'submittedDocuments',
-                    label: 'Submitted documents',
-                    type: 'multiselect',
-                    options: [
-                        { id: 'Photo', name: 'Photo (Passport size)' },
-                        { id: 'IDProof', name: 'ID Proof (Aadhar / PAN / Other)' },
-                        { id: 'CasteCertificate', name: 'Caste Certificate (If any)' },
-                    ],
-                    validations: [{ name: 'required', value: true }],
-                    path: 'documents.submitted',
-                },
-            ],
-        },
-
-        /* =======================
-           Declaration
-        ======================== */
-        {
-            title: 'Declaration',
-            id: 'declaration',
-            type: 'object',
-            fields: [
-                {
-                    id: 'declarationAccepted',
-                    label: 'I hereby declare that all the information provided is true.',
-                    type: 'radio',
-                    values: [{ id: 'accepted', name: 'I Agree' }],
-                    validations: [{ name: 'required', value: true }],
-                    path: 'declaration.accepted',
-                },
+                    path: 'course.courses',
+                }
             ],
         },
     ];
@@ -246,7 +260,66 @@ function RegisterForTraining() {
                 initialValues={{}}
                 mode="onBlur"
                 submitButtonText="Save Details"
-                onSubmit={(values) => console.log('Form submitted:', values)}
+                submitLoading={isSubmitting}
+                onSubmit={async (values) => {
+                    console.log('Form submitted:', values);
+                    console.log('Registered for program:', program?.program_name);
+
+                    const payload = {
+                        training_program_id: program?.id || 0,
+                        full_name: values.personal?.full_name || '',
+                        date_of_birth: values.personal?.date_of_birth ? values.personal.date_of_birth.split('T')[0] : '',
+                        age: values.personal?.age || 0,
+                        gender: values.personal?.gender || '',
+                        contact_number: values.personal?.contact_number || '',
+                        parent_guardian_contact: values.personal?.parent_guardian_contact || '',
+                        marital_status: values.personal?.marital_status || '',
+                        email: values.personal?.email || '',
+                        address: values.personal?.address || '',
+                        district: values.personal?.district || '',
+                        city: values.personal?.city || '',
+                        state: values.personal?.state || '',
+                        pincode: values.personal?.pincode || '',
+                        guardian_name: values.personal?.guardian_name || '',
+                        id_proof_type: values.personal?.id_proof_type || '',
+                        id_proof_number: values.personal?.id_proof_number || '',
+                        highest_qualification: values.education?.highest_qualification || '',
+                        medium_of_instruction: values.education?.medium_of_instruction || '',
+                        school_college_name: values.education?.school_college_name || '',
+                        school_college_location: values.education?.school_college_location || '',
+                        education_gap_reason: values.education?.education_gap_reason || '',
+                        courses: Array.isArray(values.course?.courses) ? values.course.courses : [],
+                        other_qualification: values.education?.other_qualification || '',
+                        other_medium: values.education?.other_medium || '',
+                        other_course: values.course?.other_course || '',
+                    };
+
+                    console.log('Payload for registration:', JSON.stringify(payload, null, 2));
+
+                    try {
+                        const response = await registerEducation(payload).unwrap();
+                        console.log('Registration successful:', response);
+
+                        Alert.alert(
+                            'Success',
+                            'Registration submitted successfully!',
+                            [
+                                {
+                                    text: 'OK',
+                                    onPress: () => navigation.goBack()
+                                }
+                            ]
+                        );
+                    } catch (error: any) {
+                        console.error('Registration failed:', error);
+
+                        Alert.alert(
+                            'Error',
+                            error?.data?.message || 'Failed to submit registration. Please try again.',
+                            [{ text: 'OK' }]
+                        );
+                    }
+                }}
                 onValueChange={(fieldId, value) => {
                     console.log(`${fieldId} changed to`, value);
                 }} />

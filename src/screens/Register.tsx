@@ -46,6 +46,13 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
           path: 'personalDetails.fullname',
         },
         {
+          id: 'date_of_birth',
+          label: 'Date of Birth',
+          type: 'date',
+          validations: [{ name: 'required', value: true }],
+          path: 'personalDetails.date_of_birth',
+        },
+        {
           id: 'age',
           label: 'Age',
           type: 'number',
@@ -202,20 +209,72 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
   };
 
   const handleRegister = async (values: Record<string, any>) => {
-    const formValues = values as RegisterRequest;
+    let payload = { ...values.personalDetails } as RegisterRequest;
+    payload.date_of_birth = payload.date_of_birth?.split('T')[0];
+    console.log('Register form values:', JSON.stringify(payload, null, 2));
+
     try {
-      const result = await registerMutation(formValues).unwrap();
+      const result = await registerMutation(payload).unwrap();
       if (result?.error) {
-        showToast('error', result?.message || t('register.toast.error'), 'bottom');
+        let errorMessage = t('register.toast.error');
+
+        // Extract field-specific errors from API response
+        if (result?.message && typeof result.message === 'object') {
+          const fieldErrors = result.message;
+          const errorFields = Object.keys(fieldErrors);
+
+          if (errorFields.length > 0) {
+            const fieldName = errorFields[0];
+            const fieldError = fieldErrors[fieldName];
+            errorMessage = `${fieldName}: ${Array.isArray(fieldError) ? fieldError[0] : fieldError}`;
+          }
+        }
+
+        Alert.alert(
+          t('register.registrationFailed'),
+          errorMessage,
+          [{ text: 'OK' }]
+        );
         setPendingNavigate(false);
         return;
       }
 
-      showToast('success', result?.message || t('register.toast.success'), 'top');
-      setPendingNavigate(true);
+      Alert.alert(
+        t('register.registrationSuccess'),
+        result?.message || t('register.toast.success'),
+        [
+          {
+            text: 'OK',
+            onPress: () => {
+              navigation.navigate('Login');
+            },
+          },
+        ]
+      );
 
-    } catch (err) {
-      showToast('error', t('register.toast.error'), 'bottom');
+    } catch (err: any) {
+      let errorMessage = t('register.toast.error');
+
+      // Extract field-specific errors from API response
+      const messageObj = err?.data?.message || err?.message;
+      if (messageObj && typeof messageObj === 'object') {
+        const fieldErrors = messageObj;
+        const errorFields = Object.keys(fieldErrors);
+
+        if (errorFields.length > 0) {
+          const fieldName = errorFields[0];
+          const fieldError = fieldErrors[fieldName];
+          errorMessage = `${fieldName}: ${Array.isArray(fieldError) ? fieldError[0] : fieldError}`;
+        }
+      } else if (typeof messageObj === 'string') {
+        errorMessage = messageObj;
+      }
+
+      Alert.alert(
+        t('register.registrationFailed'),
+        errorMessage,
+        [{ text: 'OK' }]
+      );
       setPendingNavigate(false);
       logger.error('Registration error:', err);
     }
@@ -225,14 +284,14 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
     <>
       <PTContainer safeArea>
         <View style={styles.header}>
-          <View style={{ flexDirection: 'row', marginBottom: 16 }}>
+          {/* <View style={{ flexDirection: 'row', marginBottom: 16 }}>
             <View style={{ flex: 1, marginRight: 8 }}>
               <LanguageSwitcher />
             </View>
             <View style={{ flex: 1 }}>
               <ThemeSwitcher />
             </View>
-          </View>
+          </View> */}
 
           <PTText variant="h1" style={styles.title}>
             {t('register.title')}
@@ -255,8 +314,7 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
             console.log(`${fieldId} changed to`, value);
           }}
         />
-      </PTContainer>
-      <View>
+
         <View style={styles.footer}>
           <PTText variant="body" style={styles.footerText}>
             {t('register.hasAccount')}{' '}
@@ -268,7 +326,7 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
             {t('common.signIn')}
           </Text>
         </View>
-      </View>
+      </PTContainer>
       <PTToast
         visible={toastState.visible}
         message={toastState.message}

@@ -122,3 +122,11 @@ dependencies {
         implementation jscFlavor
     }
 }
+
+// Fix for duplicate libworklets.so from react-native-reanimated and react-native-worklets
+android.packagingOptions {
+    pickFirst 'lib/arm64-v8a/libworklets.so'
+    pickFirst 'lib/armeabi-v7a/libworklets.so'
+    pickFirst 'lib/x86/libworklets.so'
+    pickFirst 'lib/x86_64/libworklets.so'
+}

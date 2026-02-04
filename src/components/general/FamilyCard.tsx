@@ -69,16 +69,16 @@ const FamilyCard: React.FC<FamilyCardProps> = ({ data, image }) => {
 };
 
 const styles = StyleSheet.create({
-    cardItem: { width: width * 0.9, height: 260, borderRadius: 12, overflow: 'hidden', marginRight: 16, backgroundColor: '#1B4968' },
+    cardItem: { width: width * 0.8, height: 200, borderRadius: 12, overflow: 'hidden', marginRight: 12, backgroundColor: '#1B4968' },
     cardImageStyle: { borderRadius: 12 },
-    cardOverlay: { flex: 1, padding: 16, justifyContent: 'space-between', backgroundColor: 'rgba(27, 73, 104, 0.2)' },
-    cardSection: { marginBottom: 8, marginTop: 50 },
-    cardLabel: { fontSize: 11, fontWeight: '500', color: '#B0C4D4', letterSpacing: 0.5 },
-    cardNameMain: { fontSize: 20, fontWeight: '700', color: '#fff' },
-    cardTwoColumn: { flexDirection: 'row', justifyContent: 'space-between', gap: 16 },
+    cardOverlay: { flex: 1, padding: 12, justifyContent: 'space-between', backgroundColor: 'rgba(27, 73, 104, 0.2)' },
+    cardSection: { marginBottom: 6, marginTop: 40 },
+    cardLabel: { fontSize: 10, fontWeight: '500', color: '#B0C4D4', letterSpacing: 0.5 },
+    cardNameMain: { fontSize: 14, fontWeight: '700', color: '#fff' },
+    cardTwoColumn: { flexDirection: 'row', justifyContent: 'space-between', gap: 12 },
     cardColumn: { flex: 1 },
-    cardFieldGroup: { marginBottom: 12 },
-    cardValue: { fontSize: 14, fontWeight: '600', color: '#fff', marginTop: 2 },
+    cardFieldGroup: { marginBottom: 6 },
+    cardValue: { fontSize: 12, fontWeight: '600', color: '#fff', marginTop: 1 },
 });
 
 export default FamilyCard;

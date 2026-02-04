@@ -7,7 +7,7 @@ interface PTButtonProps {
     onPress: () => void;
     loading?: boolean;
     disabled?: boolean;
-    variant?: 'primary' | 'secondary' | 'outline';
+    variant?: 'primary' | 'secondary' | 'outline' | 'success';
 }
 
 export default function PTButton({
@@ -25,6 +25,8 @@ export default function PTButton({
                 return { backgroundColor: theme.colors.primary };
             case 'secondary':
                 return { backgroundColor: theme.colors.secondary };
+            case 'success':
+                return { backgroundColor: theme.colors.success };
             case 'outline':
                 return {
                     backgroundColor: 'transparent',
@@ -72,8 +74,8 @@ export default function PTButton({
                 <Text
                     style={[
                         {
-                            fontSize: 16,
-                            fontWeight: '600',
+                            fontSize: 18,
+                            fontWeight: '700',
                         },
                         getTextStyle(),
                     ]}
