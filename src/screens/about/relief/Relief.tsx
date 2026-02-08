@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Dimensions, ActivityIndicator, Modal, Linking, FlatList } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Dimensions, ActivityIndicator, Modal, Linking, FlatList, Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { useGetReliefWelfareQuery } from '@psi/shared-api';
@@ -175,7 +175,10 @@ export default function ReliefScreen() {
                         </TouchableOpacity>
                     )}
                     {item.allow_donate && (
-                        <TouchableOpacity style={styles.secondaryBtnSmall}>
+                        <TouchableOpacity 
+                            style={styles.secondaryBtnSmall}
+                            onPress={() => Alert.alert('Coming Soon', 'Donation feature will be available soon.')}
+                        >
                             <Text style={styles.donateText}>{t('relief.donate')}</Text>
                         </TouchableOpacity>
                     )}

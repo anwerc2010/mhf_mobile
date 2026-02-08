@@ -258,19 +258,21 @@ export default function HomeScreen() {
           </View>
         )}
 
-        <ImageBackground
-          source={require('../../assets/images/button_bg.png')}
-          style={styles.requestButton}
-          imageStyle={styles.requestButtonImage}
-        >
-          <TouchableOpacity
-            style={styles.requestTouchable}
-            activeOpacity={0.8}
-            onPress={() => navigation.navigate('NewCardRequest')}
+        {!dashboardData?.health_card && (
+          <ImageBackground
+            source={require('../../assets/images/button_bg.png')}
+            style={styles.requestButton}
+            imageStyle={styles.requestButtonImage}
           >
-            <Text style={styles.requestText}>{t('home.requestNewCard')}</Text>
-          </TouchableOpacity>
-        </ImageBackground>
+            <TouchableOpacity
+              style={styles.requestTouchable}
+              activeOpacity={0.8}
+              onPress={() => navigation.navigate('NewCardRequest')}
+            >
+              <Text style={styles.requestText}>{t('home.requestNewCard')}</Text>
+            </TouchableOpacity>
+          </ImageBackground>
+        )}
 
         {Array.isArray(dashboardData?.card_requests) && dashboardData.card_requests.length > 0 && (
           <View style={styles.cardRequestsCard}>
@@ -335,7 +337,7 @@ export default function HomeScreen() {
                   <Text style={styles.modalValue}>{selectedCardRequest.updated_at}</Text>
                 </View>
               )}
-              {selectedCardRequest?.review_notes && (
+              {/* {selectedCardRequest?.review_notes && (
                 <View style={[styles.modalRow, { alignItems: 'flex-start' }]}>
                   <Text style={[styles.modalLabel, { marginTop: 0 }]}>{t('home.reviewNotes')}</Text>
                   <Text style={[styles.modalValue, { flex: 1 }]}>{selectedCardRequest.review_notes}</Text>
@@ -345,7 +347,7 @@ export default function HomeScreen() {
                 <View style={styles.modalRow}>
                   <Text style={styles.modalValue}>{t('home.noReviewNotes')}</Text>
                 </View>
-              )}
+              )} */}
             </View>
             <TouchableOpacity
               style={styles.modalCloseBtn}

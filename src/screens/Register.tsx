@@ -53,17 +53,6 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
           path: 'personalDetails.date_of_birth',
         },
         {
-          id: 'age',
-          label: 'Age',
-          type: 'number',
-          placeholder: 'Enter age',
-          validations: [
-            { name: 'required', value: true, message: t('register.validation.ageRequired') },
-            { name: 'min', value: 0, message: t('register.validation.agePositive') },
-          ],
-          path: 'personalDetails.age',
-        },
-        {
           id: 'gender',
           label: 'Gender',
           type: 'select',
@@ -103,7 +92,7 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
           ],
           path: 'personalDetails.email',
         },
-        {
+         {
           id: 'password',
           label: t('common.password'),
           type: 'password',
@@ -114,66 +103,23 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
           ],
           path: 'personalDetails.password',
         },
-        {
-          id: 'address',
-          label: 'Address',
-          type: 'textarea',
-          placeholder: 'Enter address',
-          validations: [
-            { name: 'required', value: true, message: t('register.validation.addressRequired') },
-          ],
-          path: 'personalDetails.address',
-        },
-        {
-          id: 'equipment_type',
-          label: 'Equipment Type',
-          type: 'text',
-          placeholder: 'Enter equipment type',
-          validations: [
-            { name: 'required', value: true, message: t('register.validation.equipmentTypeRequired') },
-          ],
-          path: 'personalDetails.equipmentType',
-        },
-        {
-          id: 'medical_reason',
-          label: 'Medical Reason',
-          type: 'textarea',
-          placeholder: 'Enter medical reason',
-          validations: [
-            { name: 'required', value: true, message: t('register.validation.medicalReasonRequired') },
-          ],
-          path: 'personalDetails.medicalReason',
-        },
-        {
-          id: 'duration',
-          label: 'Duration',
-          type: 'text',
-          placeholder: 'Enter duration',
-          validations: [
-            { name: 'required', value: true, message: t('register.validation.durationRequired') },
-          ],
-          path: 'personalDetails.duration',
-        },
-        {
-          id: 'reference_name',
-          label: 'Reference Name',
-          type: 'text',
-          placeholder: 'Enter reference name',
-          validations: [
-            { name: 'required', value: true, message: t('register.validation.referenceNameRequired') },
-          ],
-          path: 'personalDetails.referenceName',
-        },
-        {
-          id: 'reference_contact',
-          label: 'Reference Contact',
-          type: 'phone',
-          placeholder: 'Enter reference contact',
-          validations: [
-            { name: 'required', value: true, message: t('register.validation.referenceContactRequired') },
-          ],
-          path: 'personalDetails.referenceContact',
-        },
+         {
+                    id: 'blood_group',
+                    label: 'Blood Group',
+                    type: 'select',
+                    options: [
+                        { id: 'A+', name: 'A+' },
+                        { id: 'A-', name: 'A-' },
+                        { id: 'B+', name: 'B+' },
+                        { id: 'B-', name: 'B-' },
+                        { id: 'O+', name: 'O+' },
+                        { id: 'O-', name: 'O-' },
+                        { id: 'AB+', name: 'AB+' },
+                        { id: 'AB-', name: 'AB-' },
+                    ],
+                    validations: [{ name: 'required', value: true }],
+                    path: 'personalDetails.blood_group',
+                },
       ],
     },
   ];
@@ -209,8 +155,9 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
   };
 
   const handleRegister = async (values: Record<string, any>) => {
-    let payload = { ...values.personalDetails } as RegisterRequest;
+    let payload = { ...values.personalDetails } as any;
     payload.date_of_birth = payload.date_of_birth?.split('T')[0];
+    payload['card_number'] = '';
     console.log('Register form values:', JSON.stringify(payload, null, 2));
 
     try {

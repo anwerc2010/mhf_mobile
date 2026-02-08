@@ -1,11 +1,52 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import PTDynamicForm, { PTDynamicFormRef, FormSection } from '../../components/general/DynamicForm/DynamicForm'
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { PTText } from '../../components/comman';
+import { useCreateVolunteerRegistrationMutation } from '@psi/shared-api';
 
 export default function VolunteersScreen() {
+    const navigation = useNavigation<any>();
     const formRef = useRef<PTDynamicFormRef>(null);
+    const [createVolunteerRegistration, { isLoading }] = useCreateVolunteerRegistrationMutation();
+
+    const handleSubmit = async (values: Record<string, any>) => {
+        try {
+            const formattedData = {
+                full_name: values.full_name,
+                date_of_birth: values.date_of_birth?.split('T')[0],
+                gender: values.gender,
+                phone_number: values.phone_number,
+                alternate_contact: values.alternate_contact,
+                email: values.email,
+                address: values.address,
+                qualification: values.qualification,
+                employment_status: values.employment_status,
+                occupation: values.occupation,
+                volunteer_area: values.volunteer_area,
+                availability: values.availability,
+                previous_volunteering: values.previous_volunteering,
+                motivation: values.motivation,
+                declaration: values.declaration,
+            };
+
+            console.log('Volunteer registration values:', JSON.stringify(formattedData, null, 2));
+
+            // Call the mutation
+            const response = await createVolunteerRegistration(formattedData).unwrap();
+
+            console.log('Volunteer Registration Response:', response);
+
+            Alert.alert('Success', 'Volunteer registration submitted successfully', [
+                { text: 'OK', onPress: () => navigation.goBack() },
+            ]);
+        } catch (err: any) {
+            console.error('Error submitting volunteer registration:', err);
+            Alert.alert('Error', err?.data?.message || err?.message || 'Failed to submit registration');
+        }
+    };
+
     const sections: FormSection[] = [
         /* =======================
            1. Personal Details
@@ -16,33 +57,33 @@ export default function VolunteersScreen() {
             type: 'object',
             fields: [
                 {
-                    id: 'fullName',
+                    id: 'full_name',
                     label: 'Full Name',
                     type: 'text',
                     validations: [{ name: 'required', value: true }],
-                    path: 'personal.fullName',
+                    path: 'full_name',
                 },
                 {
-                    id: 'dob',
+                    id: 'date_of_birth',
                     label: 'Date of Birth',
                     type: 'date',
                     validations: [{ name: 'required', value: true }],
-                    path: 'personal.dob',
+                    path: 'date_of_birth',
                 },
                 {
                     id: 'gender',
                     label: 'Gender',
                     type: 'radio',
                     values: [
-                        { id: 'Male', name: 'Male' },
-                        { id: 'Female', name: 'Female' },
-                        { id: 'Other', name: 'Other' },
+                        { id: 'male', name: 'Male' },
+                        { id: 'female', name: 'Female' },
+                        { id: 'other', name: 'Other' },
                     ],
                     validations: [{ name: 'required', value: true }],
-                    path: 'personal.gender',
+                    path: 'gender',
                 },
                 {
-                    id: 'phoneNumber',
+                    id: 'phone_number',
                     label: 'Phone Number',
                     type: 'tel',
                     placeholder: '+91-XXXXXXXXXX',
@@ -50,17 +91,17 @@ export default function VolunteersScreen() {
                         { name: 'required', value: true },
                         { name: 'pattern', value: /^[0-9]{10}$/, message: 'Enter valid 10 digit number' },
                     ],
-                    path: 'personal.phoneNumber',
+                    path: 'phone_number',
                 },
                 {
-                    id: 'alternateContact',
+                    id: 'alternate_contact',
                     label: 'Alternate Contact No.',
                     type: 'tel',
                     placeholder: '+91-XXXXXXXXXX',
                     validations: [
                         { name: 'pattern', value: /^[0-9]{10}$/ },
                     ],
-                    path: 'personal.alternateContact',
+                    path: 'alternate_contact',
                 },
                 {
                     id: 'email',
@@ -70,14 +111,14 @@ export default function VolunteersScreen() {
                         { name: 'required', value: true },
                         { name: 'pattern', value: /^[^@]+@[^@]+\.[^@]+$/, message: 'Invalid email address' },
                     ],
-                    path: 'personal.email',
+                    path: 'email',
                 },
                 {
                     id: 'address',
                     label: 'Address',
                     type: 'textarea',
                     validations: [{ name: 'required', value: true }],
-                    path: 'personal.address',
+                    path: 'address',
                 },
             ],
         },
@@ -95,26 +136,26 @@ export default function VolunteersScreen() {
                     label: 'Qualification',
                     type: 'text',
                     validations: [{ name: 'required', value: true }],
-                    path: 'professional.qualification',
+                    path: 'qualification',
                 },
                 {
-                    id: 'employmentStatus',
+                    id: 'employment_status',
                     label: 'Employment Status',
                     type: 'radio',
                     values: [
-                        { id: 'Student', name: 'Student' },
-                        { id: 'Employee', name: 'Employee' },
-                        { id: 'SelfEmployed', name: 'Self Employed' },
+                        { id: 'student', name: 'Student' },
+                        { id: 'employee', name: 'Employee' },
+                        { id: 'self_employed', name: 'Self Employed' },
                     ],
                     validations: [{ name: 'required', value: true }],
-                    path: 'professional.employmentStatus',
+                    path: 'employment_status',
                 },
                 {
                     id: 'occupation',
                     label: 'Occupation',
                     type: 'text',
                     validations: [{ name: 'required', value: true }],
-                    path: 'professional.occupation',
+                    path: 'occupation',
                 },
             ],
         },
@@ -128,32 +169,32 @@ export default function VolunteersScreen() {
             type: 'object',
             fields: [
                 {
-                    id: 'volunteerAreas',
+                    id: 'volunteer_area',
                     label: 'Which areas would you like to volunteer in?',
-                    type: 'multiselect',
-                    values: [
-                        { id: 'HealthCamps', name: 'Health Camps' },
-                        { id: 'AwarenessDrives', name: 'Awareness Drives' },
-                        { id: 'DataEntry', name: 'Data Entry / Office Work' },
-                        { id: 'SocialMedia', name: 'Social Media Promotion' },
-                        { id: 'Fundraising', name: 'Fundraising' },
-                        { id: 'CommunityOutreach', name: 'Community Outreach' },
-                        { id: 'Other', name: 'Other' },
+                    type: 'select',
+                    options: [
+                        { id: 'health_camp', name: 'Health Camps' },
+                        { id: 'awareness_drives', name: 'Awareness Drives' },
+                        { id: 'data_entry', name: 'Data Entry / Office Work' },
+                        { id: 'social_media', name: 'Social Media Promotion' },
+                        { id: 'fundraising', name: 'Fundraising' },
+                        { id: 'community_outreach', name: 'Community Outreach' },
+                        { id: 'other', name: 'Other' },
                     ],
                     validations: [{ name: 'required', value: true }],
-                    path: 'volunteering.areas',
+                    path: 'volunteer_area',
                 },
                 {
                     id: 'availability',
                     label: 'Availability',
-                    type: 'multiselect',
-                    values: [
-                        { id: 'Weekdays', name: 'Weekdays' },
-                        { id: 'Weekends', name: 'Weekends' },
-                        { id: 'Flexible', name: 'Flexible' },
+                    type: 'select',
+                    options: [
+                        { id: 'weekdays', name: 'Weekdays' },
+                        { id: 'weekends', name: 'Weekends' },
+                        { id: 'flexible', name: 'Flexible' },
                     ],
                     validations: [{ name: 'required', value: true }],
-                    path: 'volunteering.availability',
+                    path: 'availability',
                 },
             ],
         },
@@ -167,15 +208,15 @@ export default function VolunteersScreen() {
             type: 'object',
             fields: [
                 {
-                    id: 'previousVolunteerExperience',
+                    id: 'previous_volunteering',
                     label: 'Have you volunteered before?',
                     type: 'radio',
                     values: [
-                        { id: 'Yes', name: 'Yes' },
-                        { id: 'No', name: 'No' },
+                        { id: 'yes', name: 'Yes' },
+                        { id: 'no', name: 'No' },
                     ],
                     validations: [{ name: 'required', value: true }],
-                    path: 'experience.volunteeredBefore',
+                    path: 'previous_volunteering',
                 },
                 {
                     id: 'motivation',
@@ -183,30 +224,10 @@ export default function VolunteersScreen() {
                     type: 'textarea',
                     placeholder: 'Please share your motivation and what drives you to volunteer with us...',
                     validations: [{ name: 'required', value: true }],
-                    path: 'experience.motivation',
+                    path: 'motivation',
                 },
             ],
-        },
-
-        /* =======================
-           5. Declaration
-        ======================== */
-        {
-            title: 'Declaration',
-            id: 'declaration',
-            type: 'object',
-            fields: [
-                {
-                    id: 'declarationAccepted',
-                    label:
-                        'I hereby declare that the above information is true to the best of my knowledge. I agree to follow the principles and values of Muthala Helping Foundation and to carry out my volunteer responsibilities with sincerity and respect.',
-                    type: 'radio',
-                    values: [{ id: 'accepted', name: 'I Agree' }],
-                    validations: [{ name: 'required', value: true }],
-                    path: 'declaration.accepted',
-                },
-            ],
-        },
+        }
     ];
 
 
@@ -219,7 +240,8 @@ export default function VolunteersScreen() {
                 initialValues={{}}
                 mode="onBlur"
                 submitButtonText="Save Details"
-                onSubmit={(values) => console.log('Form submitted:', values)}
+                submitLoading={isLoading}
+                onSubmit={handleSubmit}
                 onValueChange={(fieldId, value) => {
                     console.log(`${fieldId} changed to`, value);
                 }} />

@@ -119,6 +119,15 @@ function LoginScreen({ navigation }: LoginScreenProps) {
                 autoComplete="password"
               />
 
+              <View style={styles.forgotPasswordContainer}>
+                <Text
+                  style={styles.forgotPasswordLink}
+                  onPress={() => navigation.navigate('ForgotPassword')}
+                >
+                  {t('login.forgotPassword', 'Forgot Password?')}
+                </Text>
+              </View>
+
               <View style={styles.button}>
                 <PTButton
                   title={t('common.signIn')}
@@ -138,6 +147,18 @@ function LoginScreen({ navigation }: LoginScreenProps) {
                   onPress={() => navigation.navigate('Register')}
                 >
                   {t('common.signUp')}
+                </Text>
+              </View>
+
+              <View style={styles.footer}>
+                <PTText variant="body" style={styles.footerText}>
+                  {t('login.haveResetToken', 'Have a reset token?')}{' '}
+                </PTText>
+                <Text
+                  style={styles.link}
+                  onPress={() => navigation.navigate('ResetPassword')}
+                >
+                  {t('login.resetPassword', 'Reset Password')}
                 </Text>
               </View>
             </View>
@@ -194,6 +215,16 @@ const styles = StyleSheet.create({
   link: {
     color: '#007AFF',
     fontWeight: '600',
+  },
+  forgotPasswordContainer: {
+    alignItems: 'flex-end',
+    marginTop: 8,
+    marginBottom: 8,
+  },
+  forgotPasswordLink: {
+    color: '#007AFF',
+    fontWeight: '600',
+    fontSize: 14,
   },
 });
 

@@ -4,10 +4,12 @@ import { CaretDown, CaretRight, Info, Eye, Target, Users, UsersThree, Heart, Pho
 import { useNavigation } from '@react-navigation/native';
 import { useAppSelector, useAppDispatch } from '../store/hook';
 import { clearAuth } from '@psi/shared-api';
+import { useTranslation } from 'react-i18next';
 
 const { width } = Dimensions.get('window');
 
 export default function ProfileScreen() {
+  const { t } = useTranslation();
   const [expanded, setExpanded] = useState<{ [k: string]: boolean }>({});
   const navigation = useNavigation<any>();
   const dispatch = useAppDispatch();
@@ -112,7 +114,7 @@ export default function ProfileScreen() {
           <View style={styles.medRow}><Text style={styles.medLabel}>{t('profile.emergencyContact')}</Text><Text style={styles.medValue}>Raj Sharma - +91-9876543211</Text></View>
         </View>
 
-        <TouchableOpacity style={styles.editButton} activeOpacity={0.9}><Text style={styles.editButtonText}>{t('profile.editProfile')}</Text></TouchableOpacity>
+        {/* <TouchableOpacity style={styles.editButton} activeOpacity={0.9}><Text style={styles.editButtonText}>{t('profile.editProfile')}</Text></TouchableOpacity> */}
         <TouchableOpacity style={styles.logoutButton} activeOpacity={0.9} onPress={handleLogout}><Text style={styles.logoutButtonText}>{t('profile.logout')}</Text></TouchableOpacity>
 
         <View style={styles.aboutCard}>

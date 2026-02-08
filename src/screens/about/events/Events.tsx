@@ -81,9 +81,9 @@ export default function EventsScreen() {
                 <View style={styles.headerCard}>
                     <Text style={styles.headerTitle}>{t('events.title')}</Text>
                     <Text style={styles.headerSubtitle}>{t('events.subtitle')}</Text>
-                    <TouchableOpacity style={styles.headerBtn} onPress={() => navigation.navigate('RegisterForEvent')}>
+                    {/* <TouchableOpacity style={styles.headerBtn} onPress={() => navigation.navigate('RegisterForEvent')}>
                         <Text style={styles.headerBtnText}>{t('events.registerHeader')}</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </View>
 
                 <Text style={styles.sectionTitle}>{t('events.upcoming')}</Text>

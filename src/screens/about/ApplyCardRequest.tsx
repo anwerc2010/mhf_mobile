@@ -36,6 +36,7 @@ function ApplyCardRequest() {
                     validations: [
                         { name: 'required', value: true },
                         { name: 'pattern', value: /^[0-9]{4} [0-9]{4} [0-9]{4}$/, message: 'Enter valid Aadhaar number (XXXX XXXX XXXX)' },
+                        {name: 'maxLength', value: 14, message: 'Aadhaar number cannot exceed 14 characters' },
                     ],
                     path: 'card_holder.aadhaar_number',
                 },
@@ -222,9 +223,10 @@ function ApplyCardRequest() {
                     label: 'Aadhaar Number',
                     type: 'text',
                     placeholder: '1111 2222 3333',
-                    validations: [
+                    validations:  [
                         { name: 'required', value: true },
                         { name: 'pattern', value: /^[0-9]{4} [0-9]{4} [0-9]{4}$/, message: 'Enter valid Aadhaar number (XXXX XXXX XXXX)' },
+                        {name: 'maxLength', value: 14, message: 'Aadhaar number cannot exceed 14 characters' },
                     ],
                 },
                 {
@@ -308,6 +310,7 @@ function ApplyCardRequest() {
             const today = new Date();
             const nextYear = new Date(today);
             nextYear.setFullYear(today.getFullYear() + 1);
+            nextYear.setDate(nextYear.getDate() - 1);
 
             // Flatten and format data to match API expected structure
             const formattedData = {
@@ -364,11 +367,11 @@ function ApplyCardRequest() {
                 submitButtonText="Save Details"
                 submitLoading={isSubmitting}
                 onSubmit={handleSubmit}
-                onValueChange={(fieldId, value) => {
+                onValueChange={(fieldId, value, allValues, fieldPath) => {
                     console.log(`${fieldId} changed to`, value);
 
-                    // Format Aadhaar number as XXXX XXXX XXXX
-                    if (fieldId === 'aadhaar_number' && typeof value === 'string') {
+                    // Format Aadhaar number as XXXX XXXX XXXX (max 14 characters)
+                    if (fieldId === 'aadhaar_number' && typeof value === 'string' && fieldPath) {
                         const numbers = value.replace(/\D/g, '');
                         if (numbers.length <= 12) {
                             let formatted = '';
@@ -379,7 +382,7 @@ function ApplyCardRequest() {
                                 formatted += numbers[i];
                             }
                             if (formatted !== value) {
-                                formRef.current?.setValue('card_holder.aadhaar_number', formatted);
+                                formRef.current?.setValue(fieldPath, formatted);
                             }
                         }
                     }

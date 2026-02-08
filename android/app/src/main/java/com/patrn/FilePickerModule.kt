@@ -14,6 +14,18 @@ class FilePickerModule(reactContext: ReactApplicationContext) :
     init {
         // Store the activity reference for later use in startActivityForResult
         FilePickerHelper.setActivity(reactContext.currentActivity as? Activity)
+
+        // Ensure we always receive activity results even if MainActivity doesn't forward them
+        reactContext.addActivityEventListener(object : BaseActivityEventListener() {
+            override fun onActivityResult(
+                activity: Activity,
+                requestCode: Int,
+                resultCode: Int,
+                data: Intent?
+            ) {
+                handleActivityResult(requestCode, resultCode, data)
+            }
+        })
     }
 
     override fun getName(): String = NAME
@@ -24,6 +36,9 @@ class FilePickerModule(reactContext: ReactApplicationContext) :
             // Store the promise for callback
             FilePickerHelper.setPromise(promise)
             FilePickerHelper.setAllowMultiple(multiple)
+
+            // Refresh activity reference in case it changed
+            FilePickerHelper.setActivity((reactApplicationContext as ReactApplicationContext).currentActivity)
 
             val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
                 type = if (mimeTypes.size() > 0) mimeTypes.getString(0) else "*/*"
@@ -46,7 +61,7 @@ class FilePickerModule(reactContext: ReactApplicationContext) :
         }
     }
 
-    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    fun handleActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode != PICK_FILE_REQUEST_CODE) {
             return
         }

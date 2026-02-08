@@ -65,6 +65,7 @@ export interface FormField {
     style?: ViewStyle;
     helpText?: string;
     showSeparator?: boolean;
+    maxLength?: number;
     // File picker specific options
     multiple?: boolean;
     maxFiles?: number;
@@ -105,7 +106,7 @@ export interface PTDynamicFormProps {
     /**
      * Callback when any field value changes
      */
-    onValueChange?: (fieldId: string, value: any, allValues: Record<string, any>) => void;
+    onValueChange?: (fieldId: string, value: any, allValues: Record<string, any>, fieldPath?: string) => void;
     /**
      * Callback when a selection field changes
      */
@@ -548,11 +549,11 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
 
         // Handle value change callback
         const handleValueChange = useCallback(
-            (fieldId: string, value: any, isSelection: boolean = false) => {
+            (fieldId: string, value: any, fieldPath: string, isSelection: boolean = false) => {
                 const allValues = getValues();
 
                 if (onValueChange) {
-                    onValueChange(fieldId, value, allValues);
+                    onValueChange(fieldId, value, allValues, fieldPath);
                 }
 
                 if (isSelection && onSelectionChange) {
@@ -613,7 +614,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                             const processedValue =
                                                 field.type === 'number' ? (text === '' ? '' : Number(text)) : text;
                                             onChange(processedValue);
-                                            handleValueChange(fieldId, processedValue);
+                                            handleValueChange(fieldId, processedValue, fieldPath);
                                         }}
                                         onBlur={() => {
                                             onBlur();
@@ -633,7 +634,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                                         : 'default'
                                         }
                                         autoCapitalize={field.type === 'email' ? 'none' : 'sentences'}
-                                        maxLength={field.validations?.find((v) => v.name === 'maxLength')?.value}
+                                        maxLength={field.maxLength || field.validations?.find((v) => v.name === 'maxLength')?.value}
                                         style={field.style}
                                     />
                                 )}
@@ -654,7 +655,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                         value={value !== null && value !== undefined ? String(value) : ''}
                                         onChangeText={(text) => {
                                             onChange(text);
-                                            handleValueChange(fieldId, text);
+                                            handleValueChange(fieldId, text, fieldPath);
                                         }}
                                         onBlur={() => {
                                             onBlur();
@@ -666,7 +667,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                         multiline
                                         numberOfLines={4}
                                         style={[{ minHeight: 100 }, field.style]}
-                                        maxLength={field.validations?.find((v) => v.name === 'maxLength')?.value}
+                                        maxLength={field.maxLength || field.validations?.find((v) => v.name === 'maxLength')?.value}
                                     />
                                 )}
                             />
@@ -685,7 +686,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                             value={Boolean(value)}
                                             onValueChange={(newValue) => {
                                                 onChange(newValue);
-                                                handleValueChange(fieldId, newValue);
+                                                handleValueChange(fieldId, newValue, fieldPath);
                                             }}
                                             label={getFieldLabel(field)}
                                             disabled={field.disabled}
@@ -744,7 +745,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                                     }}
                                                     onPress={() => {
                                                         onChange(option.id);
-                                                        handleValueChange(fieldId, option.id, true);
+                                                        handleValueChange(fieldId, option.id, fieldPath, true);
                                                     }}
                                                     activeOpacity={0.7}
                                                 >
@@ -804,7 +805,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                             onDateChange={(date) => {
                                                 const isoDate = date.toISOString();
                                                 onChange(isoDate);
-                                                handleValueChange(fieldId, isoDate, true);
+                                                handleValueChange(fieldId, isoDate, fieldPath, true);
                                             }}
                                             disabled={field.disabled}
                                             error={errorMessage || field.error}
@@ -836,7 +837,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                             options={selectOptions as any}
                                             onValueChange={(selectedValue) => {
                                                 onChange(selectedValue);
-                                                handleValueChange(fieldId, selectedValue, true);
+                                                handleValueChange(fieldId, selectedValue, fieldPath, true);
                                             }}
                                             disabled={field.disabled}
                                             error={errorMessage || field.error}
@@ -881,7 +882,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                             selectedValues={Array.isArray(value) ? value : []}
                                             onMultipleValueChange={(selectedValues) => {
                                                 onChange(selectedValues);
-                                                handleValueChange(fieldId, selectedValues, true);
+                                                handleValueChange(fieldId, selectedValues, fieldPath, true);
                                             }}
                                         />
                                         {field.helpText && !(errorMessage || field.error) && (
@@ -908,16 +909,16 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                                             value={value as FileData | FileData[] | null}
                                             onFileSelect={(files) => {
                                                 onChange(files);
-                                                handleValueChange(fieldId, files, true);
+                                                handleValueChange(fieldId, files, fieldPath, true);
                                             }}
                                             onFileRemove={(file) => {
                                                 if (field.multiple && Array.isArray(value)) {
                                                     const filtered = value.filter((f: FileData) => f.uri !== file.uri);
                                                     onChange(filtered.length > 0 ? filtered : null);
-                                                    handleValueChange(fieldId, filtered, true);
+                                                    handleValueChange(fieldId, filtered, fieldPath, true);
                                                 } else {
                                                     onChange(null);
-                                                    handleValueChange(fieldId, null, true);
+                                                    handleValueChange(fieldId, null, fieldPath, true);
                                                 }
                                             }}
                                             multiple={field.multiple}

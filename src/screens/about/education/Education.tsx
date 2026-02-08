@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator, Modal } from "react-native";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator, Modal, Alert } from "react-native";
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { PTCard } from "../../../components/comman";
 import { useGetTrainingProgramsQuery, TrainingProgramsResponse, TrainingProgram } from '@psi/shared-api';
@@ -46,9 +46,9 @@ export default function EducationScreen() {
         return statusLower ? statusLower.charAt(0).toUpperCase() + statusLower.slice(1).replace('_', ' ') : '';
     };
 
-    // useEffect(() => {
-    //     console.log('Training Programs Data:', JSON.stringify(trainingResponse, null, 2));
-    // }, [isLoading]);
+    useEffect(() => {
+        console.log('Training Programs Data:', JSON.stringify(trainingResponse, null, 2));
+    }, [isLoading]);
 
     // Extract and map training programs from the response
     // The API returns TrainingProgramsResponse with data array containing TrainingProgramData objects
@@ -177,7 +177,12 @@ export default function EducationScreen() {
                                         <Text style={styles.primaryBtnText}>{t('education.programs.registerNow', 'Register Now')}</Text>
                                     </TouchableOpacity>
                                 )}
-                                <TouchableOpacity style={styles.secondaryBtnSmall}><Text style={styles.secondaryBtnText}>{t('education.programs.sponsor', 'Sponsor')}</Text></TouchableOpacity>
+                                <TouchableOpacity 
+                                    style={styles.secondaryBtnSmall}
+                                    onPress={() => Alert.alert('Coming Soon', 'Sponsor feature will be available soon.')}
+                                >
+                                    <Text style={styles.secondaryBtnText}>{t('education.programs.sponsor', 'Sponsor')}</Text>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     );

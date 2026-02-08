@@ -16,7 +16,10 @@ import { useGetDashboardDetailsQuery } from '@psi/shared-api';
 import { openEmailComposer } from '../utils/emailComposer';
 import { downloadHealthCard, downloadAllHealthCards } from '../utils/downloadCard';
 import ViewShot from 'react-native-view-shot';
-import * as RNHTMLtoPDF from 'react-native-html-to-pdf';
+import { generatePDF } from 'react-native-html-to-pdf';
+import { generateCardHTMLWithBenefits } from '../utils/generateCardHTML';
+import { getCardImageBase64FromRequire } from '../utils/imageToBase64';
+import RNShare from 'react-native-share';
 
 export default function CardScreen() {
   const { t } = useTranslation();
@@ -50,22 +53,51 @@ export default function CardScreen() {
   ];
 
   const createPdf = async () => {
-    // Capture full scroll content
-    const uri = await viewShotRef.current.capture({
-      format: 'png',
-      quality: 1,
-      result: 'base64',
-      snapshotContentContainer: true, // VERY IMPORTANT
-    });
+    try {
+      // Generate HTML from card data
+      const cardsData = familyCards.map(card => ({
+        name: card.name,
+        membershipId: card.membershipId,
+        bloodGroup: card.bloodGroup,
+        aadharNumber: card.aadharNumber || t('home.notAvailable'),
+        dateOfIssue: card.dateOfIssue || t('home.notAvailable'),
+        dateOfExpiry: card.dateOfExpiry || t('home.notAvailable'),
+      }));
 
-    // Convert captured image to PDF
-    const pdf = await RNHTMLtoPDF.convert({
-      html: `<img src="data:image/png;base64,${uri}" style="width:100%" />`,
-      fileName: 'scrollview',
-      base64: false,
-    });
+      // Get card.png image as base64 (optional - will fall back to gradient if not available)
+      let backgroundImageBase64 = '';
+      try {
+        backgroundImageBase64 = await getCardImageBase64FromRequire();
+        if (backgroundImageBase64) {
+          console.log('Card background image loaded successfully');
+        } else {
+          console.log('Card background image not available, using gradient');
+        }
+      } catch (imageError) {
+        console.warn('Could not load card background image:', imageError);
+        // Continue without background image - gradient will be used as fallback
+      }
 
-    console.log('PDF saved at:', pdf.filePath);
+      const htmlContent = generateCardHTMLWithBenefits(
+        cardsData,
+        benefits,
+        steps,
+        backgroundImageBase64 || undefined
+      );
+
+      // Convert HTML to PDF
+      const pdf = await generatePDF({
+        html: htmlContent,
+        fileName: `family_health_cards_${Date.now()}`,
+        base64: false,
+      });
+
+      console.log('PDF saved at:', pdf.filePath);
+      return pdf.filePath;
+    } catch (error) {
+      console.error('Error creating PDF:', error);
+      throw error;
+    }
   };
 
   // Get family cards from API data or use default
@@ -132,18 +164,22 @@ ${steps.map((s, i) => `Step ${i + 1}: ${s}`).join('\n')}`;
   };
 
   const handleDownloadCard = async () => {
-    // Download all family cards
-    /*const cardsToDownload = familyCards.map(card => ({
-      name: card.name,
-      membershipId: card.membershipId,
-      bloodGroup: card.bloodGroup,
-      aadharNumber: card.aadharNumber || t('home.notAvailable'),
-      dateOfIssue: card.dateOfIssue || t('home.notAvailable'),
-      dateOfExpiry: card.dateOfExpiry || t('home.notAvailable'),
-    }));*/
-    await createPdf();
-    
-    //await downloadAllHealthCards(cardsToDownload);
+    try {
+      const pdfPath = await createPdf();
+      console.log('All family cards downloaded successfully at:', pdfPath);
+      
+      // Share the PDF using react-native-share
+      await RNShare.open({
+        url: `file://${pdfPath}`,
+        type: 'application/pdf',
+        message: t('card.shareMessage', 'Here are my family health cards'),
+        title: t('card.shareTitle', 'Share Family Health Cards'),
+      });
+    } catch (error: any) {
+      if (error.code !== 'E_CANCELLED' && error.code !== 'CANCELLED') {
+        console.error('Error downloading/sharing cards:', error);
+      }
+    }
   };
 
 
