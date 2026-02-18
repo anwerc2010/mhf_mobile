@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import { View, Text, StyleSheet, KeyboardAvoidingView, Platform, Alert, I18nManager, ImageBackground, Image } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../store/hook';
-import { useLoginMutation } from '@psi/shared-api';
-import { setAuth } from '@psi/shared-api';
+import { setAuth, useLoginMutation, useSaveNotificationTokenMutation } from '@psi/shared-api';
 import { isValidEmail } from '../utils/validator';
 import { logger } from '../utils/logger';
 import { spacing } from '../constants/spacing';
@@ -13,9 +12,39 @@ import PTContainer from '../components/comman/PTContainer';
 import PTText from '../components/comman/PTText';
 import LanguageSwitcher from '../components/general/LanguageSwitcher';
 import ThemeSwitcher from '../components/general/ThemeSwitcher';
+import messaging from '@react-native-firebase/messaging';
+
 
 interface LoginScreenProps {
   navigation: any;
+}
+
+export async function requestUserPermission() {
+  try {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+    if (enabled) {
+      console.log('Notification permission granted');
+    }
+    return enabled;
+  } catch (error) {
+    console.log('Error requesting notification permission:', error);
+    return false;
+  }
+}
+
+export async function getFCMToken() {
+  try {
+    const token = await messaging().getToken();
+    console.log('FCM Token:', token);
+    return token;
+  } catch (error) {
+    console.log('Error getting FCM token:', error);
+    return null;
+  }
 }
 
 function LoginScreen({ navigation }: LoginScreenProps) {
@@ -24,13 +53,33 @@ function LoginScreen({ navigation }: LoginScreenProps) {
   const currentLanguage = useAppSelector((state) => state.language.currentLanguage);
   const [email, setEmail] = useState('');//('customer101@gmail.com');
   const [password, setPassword] = useState(''); //('Test@123');
+  const [fcmToken, setFcmToken] = useState<string | null>(null);
   const [loginMutation, { isLoading, error }] = useLoginMutation();
+  const [saveNotificationToken] = useSaveNotificationTokenMutation();
+
+
+  useEffect(() => {
+    const setupFirebase = async () => {
+      try {
+        const hasPermission = await requestUserPermission();
+        if (hasPermission) {
+          const token = await getFCMToken();
+          setFcmToken(token);
+        }
+      } catch (error) {
+        console.log('Firebase setup error:', error);
+      }
+    };
+    
+    setupFirebase();
+  }, []);
 
   // Update RTL layout when language changes
   useEffect(() => {
     const isRTL = currentLanguage === 'ar';
     I18nManager.forceRTL(isRTL);
     I18nManager.allowRTL(isRTL);
+
     // Note: App restart may be required for RTL changes to take full effect on Android
   }, [currentLanguage]);
 
@@ -68,6 +117,15 @@ function LoginScreen({ navigation }: LoginScreenProps) {
         token: result.token,
         user: result.customer,
       }));
+
+      const tokenToSave = fcmToken || await getFCMToken();
+      if (tokenToSave) {
+        try {
+          await saveNotificationToken({ notification_token: tokenToSave }).unwrap();
+        } catch (saveTokenError) {
+          logger.error('Failed to save notification token:', saveTokenError);
+        }
+      }
 
       // Navigation will be handled automatically by RootNavigator
     } catch (err) {

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Dimensions, Activ
 import { useTranslation } from 'react-i18next';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { useGetReliefWelfareQuery } from '@psi/shared-api';
+import { useRazorpayPayment } from '../../../hooks/useRazorpayPayment';
 
 const { width } = Dimensions.get('window');
 
@@ -10,6 +11,7 @@ export default function ReliefScreen() {
     const { t } = useTranslation();
     const navigation = useNavigation<any>();
     const { data: reliefResponse, isLoading, error, refetch } = useGetReliefWelfareQuery();
+    const { loading: paymentLoading, error: paymentError, startPayment } = useRazorpayPayment();
     const [reviewModalVisible, setReviewModalVisible] = useState(false);
     const [selectedRequest, setSelectedRequest] = useState<any>(null);
 
@@ -177,7 +179,10 @@ export default function ReliefScreen() {
                     {item.allow_donate && (
                         <TouchableOpacity 
                             style={styles.secondaryBtnSmall}
-                            onPress={() => Alert.alert('Coming Soon', 'Donation feature will be available soon.')}
+                            onPress={() => {
+                                //Alert.alert('Coming Soon', 'Donation feature will be available soon.');
+                                processPayment();
+                            }}
                         >
                             <Text style={styles.donateText}>{t('relief.donate')}</Text>
                         </TouchableOpacity>
@@ -186,6 +191,29 @@ export default function ReliefScreen() {
             )}
         </View>
     );
+
+    const processPayment = async () => {
+        try {
+            const result = await startPayment({
+                amount: 222, // Replace with actual amount
+                typeOfPayment: 'donation',
+                email: 'test@email.com',
+                contact: '9999999999',
+                name: 'Test User',
+            });
+
+            if (result.success) {
+                console.log('Payment successful:', result.data);
+                // Send payment verification to backend
+                Alert.alert('Success', 'Payment completed successfully');
+            } else {
+                Alert.alert('Error', result.error || 'Payment failed');
+            }
+        } catch (err) {
+            console.error('Payment error:', err);
+            Alert.alert('Error', 'An error occurred during payment');
+        }
+    };
 
     return (
         <View style={styles.page}>

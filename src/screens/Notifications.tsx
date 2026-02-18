@@ -5,7 +5,9 @@ import {
     StyleSheet,
     ScrollView,
     TouchableOpacity,
+    ActivityIndicator,
 } from 'react-native';
+import { useGetNotificationsQuery } from '@psi/shared-api';
 import {
     Bell,
     CheckCircle,
@@ -13,6 +15,7 @@ import {
     Warning,
     X,
 } from 'phosphor-react-native';
+import { formatRelativeTime } from '../utils/formatDate';
 
 interface Notification {
     id: string;
@@ -23,52 +26,37 @@ interface Notification {
     read: boolean;
 }
 
-// Sample notifications data
-const SAMPLE_NOTIFICATIONS: Notification[] = [
-    {
-        id: '1',
-        type: 'success',
-        title: 'Card Request Approved',
-        message: 'Your card request has been approved and is being processed.',
-        timestamp: '2 hours ago',
-        read: false,
-    },
-    {
-        id: '2',
-        type: 'info',
-        title: 'New Event Available',
-        message: 'Health awareness camp scheduled for next week. Register now!',
-        timestamp: '5 hours ago',
-        read: false,
-    },
-    {
-        id: '3',
-        type: 'warning',
-        title: 'Profile Incomplete',
-        message: 'Please complete your profile to access all features.',
-        timestamp: '1 day ago',
-        read: true,
-    },
-    {
-        id: '4',
-        type: 'info',
-        title: 'Relief Application Update',
-        message: 'Your relief application is under review. You will be notified once processed.',
-        timestamp: '2 days ago',
-        read: true,
-    },
-    {
-        id: '5',
-        type: 'success',
-        title: 'Training Registered',
-        message: 'You have successfully registered for the skill development training program.',
-        timestamp: '3 days ago',
-        read: true,
-    },
-];
-
 export default function NotificationsScreen() {
-    const [notifications, setNotifications] = React.useState<Notification[]>(SAMPLE_NOTIFICATIONS);
+    const [notifications, setNotifications] = React.useState<Notification[]>([]);
+    const { data, isLoading, isError } = useGetNotificationsQuery();
+
+    React.useEffect(() => {
+        if (!data?.data) {
+            return;
+        }
+
+        const mapTypeFromReason = (reason: string): Notification['type'] => {
+            const normalizedReason = reason.toLowerCase();
+            if (normalizedReason.includes('approve') || normalizedReason.includes('success') || normalizedReason.includes('complete')) {
+                return 'success';
+            }
+            if (normalizedReason.includes('warning') || normalizedReason.includes('incomplete') || normalizedReason.includes('failed')) {
+                return 'warning';
+            }
+            return 'info';
+        };
+
+        const mappedNotifications: Notification[] = data.data.map(item => ({
+            id: String(item.id),
+            type: mapTypeFromReason(item.reason || ''),
+            title: item.title,
+            message: item.message,
+            timestamp: formatRelativeTime(item.created_at),
+            read: Boolean(item.is_read),
+        }));
+
+        setNotifications(mappedNotifications);
+    }, [data]);
 
     const getIconByType = (type: Notification['type']) => {
         switch (type) {
@@ -129,11 +117,27 @@ export default function NotificationsScreen() {
             >
                 {notifications.length === 0 ? (
                     <View style={styles.emptyContainer}>
-                        <Bell size={64} color="#D1D5DB" weight="thin" />
-                        <Text style={styles.emptyTitle}>No Notifications</Text>
-                        <Text style={styles.emptyText}>
-                            You're all caught up! Check back later for updates.
-                        </Text>
+                        {isLoading ? (
+                            <>
+                                <ActivityIndicator size="large" color="#0369A1" />
+                                <Text style={styles.emptyTitle}>Loading Notifications</Text>
+                                <Text style={styles.emptyText}>Please wait while we fetch your updates.</Text>
+                            </>
+                        ) : isError ? (
+                            <>
+                                <Bell size={64} color="#D1D5DB" weight="thin" />
+                                <Text style={styles.emptyTitle}>Unable to Load Notifications</Text>
+                                <Text style={styles.emptyText}>Please try again in a moment.</Text>
+                            </>
+                        ) : (
+                            <>
+                                <Bell size={64} color="#D1D5DB" weight="thin" />
+                                <Text style={styles.emptyTitle}>No Notifications</Text>
+                                <Text style={styles.emptyText}>
+                                    You're all caught up! Check back later for updates.
+                                </Text>
+                            </>
+                        )}
                     </View>
                 ) : (
                     <View style={styles.notificationsList}>

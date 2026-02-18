@@ -1,4 +1,4 @@
-package com.patrn
+package com.origin.mhf
 
 import android.app.Activity
 import android.content.Intent

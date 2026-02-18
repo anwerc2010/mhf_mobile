@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "560413419113",
+    "project_id": "mhfc-b553c",
+    "storage_bucket": "mhfc-b553c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560413419113:android:475ecf703cb64e90fbe4f8",
+        "android_client_info": {
+          "package_name": "com.origin.mhf"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZJi-uGZK3f8wmA2t8RIiSbH0SXn7kb1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
