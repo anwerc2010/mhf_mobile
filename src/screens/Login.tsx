@@ -1,19 +1,32 @@
-import React, { useState, useEffect, use } from 'react';
-import { View, Text, StyleSheet, KeyboardAvoidingView, Platform, Alert, I18nManager, ImageBackground, Image } from 'react-native';
-import { useTranslation } from 'react-i18next';
-import { useAppDispatch, useAppSelector } from '../store/hook';
-import { setAuth, useLoginMutation, useSaveNotificationTokenMutation } from '@psi/shared-api';
-import { isValidEmail } from '../utils/validator';
-import { logger } from '../utils/logger';
-import { spacing } from '../constants/spacing';
-import PTButton from '../components/comman/PTButton';
-import PTInput from '../components/comman/PTInput';
-import PTContainer from '../components/comman/PTContainer';
-import PTText from '../components/comman/PTText';
-import LanguageSwitcher from '../components/general/LanguageSwitcher';
-import ThemeSwitcher from '../components/general/ThemeSwitcher';
-import messaging from '@react-native-firebase/messaging';
-
+import React, { useState, useEffect, use } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
+  Alert,
+  I18nManager,
+  ImageBackground,
+  Image,
+} from "react-native";
+import { useTranslation } from "react-i18next";
+import { useAppDispatch, useAppSelector } from "../store/hook";
+import {
+  setAuth,
+  useLoginMutation,
+  useSaveNotificationTokenMutation,
+} from "@psi/shared-api";
+import { isValidEmail } from "../utils/validator";
+import { logger } from "../utils/logger";
+import { spacing } from "../constants/spacing";
+import PTButton from "../components/comman/PTButton";
+import PTInput from "../components/comman/PTInput";
+import PTContainer from "../components/comman/PTContainer";
+import PTText from "../components/comman/PTText";
+import LanguageSwitcher from "../components/general/LanguageSwitcher";
+import ThemeSwitcher from "../components/general/ThemeSwitcher";
+import messaging from "@react-native-firebase/messaging";
 
 interface LoginScreenProps {
   navigation: any;
@@ -27,11 +40,11 @@ export async function requestUserPermission() {
       authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
     if (enabled) {
-      console.log('Notification permission granted');
+      console.log("Notification permission granted");
     }
     return enabled;
   } catch (error) {
-    console.log('Error requesting notification permission:', error);
+    console.log("Error requesting notification permission:", error);
     return false;
   }
 }
@@ -39,10 +52,10 @@ export async function requestUserPermission() {
 export async function getFCMToken() {
   try {
     const token = await messaging().getToken();
-    console.log('FCM Token:', token);
+    console.log("FCM Token:", token);
     return token;
   } catch (error) {
-    console.log('Error getting FCM token:', error);
+    console.log("Error getting FCM token:", error);
     return null;
   }
 }
@@ -50,13 +63,14 @@ export async function getFCMToken() {
 function LoginScreen({ navigation }: LoginScreenProps) {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const currentLanguage = useAppSelector((state) => state.language.currentLanguage);
-  const [email, setEmail] = useState('');//('customer101@gmail.com');
-  const [password, setPassword] = useState(''); //('Test@123');
+  const currentLanguage = useAppSelector(
+    (state) => state.language.currentLanguage,
+  );
+  const [email, setEmail] = useState(""); //('customer101@gmail.com');
+  const [password, setPassword] = useState(""); //('Test@123');
   const [fcmToken, setFcmToken] = useState<string | null>(null);
   const [loginMutation, { isLoading, error }] = useLoginMutation();
   const [saveNotificationToken] = useSaveNotificationTokenMutation();
-
 
   useEffect(() => {
     const setupFirebase = async () => {
@@ -67,16 +81,16 @@ function LoginScreen({ navigation }: LoginScreenProps) {
           setFcmToken(token);
         }
       } catch (error) {
-        console.log('Firebase setup error:', error);
+        console.log("Firebase setup error:", error);
       }
     };
-    
+
     setupFirebase();
   }, []);
 
   // Update RTL layout when language changes
   useEffect(() => {
-    const isRTL = currentLanguage === 'ar';
+    const isRTL = currentLanguage === "ar";
     I18nManager.forceRTL(isRTL);
     I18nManager.allowRTL(isRTL);
 
@@ -86,80 +100,85 @@ function LoginScreen({ navigation }: LoginScreenProps) {
   useEffect(() => {
     if (error) {
       Alert.alert(
-        t('login.loginFailed'),
-        'data' in error
-          ? (error.data as { message?: string })?.message || t('login.invalidCredentials')
-          : t('login.errorOccurred')
+        t("login.loginFailed"),
+        "data" in error
+          ? (error.data as { message?: string })?.message ||
+              t("login.invalidCredentials")
+          : t("login.errorOccurred"),
       );
     }
   }, [error, t]);
 
   const handleLogin = async () => {
     if (!email || !password) {
-      Alert.alert(t('common.error'), t('login.fillAllFields'));
+      Alert.alert(t("common.error"), t("login.fillAllFields"));
       return;
     }
 
     // Validate email using config
     if (!isValidEmail(email)) {
-      Alert.alert(t('common.error'), t('login.invalidCredentials'));
+      Alert.alert(t("common.error"), t("login.invalidCredentials"));
       return;
     }
 
     try {
       const result = await loginMutation({ email, password }).unwrap();
-      if (!result.token || !result.customer) {
-        Alert.alert(t('login.loginFailed'), t('login.invalidCredentials'));
+      if (!result.access_token || !result.customer) {
+        Alert.alert(t("login.loginFailed"), t("login.invalidCredentials"));
         return;
       }
 
-      dispatch(setAuth({
-        token: result.token,
-        user: result.customer,
-      }));
+      dispatch(
+        setAuth({
+          token: result.access_token,
+          user: result.customer,
+        }),
+      );
 
-      const tokenToSave = fcmToken || await getFCMToken();
+      const tokenToSave = fcmToken || (await getFCMToken());
       if (tokenToSave) {
         try {
-          await saveNotificationToken({ notification_token: tokenToSave }).unwrap();
+          await saveNotificationToken({
+            notification_token: tokenToSave,
+          }).unwrap();
         } catch (saveTokenError) {
-          logger.error('Failed to save notification token:', saveTokenError);
+          logger.error("Failed to save notification token:", saveTokenError);
         }
       }
 
       // Navigation will be handled automatically by RootNavigator
     } catch (err) {
       // Error is handled by useEffect above
-      logger.error('Login error:', err);
+      logger.error("Login error:", err);
     }
   };
 
   return (
     <PTContainer safeArea>
       <ImageBackground
-        source={require('../../assets/images/background.png')}
+        source={require("../../assets/images/background.png")}
         style={styles.backgroundImage}
         resizeMode="cover"
       >
         <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={styles.container}
         >
           <View style={styles.content}>
             <Image
-              source={require('../../assets/images/logo-hd.png')}
+              source={require("../../assets/images/logo-hd.png")}
               style={styles.logo}
               resizeMode="contain"
             />
 
             <PTText variant="h1" style={styles.title}>
-              {t('login.title')}
+              {t("login.title")}
             </PTText>
 
             <View style={styles.form}>
               <PTInput
-                label={t('common.email')}
-                placeholder={t('login.emailPlaceholder')}
+                label={t("common.email")}
+                placeholder={t("login.emailPlaceholder")}
                 value={email}
                 onChangeText={setEmail}
                 keyboardType="email-address"
@@ -168,8 +187,8 @@ function LoginScreen({ navigation }: LoginScreenProps) {
               />
 
               <PTInput
-                label={t('common.password')}
-                placeholder={t('login.passwordPlaceholder')}
+                label={t("common.password")}
+                placeholder={t("login.passwordPlaceholder")}
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry
@@ -180,16 +199,16 @@ function LoginScreen({ navigation }: LoginScreenProps) {
               <View style={styles.forgotPasswordContainer}>
                 <Text
                   style={styles.forgotPasswordLink}
-                  onPress={() => navigation.navigate('ForgotPassword')}
+                  onPress={() => navigation.navigate("ForgotPassword")}
                 >
-                  {t('login.forgotPassword', 'Forgot Password?')}
+                  {t("login.forgotPassword", "Forgot Password?")}
                 </Text>
               </View>
 
               <View style={styles.button}>
                 <PTButton
-                  title={t('common.signIn')}
-                  variant='success'
+                  title={t("common.signIn")}
+                  variant="success"
                   onPress={handleLogin}
                   loading={isLoading}
                   disabled={!email || !password}
@@ -198,25 +217,25 @@ function LoginScreen({ navigation }: LoginScreenProps) {
 
               <View style={styles.footer}>
                 <PTText variant="body" style={styles.footerText}>
-                  {t('login.noAccount')}{' '}
+                  {t("login.noAccount")}{" "}
                 </PTText>
                 <Text
                   style={styles.link}
-                  onPress={() => navigation.navigate('Register')}
+                  onPress={() => navigation.navigate("Register")}
                 >
-                  {t('common.signUp')}
+                  {t("common.signUp")}
                 </Text>
               </View>
 
               <View style={styles.footer}>
                 <PTText variant="body" style={styles.footerText}>
-                  {t('login.haveResetToken', 'Have a reset token?')}{' '}
+                  {t("login.haveResetToken", "Have a reset token?")}{" "}
                 </PTText>
                 <Text
                   style={styles.link}
-                  onPress={() => navigation.navigate('ResetPassword')}
+                  onPress={() => navigation.navigate("ResetPassword")}
                 >
-                  {t('login.resetPassword', 'Reset Password')}
+                  {t("login.resetPassword", "Reset Password")}
                 </Text>
               </View>
             </View>
@@ -230,8 +249,8 @@ function LoginScreen({ navigation }: LoginScreenProps) {
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   container: {
     flex: 1,
@@ -239,52 +258,51 @@ const styles = StyleSheet.create({
   logo: {
     width: 120,
     height: 120,
-    alignSelf: 'center',
+    alignSelf: "center",
     marginBottom: 40,
   },
   content: {
     flex: 1,
     padding: spacing.screenPadding,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   title: {
     marginBottom: 8,
-    textAlign: 'center',
-    color: '#020050ff',
-    fontWeight: '700',
+    textAlign: "center",
+    color: "#020050ff",
+    fontWeight: "700",
   },
   form: {
-    width: '100%',
+    width: "100%",
   },
   button: {
     marginTop: 16,
-    width: '60%',
-    alignSelf: 'center',
-    color: '#4d9734ff',
+    width: "60%",
+    alignSelf: "center",
+    color: "#4d9734ff",
   },
   footer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
     marginTop: 24,
   },
   footerText: {
-    color: '#666',
+    color: "#666",
   },
   link: {
-    color: '#007AFF',
-    fontWeight: '600',
+    color: "#007AFF",
+    fontWeight: "600",
   },
   forgotPasswordContainer: {
-    alignItems: 'flex-end',
+    alignItems: "flex-end",
     marginTop: 8,
     marginBottom: 8,
   },
   forgotPasswordLink: {
-    color: '#007AFF',
-    fontWeight: '600',
+    color: "#007AFF",
+    fontWeight: "600",
     fontSize: 14,
   },
 });
 
 export default LoginScreen;
-
