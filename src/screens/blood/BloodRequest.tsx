@@ -9,8 +9,10 @@ import {
   useCreateBloodRequestMutation,
   useLocationDropdowns,
 } from "@psi/shared-api";
+import { useTranslation } from "react-i18next";
 
 export default function BloodRequest() {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const formRef = useRef<PTDynamicFormRef>(null);
   const [createBloodRequest, { isLoading }] = useCreateBloodRequestMutation();
@@ -113,7 +115,7 @@ export default function BloodRequest() {
       ],
     },
     {
-      title: "Blood Request Details",
+      title: t("blood.requestDetails", "Blood Request Details"),
       id: "requestDetails",
       type: "object",
       fields: [
@@ -166,7 +168,7 @@ export default function BloodRequest() {
       ],
     },
     {
-      title: "Hospital & Doctor Details",
+      title: t("blood.hospitalDetails", "Hospital & Doctor Details"),
       id: "hospitalDetails",
       type: "object",
       fields: [
@@ -400,15 +402,22 @@ export default function BloodRequest() {
     try {
       const response = await createBloodRequest(payload).unwrap();
       Alert.alert(
-        "Success",
-        response?.message || "Blood request submitted successfully",
+        t("common.success"),
+        response?.message ||
+          t(
+            "blood.submit.successMessage",
+            "Blood request submitted successfully",
+          ),
         [{ text: "OK", onPress: () => navigation.goBack() }],
       );
     } catch (error: any) {
       Alert.alert(
-        "Error",
+        t("common.error"),
         error?.data?.message ||
-          "Failed to submit blood request. Please try again.",
+          t(
+            "blood.submit.errorMessage",
+            "Failed to submit blood request. Please try again.",
+          ),
       );
     }
   };
@@ -416,7 +425,7 @@ export default function BloodRequest() {
   return (
     <View style={styles.container}>
       <Text style={styles.subtitle}>
-        Fill in the details below to request blood
+        {t("blood.subtitle", "Fill in the details below to request blood")}
       </Text>
       {isLoading && (
         <ActivityIndicator

@@ -51,7 +51,7 @@ import EditProfileScreen from "../screens/EditProfile";
 
 // Components
 import TopNavBar from "../components/general/TopNavBar";
-import i18n, { syncLanguageWithStore } from "../i18n";
+import i18n, { AppLanguage, syncLanguageWithStore } from "../i18n";
 import { useState } from "react";
 import ApplyNewRelief from "../screens/about/relief/ApplyNewRelief";
 import RegisterForEvent from "../screens/about/events/RegisterForEvent";
@@ -121,8 +121,8 @@ function StackNavigator({
   currentLanguage,
   onLanguageChange,
 }: {
-  currentLanguage: "en" | "ar";
-  onLanguageChange: (l: "en" | "ar") => void;
+  currentLanguage: AppLanguage;
+  onLanguageChange: (l: AppLanguage) => void;
 }) {
   return (
     <Stack.Navigator
@@ -169,8 +169,8 @@ function BottomTabNavigator({
   currentLanguage,
   onLanguageChange,
 }: {
-  currentLanguage: "en" | "ar";
-  onLanguageChange: (l: "en" | "ar") => void;
+  currentLanguage: AppLanguage;
+  onLanguageChange: (l: AppLanguage) => void;
 }) {
   return (
     <BottomTabStack.Navigator
@@ -554,8 +554,8 @@ function TopTabNavigator({
   currentLanguage,
   onLanguageChange,
 }: {
-  currentLanguage: "en" | "ar";
-  onLanguageChange: (l: "en" | "ar") => void;
+  currentLanguage: AppLanguage;
+  onLanguageChange: (l: AppLanguage) => void;
 }) {
   return (
     <TopTabStack.Navigator
@@ -580,11 +580,24 @@ function TopTabNavigator({
 
 // Main App Navigator - Configurable
 export default function AppNavigator() {
-  const [language, setLanguage] = useState<"en" | "ar">(
-    i18n.language && i18n.language.startsWith("ar") ? "ar" : "en",
+  const resolveInitialLanguage = (): AppLanguage => {
+    if (i18n.language?.startsWith("ar")) {
+      return "ar";
+    }
+    if (i18n.language?.startsWith("ur")) {
+      return "ur";
+    }
+    if (i18n.language?.startsWith("tel")) {
+      return "tel";
+    }
+    return "en";
+  };
+
+  const [language, setLanguage] = useState<AppLanguage>(
+    resolveInitialLanguage(),
   );
 
-  const handleLanguageChange = (lang: "en" | "ar") => {
+  const handleLanguageChange = (lang: AppLanguage) => {
     syncLanguageWithStore(lang);
     setLanguage(lang);
   };

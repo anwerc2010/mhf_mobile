@@ -1,18 +1,18 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { syncLanguageWithStore } from '../../i18n';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AppLanguage, syncLanguageWithStore } from "../../i18n";
 
-export type Language = 'en' | 'ar';
+export type Language = AppLanguage;
 
 interface LanguageState {
   currentLanguage: Language;
 }
 
 const initialState: LanguageState = {
-  currentLanguage: 'en',
+  currentLanguage: "en",
 };
 
 const languageSlice = createSlice({
-  name: 'language',
+  name: "language",
   initialState,
   reducers: {
     setLanguage: (state, action: PayloadAction<Language>) => {
@@ -24,4 +24,3 @@ const languageSlice = createSlice({
 
 export const { setLanguage } = languageSlice.actions;
 export default languageSlice.reducer;
-

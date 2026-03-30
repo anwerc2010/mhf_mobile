@@ -397,7 +397,9 @@ export default function HomeScreen() {
                 marginBottom: 12,
               }}
             >
-              <Text style={styles.modalTitle}>Featured Partners</Text>
+              <Text style={styles.modalTitle}>
+                {t("home.featuredPartners")}
+              </Text>
               <TouchableOpacity onPress={() => setPartnersModalVisible(false)}>
                 <Text style={{ fontSize: 22, color: "#6B7280" }}>✕</Text>
               </TouchableOpacity>

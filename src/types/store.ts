@@ -4,17 +4,16 @@
 // Note: RootState and AppDispatch are exported from store/store.ts to avoid circular dependencies
 
 // Theme State
-export type ThemeMode = 'light' | 'dark' | 'system';
+export type ThemeMode = "light" | "dark" | "system";
 
 export interface ThemeState {
   mode: ThemeMode;
-  currentTheme: 'light' | 'dark';
+  currentTheme: "light" | "dark";
 }
 
 // Language State
-export type Language = 'en' | 'ar';
+export type Language = "en" | "ar" | "ur" | "tel";
 
 export interface LanguageState {
   currentLanguage: Language;
 }
-

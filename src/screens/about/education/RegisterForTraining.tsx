@@ -11,8 +11,10 @@ import {
   useLocationDropdowns,
   useRegisterEducationMutation,
 } from "@psi/shared-api";
+import { useTranslation } from "react-i18next";
 
 function RegisterForTraining() {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const formRef = useRef<PTDynamicFormRef>(null);
@@ -74,11 +76,17 @@ function RegisterForTraining() {
   const getCourseOptions = () => {
     if (!program?.topics_covered) {
       return [
-        { id: "Computer", name: "Computer" },
-        { id: "Tailoring", name: "Tailoring" },
-        { id: "SpokenEnglish", name: "Spoken English" },
-        { id: "HandmadeDesigning", name: "Handmade Designing" },
-        { id: "Other", name: "Others (please specify)" },
+        { id: "Computer", name: t("forms.training.course.computer") },
+        { id: "Tailoring", name: t("forms.training.course.tailoring") },
+        {
+          id: "SpokenEnglish",
+          name: t("forms.training.course.spokenEnglish"),
+        },
+        {
+          id: "HandmadeDesigning",
+          name: t("forms.training.course.handmadeDesigning"),
+        },
+        { id: "Other", name: t("forms.training.course.other") },
       ];
     }
 
@@ -98,47 +106,47 @@ function RegisterForTraining() {
 
   const sections: FormSection[] = [
     {
-      title: "Personal Details",
+      title: t("forms.training.sections.personalDetails"),
       id: "personalDetails",
       type: "object",
       fields: [
         {
           id: "full_name",
-          label: "Full Name",
+          label: t("forms.training.fields.fullName"),
           type: "text",
-          placeholder: "Enter your full name",
+          placeholder: t("forms.training.placeholders.fullName"),
           validations: [{ name: "required", value: true }],
           path: "personal.full_name",
         },
         {
           id: "date_of_birth",
-          label: "Date of Birth",
+          label: t("forms.training.fields.dateOfBirth"),
           type: "date",
           validations: [{ name: "required", value: true }],
           path: "personal.date_of_birth",
         },
         {
           id: "age",
-          label: "Age",
+          label: t("forms.training.fields.age"),
           type: "number",
           validations: [{ name: "required", value: true }],
           path: "personal.age",
         },
         {
           id: "gender",
-          label: "Gender",
+          label: t("forms.training.fields.gender"),
           type: "radio",
           values: [
-            { id: "male", name: "Male" },
-            { id: "female", name: "Female" },
-            { id: "other", name: "Other" },
+            { id: "male", name: t("forms.common.options.male") },
+            { id: "female", name: t("forms.common.options.female") },
+            { id: "other", name: t("forms.common.options.other") },
           ],
           validations: [{ name: "required", value: true }],
           path: "personal.gender",
         },
         {
           id: "contact_number",
-          label: "Contact Number (Phone / WhatsApp)",
+          label: t("forms.training.fields.contactNumber"),
           type: "tel",
           placeholder: "+91-XXXXXXXXXX",
           validations: [
@@ -146,98 +154,104 @@ function RegisterForTraining() {
             {
               name: "pattern",
               value: /^[0-9]{10}$/,
-              message: "Enter valid 10 digit number",
+              message: t("forms.common.validation.phone10"),
             },
           ],
           path: "personal.contact_number",
         },
         {
           id: "parent_guardian_contact",
-          label: "Parent's / Guardian's Contact Number",
+          label: t("forms.training.fields.parentGuardianContact"),
           type: "tel",
           placeholder: "+91-XXXXXXXXXX",
           validations: [
             { name: "required", value: true },
-            { name: "pattern", value: /^[0-9]{10}$/ },
+            {
+              name: "pattern",
+              value: /^[0-9]{10}$/,
+              message: t("forms.common.validation.phone10"),
+            },
           ],
           path: "personal.parent_guardian_contact",
         },
         {
           id: "marital_status",
-          label: "Marital Status",
+          label: t("forms.training.fields.maritalStatus"),
           type: "select",
           options: [
-            { id: "Single", name: "Single" },
-            { id: "Married", name: "Married" },
-            { id: "Other", name: "Other" },
+            { id: "Single", name: t("forms.common.options.single") },
+            { id: "Married", name: t("forms.common.options.married") },
+            { id: "Other", name: t("forms.common.options.other") },
           ],
           path: "personal.marital_status",
         },
         {
           id: "email",
-          label: "Email ID (Available)",
+          label: t("forms.training.fields.emailAvailable"),
           type: "email",
           validations: [
             {
               name: "pattern",
               value: /^[^@]+@[^@]+\.[^@]+$/,
-              message: "Invalid email",
+              message: t("forms.common.validation.invalidEmail"),
             },
           ],
           path: "personal.email",
         },
         {
           id: "address",
-          label: "Address (With Pin Code)",
+          label: t("forms.training.fields.addressWithPincode"),
           type: "textarea",
-          placeholder: "Enter your complete address with pin code",
+          placeholder: t("forms.training.placeholders.addressWithPincode"),
           validations: [{ name: "required", value: true }],
           path: "personal.address",
         },
         {
           id: "pincode",
-          label: "Pin code",
+          label: t("forms.training.fields.pincode"),
           type: "text",
-          placeholder: "Enter your Pin code",
+          placeholder: t("forms.training.placeholders.pincode"),
           validations: [{ name: "required", value: true }],
           path: "personal.pincode",
         },
         {
           id: "guardian_name",
-          label: "Guardian's Name (If any)",
+          label: t("forms.training.fields.guardianName"),
           type: "text",
           path: "personal.guardian_name",
         },
         {
           id: "id_proof_type",
-          label: "ID Proof (Aadhar / Other)",
+          label: t("forms.training.fields.idProofType"),
           type: "text",
-          placeholder: "Aadhar number or other ID proof number",
+          placeholder: t("forms.training.placeholders.idProofType"),
           validations: [{ name: "required", value: true }],
           path: "personal.id_proof_type",
         },
         {
           id: "id_proof_number",
-          label: "Identification Number",
+          label: t("forms.training.fields.identificationNumber"),
           type: "text",
           path: "personal.id_proof_number",
         },
       ],
     },
     {
-      title: "Location Details",
+      title: t("forms.common.sections.locationDetails"),
       id: "locationDetails",
       type: "object",
       fields: [
         {
           id: "state_id",
-          label: "State",
+          label: t("forms.common.fields.state"),
           type: "select",
           options: states.map((s: { id: number; name: string }) => ({
             label: s.name,
             value: s.id,
           })),
-          placeholder: statesLoading ? "Loading states..." : "Select state",
+          placeholder: statesLoading
+            ? t("forms.common.loading.states")
+            : t("forms.common.select.state"),
           validations: [{ name: "required", value: true }],
           path: "location.state_id",
           disabled: statesLoading,
@@ -245,17 +259,17 @@ function RegisterForTraining() {
         },
         {
           id: "district_id",
-          label: "District",
+          label: t("forms.common.fields.district"),
           type: "select",
           options: districts.map((d: { id: number; name: string }) => ({
             label: d.name,
             value: d.id,
           })),
           placeholder: !stateId
-            ? "Select state first"
+            ? t("forms.common.select.stateFirst")
             : districtsLoading
-            ? "Loading districts..."
-            : "Select district",
+            ? t("forms.common.loading.districts")
+            : t("forms.common.select.district"),
           validations: [{ name: "required", value: true }],
           path: "location.district_id",
           disabled: !stateId || districtsLoading,
@@ -263,17 +277,17 @@ function RegisterForTraining() {
         },
         {
           id: "block_id",
-          label: "Block",
+          label: t("forms.common.fields.block"),
           type: "select",
           options: blocks.map((b: { id: number; name: string }) => ({
             label: b.name,
             value: b.id,
           })),
           placeholder: !districtId
-            ? "Select district first"
+            ? t("forms.common.select.districtFirst")
             : blocksLoading
-            ? "Loading blocks..."
-            : "Select block",
+            ? t("forms.common.loading.blocks")
+            : t("forms.common.select.block"),
           validations: [{ name: "required", value: true }],
           path: "location.block_id",
           disabled: !districtId || blocksLoading,
@@ -281,17 +295,17 @@ function RegisterForTraining() {
         },
         {
           id: "mandal_id",
-          label: "Mandal",
+          label: t("forms.common.fields.mandal"),
           type: "select",
           options: mandals.map((m: { id: number; name: string }) => ({
             label: m.name,
             value: m.id,
           })),
           placeholder: !blockId
-            ? "Select block first"
+            ? t("forms.common.select.blockFirst")
             : mandalsLoading
-            ? "Loading mandals..."
-            : "Select mandal",
+            ? t("forms.common.loading.mandals")
+            : t("forms.common.select.mandal"),
           validations: [{ name: "required", value: true }],
           path: "location.mandal_id",
           disabled: !blockId || mandalsLoading,
@@ -300,66 +314,69 @@ function RegisterForTraining() {
       ],
     },
     {
-      title: "Educational Background",
+      title: t("forms.training.sections.educationalBackground"),
       id: "educationDetails",
       type: "object",
       fields: [
         {
           id: "highest_qualification",
-          label: "Highest Qualification",
+          label: t("forms.training.fields.highestQualification"),
           type: "radio",
           values: [
             { id: "10th", name: "10th" },
             { id: "12th", name: "12th" },
-            { id: "Graduation", name: "Graduation" },
-            { id: "Other", name: "Other" },
+            {
+              id: "Graduation",
+              name: t("forms.training.options.graduation"),
+            },
+            { id: "Other", name: t("forms.common.options.other") },
           ],
           validations: [{ name: "required", value: true }],
           path: "education.highest_qualification",
         },
         {
           id: "medium_of_instruction",
-          label: "Medium of Instruction",
+          label: t("forms.training.fields.mediumOfInstruction"),
           type: "radio",
           values: [
-            { id: "Hindi", name: "Hindi" },
-            { id: "English", name: "English" },
-            { id: "Other", name: "Other" },
+            { id: "Hindi", name: t("forms.training.options.hindi") },
+            { id: "English", name: t("forms.training.options.english") },
+            { id: "Other", name: t("forms.common.options.other") },
           ],
           validations: [{ name: "required", value: true }],
           path: "education.medium_of_instruction",
         },
         {
           id: "school_college_name",
-          label: "School / College Name",
+          label: t("forms.training.fields.schoolCollegeName"),
           type: "text",
           validations: [{ name: "required", value: true }],
           path: "education.school_college_name",
         },
         {
           id: "school_college_location",
-          label: "Location",
+          label: t("forms.training.fields.schoolCollegeLocation"),
           type: "text",
           validations: [{ name: "required", value: true }],
           path: "education.school_college_location",
         },
         {
           id: "education_gap_reason",
-          label: "Gaps in Education / Dropout Reason",
+          label: t("forms.training.fields.educationGapReason"),
           type: "textarea",
-          placeholder: "If any gaps or dropout, please mention the reason",
+          placeholder: t("forms.training.placeholders.educationGapReason"),
           path: "education.education_gap_reason",
         },
       ],
     },
     {
-      title: "Course Selection",
+      title: t("forms.training.sections.courseSelection"),
       id: "courses",
       type: "object",
       fields: [
         {
           id: "preferredCourses",
-          label: "Please tick your preferred training",
+          label: t("forms.training.fields.preferredCourses"),
           type: "multiselect",
           options: getCourseOptions(),
           validations: [{ name: "required", value: true }],
@@ -379,14 +396,14 @@ function RegisterForTraining() {
           marginBottom: 12,
         }}
       >
-        Registration Form
+        {t("forms.training.heading")}
       </PTText>
       <PTDynamicForm
         ref={formRef}
         sections={sections}
         initialValues={{}}
         mode="onBlur"
-        submitButtonText="Save Details"
+        submitButtonText={t("forms.common.saveDetails")}
         submitLoading={isSubmitting}
         onSubmit={async (values) => {
           console.log("Form submitted:", values);
@@ -457,21 +474,24 @@ function RegisterForTraining() {
             const response = await registerEducation(payload).unwrap();
             console.log("Registration successful:", response);
 
-            Alert.alert("Success", "Registration submitted successfully!", [
-              {
-                text: "OK",
-                onPress: () => navigation.goBack(),
-              },
-            ]);
+            Alert.alert(
+              t("common.success"),
+              t("forms.training.alerts.submitSuccess"),
+              [
+                {
+                  text: t("forms.common.ok"),
+                  onPress: () => navigation.goBack(),
+                },
+              ],
+            );
           } catch (error: any) {
             console.error("Registration failed:", error);
             console.log("Error details:", JSON.stringify(error, null, 2));
 
             Alert.alert(
-              "Error",
-              error?.data?.message ||
-                "Failed to submit registration. Please try again.",
-              [{ text: "OK" }],
+              t("common.error"),
+              error?.data?.message || t("forms.training.alerts.submitFailed"),
+              [{ text: t("forms.common.ok") }],
             );
           }
         }}

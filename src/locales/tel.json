@@ -1,0 +1,891 @@
+{
+  "common": {
+    "email": "ఇమెయిల్",
+    "password": "పాస్‌వర్డ్",
+    "name": "పేరు",
+    "confirmPassword": "పాస్‌వర్డ్ నిర్ధారించండი",
+    "signIn": "ఆసుపత్రిలో సైన్ చేయండი",
+    "signUp": "సైన్ అప్ చేయండి",
+    "signOut": "సైన్ అవుట్ చేయండి",
+    "cancel": "రద్దు",
+    "save": "సేవ్ చేయండి",
+    "delete": "తొలగించండి",
+    "edit": "సవరించండి",
+    "loading": "లోడ్ చేస్తోంది...",
+    "error": "లోపం",
+    "success": "విజయం",
+    "step": "దశ"
+  },
+  "filePicker": {
+    "chooseUploadType": "అప్‌లోడ్ రకం ఎంచుకోండి",
+    "imageFromGallery": "గ్యాలరీ నుండి చిత్రం",
+    "file": "ఫైల్",
+    "uploadFile": "అప్‌లోడ్ చేయడానికి ట్యాప్ చేయండి",
+    "selectFile": "ఫైల్ ఎంచుకోండి",
+    "simulatedFile": "డెమో కోసం చేసిన ఫైల్",
+    "useSimulatedFile": "నకిలు ఫైల్ ఉపయోగించండి",
+    "noFileSelected": "ఫైల్ ఎంచుకోనట్లు లేదు",
+    "pleaseSelectFile": "దయచేసి ఫైల్ ఎంచుకోండి",
+    "fileTooLarge": "ఫైల్ చాలా పెద్దదైనది",
+    "fileExceedsSize": "కొన్ని ఫైలులు సీమ మించిపోయాయి",
+    "tooManyFiles": "చాలా ఎక్కువ ఫైలులు",
+    "maxFilesAllowed": "గరిష్ఠ {{max}} ఫైలులు",
+    "maximumFilesReached": "సీమ చేరుకున్నాయి",
+    "filepickerNotAvailable": "దొరకలేదు",
+    "failedToPickFile": "ఫైల్ ఎంచుకోవడం విఫలమైంది",
+    "failedToOpenPicker": "పికర్ తెరవడం విఫలమైంది",
+    "filePickerFuture": "భవిష్యత్‌లో చేర్చబడుతుంది"
+  },
+  "login": {
+    "title": "స్వాగతం",
+    "subtitle": "కొనసాగించడానికి సైన్ ఇన్ చేయండి",
+    "emailPlaceholder": "ఇమెయిల్ నమోదు చేయండి",
+    "passwordPlaceholder": "పాస్‌వర్డ్ నమోదు చేయండి",
+    "noAccount": "ఖాతా లేదా?",
+    "loginFailed": "లాగిన్ విఫలమైంది",
+    "invalidCredentials": "చెల్లని ఇమెయిల్ లేదా పాస్‌వర్డ్",
+    "errorOccurred": "ఒక లోపం సంభవించింది",
+    "fillAllFields": "దయచేసి అన్ని ఫీల్డ్‌లను నింపండి"
+  },
+  "register": {
+    "title": "ఖాతా సృష్టించండი",
+    "subtitle": "ప్రారంభించడానికి సైన్ అప్ చేయండి",
+    "namePlaceholder": "పూర్తి పేరు నమోదు చేయండి",
+    "emailPlaceholder": "ఇమెయిల్ నమోదు చేయండి",
+    "passwordPlaceholder": "పాస్‌వర్డ్ నమోదు చేయండి",
+    "confirmPasswordPlaceholder": "పాస్‌వర్డ్‌ను నిర్ధారించండི",
+    "hasAccount": "ఇప్పటికే ఖాతా ఉందు?",
+    "registrationFailed": "నమోదు విఫలమైంది",
+    "passwordsNotMatch": "పాస్‌వర్డ్‌లు సరిపోలవు",
+    "passwordMinLength": "కనీసం 6 అక్షరాలు",
+    "fillAllFields": "దయచేసి అన్ని ఫీల్డ్‌లను నింపండి",
+    "toast": {
+      "success": "కస్టమర్ విజయవంతంగా నమోదు",
+      "error": "నమోదు విఫలమైంది"
+    },
+    "validation": {
+      "fullnameRequired": "పూర్తి పేరు అవసరం",
+      "ageRequired": "వయస్సు అవసరం",
+      "agePositive": "వయస్సు సానుకూలంగా ఉండాలి",
+      "genderRequired": "లింగం అవసరం",
+      "phoneRequired": "ఫోన్ అవసరం",
+      "addressRequired": "చిరునామా అవసరం",
+      "emailRequired": "ఇమెయిల్ అవసరం",
+      "emailInvalid": "చెల్లుబాటు ఇమెయిల్ నమోదు చేయండి",
+      "passwordRequired": "పాస్‌వర్డ్ అవసరం",
+      "passwordMin": "కనీసం 8 అక్షరాలు",
+      "equipmentTypeRequired": "సామగ్రి రకం అవసరం",
+      "medicalReasonRequired": "వైద్య కారణం అవసరం",
+      "durationRequired": "వ్యవధి అవసరం",
+      "referenceNameRequired": "సూచన పేరు అవసరం",
+      "referenceContactRequired": "సూచన సంప్రదించండి"
+    }
+  },
+  "language": {
+    "changeLanguage": "భాష మార్చండి",
+    "english": "ఇంగ్లీష్",
+    "arabic": "అరబిక్",
+    "selectLanguage": "భాష ఎంచుకోండి",
+    "urdu": "ఉర్దూ",
+    "telugu": "తెలుగు"
+  },
+  "theme": {
+    "light": "తెలిసిన",
+    "dark": "చీకటి",
+    "system": "సిస్టమ్",
+    "selectTheme": "థీమ్ ఎంచుకోండి",
+    "changeTheme": "థీమ్ మార్చండి"
+  },
+  "home": {
+    "title": "హోమ్ స్క్రీన్",
+    "featuredPartners": "ఫీచర్‌ చేసిన భాగస్వాములు",
+    "viewAll": "అన్నీ చూడండి",
+    "welcomeBack": "స్వాగతం,",
+    "education": "విద్య",
+    "relief": "సహాయం",
+    "volunteers": "స్వచ్ఛంద సేవకులు",
+    "events": "ఈవెంట్‌లు",
+    "familyHealthCards": "కుటుంబ ఆరోగ్య కార్డ్‌లు",
+    "requestNewCard": "+ కొత్త కార్డ్ అభ్యర్థించండి",
+    "errorLoadingData": "డేటా లోడ్ లోపం",
+    "guest": "అతిథి",
+    "noCardsFound": "కార్డ్‌లు కనుగొనబడలేదు",
+    "cardRequests": "కార్డ్ అభ్యర్థనలు",
+    "cardRequestDetails": "కార్డ్ వివరాలు",
+    "requestId": "అభ్యర్థన ID:",
+    "status": "స్థితి:",
+    "requested": "అభ్యర్థించిన:",
+    "updated": "అపడేట్:",
+    "reviewNotes": "దిద్దుబాటు నోట్‌లు:",
+    "noReviewNotes": "నోట్‌లు లేవు",
+    "close": "మూసివేయండి",
+    "applyForCard": "కార్డ్‌కు ఆవేదన చేయండి",
+    "notAvailable": "అందుబాటులో లేదు",
+    "primaryMember": "ప్రధాన సభ్యుడు"
+  },
+  "card": {
+    "healthCard": "ఆరోగ్య కార్డ్",
+    "cardHolderName": "కార్డ్ హోల్డర్ పేరు",
+    "membershipId": "సభ్యత్వ ID",
+    "bloodGroup": "రక్త సమూహం",
+    "aadharNumber": "ఆధార్ సంఖ్య",
+    "dateOfIssue": "జారీ చేసిన తేదీ",
+    "dateOfExpiry": "గడువు ముగిసిన తేదీ",
+    "title": "కుటుంబ ఆరోగ్య కార్డ్‌లు",
+    "downloadCard": "డౌన్‌లోడ్ చేయండి",
+    "emailCard": "ఇమెయిల్",
+    "loading": "లోడ్ చేస్తోంది...",
+    "loadError": "లోడ్ విఫలమైంది",
+    "swipeHint": "అన్ని 4 కార్డ్‌లను చూడటానికి సూట్ చేయండి",
+    "cardBenefits": "కార్డ్ ప్రయోజనాలు",
+    "benefits": {
+      "freeConsultations": "100+ భాగస్వామి సంప్రదింపులు",
+      "discount": "50% వరకు ఛాయం",
+      "checkup": "సంవత్సర చెక్‌అప్",
+      "helpline": "24/7 సహాయం"
+    },
+    "howToUse": {
+      "title": "ఎలా ఉపయోగించాలి",
+      "step1": "ఏదైనా భాగస్వామి సంస్థకు వెళ్లండి",
+      "step2": "కార్డ్ లేదా ID చూపండి",
+      "step3": "సేవలను పొందండి"
+    }
+  },
+  "profile": {
+    "title": "నా ప్రొఫైల్",
+    "memberSince": "నుండి సభ్యుడు",
+    "activeMember": "సభ్యుడు",
+    "memberId": "సభ్యత్వ ID",
+    "bloodGroup": "రక్త సమూహం",
+    "dateOfBirth": "జన్మ తేదీ",
+    "contact": "సంప్రదించండి",
+    "email": "ఇమెయిల్",
+    "medicalInfo": "వైద్య సమాచారం",
+    "allergies": "అలర్జీలు",
+    "chronicConditions": "జీర్ణ పరిస్థితులు",
+    "emergencyContact": "ఎమర్జెన్సీ సంప్రదించండి",
+    "editProfile": "ప్రొఫైల్‌ను సవరించండి",
+    "logout": "లాగ్ అవుట్",
+    "logoutConfirm": "లాగ్ అవుట్ చేయాలని?",
+    "about": "Mujtaba సహాయ గురించి",
+    "aboutMHF": "MHF గురించి",
+    "ourVision": "మా దృష్టిభంగి",
+    "ourMission": "మా మిషన్",
+    "ourBoard": "మా బోర్డు",
+    "ourTeam": "మా జట్టు",
+    "ourVolunteers": "మా స్వచ్ఛంద సేవకులు",
+    "contactInfo": "సంప్రదించిన సమాచారం",
+    "user": "ఉపయోగకర్త",
+    "updateFailed": "అపడేట్ విఫలమైంది",
+    "somethingWentWrong": "ఏదో తప్పుగా జరిగింది",
+    "updatedSuccessfully": "ప్రొఫైల్ విజయవంతంగా అపడేట్ చేయబడింది"
+  },
+  "settings": {
+    "title": "సెట్టింగ్‌ల స్క్రీన్"
+  },
+  "notifications": {
+    "title": "నోటిఫికేషన్‌లు",
+    "unread": "చదువని నోటిఫికేషన్",
+    "unreadPlural": "చదువని నోటిఫికేషన్‌లు",
+    "allCaughtUp": "అన్నీ చేసాయి!",
+    "noNotifications": "నోటిఫికేషన్‌లు లేవు",
+    "noNotificationsText": "చేసుకున్నారు!",
+    "samples": {
+      "cardApproved": {
+        "title": "కార్డ్ ఆమోదించబడింది",
+        "message": "ఆమోదించబడింది"
+      },
+      "newEvent": {
+        "title": "కొత్త ఈవెంట్",
+        "message": "కైంప్ షెడ్యూల్ చేయబడింది"
+      },
+      "profileIncomplete": {
+        "title": "ప్రొఫైల్ అసంపూర్ణమైనది",
+        "message": "ప్రొఫైల్‌ను పూర్తి చేయండి"
+      },
+      "reliefUpdate": {
+        "title": "సహాయ అపడేట్",
+        "message": "సమీక్ష చేయబడుతోంది"
+      },
+      "trainingRegistered": {
+        "title": "శిక్షణ నమోదు",
+        "message": "విజయవంతంగా నమోదు చేయబడింది"
+      }
+    },
+    "timeAgo": {
+      "hoursAgo": "గంటల ముందు",
+      "dayAgo": "రోజు ముందు",
+      "daysAgo": "రోజుల ముందు"
+    }
+  },
+  "network": {
+    "noConnection": "ఇంటర్నెట్ కనెక్షన్ లేదు",
+    "connected": "సంయుక్తమైన",
+    "disconnected": "డిస్‌కనెక్ట్ చేయబడిన",
+    "wifi": "WiFi",
+    "cellular": "సెల్యులార్",
+    "ethernet": "ఎథర్‌నెట్",
+    "unknown": "తెలియని"
+  },
+  "events": {
+    "title": "ఈవెంట్‌లు & కేంపులు",
+    "subtitle": "కమ్యూనిటీ కార్యక్రమాలకు చేరండి",
+    "registerHeader": "రిజిస్టర్ చేయండి",
+    "upcoming": "సమీపిస్తున్న ఈవెంట్‌లు",
+    "registerNow": "ఇప్పుడే నమోదు చేయండి",
+    "impactTitle": "మా ప్రభావం",
+    "impact": {
+      "events": "ఈవెంట్‌లు",
+      "people": "వ్యక్తులు",
+      "volunteers": "స్వచ్ఛంద సేవకులు"
+    },
+    "register": {
+      "title": "ఈవెంట్ నమోదు",
+      "subtitle": "దయచేసి అన్ని వివరాలను నింపండి",
+      "personalInfo": "వ్యక్తిగత సమాచారం",
+      "fullName": "పూర్తి పేరు",
+      "fullNamePlaceholder": "పూర్తి పేరు నమోదు చేయండి",
+      "phoneNumber": "ఫోన్ నంబర్",
+      "phoneNumberPlaceholder": "+91-XXXXXXXXXX",
+      "phoneInvalid": "10 అంకెలు నమోదు చేయండి",
+      "emailAddress": "ఇమెయిల్ చిరునామా",
+      "emailPlaceholder": "ఇమెయిల్",
+      "emailInvalid": "చెల్లని ఇమెయిల్",
+      "dateOfBirth": "జన్మ తేదీ",
+      "age": "వయస్సు",
+      "gender": "లింగం",
+      "genderMale": "పురుషుడు",
+      "genderFemale": "స్త్రీ",
+      "genderOther": "ఇతర",
+      "address": "చిరునామా",
+      "addressPlaceholder": "చిరునామా నమోదు చేయండి",
+      "participationType": "భాగస్వామం రకం",
+      "participant": "పాల్గొనేవారు",
+      "volunteer": "స్వచ్ఛంద సేవక",
+      "declaration": "ప్రకటన",
+      "declarationText": "నేను ఇక్కడ ప్రకటించుకుంటున్నాను",
+      "iAgree": "నేను అంగీకరిస్తున్నాను",
+      "saveDetails": "వివరాలను సేవ్ చేయండి",
+      "submitting": "సమర్పించుకుంటున్నది...",
+      "successTitle": "విజయం",
+      "successMessage": "విజయవంతంగా సమర్పించబడింది",
+      "errorTitle": "లోపం",
+      "errorMessage": "సమర్పణ విఫలమైంది"
+    },
+    "items": {
+      "medical": {
+        "title": "వైద్య కేంపు",
+        "date": "26 నవంబర్",
+        "time": "10:00 AM - 6:00 PM",
+        "location": "కమ్యూనిటీ సెంటర్",
+        "desc": "ఆరోగ్య చెక్‌అప్",
+        "tag1": "చెక్‌అప్",
+        "tag2": "టెస్ట్",
+        "tag3": "సంప్రదింపు",
+        "tag4": "బ్లడ్ test",
+        "stats": "50 నమోదు"
+      },
+      "blood": {
+        "title": "రక్త దానం",
+        "date": "28 నవంబర్",
+        "time": "10:00 AM - 4:00 PM",
+        "location": "గార్డన్",
+        "desc": "రక్త దానం చేయండి",
+        "tag1": "స్వచ్ఛంద సేవక",
+        "tag2": "డాక్టర్‌లు",
+        "tag3": "సర్టిఫికేట్‌లు",
+        "tag4": "రిఫ్రెష్‌మెంట్‌లు",
+        "stats": "100+ దాతలు"
+      },
+      "awareness": {
+        "title": "సచేతన సెషన్",
+        "date": "30 నవంబర్",
+        "time": "2:00 PM - 5:00 PM",
+        "location": "ఆన్‌లైన్",
+        "desc": "ఆరోగ్య సచేతన",
+        "tag1": "ఫ్రీ",
+        "tag2": "లైవ్",
+        "tag3": "పదార్థం",
+        "stats": "200+ నమోదు"
+      }
+    }
+  },
+  "relief": {
+    "apply": "సహాయ కోసం దరఖాస్తు చేయండి",
+    "donate": "ఇప్పుడే సంపద చేయండి",
+    "activePrograms": "క్రియాశీల సహాయ కార్యక్రమాలు",
+    "howToApply": "దరఖాస్తు చేయడం ఎలా",
+    "impactTitle": "సహాయ ప్రభావం",
+    "requestNewCard": "+ కొత్త కార్డ్ అభ్యర్థించండి",
+    "steps": {
+      "formTitle": "ఫారమ్‌ను నింపండి",
+      "formDesc": "దరఖాస్తు సమర్పించండి",
+      "verifyTitle": "నిర్ధారణ",
+      "verifyDesc": "టీమ్ నిర్ధారిస్తుంది",
+      "distributeTitle": "పంపిణీ",
+      "distributeDesc": "ఆమోదించిన కు తెలియజేయబడుతుంది"
+    },
+    "impact": {
+      "families": "కుటుంబాలు",
+      "drives": "డ్రైవ్‌లు",
+      "aid": "సహాయం"
+    },
+    "programs": {
+      "food": {
+        "title": "Food Distribution Drive",
+        "locations": "Multiple locations",
+        "desc": "Daily food distribution for families in need. Each kit usually includes rice, pulses, oil, and essential grocery items for a week.",
+        "tag1": "Daily",
+        "tag2": "Multiple Locations",
+        "tag3": "Family Kits",
+        "stats": "500+ families supported"
+      },
+      "flood": {
+        "title": "Flood Relief Support",
+        "locations": "Disaster-affected areas",
+        "desc": "Immediate relief to flood-affected families including clean water, dry ration, temporary shelter, and medical services.",
+        "tag1": "Flood Relief",
+        "tag2": "Shelter",
+        "tag3": "Medical",
+        "stats": "200+ families served"
+      },
+      "winter": {
+        "title": "Winter Relief Campaign",
+        "locations": "Urban & rural areas",
+        "desc": "Distribution of blankets, sweaters, and essential items to those in need, especially elderly residents during harsh winters.",
+        "tag1": "Blankets",
+        "tag2": "Sweaters",
+        "tag3": "Elderly",
+        "stats": "300+ people covered"
+      },
+      "medical": {
+        "title": "Emergency Medical Relief",
+        "locations": "All relief zones",
+        "desc": "Emergency medical assistance including medicines, first aid, and medical transportation support for critical cases.",
+        "tag1": "Medical",
+        "tag2": "Emergency",
+        "tag3": "Ambulance",
+        "stats": "150+ cases"
+      }
+    },
+    "registrationStatus": "నమోదు స్థితి",
+    "requestDetails": "దరఖాస్తు వివరాలు",
+    "registrationId": "నమోదు ID:",
+    "noReviewNote": "నోట్‌లు లేవు"
+  },
+  "services": {
+    "title": "సేవలు & ప్రదాతలు",
+    "subtitle": "సమీపంలో ప్రదాతలను కనుగొనండి",
+    "searchPlaceholder": "శోధించండి...",
+    "resultsFound": "ప్రదాతలు కనుగొనబడ్డారు",
+    "loading": "లోడ్ చేస్తోంది...",
+    "loadError": "లోడ్ విఫలమైంది",
+    "tab": {
+      "providers": "ప్రదాతలు",
+      "blood": "రక్తం",
+      "equipment": "సామగ్రి",
+      "ambulance": "ఆంబులెన్స్",
+      "benefits": "ప్రయోజనాలు"
+    },
+    "categories": {
+      "all": "అన్నీ",
+      "hospital": "ఆసుపత్రి",
+      "diagnostics": "నిర్ధారణలు",
+      "pharmacy": "వైద్య దుకాణం",
+      "clinics": "క్లినిక్‌లు",
+      "rehab": "పునరావసరం",
+      "labs": "ల",
+      "surgical": "శస్త్ర"
+    },
+    "provider": {
+      "unknown": "తెలియని",
+      "noAddress": "చిరునామా లేదు",
+      "noPhone": "లేదు"
+    },
+    "blood": {
+      "emergency": "ఎమర్జెన్సీ రక్తం!",
+      "cta": "రక్తానికి దరఖాస్తు చేయండి",
+      "requestNow": "ఇప్పుడే దరఖాస్తు చేయండి",
+      "loading": "లోడ్ చేస్తోంది...",
+      "loadError": "లోడ్ విఫలమైంది",
+      "noRequests": "దరఖాస్తులు లేవు",
+      "yourRequests": "మీ దరఖాస్తులు",
+      "myRequests": "నా దరఖాస్తులు",
+      "patient": "రోగి",
+      "bloodGroup": "రక్త సమూహం:",
+      "units": "యూనిట్‌లు:",
+      "required": "అవసరమైన:",
+      "urgency": "ఆసక్తి:",
+      "hospital": "ఆసుపత్రి:",
+      "contact": "సంప్రదించండి:"
+    },
+    "benefits": {
+      "free": {
+        "title": "Free Consultations",
+        "subtitle": "Access to general physicians and specialists"
+      },
+      "medicine": {
+        "title": "Medicine Assistance",
+        "subtitle": "Subsidized medicines for chronic conditions"
+      },
+      "emergency": {
+        "title": "Emergency Transport",
+        "subtitle": "24/7 emergency ambulance services"
+      },
+      "checkups": {
+        "title": "Health Checkups",
+        "subtitle": "Regular health monitoring and diagnostics"
+      },
+      "records": {
+        "title": "Medical Records",
+        "subtitle": "Digital health records management"
+      },
+      "find": {
+        "title": "Find Clinics",
+        "subtitle": "Locate nearby partner healthcare centers"
+      }
+    },
+    "help": {
+      "title": "సహాయం చాహిస్తున్నారా?",
+      "desc": "టీమ్ 24/7 అందుబాటులో",
+      "contact": "సంప్రదించండి"
+    },
+    "noContactFor": "{{serviceName}} కోసం లేదు"
+  },
+  "providerDetails": {
+    "error": "లోపం",
+    "phoneError": "కాల్ నిర్వహించలేదు",
+    "mapError": "మ్యాప్ తెరవలేదు",
+    "emailError": "ఇమెయిల్ తెరవలేదు",
+    "shareError": "భాగస్వామం చేయలేదు",
+    "notFound": "కనుగొనబడలేదు",
+    "contactInfo": "సంప్రదించిన సమాచారం",
+    "phone": "ఫోన్",
+    "email": "ఇమెయిల్",
+    "address": "చిరునామా",
+    "specialities": "ప్రత్యేకతలు",
+    "benefits": "ప్రయోజనాలు",
+    "viewOnMap": "మ్యాప్‌లో చూడండి",
+    "callNow": "ఇప్పుడే కాల్ చేయండి"
+  },
+  "equipment": {
+    "subtitle": "మీ దరఖాస్తుల చరిత్ర",
+    "loading": "లోడ్ చేస్తోంది...",
+    "error": "లోడ్ విఫలమైంది",
+    "submit": {
+      "success": "విజయం",
+      "successMessage": "దరఖాస్తు విజయవంతమైంది",
+      "error": "లోపం",
+      "errorMessage": "దరఖాస్తు విఫలమైంది",
+      "submitting": "సమర్పించుకుంటున్నది...",
+      "submitButton": "సమర్పించండి"
+    },
+    "need": "సామగ్రి చాహిస్తున్నారా?",
+    "needSubtitle": "దరఖాస్తు చేయండి",
+    "request": "దరఖాస్తు చేయండి",
+    "myRequests": "నా దరఖాస్తులు",
+    "viewAll": "అన్నీ చూడండి",
+    "items": "సరుకులు",
+    "details": {
+      "fullName": "పూర్తి పేరు:",
+      "duration": "వ్యవధి:",
+      "medicalReason": "వైద్య కారణం:",
+      "requestDetails": "వివరాలు",
+      "requestId": "ID:",
+      "status": "స్థితి:",
+      "equipment": "సామగ్రి:"
+    }
+  },
+  "ambulance": {
+    "loading": "లోడ్ చేస్తోంది...",
+    "error": "లోడ్ విఫలమైంది",
+    "title": "ఆంబులెన్స్ సేవలు",
+    "subtitle": "24/7 ఎమర్జెన్సీ",
+    "view": "చూడండి",
+    "details": {
+      "vehicleType": "రకం:",
+      "serviceArea": "ప్రాంతం:",
+      "responseTime": "వ్యవధి:"
+    },
+    "call": "కాల్ చేయండి {{contact}}"
+  },
+  "blood": {
+    "requestDetails": "దరఖాస్తు వివరాలు",
+    "hospitalDetails": "ఆసుపత్రి వివరాలు",
+    "subtitle": "వివరాలు నింపండి",
+    "submit": {
+      "successMessage": "విజయవంతమైంది",
+      "errorMessage": "విఫలమైంది"
+    }
+  },
+  "payment": {
+    "failed": "చెల్లింపు విఫలమైంది",
+    "customerMissing": "కస్టమర్ కనుగొనబడలేదు",
+    "contributionType": "రకం",
+    "amountPayable": "సంపద",
+    "continueUpi": "UPI కొనసాగించండి",
+    "payNow": "ఇప్పుడే చెల్లించండి",
+    "receiptGenerateError": "రసీద సృష్టించలేదు",
+    "receiptTitle": "రసీద",
+    "campaignReceipt": "కెంపెయిన్ రసీద",
+    "healthCardReceipt": "కార్డ్ రసీద",
+    "receiptShareError": "భాగస్వామం చేయలేదు",
+    "successTitle": "విజయవంతమైంది!",
+    "downloadReceipt": "డౌన్‌లోడ్ చేయండి",
+    "viewHealthCard": "కార్డ్ చూడండి",
+    "goHome": "హోమ్‌కు వెళ్లండి"
+  },
+  "volunteers": {
+    "submitSuccess": "విజయవంతంగా సమర్పించబడింది",
+    "submitError": "సమర్పణ విఫలమైంది"
+  },
+  "newCard": {
+    "patientDetails": "రోగి వివరాలు"
+  },
+  "forms": {
+    "common": {
+      "saveDetails": "వివరాలు సేవ్ చేయండి",
+      "ok": "సరే",
+      "submitting": "సమర్పిస్తోంది...",
+      "iAgree": "నేను అంగీకరిస్తున్నాను",
+      "sections": {
+        "locationDetails": "ప్రాంత వివరాలు",
+        "declaration": "ప్రకటన"
+      },
+      "fields": {
+        "state": "రాష్ట్రం",
+        "district": "జిల్లా",
+        "block": "బ్లాక్",
+        "mandal": "మండలం"
+      },
+      "loading": {
+        "states": "రాష్ట్రాలు లోడ్ అవుతున్నాయి...",
+        "districts": "జిల్లాలు లోడ్ అవుతున్నాయి...",
+        "blocks": "బ్లాక్‌లు లోడ్ అవుతున్నాయి...",
+        "mandals": "మండలాలు లోడ్ అవుతున్నాయి..."
+      },
+      "select": {
+        "state": "రాష్ట్రం ఎంచుకోండి",
+        "stateFirst": "మొదట రాష్ట్రం ఎంచుకోండి",
+        "district": "జిల్లా ఎంచుకోండి",
+        "districtFirst": "మొదట జిల్లా ఎంచుకోండి",
+        "block": "బ్లాక్ ఎంచుకోండి",
+        "blockFirst": "మొదట బ్లాక్ ఎంచుకోండి",
+        "mandal": "మండలం ఎంచుకోండి"
+      },
+      "options": {
+        "male": "పురుషుడు",
+        "female": "స్త్రీ",
+        "other": "ఇతర",
+        "single": "అవివాహిత",
+        "married": "వివాహిత",
+        "yes": "అవును",
+        "no": "కాదు",
+        "aadhar": "ఆధార్",
+        "voterId": "వోటర్ ఐడి",
+        "panCard": "PAN కార్డ్"
+      },
+      "validation": {
+        "phone10": "సరైన 10 అంకెల నంబర్ నమోదు చేయండి",
+        "invalidEmail": "చెల్లని ఇమెయిల్",
+        "invalidEmailAddress": "చెల్లని ఇమెయిల్ చిరునామా",
+        "pincode6": "సరైన 6 అంకెల పిన్‌కోడ్ నమోదు చేయండి"
+      }
+    },
+    "training": {
+      "heading": "Registration Form",
+      "sections": {
+        "personalDetails": "Personal Details",
+        "educationalBackground": "Educational Background",
+        "courseSelection": "Course Selection"
+      },
+      "fields": {
+        "fullName": "Full Name",
+        "dateOfBirth": "Date of Birth",
+        "age": "Age",
+        "gender": "Gender",
+        "contactNumber": "Contact Number (Phone / WhatsApp)",
+        "parentGuardianContact": "Parent's / Guardian's Contact Number",
+        "maritalStatus": "Marital Status",
+        "emailAvailable": "Email ID (Available)",
+        "addressWithPincode": "Address (With Pin Code)",
+        "pincode": "Pin code",
+        "guardianName": "Guardian's Name (If any)",
+        "idProofType": "ID Proof (Aadhar / Other)",
+        "identificationNumber": "Identification Number",
+        "highestQualification": "Highest Qualification",
+        "mediumOfInstruction": "Medium of Instruction",
+        "schoolCollegeName": "School / College Name",
+        "schoolCollegeLocation": "Location",
+        "educationGapReason": "Gaps in Education / Dropout Reason",
+        "preferredCourses": "Please tick your preferred training"
+      },
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "addressWithPincode": "Enter your complete address with pin code",
+        "pincode": "Enter your Pin code",
+        "idProofType": "Aadhar number or other ID proof number",
+        "educationGapReason": "If any gaps or dropout, please mention the reason"
+      },
+      "options": {
+        "graduation": "Graduation",
+        "hindi": "Hindi",
+        "english": "English"
+      },
+      "course": {
+        "computer": "Computer",
+        "tailoring": "Tailoring",
+        "spokenEnglish": "Spoken English",
+        "handmadeDesigning": "Handmade Designing",
+        "other": "Others (please specify)"
+      },
+      "alerts": {
+        "submitSuccess": "Registration submitted successfully!",
+        "submitFailed": "Failed to submit registration. Please try again."
+      }
+    },
+    "relief": {
+      "heading": "Apply for Support",
+      "sections": {
+        "personalInformation": "Personal Information",
+        "familyAndLivingSituation": "Family and Living Situation",
+        "reasonForRequest": "Reason for Request",
+        "assistanceRequired": "What Do You Need From Us?"
+      },
+      "fields": {
+        "fullName": "Full Name",
+        "fatherOrHusbandName": "Father's / Husband's Name",
+        "dateOfBirth": "Date of Birth",
+        "age": "Age",
+        "gender": "Gender",
+        "mobileNumber": "Mobile Number",
+        "alternateNumber": "Alternate Number",
+        "emailAvailable": "Email ID (Available)",
+        "currentAddress": "Current Address (With Pin Code)",
+        "pincode": "Pin code",
+        "idProofType": "ID Proof Type",
+        "idProofNumber": "ID Proof Number",
+        "totalFamilyMembers": "Total Family Members",
+        "earningMembers": "Earning Members",
+        "childrenBelow5": "Children (Below 5)",
+        "childrenSchoolGoing": "Children (School-going)",
+        "elderlyDisabledMembers": "Elderly / Disabled Members",
+        "elderlyDisabledDetails": "Elderly / Disabled Details",
+        "houseType": "Type of House",
+        "reasonForRequest": "Reason for Request (Optional but helpful)",
+        "assistanceTypes": "Please tick the items you are requesting",
+        "declaration": "I declare that the information provided above is true and accurate to the best of my knowledge."
+      },
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "fatherOrHusbandName": "Enter father's or husband's name",
+        "currentAddress": "Enter your complete address with pin code",
+        "pincode": "Enter your Pin code",
+        "idProofNumber": "Enter ID proof number",
+        "reasonForRequest": "Describe your situation and why you need assistance"
+      },
+      "options": {
+        "foodKit": "Food Kit",
+        "water": "Water",
+        "clothes": "Clothes",
+        "shelter": "Shelter / Temporary Housing",
+        "medicalHelp": "Medicine / Medical Help",
+        "other": "Others (please specify)",
+        "owned": "Owned",
+        "temporary": "Temporary",
+        "rented": "Rented",
+        "damaged": "Damaged"
+      },
+      "alerts": {
+        "submitSuccess": "Your relief request has been submitted successfully!",
+        "submitFailed": "Failed to submit relief request. Please try again."
+      }
+    },
+    "applyCard": {
+      "heading": "Please fill in all the details to apply for a health card",
+      "sections": {
+        "cardHolderDetails": "Card Holder Details",
+        "cardDetails": "Card Details",
+        "familyMembers": "Family Members"
+      },
+      "fields": {
+        "cardHolderName": "Card Holder Name",
+        "aadhaarNumber": "Aadhaar Number",
+        "bloodGroup": "Blood Group",
+        "phone": "Phone",
+        "email": "Email",
+        "address": "Address",
+        "gender": "Gender",
+        "ageCategory": "Age Category",
+        "familyHeadImage": "Family Head Image",
+        "cardType": "Card Type",
+        "dateOfIssue": "Date of Issue",
+        "dateOfExpiry": "Date of Expiry",
+        "fullName": "Full Name",
+        "relationship": "Relationship",
+        "dateOfBirth": "Date of Birth"
+      },
+      "placeholders": {
+        "fullName": "Enter full name",
+        "phone": "Enter 10 digit number",
+        "email": "Enter email address",
+        "address": "Enter address"
+      },
+      "options": {
+        "child": "Child",
+        "adult": "Adult",
+        "individual": "Individual",
+        "family": "Family",
+        "spouse": "Spouse",
+        "son": "Son",
+        "daughter": "Daughter",
+        "father": "Father",
+        "mother": "Mother",
+        "brother": "Brother",
+        "sister": "Sister"
+      },
+      "validation": {
+        "aadhaarFormat": "Enter valid Aadhaar number (XXXX XXXX XXXX)",
+        "aadhaarMaxLength": "Aadhaar number cannot exceed 14 characters"
+      },
+      "viewCard": "View Card",
+      "alerts": {
+        "createdSuccess": "Your health card has been created successfully!",
+        "failed": "Failed to submit application"
+      }
+    },
+    "newCard": {
+      "heading": "Please fill in all the details to apply for a health card",
+      "sections": {
+        "treatmentDetails": "Treatment Details",
+        "medicalDocuments": "Medical Documents",
+        "referenceDetails": "Reference Details (Optional)"
+      },
+      "fields": {
+        "fullName": "Full Name",
+        "emailAddress": "Email Address",
+        "contactNumber": "Contact Number",
+        "healthIssue": "Health Issue / Medical Condition",
+        "hospitalName": "Hospital Name Where Treatment Taken",
+        "hospitalAddress": "Hospital Address",
+        "hospitalType": "Hospital Type",
+        "treatmentDuration": "How Many Years About Your Treatment",
+        "medicalReports": "Upload Prescription / Medical Reports",
+        "referenceName": "Reference Name & Details",
+        "referenceContact": "Reference Contact Number"
+      },
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "emailAddress": "Enter your email address",
+        "healthIssue": "Describe your health condition or medical issue",
+        "hospitalName": "Enter hospital name",
+        "hospitalAddress": "Enter complete hospital address with city and pincode",
+        "treatmentDuration": "e.g., 2 years, 6 months",
+        "referenceName": "Name of person referring you"
+      },
+      "options": {
+        "governmentHospital": "Government Hospital",
+        "privateHospital": "Private Hospital",
+        "clinic": "Clinic"
+      },
+      "alerts": {
+        "submitSuccess": "Card request submitted successfully",
+        "submitFailed": "Failed to submit card request. Please try again."
+      }
+    },
+    "volunteers": {
+      "heading": "Join Mujtaba Helping Foundation as a Volunteer",
+      "sections": {
+        "personalDetails": "Personal Details",
+        "professionalDetails": "Professional Details",
+        "volunteeringPreferences": "Volunteering Preferences",
+        "experienceAndMotivation": "Experience & Motivation"
+      },
+      "fields": {
+        "fullName": "Full Name",
+        "dateOfBirth": "Date of Birth",
+        "gender": "Gender",
+        "phoneNumber": "Phone Number",
+        "alternateContact": "Alternate Contact No.",
+        "emailAddress": "Email Address",
+        "address": "Address",
+        "qualification": "Qualification",
+        "employmentStatus": "Employment Status",
+        "occupation": "Occupation",
+        "volunteerArea": "Which areas would you like to volunteer in?",
+        "availability": "Availability",
+        "previousVolunteering": "Have you volunteered before?",
+        "motivation": "Why do you want to join Mujtaba Helping Foundation as a volunteer?",
+        "declaration": "I hereby declare that the information provided is true and I agree to volunteer responsibly."
+      },
+      "placeholders": {
+        "motivation": "Please share your motivation and what drives you to volunteer with us..."
+      },
+      "options": {
+        "student": "Student",
+        "employee": "Employee",
+        "selfEmployed": "Self Employed",
+        "healthCamps": "Health Camps",
+        "awarenessDrives": "Awareness Drives",
+        "dataEntry": "Data Entry / Office Work",
+        "socialMedia": "Social Media Promotion",
+        "fundraising": "Fundraising",
+        "communityOutreach": "Community Outreach",
+        "weekdays": "Weekdays",
+        "weekends": "Weekends",
+        "flexible": "Flexible"
+      }
+    },
+    "equipment": {
+      "heading": "Fill in the details below to request medical equipment",
+      "submitRequest": "Submit Request",
+      "sections": {
+        "personalInformation": "Personal Information",
+        "addressDetails": "Address Details",
+        "equipmentDetails": "Equipment Details",
+        "referenceDetails": "Reference Details",
+        "consent": "Consent"
+      },
+      "fields": {
+        "fullName": "Full Name",
+        "age": "Age",
+        "gender": "Gender",
+        "mobileNumber": "Mobile Number",
+        "email": "Email",
+        "address": "Address",
+        "pincode": "Pincode",
+        "equipmentType": "Equipment Type",
+        "medicalReason": "Medical Reason",
+        "durationRequired": "Duration Required",
+        "referenceName": "Reference Name",
+        "referenceContact": "Reference Contact",
+        "consentDeclaration": "I hereby declare that the information provided is true and accurate"
+      },
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "age": "Enter your age",
+        "mobileNumber": "Enter mobile number",
+        "email": "Enter email address",
+        "address": "Enter your address",
+        "pincode": "Enter pincode",
+        "medicalReason": "Describe the medical reason for requesting equipment",
+        "durationRequired": "e.g., 2 weeks, 1 month",
+        "referenceName": "Enter reference person name",
+        "referenceContact": "Enter reference contact number"
+      },
+      "options": {
+        "bloodPressureMonitor": "Blood Pressure Monitor",
+        "glucometer": "Glucometer",
+        "oxygenConcentrator": "Oxygen Concentrator",
+        "wheelchair": "Wheelchair",
+        "walkingAid": "Walking Aid",
+        "hospitalBed": "Hospital Bed",
+        "nebulizer": "Nebulizer"
+      },
+      "alerts": {
+        "submitSuccess": "Equipment request submitted successfully! Request ID:",
+        "submitFailed": "Failed to submit equipment request. Please try again."
+      }
+    }
+  }
+}

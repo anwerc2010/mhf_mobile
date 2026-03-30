@@ -12,9 +12,17 @@ import { PTText } from "../../components/comman";
 import { VerifyPaymentResult } from "@psi/shared-api";
 import ViewShot from "react-native-view-shot";
 import RNShare from "react-native-share";
+import { useTranslation } from "react-i18next";
 
 export type PaymentSuccessScreenParams = {
   result: VerifyPaymentResult;
+  campaignPayment?: {
+    module: "education" | "events" | "relief";
+    moduleId?: number | string;
+    moduleTitle: string;
+    actionLabel: "donation" | "sponsorship";
+    amount: number;
+  };
 };
 
 type RouteType = RouteProp<
@@ -36,12 +44,14 @@ function formatDate(iso: string): string {
 }
 
 function PaymentSuccessScreen() {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteType>();
-  const { result } = route.params;
+  const { result, campaignPayment } = route.params;
   const { payment } = result;
   const receiptRef = useRef<any>(null);
   const [isDownloading, setIsDownloading] = useState(false);
+  const isCampaignPayment = !!campaignPayment;
 
   const instrument = payment.notes?.payment_instrument;
   const amountINR = (payment.amount / 100).toFixed(2);
@@ -52,19 +62,33 @@ function PaymentSuccessScreen() {
 
       const uri = await receiptRef.current?.capture?.();
       if (!uri) {
-        Alert.alert("Error", "Could not generate receipt image.");
+        Alert.alert(
+          t("common.error"),
+          t(
+            "payment.receiptGenerateError",
+            "Could not generate receipt image.",
+          ),
+        );
         return;
       }
 
       await RNShare.open({
         url: `file://${uri}`,
         type: "image/png",
-        title: "Payment Receipt",
-        message: "Health Card Payment Receipt",
+        title: t("payment.receiptTitle", "Payment Receipt"),
+        message: isCampaignPayment
+          ? t("payment.campaignReceipt", "Campaign Payment Receipt")
+          : t("payment.healthCardReceipt", "Health Card Payment Receipt"),
       });
     } catch (error: any) {
       if (error?.code !== "E_CANCELLED" && error?.code !== "CANCELLED") {
-        Alert.alert("Error", "Unable to download/share receipt image.");
+        Alert.alert(
+          t("common.error"),
+          t(
+            "payment.receiptShareError",
+            "Unable to download/share receipt image.",
+          ),
+        );
       }
     } finally {
       setIsDownloading(false);
@@ -76,8 +100,18 @@ function PaymentSuccessScreen() {
       {/* Success banner */}
       <View style={styles.successBanner}>
         <PTText style={styles.checkmark}>✓</PTText>
-        <PTText style={styles.successTitle}>Payment Successful!</PTText>
+        <PTText style={styles.successTitle}>
+          {t("payment.successTitle", "Payment Successful!")}
+        </PTText>
         <PTText style={styles.amountText}>₹{amountINR}</PTText>
+        {campaignPayment ? (
+          <PTText style={styles.subtitleText}>
+            {campaignPayment.actionLabel === "sponsorship"
+              ? "Sponsorship"
+              : "Donation"}{" "}
+            for {campaignPayment.moduleTitle}
+          </PTText>
+        ) : null}
       </View>
 
       {/* Details card (captured as receipt image) */}
@@ -131,21 +165,27 @@ function PaymentSuccessScreen() {
         {isDownloading ? (
           <ActivityIndicator color="#1E3A8A" />
         ) : (
-          <PTText style={styles.secondaryButtonText}>Download Receipt</PTText>
+          <PTText style={styles.secondaryButtonText}>
+            {t("payment.downloadReceipt", "Download Receipt")}
+          </PTText>
         )}
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.primaryButton}
-        onPress={() =>
-          navigation.navigate("BottomTabs", {
-            screen: "Card",
-          })
-        }
-        activeOpacity={0.8}
-      >
-        <PTText style={styles.primaryButtonText}>View Health Card</PTText>
-      </TouchableOpacity>
+      {!isCampaignPayment ? (
+        <TouchableOpacity
+          style={styles.primaryButton}
+          onPress={() =>
+            navigation.navigate("BottomTabs", {
+              screen: "Card",
+            })
+          }
+          activeOpacity={0.8}
+        >
+          <PTText style={styles.primaryButtonText}>
+            {t("payment.viewHealthCard", "View Health Card")}
+          </PTText>
+        </TouchableOpacity>
+      ) : null}
 
       <TouchableOpacity
         style={styles.secondaryButton}
@@ -156,7 +196,9 @@ function PaymentSuccessScreen() {
         }
         activeOpacity={0.8}
       >
-        <PTText style={styles.secondaryButtonText}>Go to Home</PTText>
+        <PTText style={styles.secondaryButtonText}>
+          {t("payment.goHome", "Go to Home")}
+        </PTText>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -215,6 +257,12 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   amountText: { fontSize: 36, fontWeight: "800", color: "#fff" },
+  subtitleText: {
+    marginTop: 8,
+    color: "#DBEAFE",
+    fontSize: 14,
+    textAlign: "center",
+  },
   card: {
     backgroundColor: "#fff",
     borderRadius: 12,
@@ -242,6 +290,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 14,
     alignItems: "center",
+    marginBottom: 12,
   },
   secondaryButtonText: { color: "#1E3A8A", fontSize: 16, fontWeight: "600" },
 });

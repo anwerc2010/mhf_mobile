@@ -20,15 +20,17 @@ import {
 } from "phosphor-react-native";
 import { useRoute } from "@react-navigation/native";
 import { openEmailComposer } from "../utils/emailComposer";
+import { useTranslation } from "react-i18next";
 
 export default function ProviderDetailsScreen() {
+  const { t } = useTranslation();
   const route = useRoute<any>();
   const provider = route.params?.provider;
 
   if (!provider) {
     return (
       <View style={styles.container}>
-        <Text style={styles.errorText}>Provider details not found</Text>
+        <Text style={styles.errorText}>{t("providerDetails.notFound")}</Text>
       </View>
     );
   }
@@ -53,7 +55,10 @@ export default function ProviderDetailsScreen() {
     const phoneNumber = provider.phone?.replace(/\s/g, "");
     if (phoneNumber) {
       Linking.openURL(`tel:${phoneNumber}`).catch(() => {
-        Alert.alert("Error", "Unable to make phone call");
+        Alert.alert(
+          t("providerDetails.error"),
+          t("providerDetails.phoneError"),
+        );
       });
     }
   };
@@ -61,12 +66,12 @@ export default function ProviderDetailsScreen() {
   const handleOpenMap = () => {
     if (provider.map_url) {
       Linking.openURL(provider.map_url).catch(() => {
-        Alert.alert("Error", "Unable to open map");
+        Alert.alert(t("providerDetails.error"), t("providerDetails.mapError"));
       });
     } else if (provider.latitude && provider.longitude) {
       const url = `https://www.google.com/maps?q=${provider.latitude},${provider.longitude}`;
       Linking.openURL(url).catch(() => {
-        Alert.alert("Error", "Unable to open map");
+        Alert.alert(t("providerDetails.error"), t("providerDetails.mapError"));
       });
     }
   };
@@ -74,7 +79,10 @@ export default function ProviderDetailsScreen() {
   const handleEmail = () => {
     if (provider.email) {
       Linking.openURL(`mailto:${provider.email}`).catch(() => {
-        Alert.alert("Error", "Unable to open email");
+        Alert.alert(
+          t("providerDetails.error"),
+          t("providerDetails.emailError"),
+        );
       });
     }
   };
@@ -95,7 +103,7 @@ ${provider.map_url ? `\n🗺️ ${provider.map_url}` : ""}`;
         title: provider.provider_name || "Provider Details",
       });
     } catch (error) {
-      Alert.alert("Error", "Unable to share provider details");
+      Alert.alert(t("providerDetails.error"), t("providerDetails.shareError"));
     }
   };
 
@@ -187,7 +195,7 @@ ${provider.map_url ? `Map: ${provider.map_url}` : ""}`;
             )}
           </View>
 
-          {provider.rating && (
+          {!!provider.rating && (
             <View style={styles.ratingContainer}>
               <View style={styles.starsRow}>
                 {renderStars(provider.rating)}
@@ -199,7 +207,9 @@ ${provider.map_url ? `Map: ${provider.map_url}` : ""}`;
 
         {/* Contact Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Contact Information</Text>
+          <Text style={styles.sectionTitle}>
+            {t("providerDetails.contactInfo")}
+          </Text>
 
           <TouchableOpacity
             style={styles.contactItem}
@@ -209,7 +219,9 @@ ${provider.map_url ? `Map: ${provider.map_url}` : ""}`;
               <Phone size={20} color="#0369A1" weight="fill" />
             </View>
             <View style={styles.contactContent}>
-              <Text style={styles.contactLabel}>Phone</Text>
+              <Text style={styles.contactLabel}>
+                {t("providerDetails.phone")}
+              </Text>
               <Text style={styles.contactValue}>{provider.phone || "N/A"}</Text>
             </View>
           </TouchableOpacity>
@@ -219,7 +231,9 @@ ${provider.map_url ? `Map: ${provider.map_url}` : ""}`;
               <EnvelopeSimple size={20} color="#0369A1" weight="fill" />
             </View>
             <View style={styles.contactContent}>
-              <Text style={styles.contactLabel}>Email</Text>
+              <Text style={styles.contactLabel}>
+                {t("providerDetails.email")}
+              </Text>
               <Text style={styles.contactValue}>{provider.email || "N/A"}</Text>
             </View>
           </TouchableOpacity>
@@ -229,7 +243,9 @@ ${provider.map_url ? `Map: ${provider.map_url}` : ""}`;
               <MapPin size={20} color="#0369A1" weight="fill" />
             </View>
             <View style={styles.contactContent}>
-              <Text style={styles.contactLabel}>Address</Text>
+              <Text style={styles.contactLabel}>
+                {t("providerDetails.address")}
+              </Text>
               <Text style={styles.contactValue}>
                 {provider.address || "N/A"}
               </Text>
@@ -251,7 +267,9 @@ ${provider.map_url ? `Map: ${provider.map_url}` : ""}`;
         {/* Specialities Section */}
         {provider.specialities && provider.specialities.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Specialities</Text>
+            <Text style={styles.sectionTitle}>
+              {t("providerDetails.specialities")}
+            </Text>
             <View style={styles.tagsContainer}>
               {provider.specialities.map((specialty: string, index: number) => (
                 <View key={index} style={styles.tag}>
@@ -265,7 +283,9 @@ ${provider.map_url ? `Map: ${provider.map_url}` : ""}`;
         {/* Benefits Section */}
         {provider.benefits && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Benefits</Text>
+            <Text style={styles.sectionTitle}>
+              {t("providerDetails.benefits")}
+            </Text>
             <View style={styles.benefitsCard}>
               <Text style={styles.benefitsText}>{provider.benefits}</Text>
             </View>
@@ -276,7 +296,9 @@ ${provider.map_url ? `Map: ${provider.map_url}` : ""}`;
         {(provider.map_url || (provider.latitude && provider.longitude)) && (
           <TouchableOpacity style={styles.mapButton} onPress={handleOpenMap}>
             <MapPin size={20} color="#fff" weight="fill" />
-            <Text style={styles.mapButtonText}>View on Map</Text>
+            <Text style={styles.mapButtonText}>
+              {t("providerDetails.viewOnMap")}
+            </Text>
           </TouchableOpacity>
         )}
 
@@ -284,7 +306,9 @@ ${provider.map_url ? `Map: ${provider.map_url}` : ""}`;
         {provider.phone && (
           <TouchableOpacity style={styles.callButton} onPress={handlePhoneCall}>
             <Phone size={20} color="#fff" weight="fill" />
-            <Text style={styles.callButtonText}>Call Now</Text>
+            <Text style={styles.callButtonText}>
+              {t("providerDetails.callNow")}
+            </Text>
           </TouchableOpacity>
         )}
       </ScrollView>

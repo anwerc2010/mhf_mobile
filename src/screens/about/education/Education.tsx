@@ -6,15 +6,11 @@ import {
   View,
   ActivityIndicator,
   Modal,
-  Alert,
 } from "react-native";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { PTCard } from "../../../components/comman";
-import {
-  useGetTrainingProgramsQuery,
-  TrainingProgramsResponse,
-  TrainingProgram,
-} from "@psi/shared-api";
+import AmountEntryModal from "../../../components/general/AmountEntryModal";
+import { useGetTrainingProgramsQuery, TrainingProgram } from "@psi/shared-api";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -31,6 +27,8 @@ export default function EducationScreen() {
   } = useGetTrainingProgramsQuery();
   const [reviewModalVisible, setReviewModalVisible] = useState(false);
   const [selectedReview, setSelectedReview] = useState<any>(null);
+  const [selectedProgramForSponsor, setSelectedProgramForSponsor] =
+    useState<TrainingProgram | null>(null);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -138,6 +136,27 @@ export default function EducationScreen() {
       default:
         return { label: "Pending", bg: "#fef9c3", text: "#854d0e" };
     }
+  };
+
+  const handleSponsorPress = (program: TrainingProgram) => {
+    setSelectedProgramForSponsor(program);
+  };
+
+  const handleSponsorAmountSubmit = (amount: number) => {
+    if (!selectedProgramForSponsor) {
+      return;
+    }
+
+    setSelectedProgramForSponsor(null);
+    navigation.navigate("Payment", {
+      campaignPayment: {
+        module: "education",
+        moduleId: (selectedProgramForSponsor as any)?.id,
+        moduleTitle: selectedProgramForSponsor.program_name,
+        actionLabel: "sponsorship",
+        amount,
+      },
+    });
   };
 
   return (
@@ -291,12 +310,7 @@ export default function EducationScreen() {
                   )}
                   <TouchableOpacity
                     style={styles.secondaryBtnSmall}
-                    onPress={() =>
-                      Alert.alert(
-                        "Coming Soon",
-                        "Sponsor feature will be available soon.",
-                      )
-                    }
+                    onPress={() => handleSponsorPress(p)}
                   >
                     <Text style={styles.secondaryBtnText}>
                       {t("education.programs.sponsor", "Sponsor")}
@@ -400,6 +414,15 @@ export default function EducationScreen() {
           </View>
         </View>
       </Modal>
+
+      <AmountEntryModal
+        visible={!!selectedProgramForSponsor}
+        title="Sponsor This Program"
+        subtitle={selectedProgramForSponsor?.program_name}
+        actionLabel="Continue"
+        onClose={() => setSelectedProgramForSponsor(null)}
+        onSubmit={handleSponsorAmountSubmit}
+      />
     </View>
   );
 }

@@ -1,0 +1,891 @@
+{
+  "common": {
+    "email": "ای میل",
+    "password": "پاس ورڈ",
+    "name": "نام",
+    "confirmPassword": "پاس ورڈ کی تصدیق کریں",
+    "signIn": "سائن ان کریں",
+    "signUp": "سائن اپ کریں",
+    "signOut": "سائن آؤٹ کریں",
+    "cancel": "منسوخ کریں",
+    "save": "سیو کریں",
+    "delete": "حذف کریں",
+    "edit": "ترمیم کریں",
+    "loading": "لوڈ ہو رہا ہے...",
+    "error": "خرابی",
+    "success": "کامیابی",
+    "step": "مرحلہ"
+  },
+  "filePicker": {
+    "chooseUploadType": "اپ لوڈ کی قسم منتخب کریں",
+    "imageFromGallery": "گیلری سے تصویر",
+    "file": "فائل",
+    "uploadFile": "اپ لوڈ کے لیے ٹیپ کریں",
+    "selectFile": "فائل منتخب کریں",
+    "simulatedFile": "ڈیمو کے لیے، ایک نقلی فائل بنائی گئی ہے",
+    "useSimulatedFile": "نقلی فائل استعمال کریں",
+    "noFileSelected": "کوئی فائل منتخب نہیں",
+    "pleaseSelectFile": "براہ کرم کم از کم ایک فائل منتخب کریں",
+    "fileTooLarge": "فائل بہت بڑی ہے",
+    "fileExceedsSize": "کچھ فائلیں {{size}} کی حد سے زیادہ ہیں",
+    "tooManyFiles": "بہت سی فائلیں",
+    "maxFilesAllowed": "{{max}} فائلوں کی اجازت ہے",
+    "maximumFilesReached": "حد تک پہنچ گیا",
+    "filepickerNotAvailable": "دستیاب نہیں",
+    "failedToPickFile": "فائل منتخب کرنے میں ناکام",
+    "failedToOpenPicker": "فائل منتخب کرنے میں ناکام",
+    "filePickerFuture": "مستقبل میں شامل کیا جائے گا"
+  },
+  "login": {
+    "title": "خوش آمدید",
+    "subtitle": "جاری رکھنے کے لیے سائن ان کریں",
+    "emailPlaceholder": "اپنی ای میل درج کریں",
+    "passwordPlaceholder": "اپنا پاس ورڈ درج کریں",
+    "noAccount": "اگر اکاؤنٹ نہیں ہے تو؟",
+    "loginFailed": "لاگ ان ناکام",
+    "invalidCredentials": "غلط ای میل یا پاس ورڈ",
+    "errorOccurred": "ایک خرابی واقع ہوئی",
+    "fillAllFields": "براہ کرم تمام فیلڈ بھریں"
+  },
+  "register": {
+    "title": "اکاؤنٹ بنائیں",
+    "subtitle": "شروع کرنے کے لیے سائن اپ کریں",
+    "namePlaceholder": "اپنا مکمل نام درج کریں",
+    "emailPlaceholder": "اپنی ای میل درج کریں",
+    "passwordPlaceholder": "اپنا پاس ورڈ درج کریں",
+    "confirmPasswordPlaceholder": "اپنا پاس ورڈ دوبارہ درج کریں",
+    "hasAccount": "پہلے سے اکاؤنٹ ہے؟",
+    "registrationFailed": "رجسٹریشن ناکام",
+    "passwordsNotMatch": "پاس ورڈ مماثل نہیں ہیں",
+    "passwordMinLength": "پاس ورڈ کم از کم 6 حروف ہونے چاہییں",
+    "fillAllFields": "براہ کرم تمام فیلڈ بھریں",
+    "toast": {
+      "success": "کسٹمر کامیابی سے رجسٹر ہو گیا",
+      "error": "رجسٹریشن ناکام"
+    },
+    "validation": {
+      "fullnameRequired": "مکمل نام درکار ہے",
+      "ageRequired": "عمر درکار ہے",
+      "agePositive": "عمر مثبت ہونی چاہیے",
+      "genderRequired": "صنف درکار ہے",
+      "phoneRequired": "فون درکار ہے",
+      "addressRequired": "پتہ درکار ہے",
+      "emailRequired": "ای میل درکار ہے",
+      "emailInvalid": "درست ای میل درج کریں",
+      "passwordRequired": "پاس ورڈ درکار ہے",
+      "passwordMin": "پاس ورڈ کم از کم 8 حروف ہونے چاہیں",
+      "equipmentTypeRequired": "سامان کی قسم درکار ہے",
+      "medicalReasonRequired": "طبی وجہ درکار ہے",
+      "durationRequired": "مدت درکار ہے",
+      "referenceNameRequired": "حوالہ نام درکار ہے",
+      "referenceContactRequired": "حوالہ رابطہ درکار ہے"
+    }
+  },
+  "language": {
+    "changeLanguage": "زبان بدلیں",
+    "english": "انگریزی",
+    "arabic": "عربی",
+    "selectLanguage": "زبان منتخب کریں",
+    "urdu": "اردو",
+    "telugu": "تیلگو"
+  },
+  "theme": {
+    "light": "روشن",
+    "dark": "تاریک",
+    "system": "سسٹم",
+    "selectTheme": "تھیم منتخب کریں",
+    "changeTheme": "تھیم بدلیں"
+  },
+  "home": {
+    "title": "ہوم اسکرین",
+    "featuredPartners": "نمایاں شراکت دار",
+    "viewAll": "سب دیکھیں",
+    "welcomeBack": "خوش آمدید،",
+    "education": "تعلیم",
+    "relief": "امداد",
+    "volunteers": "رضاکار",
+    "events": "ایونٹس",
+    "familyHealthCards": "خاندانی صحت کے کارڈز",
+    "requestNewCard": "+ نیا کارڈ درخواست دیں",
+    "errorLoadingData": "ڈیٹا لوڈ میں خرابی",
+    "guest": "مہمان",
+    "noCardsFound": "کوئی کارڈ نہیں ملا",
+    "cardRequests": "کارڈ درخواستیں",
+    "cardRequestDetails": "کارڈ درخواست کی تفصیلات",
+    "requestId": "درخواست ID:",
+    "status": "حالت:",
+    "requested": "درخواست کی گئی:",
+    "updated": "اپ ڈیٹ:",
+    "reviewNotes": "جائزہ نوٹس:",
+    "noReviewNotes": "کوئی نوٹ نہیں",
+    "close": "بند کریں",
+    "applyForCard": "کارڈ کے لیے درخواست دیں",
+    "notAvailable": "دستیاب نہیں",
+    "primaryMember": "بنیادی ممبر"
+  },
+  "card": {
+    "healthCard": "صحت کا کارڈ",
+    "cardHolderName": "کارڈ ہولڈر کا نام",
+    "membershipId": "رکنیت ID",
+    "bloodGroup": "خون کا گروپ",
+    "aadharNumber": "آدھار نمبر",
+    "dateOfIssue": "جاری کرنے کی تاریخ",
+    "dateOfExpiry": "ختم ہونے کی تاریخ",
+    "title": "خاندانی صحت کے کارڈز",
+    "downloadCard": "ڈاؤن لوڈ کریں",
+    "emailCard": "ای میل کریں",
+    "loading": "کارڈز لوڈ ہو رہے ہیں...",
+    "loadError": "کارڈز لوڈ میں ناکام",
+    "swipeHint": "تمام 4 خاندانی ممبر کارڈز دیکھنے کے لیے سوائپ کریں",
+    "cardBenefits": "کارڈ کے فوائد",
+    "benefits": {
+      "freeConsultations": "100+ شراکت دار کلینکوں میں مفت مشاورتیں",
+      "discount": "ادویات پر 50% تک رعایت",
+      "checkup": "سالانہ مفت صحت کی جانچ",
+      "helpline": "24/7 ایمرجنسی مدد"
+    },
+    "howToUse": {
+      "title": "کیسے استعمال کریں",
+      "step1": "کسی بھی شراکت دار صحت کی سہولت میں جائیں",
+      "step2": "اپنا ڈیجیٹل کارڈ یا ID دکھائیں",
+      "step3": "اپنے کارڈ کے فوائل کے مطابق خدمات حاصل کریں"
+    }
+  },
+  "profile": {
+    "title": "میرا پروفائل",
+    "memberSince": "ممبر بن گئے",
+    "activeMember": "ممبر",
+    "memberId": "رکن ID",
+    "bloodGroup": "خون کا گروپ",
+    "dateOfBirth": "پیدائش کی تاریخ",
+    "contact": "رابطہ",
+    "email": "ای میل",
+    "medicalInfo": "طبی معلومات",
+    "allergies": "الرجی",
+    "chronicConditions": "دائمی حالات",
+    "emergencyContact": "ایمرجنسی رابطہ",
+    "editProfile": "پروفائل میں ترمیم کریں",
+    "logout": "لاگ آؤٹ",
+    "logoutConfirm": "کیا آپ لاگ آؤٹ کرنا چاہتے ہیں؟",
+    "about": "Mujtaba معاونت بنیاد کے بارے میں",
+    "aboutMHF": "MHF کے بارے میں",
+    "ourVision": "ہماری نظر",
+    "ourMission": "ہمارا مشن",
+    "ourBoard": "ہمارا بورڈ",
+    "ourTeam": "ہماری ٹیم",
+    "ourVolunteers": "ہمارے رضاکار",
+    "contactInfo": "رابطہ کی معلومات",
+    "user": "صارف",
+    "updateFailed": "اپ ڈیٹ ناکام",
+    "somethingWentWrong": "کچھ غلط ہو گیا",
+    "updatedSuccessfully": "پروفائل کامیابی سے اپ ڈیٹ ہو گیا"
+  },
+  "settings": {
+    "title": "سیٹنگز اسکرین"
+  },
+  "notifications": {
+    "title": "اطلاعات",
+    "unread": "غیر پڑھی گئی اطلاع",
+    "unreadPlural": "غیر پڑھی گئی اطلاعات",
+    "allCaughtUp": "سب کچھ اپ ڈیٹ ہے!",
+    "noNotifications": "کوئی اطلاع نہیں",
+    "noNotificationsText": "آپ اپ ڈیٹ ہیں!",
+    "samples": {
+      "cardApproved": {
+        "title": "کارڈ منظور",
+        "message": "آپ کی کارڈ درخواست منظور ہو گئی"
+      },
+      "newEvent": {
+        "title": "نیا ایونٹ",
+        "message": "صحت کیمپ اگلے ہفتے"
+      },
+      "profileIncomplete": {
+        "title": "نامکمل پروفائل",
+        "message": "براہ کرم اپنا پروفائل مکمل کریں"
+      },
+      "reliefUpdate": {
+        "title": "امداد اپ ڈیٹ",
+        "message": "آپ کی درخواست جائزے میں ہے"
+      },
+      "trainingRegistered": {
+        "title": "تربیت رجسٹرڈ",
+        "message": "آپ کامیابی سے رجسٹر ہو گئے"
+      }
+    },
+    "timeAgo": {
+      "hoursAgo": "گھنٹے پہلے",
+      "dayAgo": "دن پہلے",
+      "daysAgo": "دن پہلے"
+    }
+  },
+  "network": {
+    "noConnection": "انٹرنیٹ کنکشن نہیں",
+    "connected": "منسلک",
+    "disconnected": "منقطع",
+    "wifi": "WiFi",
+    "cellular": "سیلولر",
+    "ethernet": "ای تھرنیٹ",
+    "unknown": "نامعلوم"
+  },
+  "events": {
+    "title": "ایونٹس اور کیمپس",
+    "subtitle": "ہمارے کمیونٹی صحت کے پروگرام میں شامل ہوں",
+    "registerHeader": "ایونٹس کے لیے رجسٹر کریں",
+    "upcoming": "آنے والے ایونٹس",
+    "registerNow": "ابھی رجسٹر کریں",
+    "impactTitle": "ہمارا اثر",
+    "impact": {
+      "events": "ایونٹس",
+      "people": "لوگ",
+      "volunteers": "رضاکار"
+    },
+    "register": {
+      "title": "ایونٹ رجسٹریشن",
+      "subtitle": "براہ کرم تمام تفصیلات بھریں",
+      "personalInfo": "ذاتی معلومات",
+      "fullName": "مکمل نام",
+      "fullNamePlaceholder": "اپنا مکمل نام درج کریں",
+      "phoneNumber": "فون نمبر",
+      "phoneNumberPlaceholder": "+91-XXXXXXXXXX",
+      "phoneInvalid": "درست 10 ہندسے درج کریں",
+      "emailAddress": "ای میل ایڈریس",
+      "emailPlaceholder": "آپ کی ای میل",
+      "emailInvalid": "غلط ای میل",
+      "dateOfBirth": "پیدائش کی تاریخ",
+      "age": "عمر",
+      "gender": "صنف",
+      "genderMale": "مرد",
+      "genderFemale": "عورت",
+      "genderOther": "دوسرا",
+      "address": "پتہ",
+      "addressPlaceholder": "اپنا مکمل پتہ درج کریں",
+      "participationType": "شرکت کی قسم",
+      "participant": "شرکت کنندہ",
+      "volunteer": "رضاکار",
+      "declaration": "اعلان",
+      "declarationText": "میں اعلان کرتا ہوں کہ معلومات درست ہے",
+      "iAgree": "میں اتفاق کرتا ہوں",
+      "saveDetails": "تفصیلات محفوظ کریں",
+      "submitting": "جمع کر رہے ہیں...",
+      "successTitle": "کامیابی",
+      "successMessage": "رجسٹریشن کامیاب ہو گئی",
+      "errorTitle": "خرابی",
+      "errorMessage": "رجسٹریشن ناکام"
+    },
+    "items": {
+      "medical": {
+        "title": "طبی کیمپ",
+        "date": "26 نومبر",
+        "time": "10:00 AM - 6:00 PM",
+        "location": "کمیونٹی سینٹر",
+        "desc": "صحت کی جانچ",
+        "tag1": "جانچ",
+        "tag2": "ٹیسٹ",
+        "tag3": "مشاورت",
+        "tag4": "بلڈ شوگر",
+        "stats": "50 رجسٹریشن"
+      },
+      "blood": {
+        "title": "خون کی عطیہ",
+        "date": "28 نومبر",
+        "time": "10:00 AM - 4:00 PM",
+        "location": "گارڈن",
+        "desc": "خون کی عطیہ مہم",
+        "tag1": "رضاکار",
+        "tag2": "ڈاکٹر",
+        "tag3": "سرٹیفکیٹ",
+        "tag4": "تازگی",
+        "stats": "100+ عطیہ دہندگان"
+      },
+      "awareness": {
+        "title": "شعور سیشن",
+        "date": "30 نومبر",
+        "time": "2:00 PM - 5:00 PM",
+        "location": "آن لائن",
+        "desc": "صحت کی شعور سیشن",
+        "tag1": "مفت",
+        "tag2": "لائیو",
+        "tag3": "مواد",
+        "stats": "200+ رجسٹریشن"
+      }
+    }
+  },
+  "relief": {
+    "apply": "امداد کے لیے درخواست دیں",
+    "donate": "ابھی عطیہ دیں",
+    "activePrograms": "فعال امداد پروگرام",
+    "howToApply": "درخواست کیسے کریں",
+    "impactTitle": "امداد کا اثر",
+    "requestNewCard": "+ نیا کارڈ درخواست دیں",
+    "steps": {
+      "formTitle": "فارم بھریں",
+      "formDesc": "اپنی درخواست جمع کریں",
+      "verifyTitle": "تصدیق",
+      "verifyDesc": "ہماری ٹیم سے تصدیق کریں",
+      "distributeTitle": "تقسیم",
+      "distributeDesc": "منظور شدہ افراد کو مطلع کیا جائے گا"
+    },
+    "impact": {
+      "families": "خاندان",
+      "drives": "مہمات",
+      "aid": "امداد"
+    },
+    "programs": {
+      "food": {
+        "title": "Food Distribution Drive",
+        "locations": "Multiple locations",
+        "desc": "Daily food distribution for families in need. Each kit usually includes rice, pulses, oil, and essential grocery items for a week.",
+        "tag1": "Daily",
+        "tag2": "Multiple Locations",
+        "tag3": "Family Kits",
+        "stats": "500+ families supported"
+      },
+      "flood": {
+        "title": "Flood Relief Support",
+        "locations": "Disaster-affected areas",
+        "desc": "Immediate relief to flood-affected families including clean water, dry ration, temporary shelter, and medical services.",
+        "tag1": "Flood Relief",
+        "tag2": "Shelter",
+        "tag3": "Medical",
+        "stats": "200+ families served"
+      },
+      "winter": {
+        "title": "Winter Relief Campaign",
+        "locations": "Urban & rural areas",
+        "desc": "Distribution of blankets, sweaters, and essential items to those in need, especially elderly residents during harsh winters.",
+        "tag1": "Blankets",
+        "tag2": "Sweaters",
+        "tag3": "Elderly",
+        "stats": "300+ people covered"
+      },
+      "medical": {
+        "title": "Emergency Medical Relief",
+        "locations": "All relief zones",
+        "desc": "Emergency medical assistance including medicines, first aid, and medical transportation support for critical cases.",
+        "tag1": "Medical",
+        "tag2": "Emergency",
+        "tag3": "Ambulance",
+        "stats": "150+ cases"
+      }
+    },
+    "registrationStatus": "رجسٹریشن کی حالت",
+    "requestDetails": "درخواست کی تفصیلات",
+    "registrationId": "رجسٹریشن ID:",
+    "noReviewNote": "کوئی نوٹ نہیں"
+  },
+  "services": {
+    "title": "خدمات اور فراہم کنندگان",
+    "subtitle": "قریب کے فراہم کنندگان تلاش کریں",
+    "searchPlaceholder": "تلاش کریں...",
+    "resultsFound": "فراہم کنندگان ملے",
+    "loading": "لوڈ ہو رہا ہے...",
+    "loadError": "لوڈ میں ناکام",
+    "tab": {
+      "providers": "فراہم کنندگان",
+      "blood": "خون",
+      "equipment": "سامان",
+      "ambulance": "ایمبولنس",
+      "benefits": "فوائد"
+    },
+    "categories": {
+      "all": "سب",
+      "hospital": "اسپتال",
+      "diagnostics": "تشخیصات",
+      "pharmacy": "فارمیسی",
+      "clinics": "کلینکس",
+      "rehab": "بحالی",
+      "labs": "ل",
+      "surgical": "سرجیکل"
+    },
+    "provider": {
+      "unknown": "نامعلوم",
+      "noAddress": "پتہ نہیں",
+      "noPhone": "دستیاب نہیں"
+    },
+    "blood": {
+      "emergency": "ایمرجنسی خون!",
+      "cta": "خون درخواست کریں",
+      "requestNow": "ابھی درخواست کریں",
+      "loading": "لوڈ ہو رہا ہے...",
+      "loadError": "لوڈ ناکام",
+      "noRequests": "کوئی درخواست نہیں",
+      "yourRequests": "آپ کی درخواستیں",
+      "myRequests": "میری درخواستیں",
+      "patient": "مریض",
+      "bloodGroup": "خون کا گروپ:",
+      "units": "یونٹس:",
+      "required": "درکار:",
+      "urgency": "تندہی:",
+      "hospital": "اسپتال:",
+      "contact": "رابطہ:"
+    },
+    "benefits": {
+      "free": {
+        "title": "Free Consultations",
+        "subtitle": "Access to general physicians and specialists"
+      },
+      "medicine": {
+        "title": "Medicine Assistance",
+        "subtitle": "Subsidized medicines for chronic conditions"
+      },
+      "emergency": {
+        "title": "Emergency Transport",
+        "subtitle": "24/7 emergency ambulance services"
+      },
+      "checkups": {
+        "title": "Health Checkups",
+        "subtitle": "Regular health monitoring and diagnostics"
+      },
+      "records": {
+        "title": "Medical Records",
+        "subtitle": "Digital health records management"
+      },
+      "find": {
+        "title": "Find Clinics",
+        "subtitle": "Locate nearby partner healthcare centers"
+      }
+    },
+    "help": {
+      "title": "مدد چاہیے؟",
+      "desc": "ہماری ٹیم 24/7 دستیاب ہے",
+      "contact": "رابطہ کریں"
+    },
+    "noContactFor": "رابطہ نہیں {{serviceName}}"
+  },
+  "providerDetails": {
+    "error": "خرابی",
+    "phoneError": "فون کال نہیں",
+    "mapError": "نقشہ نہیں",
+    "emailError": "ای میل نہیں",
+    "shareError": "شیئر نہیں",
+    "notFound": "نہیں ملا",
+    "contactInfo": "رابطہ",
+    "phone": "فون",
+    "email": "ای میل",
+    "address": "پتہ",
+    "specialities": "تخصصات",
+    "benefits": "فوائد",
+    "viewOnMap": "نقشے پر دیکھیں",
+    "callNow": "ابھی کال کریں"
+  },
+  "equipment": {
+    "subtitle": "آپ کی درخواستوں کی تاریخ",
+    "loading": "لوڈ ہو رہا ہے...",
+    "error": "لوڈ میں ناکام",
+    "submit": {
+      "success": "کامیابی",
+      "successMessage": "درخواست کامیاب ہو گئی",
+      "error": "خرابی",
+      "errorMessage": "درخواست ناکام",
+      "submitting": "جمع کر رہے ہیں...",
+      "submitButton": "جمع کریں"
+    },
+    "need": "سامان چاہیے؟",
+    "needSubtitle": "درخواست کریں",
+    "request": "درخواست کریں",
+    "myRequests": "میری درخواستیں",
+    "viewAll": "سب دیکھیں",
+    "items": "اشیاء",
+    "details": {
+      "fullName": "مکمل نام:",
+      "duration": "مدت:",
+      "medicalReason": "طبی وجہ:",
+      "requestDetails": "تفصیلات",
+      "requestId": "ID:",
+      "status": "حالت:",
+      "equipment": "سامان:"
+    }
+  },
+  "ambulance": {
+    "loading": "لوڈ ہو رہا ہے...",
+    "error": "لوڈ میں ناکام",
+    "title": "ایمبولنس خدمات",
+    "subtitle": "24/7 ایمرجنسی",
+    "view": "دیکھیں",
+    "details": {
+      "vehicleType": "قسم:",
+      "serviceArea": "علاقہ:",
+      "responseTime": "وقت:"
+    },
+    "call": "کال کریں {{contact}}"
+  },
+  "blood": {
+    "requestDetails": "درخواست کی تفصیلات",
+    "hospitalDetails": "اسپتال کی تفصیلات",
+    "subtitle": "تفصیلات بھریں",
+    "submit": {
+      "successMessage": "کامیاب ہو گئی",
+      "errorMessage": "ناکام ہو گئی"
+    }
+  },
+  "payment": {
+    "failed": "ادائیگی ناکام",
+    "customerMissing": "کسٹمر نہیں ملا",
+    "contributionType": "قسم",
+    "amountPayable": "رقم",
+    "continueUpi": "UPI جاری رکھیں",
+    "payNow": "ابھی ادا کریں",
+    "receiptGenerateError": "رسید بنانے میں ناکام",
+    "receiptTitle": "رسید",
+    "campaignReceipt": "مہم رسید",
+    "healthCardReceipt": "کارڈ رسید",
+    "receiptShareError": "شیئر میں ناکام",
+    "successTitle": "کامیاب!",
+    "downloadReceipt": "ڈاؤن لوڈ کریں",
+    "viewHealthCard": "کارڈ دیکھیں",
+    "goHome": "گھر جائیں"
+  },
+  "volunteers": {
+    "submitSuccess": "کامیابی سے جمع ہو گیا",
+    "submitError": "ناکام ہو گیا"
+  },
+  "newCard": {
+    "patientDetails": "مریض کی تفصیلات"
+  },
+  "forms": {
+    "common": {
+      "saveDetails": "تفصیلات محفوظ کریں",
+      "ok": "ٹھیک ہے",
+      "submitting": "جمع کیا جا رہا ہے...",
+      "iAgree": "میں متفق ہوں",
+      "sections": {
+        "locationDetails": "مقام کی تفصیلات",
+        "declaration": "اعلان"
+      },
+      "fields": {
+        "state": "ریاست",
+        "district": "ضلع",
+        "block": "بلاک",
+        "mandal": "منڈل"
+      },
+      "loading": {
+        "states": "ریاستیں لوڈ ہو رہی ہیں...",
+        "districts": "اضلاع لوڈ ہو رہے ہیں...",
+        "blocks": "بلاک لوڈ ہو رہے ہیں...",
+        "mandals": "منڈل لوڈ ہو رہے ہیں..."
+      },
+      "select": {
+        "state": "ریاست منتخب کریں",
+        "stateFirst": "پہلے ریاست منتخب کریں",
+        "district": "ضلع منتخب کریں",
+        "districtFirst": "پہلے ضلع منتخب کریں",
+        "block": "بلاک منتخب کریں",
+        "blockFirst": "پہلے بلاک منتخب کریں",
+        "mandal": "منڈل منتخب کریں"
+      },
+      "options": {
+        "male": "مرد",
+        "female": "عورت",
+        "other": "دیگر",
+        "single": "غیر شادی شدہ",
+        "married": "شادی شدہ",
+        "yes": "ہاں",
+        "no": "نہیں",
+        "aadhar": "آدھار",
+        "voterId": "ووٹر آئی ڈی",
+        "panCard": "پین کارڈ"
+      },
+      "validation": {
+        "phone10": "درست 10 ہندسوں کا نمبر درج کریں",
+        "invalidEmail": "غلط ای میل",
+        "invalidEmailAddress": "غلط ای میل ایڈریس",
+        "pincode6": "درست 6 ہندسوں کا پن کوڈ درج کریں"
+      }
+    },
+    "training": {
+      "heading": "Registration Form",
+      "sections": {
+        "personalDetails": "Personal Details",
+        "educationalBackground": "Educational Background",
+        "courseSelection": "Course Selection"
+      },
+      "fields": {
+        "fullName": "Full Name",
+        "dateOfBirth": "Date of Birth",
+        "age": "Age",
+        "gender": "Gender",
+        "contactNumber": "Contact Number (Phone / WhatsApp)",
+        "parentGuardianContact": "Parent's / Guardian's Contact Number",
+        "maritalStatus": "Marital Status",
+        "emailAvailable": "Email ID (Available)",
+        "addressWithPincode": "Address (With Pin Code)",
+        "pincode": "Pin code",
+        "guardianName": "Guardian's Name (If any)",
+        "idProofType": "ID Proof (Aadhar / Other)",
+        "identificationNumber": "Identification Number",
+        "highestQualification": "Highest Qualification",
+        "mediumOfInstruction": "Medium of Instruction",
+        "schoolCollegeName": "School / College Name",
+        "schoolCollegeLocation": "Location",
+        "educationGapReason": "Gaps in Education / Dropout Reason",
+        "preferredCourses": "Please tick your preferred training"
+      },
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "addressWithPincode": "Enter your complete address with pin code",
+        "pincode": "Enter your Pin code",
+        "idProofType": "Aadhar number or other ID proof number",
+        "educationGapReason": "If any gaps or dropout, please mention the reason"
+      },
+      "options": {
+        "graduation": "Graduation",
+        "hindi": "Hindi",
+        "english": "English"
+      },
+      "course": {
+        "computer": "Computer",
+        "tailoring": "Tailoring",
+        "spokenEnglish": "Spoken English",
+        "handmadeDesigning": "Handmade Designing",
+        "other": "Others (please specify)"
+      },
+      "alerts": {
+        "submitSuccess": "Registration submitted successfully!",
+        "submitFailed": "Failed to submit registration. Please try again."
+      }
+    },
+    "relief": {
+      "heading": "Apply for Support",
+      "sections": {
+        "personalInformation": "Personal Information",
+        "familyAndLivingSituation": "Family and Living Situation",
+        "reasonForRequest": "Reason for Request",
+        "assistanceRequired": "What Do You Need From Us?"
+      },
+      "fields": {
+        "fullName": "Full Name",
+        "fatherOrHusbandName": "Father's / Husband's Name",
+        "dateOfBirth": "Date of Birth",
+        "age": "Age",
+        "gender": "Gender",
+        "mobileNumber": "Mobile Number",
+        "alternateNumber": "Alternate Number",
+        "emailAvailable": "Email ID (Available)",
+        "currentAddress": "Current Address (With Pin Code)",
+        "pincode": "Pin code",
+        "idProofType": "ID Proof Type",
+        "idProofNumber": "ID Proof Number",
+        "totalFamilyMembers": "Total Family Members",
+        "earningMembers": "Earning Members",
+        "childrenBelow5": "Children (Below 5)",
+        "childrenSchoolGoing": "Children (School-going)",
+        "elderlyDisabledMembers": "Elderly / Disabled Members",
+        "elderlyDisabledDetails": "Elderly / Disabled Details",
+        "houseType": "Type of House",
+        "reasonForRequest": "Reason for Request (Optional but helpful)",
+        "assistanceTypes": "Please tick the items you are requesting",
+        "declaration": "I declare that the information provided above is true and accurate to the best of my knowledge."
+      },
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "fatherOrHusbandName": "Enter father's or husband's name",
+        "currentAddress": "Enter your complete address with pin code",
+        "pincode": "Enter your Pin code",
+        "idProofNumber": "Enter ID proof number",
+        "reasonForRequest": "Describe your situation and why you need assistance"
+      },
+      "options": {
+        "foodKit": "Food Kit",
+        "water": "Water",
+        "clothes": "Clothes",
+        "shelter": "Shelter / Temporary Housing",
+        "medicalHelp": "Medicine / Medical Help",
+        "other": "Others (please specify)",
+        "owned": "Owned",
+        "temporary": "Temporary",
+        "rented": "Rented",
+        "damaged": "Damaged"
+      },
+      "alerts": {
+        "submitSuccess": "Your relief request has been submitted successfully!",
+        "submitFailed": "Failed to submit relief request. Please try again."
+      }
+    },
+    "applyCard": {
+      "heading": "Please fill in all the details to apply for a health card",
+      "sections": {
+        "cardHolderDetails": "Card Holder Details",
+        "cardDetails": "Card Details",
+        "familyMembers": "Family Members"
+      },
+      "fields": {
+        "cardHolderName": "Card Holder Name",
+        "aadhaarNumber": "Aadhaar Number",
+        "bloodGroup": "Blood Group",
+        "phone": "Phone",
+        "email": "Email",
+        "address": "Address",
+        "gender": "Gender",
+        "ageCategory": "Age Category",
+        "familyHeadImage": "Family Head Image",
+        "cardType": "Card Type",
+        "dateOfIssue": "Date of Issue",
+        "dateOfExpiry": "Date of Expiry",
+        "fullName": "Full Name",
+        "relationship": "Relationship",
+        "dateOfBirth": "Date of Birth"
+      },
+      "placeholders": {
+        "fullName": "Enter full name",
+        "phone": "Enter 10 digit number",
+        "email": "Enter email address",
+        "address": "Enter address"
+      },
+      "options": {
+        "child": "Child",
+        "adult": "Adult",
+        "individual": "Individual",
+        "family": "Family",
+        "spouse": "Spouse",
+        "son": "Son",
+        "daughter": "Daughter",
+        "father": "Father",
+        "mother": "Mother",
+        "brother": "Brother",
+        "sister": "Sister"
+      },
+      "validation": {
+        "aadhaarFormat": "Enter valid Aadhaar number (XXXX XXXX XXXX)",
+        "aadhaarMaxLength": "Aadhaar number cannot exceed 14 characters"
+      },
+      "viewCard": "View Card",
+      "alerts": {
+        "createdSuccess": "Your health card has been created successfully!",
+        "failed": "Failed to submit application"
+      }
+    },
+    "newCard": {
+      "heading": "Please fill in all the details to apply for a health card",
+      "sections": {
+        "treatmentDetails": "Treatment Details",
+        "medicalDocuments": "Medical Documents",
+        "referenceDetails": "Reference Details (Optional)"
+      },
+      "fields": {
+        "fullName": "Full Name",
+        "emailAddress": "Email Address",
+        "contactNumber": "Contact Number",
+        "healthIssue": "Health Issue / Medical Condition",
+        "hospitalName": "Hospital Name Where Treatment Taken",
+        "hospitalAddress": "Hospital Address",
+        "hospitalType": "Hospital Type",
+        "treatmentDuration": "How Many Years About Your Treatment",
+        "medicalReports": "Upload Prescription / Medical Reports",
+        "referenceName": "Reference Name & Details",
+        "referenceContact": "Reference Contact Number"
+      },
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "emailAddress": "Enter your email address",
+        "healthIssue": "Describe your health condition or medical issue",
+        "hospitalName": "Enter hospital name",
+        "hospitalAddress": "Enter complete hospital address with city and pincode",
+        "treatmentDuration": "e.g., 2 years, 6 months",
+        "referenceName": "Name of person referring you"
+      },
+      "options": {
+        "governmentHospital": "Government Hospital",
+        "privateHospital": "Private Hospital",
+        "clinic": "Clinic"
+      },
+      "alerts": {
+        "submitSuccess": "Card request submitted successfully",
+        "submitFailed": "Failed to submit card request. Please try again."
+      }
+    },
+    "volunteers": {
+      "heading": "Join Mujtaba Helping Foundation as a Volunteer",
+      "sections": {
+        "personalDetails": "Personal Details",
+        "professionalDetails": "Professional Details",
+        "volunteeringPreferences": "Volunteering Preferences",
+        "experienceAndMotivation": "Experience & Motivation"
+      },
+      "fields": {
+        "fullName": "Full Name",
+        "dateOfBirth": "Date of Birth",
+        "gender": "Gender",
+        "phoneNumber": "Phone Number",
+        "alternateContact": "Alternate Contact No.",
+        "emailAddress": "Email Address",
+        "address": "Address",
+        "qualification": "Qualification",
+        "employmentStatus": "Employment Status",
+        "occupation": "Occupation",
+        "volunteerArea": "Which areas would you like to volunteer in?",
+        "availability": "Availability",
+        "previousVolunteering": "Have you volunteered before?",
+        "motivation": "Why do you want to join Mujtaba Helping Foundation as a volunteer?",
+        "declaration": "I hereby declare that the information provided is true and I agree to volunteer responsibly."
+      },
+      "placeholders": {
+        "motivation": "Please share your motivation and what drives you to volunteer with us..."
+      },
+      "options": {
+        "student": "Student",
+        "employee": "Employee",
+        "selfEmployed": "Self Employed",
+        "healthCamps": "Health Camps",
+        "awarenessDrives": "Awareness Drives",
+        "dataEntry": "Data Entry / Office Work",
+        "socialMedia": "Social Media Promotion",
+        "fundraising": "Fundraising",
+        "communityOutreach": "Community Outreach",
+        "weekdays": "Weekdays",
+        "weekends": "Weekends",
+        "flexible": "Flexible"
+      }
+    },
+    "equipment": {
+      "heading": "Fill in the details below to request medical equipment",
+      "submitRequest": "Submit Request",
+      "sections": {
+        "personalInformation": "Personal Information",
+        "addressDetails": "Address Details",
+        "equipmentDetails": "Equipment Details",
+        "referenceDetails": "Reference Details",
+        "consent": "Consent"
+      },
+      "fields": {
+        "fullName": "Full Name",
+        "age": "Age",
+        "gender": "Gender",
+        "mobileNumber": "Mobile Number",
+        "email": "Email",
+        "address": "Address",
+        "pincode": "Pincode",
+        "equipmentType": "Equipment Type",
+        "medicalReason": "Medical Reason",
+        "durationRequired": "Duration Required",
+        "referenceName": "Reference Name",
+        "referenceContact": "Reference Contact",
+        "consentDeclaration": "I hereby declare that the information provided is true and accurate"
+      },
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "age": "Enter your age",
+        "mobileNumber": "Enter mobile number",
+        "email": "Enter email address",
+        "address": "Enter your address",
+        "pincode": "Enter pincode",
+        "medicalReason": "Describe the medical reason for requesting equipment",
+        "durationRequired": "e.g., 2 weeks, 1 month",
+        "referenceName": "Enter reference person name",
+        "referenceContact": "Enter reference contact number"
+      },
+      "options": {
+        "bloodPressureMonitor": "Blood Pressure Monitor",
+        "glucometer": "Glucometer",
+        "oxygenConcentrator": "Oxygen Concentrator",
+        "wheelchair": "Wheelchair",
+        "walkingAid": "Walking Aid",
+        "hospitalBed": "Hospital Bed",
+        "nebulizer": "Nebulizer"
+      },
+      "alerts": {
+        "submitSuccess": "Equipment request submitted successfully! Request ID:",
+        "submitFailed": "Failed to submit equipment request. Please try again."
+      }
+    }
+  }
+}

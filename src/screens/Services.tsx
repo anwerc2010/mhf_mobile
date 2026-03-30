@@ -197,12 +197,15 @@ export default function ServicesScreen() {
     const phoneNumber = (contact ?? "").replace(/\s/g, "");
     if (phoneNumber) {
       Linking.openURL(`tel:${phoneNumber}`).catch(() => {
-        Alert.alert("Error", "Unable to make phone call");
+        Alert.alert(
+          t("providerDetails.error"),
+          t("providerDetails.phoneError"),
+        );
       });
     } else {
       Alert.alert(
-        "No Contact",
-        `No contact number available for ${serviceName}`,
+        t("common.error"),
+        t("services.noContactFor", { serviceName }),
       );
     }
   };
@@ -292,7 +295,7 @@ export default function ServicesScreen() {
                     activeChip === "All" && styles.chipActiveText,
                   ]}
                 >
-                  All
+                  {t("services.categories.all")}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -312,7 +315,7 @@ export default function ServicesScreen() {
                     activeChip === "Hospital" && styles.chipActiveText,
                   ]}
                 >
-                  Hospital
+                  {t("services.categories.hospital")}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -332,7 +335,7 @@ export default function ServicesScreen() {
                     activeChip === "Diagnostics" && styles.chipActiveText,
                   ]}
                 >
-                  Diagnostics
+                  {t("services.categories.diagnostics")}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -354,27 +357,27 @@ export default function ServicesScreen() {
                     activeChip === "Pharmacy" && styles.chipActiveText,
                   ]}
                 >
-                  Pharmacy
+                  {t("services.categories.pharmacy")}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[
                   styles.chip,
-                  activeChip === "Clinics" && styles.chipActive,
+                  activeChip === "clinic" && styles.chipActive,
                 ]}
-                onPress={() => setActiveChip("Clinics")}
+                onPress={() => setActiveChip("clinic")}
               >
                 <Stethoscope
                   size={14}
-                  color={activeChip === "Clinics" ? "#0369A1" : "#0369A1"}
+                  color={activeChip === "clinic" ? "#0369A1" : "#0369A1"}
                 />
                 <Text
                   style={[
                     styles.chipText,
-                    activeChip === "Clinics" && styles.chipActiveText,
+                    activeChip === "clinic" && styles.chipActiveText,
                   ]}
                 >
-                  Clinics
+                  {t("services.categories.clinics")}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -394,7 +397,7 @@ export default function ServicesScreen() {
                     activeChip === "Rehab" && styles.chipActiveText,
                   ]}
                 >
-                  Rehab
+                  {t("services.categories.rehab")}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -416,27 +419,27 @@ export default function ServicesScreen() {
                     activeChip === "Labs" && styles.chipActiveText,
                   ]}
                 >
-                  Labs
+                  {t("services.categories.labs")}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[
                   styles.chip,
-                  activeChip === "Surgical" && styles.chipActive,
+                  activeChip === "surgicals" && styles.chipActive,
                 ]}
-                onPress={() => setActiveChip("Surgical")}
+                onPress={() => setActiveChip("surgicals")}
               >
                 <Wrench
                   size={14}
-                  color={activeChip === "Surgical" ? "#0369A1" : "#0369A1"}
+                  color={activeChip === "surgicals" ? "#0369A1" : "#0369A1"}
                 />
                 <Text
                   style={[
                     styles.chipText,
-                    activeChip === "Surgical" && styles.chipActiveText,
+                    activeChip === "surgicals" && styles.chipActiveText,
                   ]}
                 >
-                  Surgical
+                  {t("services.categories.surgical")}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -464,13 +467,13 @@ export default function ServicesScreen() {
               <View style={{ padding: 20, alignItems: "center" }}>
                 <ActivityIndicator size="large" color="#0369A1" />
                 <Text style={{ marginTop: 8, color: "#6B7280" }}>
-                  Loading providers...
+                  {t("services.loading")}
                 </Text>
               </View>
             ) : error ? (
               <View style={{ padding: 20, alignItems: "center" }}>
                 <Text style={{ color: "#DC2626" }}>
-                  Failed to load providers
+                  {t("services.loadError")}
                 </Text>
               </View>
             ) : (
@@ -503,9 +506,9 @@ export default function ServicesScreen() {
                         }}
                       >
                         <Text style={styles.providerName}>
-                          {p.provider_name || "Unknown Provider"}
+                          {p.provider_name || t("services.provider.unknown")}
                         </Text>
-                        {p.rating && (
+                        {!!p.rating && (
                           <View style={styles.ratingBadge}>
                             <Text style={styles.ratingBadgeText}>
                               {p.rating}
@@ -515,7 +518,7 @@ export default function ServicesScreen() {
                       </View>
 
                       <Text style={styles.providerAddress}>
-                        {p.address || "Address not available"}
+                        {p.address || t("services.provider.noAddress")}
                       </Text>
 
                       <View style={styles.tagsRow}>
@@ -548,7 +551,7 @@ export default function ServicesScreen() {
                       <View style={styles.contactRow}>
                         <PhoneCall size={12} color="#6B7280" />
                         <Text style={styles.contactText}>
-                          {p.phone || "N/A"}
+                          {p.phone || t("services.provider.noPhone")}
                           {p.hours && ` • ${p.hours}`}
                         </Text>
                       </View>
@@ -598,7 +601,7 @@ export default function ServicesScreen() {
                   <View style={{ padding: 20, alignItems: "center" }}>
                     <ActivityIndicator size="large" color="#DC2626" />
                     <Text style={{ marginTop: 8, color: "#6B7280" }}>
-                      Loading blood requests...
+                      {t("services.blood.loading")}
                     </Text>
                   </View>
                 );
@@ -608,7 +611,7 @@ export default function ServicesScreen() {
                 return (
                   <View style={{ padding: 20, alignItems: "center" }}>
                     <Text style={{ color: "#DC2626" }}>
-                      Failed to load blood requests
+                      {t("services.blood.loadError")}
                     </Text>
                   </View>
                 );
@@ -618,7 +621,7 @@ export default function ServicesScreen() {
                 return (
                   <View style={{ padding: 20, alignItems: "center" }}>
                     <Text style={{ color: "#6B7280" }}>
-                      No blood requests found
+                      {t("services.blood.noRequests")}
                     </Text>
                   </View>
                 );
@@ -638,7 +641,8 @@ export default function ServicesScreen() {
                     >
                       <View style={styles.bloodHeaderRow}>
                         <Text style={styles.bloodTitle}>
-                          {req.blood_request.patient_name || "Patient"}
+                          {req.blood_request.patient_name ||
+                            t("services.blood.patient")}
                         </Text>
                         {!!req.blood_request.status && (
                           <View
@@ -654,29 +658,35 @@ export default function ServicesScreen() {
                         )}
                       </View>
                       <Text style={styles.bloodMeta}>
-                        Blood Group: {req.blood_request.required_blood_group}
+                        {t("services.blood.bloodGroup")}{" "}
+                        {req.blood_request.required_blood_group}
                       </Text>
                       <Text style={styles.bloodMeta}>
-                        Units: {req.blood_request.units_required}
+                        {t("services.blood.units")}{" "}
+                        {req.blood_request.units_required}
                       </Text>
                       {!!req.blood_request.required_datetime && (
                         <Text style={styles.bloodMeta}>
-                          Required: {req.blood_request.required_datetime}
+                          {t("services.blood.required")}{" "}
+                          {req.blood_request.required_datetime}
                         </Text>
                       )}
                       {!!req.blood_request.urgency_level && (
                         <Text style={styles.bloodMeta}>
-                          Urgency: {req.blood_request.urgency_level}
+                          {t("services.blood.urgency")}{" "}
+                          {req.blood_request.urgency_level}
                         </Text>
                       )}
                       {!!req.blood_request.hospital_name && (
                         <Text style={styles.bloodMeta}>
-                          Hospital: {req.blood_request.hospital_name}
+                          {t("services.blood.hospital")}{" "}
+                          {req.blood_request.hospital_name}
                         </Text>
                       )}
                       {!!req.blood_request.requester_mobile && (
                         <Text style={styles.bloodMeta}>
-                          Contact: {req.blood_request.requester_mobile}
+                          {t("services.blood.contact")}{" "}
+                          {req.blood_request.requester_mobile}
                         </Text>
                       )}
                     </View>
@@ -820,14 +830,18 @@ export default function ServicesScreen() {
                     <View style={{ marginBottom: 12 }}>
                       <View style={styles.ambDetailRow}>
                         <Truck size={16} color="#64748B" />
-                        <Text style={styles.ambDetailLabel}>Vehicle Type:</Text>
+                        <Text style={styles.ambDetailLabel}>
+                          {t("ambulance.details.vehicleType")}
+                        </Text>
                         <Text style={styles.ambDetailValue}>
                           {item.vehicle_type}
                         </Text>
                       </View>
                       <View style={styles.ambDetailRow}>
                         <MapPin size={16} color="#64748B" />
-                        <Text style={styles.ambDetailLabel}>Service Area:</Text>
+                        <Text style={styles.ambDetailLabel}>
+                          {t("ambulance.details.serviceArea")}
+                        </Text>
                         <Text style={styles.ambDetailValue}>
                           {item.service_area}
                         </Text>
@@ -835,7 +849,7 @@ export default function ServicesScreen() {
                       <View style={styles.ambDetailRow}>
                         <Clock size={16} color="#64748B" />
                         <Text style={styles.ambDetailLabel}>
-                          Response Time:
+                          {t("ambulance.details.responseTime")}
                         </Text>
                         <Text style={styles.ambDetailValue}>
                           {item.response_time}
@@ -851,7 +865,7 @@ export default function ServicesScreen() {
                     >
                       <PhoneCall size={18} color="#fff" weight="fill" />
                       <Text style={styles.ambCallButtonText}>
-                        Call {item.contact}
+                        {t("ambulance.call", { contact: item.contact })}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -891,11 +905,11 @@ export default function ServicesScreen() {
               <Text
                 style={{ fontWeight: "700", color: "#0F172A", marginBottom: 6 }}
               >
-                {t("services.benefits.help.title", "Need Help?")}
+                {t("services.help.title", "Need Help?")}
               </Text>
               <Text style={{ color: "#6B7280", marginBottom: 12 }}>
                 {t(
-                  "services.benefits.help.desc",
+                  "services.help.desc",
                   "Our support team is available 24/7 to assist you",
                 )}
               </Text>
@@ -904,7 +918,7 @@ export default function ServicesScreen() {
                 activeOpacity={0.85}
               >
                 <Text style={styles.supportButtonText}>
-                  {t("services.benefits.help.contact", "Contact Support")}
+                  {t("services.help.contact", "Contact Support")}
                 </Text>
               </TouchableOpacity>
             </View>

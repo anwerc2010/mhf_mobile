@@ -12,11 +12,12 @@ import { useNavigation } from "@react-navigation/native";
 import { Bell } from "phosphor-react-native";
 import { useTranslation } from "react-i18next";
 import { useGetNotificationsQuery } from "@psi/shared-api";
+import { AppLanguage } from "../../i18n";
 
 interface TopNavBarProps {
   notificationCount?: number;
-  onLanguageChange?: (language: "en" | "ar") => void;
-  currentLanguage?: "en" | "ar";
+  onLanguageChange?: (language: AppLanguage) => void;
+  currentLanguage?: AppLanguage;
 }
 
 const TopNavBar: React.FC<TopNavBarProps> = ({
@@ -42,11 +43,13 @@ const TopNavBar: React.FC<TopNavBarProps> = ({
   }, [notificationsData, propCount]);
 
   const languages = [
-    { code: "en", label: t("language.english") },
-    { code: "ar", label: t("language.arabic") },
+    { code: "en" as const, label: t("language.english") },
+    { code: "ar" as const, label: t("language.arabic") },
+    { code: "ur" as const, label: t("language.urdu") },
+    { code: "tel" as const, label: t("language.telugu") },
   ];
 
-  const handleLanguageSelect = (language: "en" | "ar") => {
+  const handleLanguageSelect = (language: AppLanguage) => {
     setSelectedLanguage(language);
     if (onLanguageChange) {
       onLanguageChange(language);
@@ -132,9 +135,7 @@ const TopNavBar: React.FC<TopNavBarProps> = ({
                   selectedLanguage === language.code &&
                     styles.selectedLanguageOption,
                 ]}
-                onPress={() =>
-                  handleLanguageSelect(language.code as "en" | "ar")
-                }
+                onPress={() => handleLanguageSelect(language.code)}
               >
                 <Text
                   style={[

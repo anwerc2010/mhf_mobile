@@ -90,7 +90,9 @@ export default function EquipmentRequestList() {
 
       <View style={styles.detailsContainer}>
         <View style={styles.detailRow}>
-          <Text style={styles.detailLabel}>Full Name:</Text>
+          <Text style={styles.detailLabel}>
+            {t("equipment.details.fullName")}
+          </Text>
           <Text style={styles.detailValue}>{item.full_name}</Text>
         </View>
         <View style={styles.detailRow}>
@@ -101,7 +103,9 @@ export default function EquipmentRequestList() {
         </View>
         <View style={styles.detailRow}>
           <Clock size={14} color="#64748B" />
-          <Text style={styles.detailLabel}>Duration:</Text>
+          <Text style={styles.detailLabel}>
+            {t("equipment.details.duration")}
+          </Text>
           <Text style={styles.detailValue}>{item.duration}</Text>
         </View>
         <View style={styles.detailRow}>
@@ -114,7 +118,9 @@ export default function EquipmentRequestList() {
 
       {item.medical_reason && (
         <View style={styles.reasonContainer}>
-          <Text style={styles.reasonLabel}>Medical Reason:</Text>
+          <Text style={styles.reasonLabel}>
+            {t("equipment.details.medicalReason")}
+          </Text>
           <Text style={styles.reasonText}>{item.medical_reason}</Text>
         </View>
       )}
@@ -183,17 +189,23 @@ export default function EquipmentRequestList() {
       >
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Request Details</Text>
+            <Text style={styles.modalTitle}>
+              {t("equipment.details.requestDetails")}
+            </Text>
             <View style={styles.modalDivider} />
             <View style={styles.modalBody}>
               <View style={styles.modalRow}>
-                <Text style={styles.modalLabel}>Request ID:</Text>
+                <Text style={styles.modalLabel}>
+                  {t("equipment.details.requestId")}
+                </Text>
                 <Text style={styles.modalValue}>
                   {selectedReview?.request_id}
                 </Text>
               </View>
               <View style={styles.modalRow}>
-                <Text style={styles.modalLabel}>Status:</Text>
+                <Text style={styles.modalLabel}>
+                  {t("equipment.details.status")}
+                </Text>
                 <View
                   style={[
                     styles.modalStatusBadge,
@@ -206,13 +218,17 @@ export default function EquipmentRequestList() {
                 </View>
               </View>
               <View style={styles.modalRow}>
-                <Text style={styles.modalLabel}>Equipment:</Text>
+                <Text style={styles.modalLabel}>
+                  {t("equipment.details.equipment")}
+                </Text>
                 <Text style={styles.modalValue}>
                   {selectedReview?.equipment_type}
                 </Text>
               </View>
               <View style={styles.modalRow}>
-                <Text style={styles.modalLabel}>Duration:</Text>
+                <Text style={styles.modalLabel}>
+                  {t("equipment.details.duration")}
+                </Text>
                 <Text style={styles.modalValue}>
                   {selectedReview?.duration}
                 </Text>
@@ -220,7 +236,7 @@ export default function EquipmentRequestList() {
               {selectedReview?.review_notes && (
                 <View style={[styles.modalRow, { alignItems: "flex-start" }]}>
                   <Text style={[styles.modalLabel, { marginTop: 0 }]}>
-                    Review Notes:
+                    {t("home.reviewNotes")}
                   </Text>
                   <Text style={styles.modalValue}>
                     {selectedReview.review_notes}
@@ -230,7 +246,7 @@ export default function EquipmentRequestList() {
               {!selectedReview?.review_notes && (
                 <View style={styles.modalRow}>
                   <Text style={styles.modalValue}>
-                    No review notes available.
+                    {t("home.noReviewNotes")}
                   </Text>
                 </View>
               )}
@@ -239,7 +255,7 @@ export default function EquipmentRequestList() {
               style={styles.modalCloseBtn}
               onPress={() => setReviewModalVisible(false)}
             >
-              <Text style={styles.modalCloseBtnText}>Close</Text>
+              <Text style={styles.modalCloseBtnText}>{t("home.close")}</Text>
             </TouchableOpacity>
           </View>
         </View>

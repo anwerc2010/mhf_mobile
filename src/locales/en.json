@@ -85,7 +85,9 @@
     "changeLanguage": "Change Language",
     "english": "English",
     "arabic": "Arabic",
-    "selectLanguage": "Select Language"
+    "selectLanguage": "Select Language",
+    "urdu": "Urdu",
+    "telugu": "Telugu"
   },
   "theme": {
     "light": "Light",
@@ -173,7 +175,10 @@
     "ourTeam": "Our Team",
     "ourVolunteers": "Our Volunteers",
     "contactInfo": "Contact Information",
-    "user": "User"
+    "user": "User",
+    "updateFailed": "Update Failed",
+    "somethingWentWrong": "Something went wrong",
+    "updatedSuccessfully": "Profile updated successfully"
   },
   "settings": {
     "title": "Settings Screen"
@@ -362,7 +367,11 @@
         "tag3": "Ambulance",
         "stats": "150+ cases"
       }
-    }
+    },
+    "registrationStatus": "Registration Status",
+    "requestDetails": "Relief Request Details",
+    "registrationId": "Registration ID:",
+    "noReviewNote": "No review note available"
   },
   "services": {
     "title": "Services & Providers",
@@ -384,7 +393,9 @@
       "diagnostics": "Diagnostics",
       "pharmacy": "Pharmacy",
       "clinics": "Clinics",
-      "rehab": "Rehab"
+      "rehab": "Rehab",
+      "labs": "Labs",
+      "surgical": "Surgical"
     },
     "provider": {
       "unknown": "Unknown Provider",
@@ -438,14 +449,24 @@
       "title": "Need Help?",
       "desc": "Our support team is available 24/7 to assist you",
       "contact": "Contact Support"
-    }
+    },
+    "noContactFor": "No contact number available for {{serviceName}}"
   },
   "providerDetails": {
     "error": "Error",
     "phoneError": "Unable to make phone call",
     "mapError": "Unable to open map",
     "emailError": "Unable to open email",
-    "shareError": "Unable to share provider details"
+    "shareError": "Unable to share provider details",
+    "notFound": "Provider details not found",
+    "contactInfo": "Contact Information",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "specialities": "Specialities",
+    "benefits": "Benefits",
+    "viewOnMap": "View on Map",
+    "callNow": "Call Now"
   },
   "equipment": {
     "subtitle": "View your equipment request history",
@@ -464,13 +485,407 @@
     "request": "Request Equipment",
     "myRequests": "My Equipment Requests",
     "viewAll": "View All Requests",
-    "items": "items"
+    "items": "items",
+    "details": {
+      "fullName": "Full Name:",
+      "duration": "Duration:",
+      "medicalReason": "Medical Reason:",
+      "requestDetails": "Request Details",
+      "requestId": "Request ID:",
+      "status": "Status:",
+      "equipment": "Equipment:"
+    }
   },
   "ambulance": {
     "loading": "Loading ambulances...",
     "error": "Failed to load ambulances",
     "title": "Emergency Ambulance Services",
     "subtitle": "24/7 emergency ambulance support",
-    "view": "View Services"
+    "view": "View Services",
+    "details": {
+      "vehicleType": "Vehicle Type:",
+      "serviceArea": "Service Area:",
+      "responseTime": "Response Time:"
+    },
+    "call": "Call {{contact}}"
+  },
+  "blood": {
+    "requestDetails": "Blood Request Details",
+    "hospitalDetails": "Hospital & Doctor Details",
+    "subtitle": "Fill in the details below to request blood",
+    "submit": {
+      "successMessage": "Blood request submitted successfully",
+      "errorMessage": "Failed to submit blood request. Please try again."
+    }
+  },
+  "payment": {
+    "failed": "Payment Failed",
+    "customerMissing": "Unable to identify the current customer.",
+    "contributionType": "Contribution Type",
+    "amountPayable": "Amount Payable",
+    "continueUpi": "Continue to UPI",
+    "payNow": "Pay Now",
+    "receiptGenerateError": "Could not generate receipt image.",
+    "receiptTitle": "Payment Receipt",
+    "campaignReceipt": "Campaign Payment Receipt",
+    "healthCardReceipt": "Health Card Payment Receipt",
+    "receiptShareError": "Unable to download/share receipt image.",
+    "successTitle": "Payment Successful!",
+    "downloadReceipt": "Download Receipt",
+    "viewHealthCard": "View Health Card",
+    "goHome": "Go to Home"
+  },
+  "volunteers": {
+    "submitSuccess": "Volunteer registration submitted successfully",
+    "submitError": "Failed to submit registration"
+  },
+  "newCard": {
+    "patientDetails": "Patient Details"
+  },
+  "forms": {
+    "common": {
+      "saveDetails": "Save Details",
+      "ok": "OK",
+      "submitting": "Submitting...",
+      "iAgree": "I Agree",
+      "sections": {
+        "locationDetails": "Location Details",
+        "declaration": "Declaration"
+      },
+      "fields": {
+        "state": "State",
+        "district": "District",
+        "block": "Block",
+        "mandal": "Mandal"
+      },
+      "loading": {
+        "states": "Loading states...",
+        "districts": "Loading districts...",
+        "blocks": "Loading blocks...",
+        "mandals": "Loading mandals..."
+      },
+      "select": {
+        "state": "Select state",
+        "stateFirst": "Select state first",
+        "district": "Select district",
+        "districtFirst": "Select district first",
+        "block": "Select block",
+        "blockFirst": "Select block first",
+        "mandal": "Select mandal"
+      },
+      "options": {
+        "male": "Male",
+        "female": "Female",
+        "other": "Other",
+        "single": "Single",
+        "married": "Married",
+        "yes": "Yes",
+        "no": "No",
+        "aadhar": "Aadhar",
+        "voterId": "Voter ID",
+        "panCard": "PAN Card"
+      },
+      "validation": {
+        "phone10": "Enter valid 10 digit number",
+        "invalidEmail": "Invalid email",
+        "invalidEmailAddress": "Invalid email address",
+        "pincode6": "Enter valid 6 digit pincode"
+      }
+    },
+    "training": {
+      "heading": "Registration Form",
+      "sections": {
+        "personalDetails": "Personal Details",
+        "educationalBackground": "Educational Background",
+        "courseSelection": "Course Selection"
+      },
+      "fields": {
+        "fullName": "Full Name",
+        "dateOfBirth": "Date of Birth",
+        "age": "Age",
+        "gender": "Gender",
+        "contactNumber": "Contact Number (Phone / WhatsApp)",
+        "parentGuardianContact": "Parent's / Guardian's Contact Number",
+        "maritalStatus": "Marital Status",
+        "emailAvailable": "Email ID (Available)",
+        "addressWithPincode": "Address (With Pin Code)",
+        "pincode": "Pin code",
+        "guardianName": "Guardian's Name (If any)",
+        "idProofType": "ID Proof (Aadhar / Other)",
+        "identificationNumber": "Identification Number",
+        "highestQualification": "Highest Qualification",
+        "mediumOfInstruction": "Medium of Instruction",
+        "schoolCollegeName": "School / College Name",
+        "schoolCollegeLocation": "Location",
+        "educationGapReason": "Gaps in Education / Dropout Reason",
+        "preferredCourses": "Please tick your preferred training"
+      },
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "addressWithPincode": "Enter your complete address with pin code",
+        "pincode": "Enter your Pin code",
+        "idProofType": "Aadhar number or other ID proof number",
+        "educationGapReason": "If any gaps or dropout, please mention the reason"
+      },
+      "options": {
+        "graduation": "Graduation",
+        "hindi": "Hindi",
+        "english": "English"
+      },
+      "course": {
+        "computer": "Computer",
+        "tailoring": "Tailoring",
+        "spokenEnglish": "Spoken English",
+        "handmadeDesigning": "Handmade Designing",
+        "other": "Others (please specify)"
+      },
+      "alerts": {
+        "submitSuccess": "Registration submitted successfully!",
+        "submitFailed": "Failed to submit registration. Please try again."
+      }
+    },
+    "relief": {
+      "heading": "Apply for Support",
+      "sections": {
+        "personalInformation": "Personal Information",
+        "familyAndLivingSituation": "Family and Living Situation",
+        "reasonForRequest": "Reason for Request",
+        "assistanceRequired": "What Do You Need From Us?"
+      },
+      "fields": {
+        "fullName": "Full Name",
+        "fatherOrHusbandName": "Father's / Husband's Name",
+        "dateOfBirth": "Date of Birth",
+        "age": "Age",
+        "gender": "Gender",
+        "mobileNumber": "Mobile Number",
+        "alternateNumber": "Alternate Number",
+        "emailAvailable": "Email ID (Available)",
+        "currentAddress": "Current Address (With Pin Code)",
+        "pincode": "Pin code",
+        "idProofType": "ID Proof Type",
+        "idProofNumber": "ID Proof Number",
+        "totalFamilyMembers": "Total Family Members",
+        "earningMembers": "Earning Members",
+        "childrenBelow5": "Children (Below 5)",
+        "childrenSchoolGoing": "Children (School-going)",
+        "elderlyDisabledMembers": "Elderly / Disabled Members",
+        "elderlyDisabledDetails": "Elderly / Disabled Details",
+        "houseType": "Type of House",
+        "reasonForRequest": "Reason for Request (Optional but helpful)",
+        "assistanceTypes": "Please tick the items you are requesting",
+        "declaration": "I declare that the information provided above is true and accurate to the best of my knowledge."
+      },
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "fatherOrHusbandName": "Enter father's or husband's name",
+        "currentAddress": "Enter your complete address with pin code",
+        "pincode": "Enter your Pin code",
+        "idProofNumber": "Enter ID proof number",
+        "reasonForRequest": "Describe your situation and why you need assistance"
+      },
+      "options": {
+        "foodKit": "Food Kit",
+        "water": "Water",
+        "clothes": "Clothes",
+        "shelter": "Shelter / Temporary Housing",
+        "medicalHelp": "Medicine / Medical Help",
+        "other": "Others (please specify)",
+        "owned": "Owned",
+        "temporary": "Temporary",
+        "rented": "Rented",
+        "damaged": "Damaged"
+      },
+      "alerts": {
+        "submitSuccess": "Your relief request has been submitted successfully!",
+        "submitFailed": "Failed to submit relief request. Please try again."
+      }
+    },
+    "applyCard": {
+      "heading": "Please fill in all the details to apply for a health card",
+      "sections": {
+        "cardHolderDetails": "Card Holder Details",
+        "cardDetails": "Card Details",
+        "familyMembers": "Family Members"
+      },
+      "fields": {
+        "cardHolderName": "Card Holder Name",
+        "aadhaarNumber": "Aadhaar Number",
+        "bloodGroup": "Blood Group",
+        "phone": "Phone",
+        "email": "Email",
+        "address": "Address",
+        "gender": "Gender",
+        "ageCategory": "Age Category",
+        "familyHeadImage": "Family Head Image",
+        "cardType": "Card Type",
+        "dateOfIssue": "Date of Issue",
+        "dateOfExpiry": "Date of Expiry",
+        "fullName": "Full Name",
+        "relationship": "Relationship",
+        "dateOfBirth": "Date of Birth"
+      },
+      "placeholders": {
+        "fullName": "Enter full name",
+        "phone": "Enter 10 digit number",
+        "email": "Enter email address",
+        "address": "Enter address"
+      },
+      "options": {
+        "child": "Child",
+        "adult": "Adult",
+        "individual": "Individual",
+        "family": "Family",
+        "spouse": "Spouse",
+        "son": "Son",
+        "daughter": "Daughter",
+        "father": "Father",
+        "mother": "Mother",
+        "brother": "Brother",
+        "sister": "Sister"
+      },
+      "validation": {
+        "aadhaarFormat": "Enter valid Aadhaar number (XXXX XXXX XXXX)",
+        "aadhaarMaxLength": "Aadhaar number cannot exceed 14 characters"
+      },
+      "viewCard": "View Card",
+      "alerts": {
+        "createdSuccess": "Your health card has been created successfully!",
+        "failed": "Failed to submit application"
+      }
+    },
+    "newCard": {
+      "heading": "Please fill in all the details to apply for a health card",
+      "sections": {
+        "treatmentDetails": "Treatment Details",
+        "medicalDocuments": "Medical Documents",
+        "referenceDetails": "Reference Details (Optional)"
+      },
+      "fields": {
+        "fullName": "Full Name",
+        "emailAddress": "Email Address",
+        "contactNumber": "Contact Number",
+        "healthIssue": "Health Issue / Medical Condition",
+        "hospitalName": "Hospital Name Where Treatment Taken",
+        "hospitalAddress": "Hospital Address",
+        "hospitalType": "Hospital Type",
+        "treatmentDuration": "How Many Years About Your Treatment",
+        "medicalReports": "Upload Prescription / Medical Reports",
+        "referenceName": "Reference Name & Details",
+        "referenceContact": "Reference Contact Number"
+      },
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "emailAddress": "Enter your email address",
+        "healthIssue": "Describe your health condition or medical issue",
+        "hospitalName": "Enter hospital name",
+        "hospitalAddress": "Enter complete hospital address with city and pincode",
+        "treatmentDuration": "e.g., 2 years, 6 months",
+        "referenceName": "Name of person referring you"
+      },
+      "options": {
+        "governmentHospital": "Government Hospital",
+        "privateHospital": "Private Hospital",
+        "clinic": "Clinic"
+      },
+      "alerts": {
+        "submitSuccess": "Card request submitted successfully",
+        "submitFailed": "Failed to submit card request. Please try again."
+      }
+    },
+    "volunteers": {
+      "heading": "Join Mujtaba Helping Foundation as a Volunteer",
+      "sections": {
+        "personalDetails": "Personal Details",
+        "professionalDetails": "Professional Details",
+        "volunteeringPreferences": "Volunteering Preferences",
+        "experienceAndMotivation": "Experience & Motivation"
+      },
+      "fields": {
+        "fullName": "Full Name",
+        "dateOfBirth": "Date of Birth",
+        "gender": "Gender",
+        "phoneNumber": "Phone Number",
+        "alternateContact": "Alternate Contact No.",
+        "emailAddress": "Email Address",
+        "address": "Address",
+        "qualification": "Qualification",
+        "employmentStatus": "Employment Status",
+        "occupation": "Occupation",
+        "volunteerArea": "Which areas would you like to volunteer in?",
+        "availability": "Availability",
+        "previousVolunteering": "Have you volunteered before?",
+        "motivation": "Why do you want to join Mujtaba Helping Foundation as a volunteer?",
+        "declaration": "I hereby declare that the information provided is true and I agree to volunteer responsibly."
+      },
+      "placeholders": {
+        "motivation": "Please share your motivation and what drives you to volunteer with us..."
+      },
+      "options": {
+        "student": "Student",
+        "employee": "Employee",
+        "selfEmployed": "Self Employed",
+        "healthCamps": "Health Camps",
+        "awarenessDrives": "Awareness Drives",
+        "dataEntry": "Data Entry / Office Work",
+        "socialMedia": "Social Media Promotion",
+        "fundraising": "Fundraising",
+        "communityOutreach": "Community Outreach",
+        "weekdays": "Weekdays",
+        "weekends": "Weekends",
+        "flexible": "Flexible"
+      }
+    },
+    "equipment": {
+      "heading": "Fill in the details below to request medical equipment",
+      "submitRequest": "Submit Request",
+      "sections": {
+        "personalInformation": "Personal Information",
+        "addressDetails": "Address Details",
+        "equipmentDetails": "Equipment Details",
+        "referenceDetails": "Reference Details",
+        "consent": "Consent"
+      },
+      "fields": {
+        "fullName": "Full Name",
+        "age": "Age",
+        "gender": "Gender",
+        "mobileNumber": "Mobile Number",
+        "email": "Email",
+        "address": "Address",
+        "pincode": "Pincode",
+        "equipmentType": "Equipment Type",
+        "medicalReason": "Medical Reason",
+        "durationRequired": "Duration Required",
+        "referenceName": "Reference Name",
+        "referenceContact": "Reference Contact",
+        "consentDeclaration": "I hereby declare that the information provided is true and accurate"
+      },
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "age": "Enter your age",
+        "mobileNumber": "Enter mobile number",
+        "email": "Enter email address",
+        "address": "Enter your address",
+        "pincode": "Enter pincode",
+        "medicalReason": "Describe the medical reason for requesting equipment",
+        "durationRequired": "e.g., 2 weeks, 1 month",
+        "referenceName": "Enter reference person name",
+        "referenceContact": "Enter reference contact number"
+      },
+      "options": {
+        "bloodPressureMonitor": "Blood Pressure Monitor",
+        "glucometer": "Glucometer",
+        "oxygenConcentrator": "Oxygen Concentrator",
+        "wheelchair": "Wheelchair",
+        "walkingAid": "Walking Aid",
+        "hospitalBed": "Hospital Bed",
+        "nebulizer": "Nebulizer"
+      },
+      "alerts": {
+        "submitSuccess": "Equipment request submitted successfully! Request ID:",
+        "submitFailed": "Failed to submit equipment request. Please try again."
+      }
+    }
   }
 }

@@ -13,8 +13,10 @@ import {
   useUploadDocumentMutation,
 } from "@psi/shared-api";
 import { FileData } from "../../components/comman/PTFilePicker";
+import { useTranslation } from "react-i18next";
 
 function NewCardRequest() {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const formRef = useRef<PTDynamicFormRef>(null);
   const [createCardRequest, { isLoading, error }] =
@@ -25,36 +27,36 @@ function NewCardRequest() {
   const isSubmitting = isLoading || isUploading;
   const sections: FormSection[] = [
     {
-      title: "Patient Details",
+      title: t("newCard.patientDetails", "Patient Details"),
       id: "patientDetails",
       type: "object",
       fields: [
         {
           id: "fullName",
-          label: "Full Name",
+          label: t("forms.newCard.fields.fullName"),
           type: "text",
-          placeholder: "Enter your full name",
+          placeholder: t("forms.newCard.placeholders.fullName"),
           validations: [{ name: "required", value: true }],
           path: "patient.fullName",
         },
         {
           id: "email",
-          label: "Email Address",
+          label: t("forms.newCard.fields.emailAddress"),
           type: "email",
-          placeholder: "Enter your email address",
+          placeholder: t("forms.newCard.placeholders.emailAddress"),
           validations: [
             { name: "required", value: true },
             {
               name: "pattern",
               value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: "Enter valid email address",
+              message: t("forms.common.validation.invalidEmailAddress"),
             },
           ],
           path: "patient.email",
         },
         {
           id: "contactNumber",
-          label: "Contact Number",
+          label: t("forms.newCard.fields.contactNumber"),
           type: "tel",
           placeholder: "+91-XXXXXXXXXX",
           validations: [
@@ -62,72 +64,75 @@ function NewCardRequest() {
             {
               name: "pattern",
               value: /^[0-9]{10}$/,
-              message: "Enter valid 10 digit number",
+              message: t("forms.common.validation.phone10"),
             },
           ],
           path: "patient.contactNumber",
         },
         {
           id: "healthIssue",
-          label: "Health Issue / Medical Condition",
+          label: t("forms.newCard.fields.healthIssue"),
           type: "textarea",
-          placeholder: "Describe your health condition or medical issue",
+          placeholder: t("forms.newCard.placeholders.healthIssue"),
           validations: [{ name: "required", value: true }],
           path: "patient.healthIssue",
         },
       ],
     },
     {
-      title: "Treatment Details",
+      title: t("forms.newCard.sections.treatmentDetails"),
       id: "treatmentDetails",
       type: "object",
       fields: [
         {
           id: "hospitalName",
-          label: "Hospital Name Where Treatment Taken",
+          label: t("forms.newCard.fields.hospitalName"),
           type: "text",
-          placeholder: "Enter hospital name",
+          placeholder: t("forms.newCard.placeholders.hospitalName"),
           validations: [{ name: "required", value: true }],
           path: "treatment.hospitalName",
         },
         {
           id: "hospitalAddress",
-          label: "Hospital Address",
+          label: t("forms.newCard.fields.hospitalAddress"),
           type: "textarea",
-          placeholder: "Enter complete hospital address with city and pincode",
+          placeholder: t("forms.newCard.placeholders.hospitalAddress"),
           validations: [{ name: "required", value: true }],
           path: "treatment.hospitalAddress",
         },
         {
           id: "hospitalType",
-          label: "Hospital Type",
+          label: t("forms.newCard.fields.hospitalType"),
           type: "radio",
           values: [
-            { id: "government", name: "Government Hospital" },
-            { id: "private", name: "Private Hospital" },
-            { id: "clinic", name: "Clinic" },
+            {
+              id: "government",
+              name: t("forms.newCard.options.governmentHospital"),
+            },
+            { id: "private", name: t("forms.newCard.options.privateHospital") },
+            { id: "clinic", name: t("forms.newCard.options.clinic") },
           ],
           validations: [{ name: "required", value: true }],
           path: "treatment.hospitalType",
         },
         {
           id: "treatmentDuration",
-          label: "How Many Years About Your Treatment",
+          label: t("forms.newCard.fields.treatmentDuration"),
           type: "text",
-          placeholder: "e.g., 2 years, 6 months",
+          placeholder: t("forms.newCard.placeholders.treatmentDuration"),
           validations: [{ name: "required", value: true }],
           path: "treatment.duration",
         },
       ],
     },
     {
-      title: "Medical Documents",
+      title: t("forms.newCard.sections.medicalDocuments"),
       id: "medicalDocuments",
       type: "object",
       fields: [
         {
           id: "medicalReports",
-          label: "Upload Prescription / Medical Reports",
+          label: t("forms.newCard.fields.medicalReports"),
           type: "file",
           acceptedTypes: ["application/pdf", "image/*"],
           maxSize: 10 * 1024 * 1024, // 10MB in bytes
@@ -143,27 +148,27 @@ function NewCardRequest() {
            Reference Details (Optional)
         ======================== */
     {
-      title: "Reference Details (Optional)",
+      title: t("forms.newCard.sections.referenceDetails"),
       id: "referenceDetails",
       type: "object",
       fields: [
         {
           id: "referenceName",
-          label: "Reference Name & Details",
+          label: t("forms.newCard.fields.referenceName"),
           type: "text",
-          placeholder: "Name of person referring you",
+          placeholder: t("forms.newCard.placeholders.referenceName"),
           path: "reference.name",
         },
         {
           id: "referenceContact",
-          label: "Reference Contact Number",
+          label: t("forms.newCard.fields.referenceContact"),
           type: "tel",
           placeholder: "+91-XXXXXXXXXX",
           validations: [
             {
               name: "pattern",
               value: /^[0-9]{10}$/,
-              message: "Enter valid 10 digit number",
+              message: t("forms.common.validation.phone10"),
             },
           ],
           path: "reference.contactNumber",
@@ -231,19 +236,22 @@ function NewCardRequest() {
       // Make the API call
       const response = await createCardRequest(payload).unwrap();
 
-      Alert.alert("Success", "Card request submitted successfully", [
-        {
-          text: "OK",
-          onPress: () => navigation.goBack(),
-        },
-      ]);
+      Alert.alert(
+        t("common.success"),
+        t("forms.newCard.alerts.submitSuccess"),
+        [
+          {
+            text: t("forms.common.ok"),
+            onPress: () => navigation.goBack(),
+          },
+        ],
+      );
     } catch (err: any) {
       console.error("Card Request Error:", err);
       Alert.alert(
-        "Error",
-        err?.data?.message ||
-          "Failed to submit card request. Please try again.",
-        [{ text: "OK" }],
+        t("common.error"),
+        err?.data?.message || t("forms.newCard.alerts.submitFailed"),
+        [{ text: t("forms.common.ok") }],
       );
     }
   };
@@ -258,7 +266,7 @@ function NewCardRequest() {
           marginBottom: 12,
         }}
       >
-        Please fill in all the details to apply for a health card
+        {t("forms.newCard.heading")}
       </PTText>
       {isSubmitting && (
         <ActivityIndicator
@@ -272,7 +280,11 @@ function NewCardRequest() {
         sections={sections}
         initialValues={{}}
         mode="onBlur"
-        submitButtonText={isSubmitting ? "Submitting..." : "Save Details"}
+        submitButtonText={
+          isSubmitting
+            ? t("forms.common.submitting")
+            : t("forms.common.saveDetails")
+        }
         onSubmit={handleSubmit}
         onValueChange={(fieldId, value) => {
           console.log(`${fieldId} changed to`, value);

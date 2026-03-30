@@ -13,8 +13,10 @@ import {
 } from "@psi/shared-api";
 import { FileData } from "../../components/comman/PTFilePicker";
 import { formatToDDMMYYY } from "../../utils/formatDate";
+import { useTranslation } from "react-i18next";
 
 function ApplyCardRequest() {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const formRef = useRef<PTDynamicFormRef>(null);
   const [cardType, setCardType] = useState<string>("");
@@ -72,21 +74,21 @@ function ApplyCardRequest() {
 
   const sections: FormSection[] = [
     {
-      title: "Card Holder Details",
+      title: t("forms.applyCard.sections.cardHolderDetails"),
       id: "cardHolder",
       type: "object",
       fields: [
         {
           id: "card_holder_name",
-          label: "Card Holder Name",
+          label: t("forms.applyCard.fields.cardHolderName"),
           type: "text",
-          placeholder: "Enter full name",
+          placeholder: t("forms.applyCard.placeholders.fullName"),
           validations: [{ name: "required", value: true }],
           path: "card_holder.card_holder_name",
         },
         {
           id: "aadhaar_number",
-          label: "Aadhaar Number",
+          label: t("forms.applyCard.fields.aadhaarNumber"),
           type: "text",
           placeholder: "1111 2222 3333",
           validations: [
@@ -94,19 +96,19 @@ function ApplyCardRequest() {
             {
               name: "pattern",
               value: /^[0-9]{4} [0-9]{4} [0-9]{4}$/,
-              message: "Enter valid Aadhaar number (XXXX XXXX XXXX)",
+              message: t("forms.applyCard.validation.aadhaarFormat"),
             },
             {
               name: "maxLength",
               value: 14,
-              message: "Aadhaar number cannot exceed 14 characters",
+              message: t("forms.applyCard.validation.aadhaarMaxLength"),
             },
           ],
           path: "card_holder.aadhaar_number",
         },
         {
           id: "blood_group",
-          label: "Blood Group",
+          label: t("forms.applyCard.fields.bloodGroup"),
           type: "select",
           options: [
             { id: "A+", name: "A+" },
@@ -123,51 +125,53 @@ function ApplyCardRequest() {
         },
         {
           id: "phone",
-          label: "Phone",
+          label: t("forms.applyCard.fields.phone"),
           type: "tel",
-          placeholder: "Enter 10 digit number",
+          placeholder: t("forms.applyCard.placeholders.phone"),
           validations: [
             { name: "required", value: true },
             {
               name: "pattern",
               value: /^[0-9]{10}$/,
-              message: "Enter valid 10 digit number",
+              message: t("forms.common.validation.phone10"),
             },
           ],
           path: "card_holder.phone",
         },
         {
           id: "email",
-          label: "Email",
+          label: t("forms.applyCard.fields.email"),
           type: "email",
-          placeholder: "Enter email address",
+          placeholder: t("forms.applyCard.placeholders.email"),
           validations: [
             { name: "required", value: true },
             {
               name: "pattern",
               value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: "Enter valid email address",
+              message: t("forms.common.validation.invalidEmailAddress"),
             },
           ],
           path: "card_holder.email",
         },
         {
           id: "address",
-          label: "Address",
+          label: t("forms.applyCard.fields.address"),
           type: "textarea",
-          placeholder: "Enter address",
+          placeholder: t("forms.applyCard.placeholders.address"),
           validations: [{ name: "required", value: true }],
           path: "card_holder.address",
         },
         {
           id: "state_id",
-          label: "State",
+          label: t("forms.common.fields.state"),
           type: "select",
           options: states.map((s: { id: number; name: string }) => ({
             label: s.name,
             value: s.id,
           })),
-          placeholder: statesLoading ? "Loading states..." : "Select state",
+          placeholder: statesLoading
+            ? t("forms.common.loading.states")
+            : t("forms.common.select.state"),
           validations: [{ name: "required", value: true }],
           path: "card_holder.state_id",
           disabled: statesLoading,
@@ -175,17 +179,17 @@ function ApplyCardRequest() {
         },
         {
           id: "district_id",
-          label: "District",
+          label: t("forms.common.fields.district"),
           type: "select",
           options: districts.map((d: { id: number; name: string }) => ({
             label: d.name,
             value: d.id,
           })),
           placeholder: !stateId
-            ? "Select state first"
+            ? t("forms.common.select.stateFirst")
             : districtsLoading
-            ? "Loading districts..."
-            : "Select district",
+            ? t("forms.common.loading.districts")
+            : t("forms.common.select.district"),
           validations: [{ name: "required", value: true }],
           path: "card_holder.district_id",
           disabled: !stateId || districtsLoading,
@@ -193,17 +197,17 @@ function ApplyCardRequest() {
         },
         {
           id: "block_id",
-          label: "Block",
+          label: t("forms.common.fields.block"),
           type: "select",
           options: blocks.map((b: { id: number; name: string }) => ({
             label: b.name,
             value: b.id,
           })),
           placeholder: !districtId
-            ? "Select district first"
+            ? t("forms.common.select.districtFirst")
             : blocksLoading
-            ? "Loading blocks..."
-            : "Select block",
+            ? t("forms.common.loading.blocks")
+            : t("forms.common.select.block"),
           validations: [{ name: "required", value: true }],
           path: "card_holder.block_id",
           disabled: !districtId || blocksLoading,
@@ -211,17 +215,17 @@ function ApplyCardRequest() {
         },
         {
           id: "mandal_id",
-          label: "Mandal",
+          label: t("forms.common.fields.mandal"),
           type: "select",
           options: mandals.map((m: { id: number; name: string }) => ({
             label: m.name,
             value: m.id,
           })),
           placeholder: !blockId
-            ? "Select block first"
+            ? t("forms.common.select.blockFirst")
             : mandalsLoading
-            ? "Loading mandals..."
-            : "Select mandal",
+            ? t("forms.common.loading.mandals")
+            : t("forms.common.select.mandal"),
           validations: [{ name: "required", value: true }],
           path: "card_holder.mandal_id",
           disabled: !blockId || mandalsLoading,
@@ -229,29 +233,29 @@ function ApplyCardRequest() {
         },
         {
           id: "gender",
-          label: "Gender",
+          label: t("forms.applyCard.fields.gender"),
           type: "radio",
           values: [
-            { id: "Male", name: "Male" },
-            { id: "Female", name: "Female" },
+            { id: "Male", name: t("forms.common.options.male") },
+            { id: "Female", name: t("forms.common.options.female") },
           ],
           validations: [{ name: "required", value: true }],
           path: "card_holder.gender",
         },
         {
           id: "age_category",
-          label: "Age Category",
+          label: t("forms.applyCard.fields.ageCategory"),
           type: "radio",
           values: [
-            { id: "Child", name: "Child" },
-            { id: "Adult", name: "Adult" },
+            { id: "Child", name: t("forms.applyCard.options.child") },
+            { id: "Adult", name: t("forms.applyCard.options.adult") },
           ],
           validations: [{ name: "required", value: true }],
           path: "card_holder.age_category",
         },
         {
           id: "family_head_image",
-          label: "Family Head Image",
+          label: t("forms.applyCard.fields.familyHeadImage"),
           type: "file",
           maxFiles: 1,
           acceptedTypes: ["image/png", "image/jpg", "image/jpeg"],
@@ -261,31 +265,34 @@ function ApplyCardRequest() {
       ],
     },
     {
-      title: "Card Details",
+      title: t("forms.applyCard.sections.cardDetails"),
       id: "cardDetails",
       type: "object",
       fields: [
         {
           id: "type",
-          label: "Card Type",
+          label: t("forms.applyCard.fields.cardType"),
           type: "radio",
           values: [
-            { id: "individual", name: "Individual" },
-            { id: "family", name: "Family" },
+            {
+              id: "individual",
+              name: t("forms.applyCard.options.individual"),
+            },
+            { id: "family", name: t("forms.applyCard.options.family") },
           ],
           validations: [{ name: "required", value: true }],
           path: "card_details.type",
         },
         {
           id: "date_of_issue",
-          label: "Date of Issue",
+          label: t("forms.applyCard.fields.dateOfIssue"),
           type: "text",
           disabled: true,
           path: "card_details.date_of_issue",
         },
         {
           id: "date_of_expiry",
-          label: "Date of Expiry",
+          label: t("forms.applyCard.fields.dateOfExpiry"),
           type: "text",
           disabled: true,
           path: "card_details.date_of_expiry",
@@ -297,7 +304,7 @@ function ApplyCardRequest() {
   // Conditionally add family members section only if card type is 'family'
   if (cardType === "family") {
     sections.push({
-      title: "Family Members",
+      title: t("forms.applyCard.sections.familyMembers"),
       id: "family_members",
       type: "array",
       minItems: 0,
@@ -305,29 +312,29 @@ function ApplyCardRequest() {
       fields: [
         {
           id: "name",
-          label: "Full Name",
+          label: t("forms.applyCard.fields.fullName"),
           type: "text",
-          placeholder: "Enter full name",
+          placeholder: t("forms.applyCard.placeholders.fullName"),
           validations: [{ name: "required", value: true }],
         },
         {
           id: "relationship",
-          label: "Relationship",
+          label: t("forms.applyCard.fields.relationship"),
           type: "select",
           options: [
-            { id: "Spouse", name: "Spouse" },
-            { id: "Son", name: "Son" },
-            { id: "Daughter", name: "Daughter" },
-            { id: "Father", name: "Father" },
-            { id: "Mother", name: "Mother" },
-            { id: "Brother", name: "Brother" },
-            { id: "Sister", name: "Sister" },
+            { id: "Spouse", name: t("forms.applyCard.options.spouse") },
+            { id: "Son", name: t("forms.applyCard.options.son") },
+            { id: "Daughter", name: t("forms.applyCard.options.daughter") },
+            { id: "Father", name: t("forms.applyCard.options.father") },
+            { id: "Mother", name: t("forms.applyCard.options.mother") },
+            { id: "Brother", name: t("forms.applyCard.options.brother") },
+            { id: "Sister", name: t("forms.applyCard.options.sister") },
           ],
           validations: [{ name: "required", value: true }],
         },
         {
           id: "aadhaar_number",
-          label: "Aadhaar Number",
+          label: t("forms.applyCard.fields.aadhaarNumber"),
           type: "text",
           placeholder: "1111 2222 3333",
           validations: [
@@ -335,18 +342,18 @@ function ApplyCardRequest() {
             {
               name: "pattern",
               value: /^[0-9]{4} [0-9]{4} [0-9]{4}$/,
-              message: "Enter valid Aadhaar number (XXXX XXXX XXXX)",
+              message: t("forms.applyCard.validation.aadhaarFormat"),
             },
             {
               name: "maxLength",
               value: 14,
-              message: "Aadhaar number cannot exceed 14 characters",
+              message: t("forms.applyCard.validation.aadhaarMaxLength"),
             },
           ],
         },
         {
           id: "blood_group",
-          label: "Blood Group",
+          label: t("forms.applyCard.fields.bloodGroup"),
           type: "select",
           options: [
             { id: "A+", name: "A+" },
@@ -361,25 +368,25 @@ function ApplyCardRequest() {
         },
         {
           id: "date_of_birth",
-          label: "Date of Birth",
+          label: t("forms.applyCard.fields.dateOfBirth"),
           type: "date",
         },
         {
           id: "gender",
-          label: "Gender",
+          label: t("forms.applyCard.fields.gender"),
           type: "radio",
           values: [
-            { id: "Male", name: "Male" },
-            { id: "Female", name: "Female" },
+            { id: "Male", name: t("forms.common.options.male") },
+            { id: "Female", name: t("forms.common.options.female") },
           ],
         },
         {
           id: "age_category",
-          label: "Age Category",
+          label: t("forms.applyCard.fields.ageCategory"),
           type: "radio",
           values: [
-            { id: "Child", name: "Child" },
-            { id: "Adult", name: "Adult" },
+            { id: "Child", name: t("forms.applyCard.options.child") },
+            { id: "Adult", name: t("forms.applyCard.options.adult") },
           ],
         },
       ],
@@ -485,16 +492,23 @@ function ApplyCardRequest() {
       } else {
         // Free flow → card is already created and active
         Alert.alert(
-          "Success",
-          "Your health card has been created successfully!",
-          [{ text: "View Card", onPress: () => navigation.navigate("Card") }],
+          t("common.success"),
+          t("forms.applyCard.alerts.createdSuccess"),
+          [
+            {
+              text: t("forms.applyCard.viewCard"),
+              onPress: () => navigation.navigate("Card"),
+            },
+          ],
         );
       }
     } catch (err: any) {
       console.error("Error submitting health card application:", err);
       Alert.alert(
-        "Error",
-        err?.data?.message || err?.message || "Failed to submit application",
+        t("common.error"),
+        err?.data?.message ||
+          err?.message ||
+          t("forms.applyCard.alerts.failed"),
       );
     }
   };
@@ -509,7 +523,7 @@ function ApplyCardRequest() {
           marginBottom: 12,
         }}
       >
-        Please fill in all the details to apply for a health card
+        {t("forms.applyCard.heading")}
       </PTText>
       <PTDynamicForm
         ref={formRef}
@@ -523,7 +537,7 @@ function ApplyCardRequest() {
           },
         }}
         mode="onBlur"
-        submitButtonText="Save Details"
+        submitButtonText={t("forms.common.saveDetails")}
         submitLoading={isSubmitting}
         onSubmit={handleSubmit}
         onValueChange={(fieldId, value, allValues, fieldPath) => {

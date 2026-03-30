@@ -13,8 +13,10 @@ import {
   useUploadDocumentMutation,
 } from "@psi/shared-api";
 import { FileData } from "../../../components/comman/PTFilePicker";
+import { useTranslation } from "react-i18next";
 
 function ApplyNewRelief() {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const formRef = useRef<PTDynamicFormRef>(null);
   const [createReliefRequest, { isLoading: isSubmitting }] =
@@ -87,12 +89,12 @@ function ApplyNewRelief() {
     }
     // Fallback to default options if items_provided not available
     return [
-      { id: "Food Kit", name: "Food Kit" },
-      { id: "Water", name: "Water" },
-      { id: "Clothes", name: "Clothes" },
-      { id: "Shelter", name: "Shelter / Temporary Housing" },
-      { id: "MedicalHelp", name: "Medicine / Medical Help" },
-      { id: "Other", name: "Others (please specify)" },
+      { id: "Food Kit", name: t("forms.relief.options.foodKit") },
+      { id: "Water", name: t("forms.relief.options.water") },
+      { id: "Clothes", name: t("forms.relief.options.clothes") },
+      { id: "Shelter", name: t("forms.relief.options.shelter") },
+      { id: "MedicalHelp", name: t("forms.relief.options.medicalHelp") },
+      { id: "Other", name: t("forms.relief.options.other") },
     ];
   }, [reliefParam?.items_provided]);
 
@@ -102,55 +104,55 @@ function ApplyNewRelief() {
   const sections: FormSection[] = useMemo(
     () => [
       {
-        title: "Personal Information",
+        title: t("forms.relief.sections.personalInformation"),
         id: "personalInformation",
         type: "object",
         fields: [
           {
             id: "fullName",
-            label: "Full Name",
+            label: t("forms.relief.fields.fullName"),
             type: "text",
-            placeholder: "Enter your full name",
+            placeholder: t("forms.relief.placeholders.fullName"),
             validations: [{ name: "required", value: true }],
             path: "personal.fullName",
           },
           {
             id: "fatherOrHusbandName",
-            label: "Father's / Husband's Name",
+            label: t("forms.relief.fields.fatherOrHusbandName"),
             type: "text",
-            placeholder: "Enter father's or husband's name",
+            placeholder: t("forms.relief.placeholders.fatherOrHusbandName"),
             validations: [{ name: "required", value: true }],
             path: "personal.guardianName",
           },
           {
             id: "dob",
-            label: "Date of Birth",
+            label: t("forms.relief.fields.dateOfBirth"),
             type: "date",
             validations: [{ name: "required", value: true }],
             path: "personal.dob",
           },
           {
             id: "age",
-            label: "Age",
+            label: t("forms.relief.fields.age"),
             type: "number",
             validations: [{ name: "required", value: true }],
             path: "personal.age",
           },
           {
             id: "gender",
-            label: "Gender",
+            label: t("forms.relief.fields.gender"),
             type: "radio",
             values: [
-              { id: "male", name: "Male" },
-              { id: "female", name: "Female" },
-              { id: "other", name: "Other" },
+              { id: "male", name: t("forms.common.options.male") },
+              { id: "female", name: t("forms.common.options.female") },
+              { id: "other", name: t("forms.common.options.other") },
             ],
             validations: [{ name: "required", value: true }],
             path: "personal.gender",
           },
           {
             id: "mobileNumber",
-            label: "Mobile Number",
+            label: t("forms.relief.fields.mobileNumber"),
             type: "tel",
             placeholder: "+91-XXXXXXXXXX",
             validations: [
@@ -158,14 +160,14 @@ function ApplyNewRelief() {
               {
                 name: "pattern",
                 value: /^[0-9]{10}$/,
-                message: "Enter valid 10 digit number",
+                message: t("forms.common.validation.phone10"),
               },
             ],
             path: "personal.mobileNumber",
           },
           {
             id: "alternateNumber",
-            label: "Alternate Number",
+            label: t("forms.relief.fields.alternateNumber"),
             type: "tel",
             placeholder: "+91-XXXXXXXXXX",
             validations: [{ name: "pattern", value: /^[0-9]{10}$/ }],
@@ -173,70 +175,72 @@ function ApplyNewRelief() {
           },
           {
             id: "email",
-            label: "Email ID (Available)",
+            label: t("forms.relief.fields.emailAvailable"),
             type: "email",
             validations: [
               {
                 name: "pattern",
                 value: /^[^@]+@[^@]+\.[^@]+$/,
-                message: "Invalid email",
+                message: t("forms.common.validation.invalidEmail"),
               },
             ],
             path: "personal.email",
           },
           {
             id: "currentAddress",
-            label: "Current Address (With Pin Code)",
+            label: t("forms.relief.fields.currentAddress"),
             type: "textarea",
-            placeholder: "Enter your complete address with pin code",
+            placeholder: t("forms.relief.placeholders.currentAddress"),
             validations: [{ name: "required", value: true }],
             path: "personal.address",
           },
           {
             id: "pincode",
-            label: "Pin code",
+            label: t("forms.relief.fields.pincode"),
             type: "text",
-            placeholder: "Enter your Pin code",
+            placeholder: t("forms.relief.placeholders.pincode"),
             validations: [{ name: "required", value: true }],
             path: "personal.pincode",
           },
           {
             id: "idProofType",
-            label: "ID Proof Type",
+            label: t("forms.relief.fields.idProofType"),
             type: "select",
             options: [
-              { id: "Aadhar", name: "Aadhar" },
-              { id: "VoterID", name: "Voter ID" },
-              { id: "PAN", name: "PAN Card" },
-              { id: "Other", name: "Other" },
+              { id: "Aadhar", name: t("forms.common.options.aadhar") },
+              { id: "VoterID", name: t("forms.common.options.voterId") },
+              { id: "PAN", name: t("forms.common.options.panCard") },
+              { id: "Other", name: t("forms.common.options.other") },
             ],
             validations: [{ name: "required", value: true }],
             path: "personal.idProofType",
           },
           {
             id: "idProofNumber",
-            label: "ID Proof Number",
+            label: t("forms.relief.fields.idProofNumber"),
             type: "text",
-            placeholder: "Enter ID proof number",
+            placeholder: t("forms.relief.placeholders.idProofNumber"),
             validations: [{ name: "required", value: true }],
             path: "personal.idProofNumber",
           },
         ],
       },
       {
-        title: "Location Details",
+        title: t("forms.common.sections.locationDetails"),
         id: "locationDetails",
         type: "object",
         fields: [
           {
             id: "state_id",
-            label: "State",
+            label: t("forms.common.fields.state"),
             type: "select",
             options: states.map((s: { id: number; name: string }) => ({
               label: s.name,
               value: s.id,
             })),
-            placeholder: statesLoading ? "Loading states..." : "Select state",
+            placeholder: statesLoading
+              ? t("forms.common.loading.states")
+              : t("forms.common.select.state"),
             validations: [{ name: "required", value: true }],
             path: "location.state_id",
             disabled: statesLoading,
@@ -244,17 +248,17 @@ function ApplyNewRelief() {
           },
           {
             id: "district_id",
-            label: "District",
+            label: t("forms.common.fields.district"),
             type: "select",
             options: districts.map((d: { id: number; name: string }) => ({
               label: d.name,
               value: d.id,
             })),
             placeholder: !stateId
-              ? "Select state first"
+              ? t("forms.common.select.stateFirst")
               : districtsLoading
-              ? "Loading districts..."
-              : "Select district",
+              ? t("forms.common.loading.districts")
+              : t("forms.common.select.district"),
             validations: [{ name: "required", value: true }],
             path: "location.district_id",
             disabled: !stateId || districtsLoading,
@@ -262,17 +266,17 @@ function ApplyNewRelief() {
           },
           {
             id: "block_id",
-            label: "Block",
+            label: t("forms.common.fields.block"),
             type: "select",
             options: blocks.map((b: { id: number; name: string }) => ({
               label: b.name,
               value: b.id,
             })),
             placeholder: !districtId
-              ? "Select district first"
+              ? t("forms.common.select.districtFirst")
               : blocksLoading
-              ? "Loading blocks..."
-              : "Select block",
+              ? t("forms.common.loading.blocks")
+              : t("forms.common.select.block"),
             validations: [{ name: "required", value: true }],
             path: "location.block_id",
             disabled: !districtId || blocksLoading,
@@ -280,17 +284,17 @@ function ApplyNewRelief() {
           },
           {
             id: "mandal_id",
-            label: "Mandal",
+            label: t("forms.common.fields.mandal"),
             type: "select",
             options: mandals.map((m: { id: number; name: string }) => ({
               label: m.name,
               value: m.id,
             })),
             placeholder: !blockId
-              ? "Select block first"
+              ? t("forms.common.select.blockFirst")
               : mandalsLoading
-              ? "Loading mandals..."
-              : "Select mandal",
+              ? t("forms.common.loading.mandals")
+              : t("forms.common.select.mandal"),
             validations: [{ name: "required", value: true }],
             path: "location.mandal_id",
             disabled: !blockId || mandalsLoading,
@@ -303,59 +307,62 @@ function ApplyNewRelief() {
            2. Family & Living Situation
         ======================== */
       {
-        title: "Family and Living Situation",
+        title: t("forms.relief.sections.familyAndLivingSituation"),
         id: "familyLivingSituation",
         type: "object",
         fields: [
           {
             id: "total_family_members",
-            label: "Total Family Members",
+            label: t("forms.relief.fields.totalFamilyMembers"),
             type: "number",
             validations: [{ name: "required", value: true }],
             path: "family.total_family_members",
           },
           {
             id: "earning_members",
-            label: "Earning Members",
+            label: t("forms.relief.fields.earningMembers"),
             type: "number",
             validations: [{ name: "required", value: true }],
             path: "family.earning_members",
           },
           {
             id: "children_below_5",
-            label: "Children (Below 5)",
+            label: t("forms.relief.fields.childrenBelow5"),
             type: "number",
             path: "family.children_below_5",
           },
           {
             id: "children_school_going",
-            label: "Children (School-going)",
+            label: t("forms.relief.fields.childrenSchoolGoing"),
             type: "number",
             path: "family.children_school_going",
           },
           {
             id: "elderly_disabled_members",
-            label: "Elderly / Disabled Members",
+            label: t("forms.relief.fields.elderlyDisabledMembers"),
             type: "number",
             validations: [{ name: "required", value: true }],
             path: "family.elderly_disabled_members",
           },
           {
             id: "elderly_disabled_details",
-            label: "Elderly / Disabled Members",
+            label: t("forms.relief.fields.elderlyDisabledDetails"),
             type: "textarea",
             validations: [{ name: "required", value: true }],
             path: "family.elderly_disabled_details",
           },
           {
             id: "house_type",
-            label: "Type of House",
+            label: t("forms.relief.fields.houseType"),
             type: "radio",
             values: [
-              { id: "owned", name: "Owned" },
-              { id: "temporary", name: "Temporary" },
-              { id: "rented", name: "Rented" },
-              { id: "damaged", name: "Damaged" },
+              { id: "owned", name: t("forms.relief.options.owned") },
+              {
+                id: "temporary",
+                name: t("forms.relief.options.temporary"),
+              },
+              { id: "rented", name: t("forms.relief.options.rented") },
+              { id: "damaged", name: t("forms.relief.options.damaged") },
             ],
             validations: [{ name: "required", value: true }],
             path: "family.house_type",
@@ -384,15 +391,15 @@ function ApplyNewRelief() {
            3. Reason for Request
         ======================== */
       {
-        title: "Reason for Request",
+        title: t("forms.relief.sections.reasonForRequest"),
         id: "reasonForRequest",
         type: "object",
         fields: [
           {
             id: "reason",
-            label: "Reason for Request (Optional but helpful)",
+            label: t("forms.relief.fields.reasonForRequest"),
             type: "textarea",
-            placeholder: "Describe your situation and why you need assistance",
+            placeholder: t("forms.relief.placeholders.reasonForRequest"),
             validations: [{ name: "required", value: true }],
             path: "request.reason",
           },
@@ -403,13 +410,13 @@ function ApplyNewRelief() {
            4. What Do You Need From Us?
         ======================== */
       {
-        title: "What Do You Need From Us?",
+        title: t("forms.relief.sections.assistanceRequired"),
         id: "assistanceRequired",
         type: "object",
         fields: [
           {
             id: "assistanceTypes",
-            label: "Please tick the items you are requesting",
+            label: t("forms.relief.fields.assistanceTypes"),
             type: "multiselect",
             values: assistanceOptions,
             validations: [{ name: "required", value: true }],
@@ -418,16 +425,15 @@ function ApplyNewRelief() {
         ],
       },
       {
-        title: "Declaration",
+        title: t("forms.common.sections.declaration"),
         id: "declaration",
         type: "object",
         fields: [
           {
             id: "declarationAccepted",
-            label:
-              "I declare that the information provided above is true and accurate to the best of my knowledge.",
+            label: t("forms.relief.fields.declaration"),
             type: "radio",
-            values: [{ id: "accepted", name: "I Agree" }],
+            values: [{ id: "accepted", name: t("forms.common.iAgree") }],
             validations: [{ name: "required", value: true }],
             path: "declaration.accepted",
           },
@@ -492,14 +498,14 @@ function ApplyNewRelief() {
           marginBottom: 12,
         }}
       >
-        Apply for Support
+        {t("forms.relief.heading")}
       </PTText>
       <PTDynamicForm
         ref={formRef}
         sections={sections}
         initialValues={{}}
         mode="onBlur"
-        submitButtonText="Save Details"
+        submitButtonText={t("forms.common.saveDetails")}
         submitLoading={isSubmittingCombined}
         onSubmit={async (values) => {
           console.log("Form submitted:", values);
@@ -578,11 +584,11 @@ function ApplyNewRelief() {
             console.log("Relief request submitted successfully:", response);
 
             Alert.alert(
-              "Success",
-              "Your relief request has been submitted successfully!",
+              t("common.success"),
+              t("forms.relief.alerts.submitSuccess"),
               [
                 {
-                  text: "OK",
+                  text: t("forms.common.ok"),
                   onPress: () => navigation.goBack(),
                 },
               ],
@@ -591,10 +597,9 @@ function ApplyNewRelief() {
             console.error("Relief request submission failed:", error);
 
             Alert.alert(
-              "Error",
-              error?.data?.message ||
-                "Failed to submit relief request. Please try again.",
-              [{ text: "OK" }],
+              t("common.error"),
+              error?.data?.message || t("forms.relief.alerts.submitFailed"),
+              [{ text: t("forms.common.ok") }],
             );
           }
         }}

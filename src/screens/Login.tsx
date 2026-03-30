@@ -90,7 +90,7 @@ function LoginScreen({ navigation }: LoginScreenProps) {
 
   // Update RTL layout when language changes
   useEffect(() => {
-    const isRTL = currentLanguage === "ar";
+    const isRTL = currentLanguage === "ar" || currentLanguage === "ur";
     I18nManager.forceRTL(isRTL);
     I18nManager.allowRTL(isRTL);
 

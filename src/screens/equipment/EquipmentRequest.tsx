@@ -9,9 +9,13 @@ import {
   useLocationDropdowns,
 } from "@psi/shared-api";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
+import { useAppSelector } from "../../store/hook";
 
 export default function EquipmentRequest() {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
+  const user = useAppSelector((state) => state.auth.user);
   const formRef = useRef<PTDynamicFormRef>(null);
   const [createEquipmentRequest, { isLoading }] =
     useCreateEquipmentRequestMutation();
@@ -67,64 +71,64 @@ export default function EquipmentRequest() {
 
   const sections: FormSection[] = [
     {
-      title: "Personal Information",
+      title: t("forms.equipment.sections.personalInformation"),
       id: "personalInfo",
       type: "object",
       fields: [
         {
           id: "fullName",
-          label: "Full Name",
+          label: t("forms.equipment.fields.fullName"),
           type: "text",
-          placeholder: "Enter your full name",
+          placeholder: t("forms.equipment.placeholders.fullName"),
           validations: [{ name: "required", value: true }],
           path: "personal.fullName",
         },
         {
           id: "age",
-          label: "Age",
+          label: t("forms.equipment.fields.age"),
           type: "number",
-          placeholder: "Enter your age",
+          placeholder: t("forms.equipment.placeholders.age"),
           validations: [{ name: "required", value: true }],
           path: "personal.age",
         },
         {
           id: "gender",
-          label: "Gender",
+          label: t("forms.equipment.fields.gender"),
           type: "radio",
           values: [
-            { id: "male", name: "Male" },
-            { id: "female", name: "Female" },
-            { id: "other", name: "Other" },
+            { id: "male", name: t("forms.common.options.male") },
+            { id: "female", name: t("forms.common.options.female") },
+            { id: "other", name: t("forms.common.options.other") },
           ],
           validations: [{ name: "required", value: true }],
           path: "personal.gender",
         },
         {
           id: "mobile",
-          label: "Mobile Number",
+          label: t("forms.equipment.fields.mobileNumber"),
           type: "tel",
-          placeholder: "Enter mobile number",
+          placeholder: t("forms.equipment.placeholders.mobileNumber"),
           validations: [
             { name: "required", value: true },
             {
               name: "pattern",
               value: /^[0-9]{10}$/,
-              message: "Enter valid 10 digit number",
+              message: t("forms.common.validation.phone10"),
             },
           ],
           path: "personal.mobile",
         },
         {
           id: "email",
-          label: "Email",
+          label: t("forms.equipment.fields.email"),
           type: "email",
-          placeholder: "Enter email address",
+          placeholder: t("forms.equipment.placeholders.email"),
           validations: [
             { name: "required", value: true },
             {
               name: "pattern",
               value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: "Enter valid email address",
+              message: t("forms.common.validation.invalidEmailAddress"),
             },
           ],
           path: "personal.email",
@@ -132,19 +136,21 @@ export default function EquipmentRequest() {
       ],
     },
     {
-      title: "Address Details",
+      title: t("forms.equipment.sections.addressDetails"),
       id: "addressDetails",
       type: "object",
       fields: [
         {
           id: "state_id",
-          label: "State",
+          label: t("forms.common.fields.state"),
           type: "select",
           options: states.map((s: { id: number; name: string }) => ({
             label: s.name,
             value: s.id,
           })),
-          placeholder: statesLoading ? "Loading states..." : "Select state",
+          placeholder: statesLoading
+            ? t("forms.common.loading.states")
+            : t("forms.common.select.state"),
           validations: [{ name: "required", value: true }],
           path: "address.state_id",
           disabled: statesLoading,
@@ -152,17 +158,17 @@ export default function EquipmentRequest() {
         },
         {
           id: "district_id",
-          label: "District",
+          label: t("forms.common.fields.district"),
           type: "select",
           options: districts.map((d: { id: number; name: string }) => ({
             label: d.name,
             value: d.id,
           })),
           placeholder: !stateId
-            ? "Select state first"
+            ? t("forms.common.select.stateFirst")
             : districtsLoading
-            ? "Loading districts..."
-            : "Select district",
+            ? t("forms.common.loading.districts")
+            : t("forms.common.select.district"),
           validations: [{ name: "required", value: true }],
           path: "address.district_id",
           disabled: !stateId || districtsLoading,
@@ -170,17 +176,17 @@ export default function EquipmentRequest() {
         },
         {
           id: "block_id",
-          label: "Block",
+          label: t("forms.common.fields.block"),
           type: "select",
           options: blocks.map((b: { id: number; name: string }) => ({
             label: b.name,
             value: b.id,
           })),
           placeholder: !districtId
-            ? "Select district first"
+            ? t("forms.common.select.districtFirst")
             : blocksLoading
-            ? "Loading blocks..."
-            : "Select block",
+            ? t("forms.common.loading.blocks")
+            : t("forms.common.select.block"),
           validations: [{ name: "required", value: true }],
           path: "address.block_id",
           disabled: !districtId || blocksLoading,
@@ -188,17 +194,17 @@ export default function EquipmentRequest() {
         },
         {
           id: "mandal_id",
-          label: "Mandal",
+          label: t("forms.common.fields.mandal"),
           type: "select",
           options: mandals.map((m: { id: number; name: string }) => ({
             label: m.name,
             value: m.id,
           })),
           placeholder: !blockId
-            ? "Select block first"
+            ? t("forms.common.select.blockFirst")
             : mandalsLoading
-            ? "Loading mandals..."
-            : "Select mandal",
+            ? t("forms.common.loading.mandals")
+            : t("forms.common.select.mandal"),
           validations: [{ name: "required", value: true }],
           path: "address.mandal_id",
           disabled: !blockId || mandalsLoading,
@@ -206,23 +212,23 @@ export default function EquipmentRequest() {
         },
         {
           id: "address",
-          label: "Address",
+          label: t("forms.equipment.fields.address"),
           type: "textarea",
-          placeholder: "Enter your address",
+          placeholder: t("forms.equipment.placeholders.address"),
           validations: [{ name: "required", value: true }],
           path: "address.address",
         },
         {
           id: "pincode",
-          label: "Pincode",
+          label: t("forms.equipment.fields.pincode"),
           type: "text",
-          placeholder: "Enter pincode",
+          placeholder: t("forms.equipment.placeholders.pincode"),
           validations: [
             { name: "required", value: true },
             {
               name: "pattern",
               value: /^[0-9]{6}$/,
-              message: "Enter valid 6 digit pincode",
+              message: t("forms.common.validation.pincode6"),
             },
           ],
           path: "address.pincode",
@@ -230,69 +236,81 @@ export default function EquipmentRequest() {
       ],
     },
     {
-      title: "Equipment Details",
+      title: t("forms.equipment.sections.equipmentDetails"),
       id: "equipmentDetails",
       type: "object",
       fields: [
         {
           id: "equipmentType",
-          label: "Equipment Type",
+          label: t("forms.equipment.fields.equipmentType"),
           type: "radio",
           values: [
-            { id: "Blood Pressure Monitor", name: "Blood Pressure Monitor" },
-            { id: "Glucometer", name: "Glucometer" },
-            { id: "Oxygen Concentrator", name: "Oxygen Concentrator" },
-            { id: "Wheelchair", name: "Wheelchair" },
-            { id: "Walking Aid", name: "Walking Aid" },
-            { id: "Hospital Bed", name: "Hospital Bed" },
-            { id: "Nebulizer", name: "Nebulizer" },
-            { id: "Other", name: "Other" },
+            {
+              id: "Blood Pressure Monitor",
+              name: t("forms.equipment.options.bloodPressureMonitor"),
+            },
+            { id: "Glucometer", name: t("forms.equipment.options.glucometer") },
+            {
+              id: "Oxygen Concentrator",
+              name: t("forms.equipment.options.oxygenConcentrator"),
+            },
+            { id: "Wheelchair", name: t("forms.equipment.options.wheelchair") },
+            {
+              id: "Walking Aid",
+              name: t("forms.equipment.options.walkingAid"),
+            },
+            {
+              id: "Hospital Bed",
+              name: t("forms.equipment.options.hospitalBed"),
+            },
+            { id: "Nebulizer", name: t("forms.equipment.options.nebulizer") },
+            { id: "Other", name: t("forms.common.options.other") },
           ],
           validations: [{ name: "required", value: true }],
           path: "equipment.equipmentType",
         },
         {
           id: "medicalReason",
-          label: "Medical Reason",
+          label: t("forms.equipment.fields.medicalReason"),
           type: "textarea",
-          placeholder: "Describe the medical reason for requesting equipment",
+          placeholder: t("forms.equipment.placeholders.medicalReason"),
           validations: [{ name: "required", value: true }],
           path: "equipment.medicalReason",
         },
         {
           id: "duration",
-          label: "Duration Required",
+          label: t("forms.equipment.fields.durationRequired"),
           type: "text",
-          placeholder: "e.g., 2 weeks, 1 month",
+          placeholder: t("forms.equipment.placeholders.durationRequired"),
           validations: [{ name: "required", value: true }],
           path: "equipment.duration",
         },
       ],
     },
     {
-      title: "Reference Details",
+      title: t("forms.equipment.sections.referenceDetails"),
       id: "referenceDetails",
       type: "object",
       fields: [
         {
           id: "referenceName",
-          label: "Reference Name",
+          label: t("forms.equipment.fields.referenceName"),
           type: "text",
-          placeholder: "Enter reference person name",
+          placeholder: t("forms.equipment.placeholders.referenceName"),
           validations: [{ name: "required", value: true }],
           path: "reference.referenceName",
         },
         {
           id: "referenceContact",
-          label: "Reference Contact",
+          label: t("forms.equipment.fields.referenceContact"),
           type: "tel",
-          placeholder: "Enter reference contact number",
+          placeholder: t("forms.equipment.placeholders.referenceContact"),
           validations: [
             { name: "required", value: true },
             {
               name: "pattern",
               value: /^[0-9]{10}$/,
-              message: "Enter valid 10 digit number",
+              message: t("forms.common.validation.phone10"),
             },
           ],
           path: "reference.referenceContact",
@@ -300,14 +318,13 @@ export default function EquipmentRequest() {
       ],
     },
     {
-      title: "Consent",
+      title: t("forms.equipment.sections.consent"),
       id: "consent",
       type: "object",
       fields: [
         {
           id: "consent",
-          label:
-            "I hereby declare that the information provided is true and accurate",
+          label: t("forms.equipment.fields.consentDeclaration"),
           type: "switch",
           validations: [{ name: "required", value: true }],
           path: "consent.consent",
@@ -340,10 +357,10 @@ export default function EquipmentRequest() {
         mobile: data.personal?.mobile,
         email: data.personal?.email,
         address: data.address?.address,
-        state_id: stateId,
-        district_id: districtId,
-        block_id: blockId,
-        mandal_id: mandalId,
+        state_id: stateId ?? undefined,
+        district_id: districtId ?? undefined,
+        block_id: blockId ?? undefined,
+        mandal_id: mandalId ?? undefined,
         state: stateName,
         district: districtName,
         city: blockName,
@@ -354,7 +371,7 @@ export default function EquipmentRequest() {
         duration: data.equipment?.duration,
         reference_name: data.reference?.referenceName,
         reference_contact: data.reference?.referenceContact,
-        customer_id: "",
+        customer_id: Number.parseInt(String(user?.id ?? 0), 10),
         consent: data.consent?.consent || false,
         status: "pending",
       };
@@ -364,11 +381,13 @@ export default function EquipmentRequest() {
       const response = await createEquipmentRequest(payload).unwrap();
 
       Alert.alert(
-        "Success",
-        `Equipment request submitted successfully! Request ID: ${response.data?.request_id}`,
+        t("common.success"),
+        `${t("forms.equipment.alerts.submitSuccess")} ${
+          response.data?.request_id
+        }`,
         [
           {
-            text: "OK",
+            text: t("forms.common.ok"),
             onPress: () => navigation.goBack(),
           },
         ],
@@ -376,19 +395,16 @@ export default function EquipmentRequest() {
     } catch (error: any) {
       console.error("Equipment Request Error:", error);
       Alert.alert(
-        "Error",
-        error?.data?.message ||
-          "Failed to submit equipment request. Please try again.",
-        [{ text: "OK" }],
+        t("common.error"),
+        error?.data?.message || t("forms.equipment.alerts.submitFailed"),
+        [{ text: t("forms.common.ok") }],
       );
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.subtitle}>
-        Fill in the details below to request medical equipment
-      </Text>
+      <Text style={styles.subtitle}>{t("forms.equipment.heading")}</Text>
       {isLoading && (
         <ActivityIndicator
           size="large"
@@ -401,7 +417,11 @@ export default function EquipmentRequest() {
         sections={sections}
         initialValues={{}}
         mode="onBlur"
-        submitButtonText={isLoading ? "Submitting..." : "Submit Request"}
+        submitButtonText={
+          isLoading
+            ? t("forms.common.submitting")
+            : t("forms.equipment.submitRequest")
+        }
         onSubmit={handleSubmit}
         onValueChange={(fieldId, value) => {
           console.log(`${fieldId} changed to`, value);
