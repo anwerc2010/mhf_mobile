@@ -13,8 +13,8 @@ import {
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../store/hook";
 import {
-  setAuth,
-  clearAuth,
+  loginSuccess,
+  logout,
   useLoginMutation,
   useSaveNotificationTokenMutation,
 } from "@psi/shared-api";
@@ -133,8 +133,12 @@ function LoginScreen({ navigation }: LoginScreenProps) {
       }
 
       dispatch(
-        setAuth({
+        loginSuccess({
           token: result.access_token,
+          refreshToken: result.refresh_token ?? null,
+          expiryTimestamp: result.expires_in
+            ? Date.now() + result.expires_in * 1000
+            : null,
           user: result.customer,
         }),
       );
@@ -167,7 +171,7 @@ function LoginScreen({ navigation }: LoginScreenProps) {
         // RootNavigator's conditional screens handle navigation based on the state above
       } catch (termsError) {
         // Terms check failed — clear auth and block the user (legal compliance)
-        dispatch(clearAuth());
+        dispatch(logout());
         Alert.alert(
           "Connection Error",
           "Unable to verify Terms & Conditions. Please check your internet connection and try again.",

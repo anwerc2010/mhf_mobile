@@ -4,6 +4,7 @@ import languageReducer from "./slices/languageSlice";
 import themeReducer from "./slices/themeSlice";
 import legalReducer from "./slices/legalSlice";
 import { authReducer, authApi } from "@psi/shared-api";
+import { listenerMiddleware } from "./listenerMiddleware";
 
 // Type assertion for authApi to access RTK Query properties
 const authApiTyped = authApi as any;
@@ -18,7 +19,9 @@ export const store = configureStore({
     [authApiTyped.reducerPath]: authApiTyped.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApiTyped.middleware),
+    getDefaultMiddleware()
+      .prepend(listenerMiddleware.middleware)
+      .concat(authApiTyped.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

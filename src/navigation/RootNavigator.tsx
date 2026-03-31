@@ -1,4 +1,5 @@
 import React from "react";
+import { View, ActivityIndicator, StyleSheet, Image } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
@@ -10,6 +11,19 @@ import ResetPasswordScreen from "../screens/ResetPassword";
 import TermsScreen from "../screens/Terms";
 
 const Stack = createNativeStackNavigator();
+
+function SplashScreen() {
+  return (
+    <View style={styles.splash}>
+      <Image
+        source={require("../../assets/images/logo-hd.png")}
+        style={styles.splashLogo}
+        resizeMode="contain"
+      />
+      <ActivityIndicator size="large" color="#020050" style={styles.spinner} />
+    </View>
+  );
+}
 
 function AuthNavigator() {
   return (
@@ -29,42 +43,58 @@ function AppNavigatorWrapper() {
 /**
  * RootNavigator uses React Navigation's conditional-screens pattern.
  *
- * Only the screen relevant to the current auth/terms state exists in the
- * stack at any time — navigation bypass is structurally impossible:
- *
- *   not authenticated          → only Login stack is mounted
+ * Phases:
+ *   isSessionRestoring = true  → show SplashScreen while AsyncStorage read or
+ *                                 token-refresh is in progress
  *   authenticated + terms due  → only Terms screen is mounted
  *   authenticated + terms ok   → only App navigator is mounted
- *
- * React Navigation automatically transitions when Redux state changes.
- * No imperative reset/dispatch calls are required.
+ *   not authenticated          → only Login stack is mounted
  */
 export default function RootNavigator() {
+  const isSessionRestoring = useSelector(
+    (state: RootState) => (state.auth as any).isSessionRestoring as boolean,
+  );
   const isAuthenticated = useSelector(
-    (state: RootState) => state.auth.token !== null,
+    (state: RootState) => (state.auth as any).isAuthenticated as boolean,
   );
   const termsRequired = useSelector(
     (state: RootState) => state.legal.termsRequired,
   );
 
+  // Show splash while the bootstrap async check runs
+  if (isSessionRestoring) {
+    return <SplashScreen />;
+  }
+
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {!isAuthenticated ? (
-        // ── Pre-auth ──────────────────────────────────────────────────────────
         <Stack.Screen name="Login" component={AuthNavigator} />
       ) : termsRequired ? (
-        // ── Terms gate ────────────────────────────────────────────────────────
-        // gestureEnabled:false + BackHandler inside TermsScreen ensure
-        // the user cannot leave without accepting.
         <Stack.Screen
           name="Terms"
           component={TermsScreen}
           options={{ gestureEnabled: false, animation: "fade" }}
         />
       ) : (
-        // ── Main app ──────────────────────────────────────────────────────────
         <Stack.Screen name="App" component={AppNavigatorWrapper} />
       )}
     </Stack.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  splash: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+  },
+  splashLogo: {
+    width: 140,
+    height: 140,
+  },
+  spinner: {
+    marginTop: 32,
+  },
+});
