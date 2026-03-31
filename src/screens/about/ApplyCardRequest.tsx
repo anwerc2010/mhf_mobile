@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { View, Alert, Image } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import PTDynamicForm, {
   PTDynamicFormRef,
   FormSection,
@@ -15,9 +15,19 @@ import { FileData } from "../../components/comman/PTFilePicker";
 import { formatToDDMMYYY } from "../../utils/formatDate";
 import { useTranslation } from "react-i18next";
 
+type ApplyCardRouteParams = {
+  ApplyCardRequest?: {
+    paymentType?: "free" | "paid" | string;
+    paymentStatus?: "free" | "pending" | "paid" | string;
+    canApply?: boolean;
+    canPay?: boolean;
+  };
+};
+
 function ApplyCardRequest() {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
+  const route = useRoute<RouteProp<ApplyCardRouteParams, "ApplyCardRequest">>();
   const formRef = useRef<PTDynamicFormRef>(null);
   const [cardType, setCardType] = useState<string>("");
   const [stateId, setStateId] = useState<number | null>(null);
@@ -442,6 +452,15 @@ function ApplyCardRequest() {
       const dateOfExpiry = formatToDDMMYYY(nextYear);
 
       // Flatten and format data to match API expected structure
+      const selectedPaymentType =
+        route.params?.paymentType?.toString().toLowerCase() || "";
+      const selectedPaymentStatus =
+        route.params?.paymentStatus?.toString().toLowerCase() || "";
+      const requestCanPay = Boolean(route.params?.canPay);
+      const isLockedFreeRequest =
+        selectedPaymentType === "free" || selectedPaymentStatus === "free";
+      const resolvedMode = isLockedFreeRequest ? "free" : "online";
+
       const formattedData = {
         card_holder_name: values.card_holder?.card_holder_name,
         aadhaar_number: values.card_holder?.aadhaar_number,
@@ -457,7 +476,7 @@ function ApplyCardRequest() {
         age_category: values.card_holder?.age_category,
         family_head_image: uploadedImageUrl,
         type: values.card_details?.type,
-        mode: "online" as const,
+        mode: resolvedMode as "free" | "online",
         date_of_issue: dateOfIssue,
         date_of_expiry: dateOfExpiry,
         family_members: values.family_members || [],
@@ -473,23 +492,101 @@ function ApplyCardRequest() {
 
       console.log("Health Card Application Response:", response);
 
-      const payment = response.data?.payment;
+      const payment: any = response.data?.payment;
+      const healthCard = response.data?.health_card;
+      const customer = response.data?.customer;
+      const responseData: any = response?.data ?? {};
+      const responseCardRequest: any = responseData?.card_request ?? {};
+      const normalizeLower = (value: unknown): string =>
+        typeof value === "string" ? value.toLowerCase() : "";
+      const resolvedPaymentType =
+        responseData?.payment_type ??
+        responseCardRequest?.payment_type ??
+        selectedPaymentType;
+      const resolvedPaymentStatus =
+        responseData?.payment_status ?? responseCardRequest?.payment_status;
+      const normalizedPaymentType = normalizeLower(resolvedPaymentType);
+      const normalizedPaymentStatus = normalizeLower(resolvedPaymentStatus);
+      const resolvedOrderId =
+        payment?.razorpay_order_id ??
+        payment?.order_id ??
+        responseData?.active_payment_order_id;
+      const resolvedKeyId =
+        payment?.razorpay_key_id ?? payment?.key_id ?? payment?.razorpay_key;
+      const resolvedAmount = Number(payment?.amount ?? 0);
+      const resolvedCurrency = payment?.currency ?? "INR";
+      const hasOrder = Boolean(
+        resolvedOrderId && resolvedKeyId && resolvedAmount > 0,
+      );
+      const requiresPayment = Boolean(
+        payment?.requires_payment ?? responseData?.requires_payment,
+      );
+      const canPay = Boolean(
+        responseData?.can_pay ?? responseCardRequest?.can_pay ?? requestCanPay,
+      );
+      const cardCreated = Boolean(responseData?.card_created);
 
-      if (payment?.requires_payment) {
-        // Paid flow → go to PaymentScreen with the pre-built Razorpay order
-        navigation.navigate("Payment", {
-          customerId: response.data.health_card.customer_id,
-          healthCardId: response.data.health_card.id,
-          cardType: formattedData.type as "individual" | "family",
-          purpose: "new" as const,
-          existingOrder: {
-            razorpay_order_id: payment.razorpay_order_id,
-            razorpay_key_id: payment.razorpay_key_id,
-            amount: payment.amount,
-            currency: "INR",
-          },
-        });
-      } else {
+      // Hard stop for free requests: never open payment for free flow.
+      const isFreeFlow =
+        isLockedFreeRequest ||
+        normalizedPaymentType === "free" ||
+        normalizedPaymentStatus === "free";
+
+      const isPaidFlow =
+        !isFreeFlow &&
+        (normalizedPaymentType === "paid" ||
+          requiresPayment ||
+          Boolean(payment));
+      const shouldOpenPayment =
+        isPaidFlow &&
+        (requiresPayment || normalizedPaymentStatus === "pending" || canPay) &&
+        hasOrder;
+
+      const shouldCompleteFreeFlow =
+        isFreeFlow && !requiresPayment && cardCreated && Boolean(healthCard);
+
+      if (shouldOpenPayment) {
+        // Paid flow: health_card is null (deferred creation until payment verified)
+        // Use customer.id from response (always present) and healthCard?.id (null for now)
+        Alert.alert(
+          t("common.success"),
+          response?.message ||
+            t(
+              "forms.applyCard.alerts.paymentOrderCreated",
+              "Payment order created. Complete payment to generate and activate the card.",
+            ),
+          [
+            {
+              text: t("forms.common.ok"),
+              onPress: () =>
+                navigation.navigate("Payment", {
+                  customerId: healthCard?.customer_id ?? customer?.id,
+                  healthCardId: healthCard?.id,
+                  cardType: formattedData.type as "individual" | "family",
+                  purpose: "new" as const,
+                  ...(payment
+                    ? {
+                        existingOrder: {
+                          razorpay_order_id: resolvedOrderId,
+                          razorpay_key_id: resolvedKeyId,
+                          amount: resolvedAmount,
+                          currency: resolvedCurrency,
+                        },
+                      }
+                    : {}),
+                }),
+            },
+          ],
+        );
+      } else if (isPaidFlow) {
+        Alert.alert(
+          t("common.error"),
+          t(
+            "forms.applyCard.alerts.paymentInitFailed",
+            "Payment initialization failed. Please try again from pending payments.",
+          ),
+        );
+      } else if (shouldCompleteFreeFlow) {
         // Free flow → card is already created and active
         Alert.alert(
           t("common.success"),
@@ -497,9 +594,15 @@ function ApplyCardRequest() {
           [
             {
               text: t("forms.applyCard.viewCard"),
-              onPress: () => navigation.navigate("Card"),
+              onPress: () =>
+                navigation.navigate("BottomTabs", { screen: "Card" }),
             },
           ],
+        );
+      } else {
+        Alert.alert(
+          t("common.error"),
+          response?.message || t("forms.applyCard.alerts.failed"),
         );
       }
     } catch (err: any) {

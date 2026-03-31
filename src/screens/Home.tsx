@@ -50,36 +50,43 @@ export default function HomeScreen() {
     error,
     refetch,
   } = useGetDashboardDetailsQuery();
-
   useFocusEffect(
     React.useCallback(() => {
       refetch();
     }, [refetch]),
   );
 
+  const hasPendingPayment = useMemo(() => {
+    return (dashboardData?.card_requests ?? []).some(
+      (req: any) => req?.payment_status === "pending",
+    );
+  }, [dashboardData?.card_requests]);
+
   // Create merged array combining health card object with family members array
   const familyCardsData = useMemo(() => {
-    if (!dashboardData?.family_members || !dashboardData?.health_card) {
+    if (!dashboardData?.health_card) {
       return [];
     }
 
+    const familyMembers = Array.isArray(dashboardData?.family_members)
+      ? dashboardData.family_members
+      : [];
+
     // Map family members with health card details
-    const familyMembersWithCard = dashboardData.family_members.map(
-      (member: any) => ({
-        ...member,
-        name: member.name,
-        bloodGroup: member.blood_group,
-        aadharNumber: member.aadhaar_number,
-        membershipId:
-          dashboardData?.health_card?.membership_id || t("home.notAvailable"),
-        dateOfIssue:
-          formatToDDMMYYY(dashboardData?.health_card?.date_of_issue) ||
-          t("home.notAvailable"),
-        dateOfExpiry:
-          formatToDDMMYYY(dashboardData?.health_card?.date_of_expiry) ||
-          t("home.notAvailable"),
-      }),
-    );
+    const familyMembersWithCard = familyMembers.map((member: any) => ({
+      ...member,
+      name: member.name,
+      bloodGroup: member.blood_group,
+      aadharNumber: member.aadhaar_number,
+      membershipId:
+        dashboardData?.health_card?.membership_id || t("home.notAvailable"),
+      dateOfIssue:
+        formatToDDMMYYY(dashboardData?.health_card?.date_of_issue) ||
+        t("home.notAvailable"),
+      dateOfExpiry:
+        formatToDDMMYYY(dashboardData?.health_card?.date_of_expiry) ||
+        t("home.notAvailable"),
+    }));
 
     // Create health card as standalone object
     const healthCardObject = {
@@ -146,7 +153,9 @@ export default function HomeScreen() {
 
   const hasCardRequests =
     Array.isArray(dashboardData?.card_requests) &&
-    dashboardData.card_requests.length > 0;
+    dashboardData.card_requests.some(
+      (req: any) => req?.status?.toString().toLowerCase() === "approved",
+    );
 
   const getCardRequestStatusColor = (status: string) => {
     const statusLower = (status ?? "").toString().toLowerCase();
@@ -160,6 +169,54 @@ export default function HomeScreen() {
         return styles.cardRequestStatusPending;
     }
   };
+
+  const getPaymentType = (request: any): "free" | "paid" | "unknown" => {
+    const value = (request?.payment_type ?? "").toString().toLowerCase();
+    if (value === "free" || value === "paid") {
+      return value;
+    }
+    return "unknown";
+  };
+
+  const getPaymentStatus = (request: any): string => {
+    return (request?.payment_status ?? "").toString().toLowerCase();
+  };
+
+  const getPaymentTypeBadgeStyle = (request: any) => {
+    const paymentType = getPaymentType(request);
+    if (paymentType === "free") {
+      return styles.cardRequestPaymentFree;
+    }
+    if (paymentType === "paid") {
+      return styles.cardRequestPaymentPaid;
+    }
+    return styles.cardRequestPaymentUnknown;
+  };
+
+  const getPaymentTypeLabel = (request: any) => {
+    const paymentType = getPaymentType(request);
+    if (paymentType === "free") {
+      return t("home.free", "Free");
+    }
+    if (paymentType === "paid") {
+      return t("home.paid", "Paid");
+    }
+    return t("home.unknown", "Unknown");
+  };
+
+  const isSelectedRequestApproved =
+    selectedCardRequest?.status?.toString().toLowerCase() === "approved";
+  const selectedRequestPaymentType = getPaymentType(selectedCardRequest);
+  const isSelectedRequestPaid = selectedRequestPaymentType === "paid";
+  const isSelectedRequestFree = selectedRequestPaymentType === "free";
+  const isSelectedRequestPendingPayment =
+    isSelectedRequestPaid &&
+    getPaymentStatus(selectedCardRequest) === "pending";
+  const isSelectedRequestCanApply = Boolean(selectedCardRequest?.can_apply);
+  const isSelectedRequestCanPay =
+    Boolean(selectedCardRequest?.can_pay) || isSelectedRequestPendingPayment;
+  const shouldShowApplyAction = isSelectedRequestApproved;
+  const shouldShowPayAction = isSelectedRequestPaid && isSelectedRequestCanPay;
 
   const actions = [
     { key: "education", Icon: GraduationCapIcon, label: t("home.education") },
@@ -325,7 +382,14 @@ export default function HomeScreen() {
           </>
         ) : (
           <View style={styles.noCardsContainer}>
-            <Text style={styles.noCardsText}>{t("home.noCardsFound")}</Text>
+            <Text style={styles.noCardsText}>
+              {hasPendingPayment
+                ? t(
+                    "home.paymentPendingNoCard",
+                    "Payment is pending. Complete payment to view your health card.",
+                  )
+                : t("home.noCardsFound")}
+            </Text>
           </View>
         )}
 
@@ -350,30 +414,65 @@ export default function HomeScreen() {
             <Text style={styles.cardRequestsTitle}>
               {t("home.cardRequests")}
             </Text>
-            {dashboardData.card_requests.map((req: any) => (
-              <TouchableOpacity
-                key={req.id}
-                style={styles.cardRequestItem}
-                onPress={() => handleCardRequestPress(req)}
-              >
-                <View>
-                  <Text style={styles.cardRequestId}>#{req.id}</Text>
-                  {!!req.requested_at && (
-                    <Text style={styles.cardRequestDate}>
-                      {req.requested_at}
-                    </Text>
-                  )}
-                </View>
-                <View
-                  style={[
-                    styles.cardRequestStatusBadge,
-                    getCardRequestStatusColor(req.status),
-                  ]}
+            {dashboardData.card_requests
+              .filter(
+                (req: any) =>
+                  req?.status?.toString().toLowerCase() === "approved",
+              )
+              .map((req: any) => (
+                <TouchableOpacity
+                  key={req.id}
+                  style={styles.cardRequestItem}
+                  onPress={() => handleCardRequestPress(req)}
                 >
-                  <Text style={styles.cardRequestStatusText}>{req.status}</Text>
-                </View>
-              </TouchableOpacity>
-            ))}
+                  <View>
+                    <Text style={styles.cardRequestId}>#{req.id}</Text>
+                    {!!req.requested_at && (
+                      <Text style={styles.cardRequestDate}>
+                        {req.requested_at}
+                      </Text>
+                    )}
+                  </View>
+                  <View style={styles.cardRequestBadgesRow}>
+                    <View
+                      style={[
+                        styles.cardRequestStatusBadge,
+                        getCardRequestStatusColor(req.status),
+                      ]}
+                    >
+                      <Text style={styles.cardRequestStatusText}>
+                        {req.status
+                          ? req.status.charAt(0).toUpperCase() +
+                            req.status.slice(1).toLowerCase()
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={[
+                        styles.cardRequestStatusBadge,
+                        getPaymentTypeBadgeStyle(req),
+                      ]}
+                    >
+                      <Text style={styles.cardRequestStatusText}>
+                        {getPaymentTypeLabel(req)}
+                      </Text>
+                    </View>
+                    {getPaymentType(req) === "paid" &&
+                      getPaymentStatus(req) === "pending" && (
+                        <View
+                          style={[
+                            styles.cardRequestStatusBadge,
+                            styles.cardRequestPaymentPending,
+                          ]}
+                        >
+                          <Text style={styles.cardRequestStatusText}>
+                            {t("home.payNow", "Pay Now")}
+                          </Text>
+                        </View>
+                      )}
+                  </View>
+                </TouchableOpacity>
+              ))}
           </View>
         )}
       </ScrollView>
@@ -513,6 +612,16 @@ export default function HomeScreen() {
                   </Text>
                 </View>
               )}
+              {selectedCardRequest?.payment_type && (
+                <View style={styles.modalRow}>
+                  <Text style={styles.modalLabel}>
+                    {t("home.paymentType", "Payment Type")}
+                  </Text>
+                  <Text style={styles.modalValue}>
+                    {getPaymentTypeLabel(selectedCardRequest)}
+                  </Text>
+                </View>
+              )}
               {selectedCardRequest?.requested_at && (
                 <View style={styles.modalRow}>
                   <Text style={styles.modalLabel}>{t("home.requested")}</Text>
@@ -548,19 +657,49 @@ export default function HomeScreen() {
               <Text style={styles.modalCloseBtnText}>{t("home.close")}</Text>
             </TouchableOpacity>
 
-            {selectedCardRequest?.status?.toString().toLowerCase() ===
-              "approved" && (
-              <TouchableOpacity
-                style={styles.modalPrimaryBtn}
-                onPress={() => {
-                  setCardRequestModalVisible(false);
-                  navigation.navigate("ApplyCardRequest");
-                }}
-              >
-                <Text style={styles.modalPrimaryBtnText}>
-                  {t("home.applyForCard")}
+            {shouldShowApplyAction && (
+              <>
+                <Text style={styles.modalInfoText}>
+                  {isSelectedRequestPaid
+                    ? t(
+                        "home.paidRequestInfo",
+                        "This request is paid. Complete card details first, then proceed to Razorpay payment. Card will appear after successful payment verification.",
+                      )
+                    : isSelectedRequestFree
+                    ? t(
+                        "home.freeRequestInfo",
+                        "This request is free. After submitting card details, your card will be generated automatically.",
+                      )
+                    : t(
+                        "home.unknownPaymentTypeInfo",
+                        "Complete card details to continue. Payment requirements will be decided by server verification.",
+                      )}
                 </Text>
-              </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.modalPrimaryBtn}
+                  onPress={() => {
+                    setCardRequestModalVisible(false);
+                    navigation.navigate("ApplyCardRequest", {
+                      paymentType: selectedRequestPaymentType,
+                      paymentStatus: getPaymentStatus(selectedCardRequest),
+                      canApply: isSelectedRequestCanApply,
+                      canPay: isSelectedRequestCanPay,
+                    });
+                  }}
+                >
+                  <Text style={styles.modalPrimaryBtnText}>
+                    {isSelectedRequestPaid
+                      ? t(
+                          "home.applyAndPay",
+                          "Apply Card & Continue to Payment",
+                        )
+                      : isSelectedRequestFree
+                      ? t("home.applyForFreeCard", "Apply For Free Card")
+                      : t("home.applyForCard", "Apply For Card")}
+                  </Text>
+                </TouchableOpacity>
+              </>
             )}
           </View>
         </View>
@@ -740,6 +879,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    gap: 8,
     paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#E5E7EB",
@@ -751,10 +891,19 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     borderRadius: 10,
   },
+  cardRequestBadgesRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+  },
   cardRequestStatusText: { fontSize: 12, color: "#fff", fontWeight: "700" },
   cardRequestStatusApproved: { backgroundColor: "#16A34A" },
   cardRequestStatusPending: { backgroundColor: "#F59E0B" },
   cardRequestStatusRejected: { backgroundColor: "#DC2626" },
+  cardRequestPaymentFree: { backgroundColor: "#0EA5A4" },
+  cardRequestPaymentPaid: { backgroundColor: "#2563EB" },
+  cardRequestPaymentUnknown: { backgroundColor: "#6B7280" },
+  cardRequestPaymentPending: { backgroundColor: "#D97706" },
 
   modalOverlay: {
     flex: 1,
@@ -797,6 +946,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 12,
     alignItems: "center",
+    marginTop: 10,
+  },
+  modalInfoText: {
+    color: "#475569",
+    fontSize: 13,
+    lineHeight: 19,
     marginTop: 10,
   },
   modalPrimaryBtnText: { color: "#fff", fontWeight: "700" },

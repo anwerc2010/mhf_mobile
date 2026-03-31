@@ -102,6 +102,14 @@ function PaymentScreen() {
         result: outcome.data,
         campaignPayment,
       });
+    } else if (outcome.dismissed) {
+      Alert.alert(
+        t("payment.cancelled", "Payment Cancelled"),
+        t(
+          "payment.cancelledKeepPending",
+          "Payment cancelled. Card will not be visible until payment succeeds.",
+        ),
+      );
     } else if (!outcome.dismissed) {
       Alert.alert(t("payment.failed", "Payment Failed"), outcome.error, [
         { text: "OK" },

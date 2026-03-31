@@ -24,6 +24,8 @@ import PTDynamicForm, {
   PTDynamicFormRef,
 } from "../components/general/DynamicForm/DynamicForm";
 import PTToast, { ToastType } from "../components/comman/PTToast";
+import PTButton from "../components/comman/PTButton";
+import TermsAccordion from "../components/general/TermsAccordion";
 
 interface RegisterScreenProps {
   navigation: any;
@@ -36,6 +38,7 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
     (state) => state.language.currentLanguage,
   );
   const [registerMutation, { isLoading, error }] = useRegisterMutation();
+  const [termsAgreed, setTermsAgreed] = useState(false);
   const [toastState, setToastState] = useState({
     visible: false,
     message: "",
@@ -183,13 +186,20 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
 
   useEffect(() => {
     if (error) {
-      Alert.alert(
-        t("register.registrationFailed"),
-        "data" in error
-          ? (error.data as { message?: string })?.message ||
-              t("register.registrationFailed")
-          : t("login.errorOccurred"),
-      );
+      let msg = t("login.errorOccurred");
+      if ("data" in error) {
+        const raw = (error.data as any)?.message;
+        if (typeof raw === "string") {
+          msg = raw;
+        } else if (raw && typeof raw === "object") {
+          const keys = Object.keys(raw);
+          if (keys.length > 0) {
+            const val = raw[keys[0]];
+            msg = `${keys[0]}: ${Array.isArray(val) ? val[0] : val}`;
+          }
+        }
+      }
+      Alert.alert(t("register.registrationFailed"), String(msg));
     }
   }, [error, t]);
 
@@ -210,11 +220,19 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
   };
 
   const handleRegister = async (values: Record<string, any>) => {
+    if (!termsAgreed) {
+      Alert.alert(
+        "Terms Required",
+        "Please agree to the Terms & Conditions and Privacy Policy to register.",
+      );
+      return;
+    }
     let payload = { ...values.personalDetails } as any;
     payload.date_of_birth = payload.date_of_birth?.split("T")[0];
     payload.joining_date = payload.joining_date?.split("T")[0];
     payload.card_number = payload.card_number || "";
     payload.status = "active";
+    payload.termsAccepted = true;
     console.log("Register form values:", JSON.stringify(payload, null, 2));
 
     try {
@@ -235,6 +253,13 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
             }`;
           }
         }
+        console.log("Registration error response:", result);
+        console.log("Extracted error message:", errorMessage);
+        console.error("Registration error:", result);
+        console.log(
+          "Full registration payload:",
+          JSON.stringify(payload, null, 2),
+        );
 
         Alert.alert(t("register.registrationFailed"), errorMessage, [
           { text: "OK" },
@@ -243,18 +268,18 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
         return;
       }
 
-      Alert.alert(
-        t("register.registrationSuccess"),
-        result?.message || t("register.toast.success"),
-        [
-          {
-            text: "OK",
-            onPress: () => {
-              navigation.navigate("Login");
-            },
+      const successMsg =
+        typeof result?.message === "string"
+          ? result.message
+          : t("register.toast.success");
+      Alert.alert(t("register.registrationSuccess"), successMsg, [
+        {
+          text: "OK",
+          onPress: () => {
+            navigation.navigate("Login");
           },
-        ],
-      );
+        },
+      ]);
     } catch (err: any) {
       let errorMessage = t("register.toast.error");
 
@@ -275,11 +300,11 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
         errorMessage = messageObj;
       }
 
-      Alert.alert(t("register.registrationFailed"), errorMessage, [
+      Alert.alert(t("register.registrationFailed"), String(errorMessage), [
         { text: "OK" },
       ]);
       setPendingNavigate(false);
-      logger.error("Registration error:", err);
+      logger.error("Registration error:", JSON.stringify(err, null, 2));
     }
   };
 
@@ -309,26 +334,35 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
           sections={sections}
           initialValues={{}}
           mode="onBlur"
-          submitButtonText={t("common.signUp")}
           submitLoading={isLoading}
           onSubmit={handleRegister}
           scrollable={true}
           onValueChange={(fieldId, value) => {
             console.log(`${fieldId} changed to`, value);
           }}
+          customSubmitButton={
+            <View style={styles.customSubmitArea}>
+              <TermsAccordion value={termsAgreed} onChange={setTermsAgreed} />
+              <PTButton
+                title={t("common.signUp")}
+                onPress={() => formRef.current?.submit()}
+                loading={isLoading}
+                disabled={!termsAgreed}
+              />
+              <View style={styles.footer}>
+                <PTText variant="body" style={styles.footerText}>
+                  {t("register.hasAccount")}{" "}
+                </PTText>
+                <Text
+                  style={styles.link}
+                  onPress={() => navigation.navigate("Login")}
+                >
+                  {t("common.signIn")}
+                </Text>
+              </View>
+            </View>
+          }
         />
-
-        <View style={styles.footer}>
-          <PTText variant="body" style={styles.footerText}>
-            {t("register.hasAccount")}{" "}
-          </PTText>
-          <Text
-            style={styles.link}
-            onPress={() => navigation.navigate("Login")}
-          >
-            {t("common.signIn")}
-          </Text>
-        </View>
       </PTContainer>
       <PTToast
         visible={toastState.visible}
@@ -358,10 +392,18 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#666",
   },
+  termsContainer: {
+    paddingHorizontal: spacing.screenPadding,
+    paddingTop: spacing.sm,
+  },
+  customSubmitArea: {
+    marginTop: spacing.md,
+    paddingBottom: spacing.lg,
+  },
   footer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 24,
+    marginTop: 8,
     marginBottom: 24,
   },
   footerText: {

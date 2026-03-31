@@ -148,7 +148,7 @@ function ForgotPasswordScreen({ navigation }: ForgotPasswordScreenProps) {
             <PTText variant="body" style={styles.subtitle}>
               {t(
                 "forgotPassword.subtitle",
-                "Enter your email address and we'll send you a one-time password (OTP) to reset your password.",
+                "Please enter your registered Email to reset your password.",
               )}
             </PTText>
 

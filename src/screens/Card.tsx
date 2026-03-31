@@ -44,7 +44,6 @@ export default function CardScreen() {
     error,
     refetch,
   } = useGetDashboardDetailsQuery();
-
   // Refetch when screen comes into focus
   useFocusEffect(
     React.useCallback(() => {
@@ -118,28 +117,26 @@ export default function CardScreen() {
 
   // Get family cards from API data or use default
   const familyCards = useMemo(() => {
-    if (
-      dashboardData?.family_members &&
-      Array.isArray(dashboardData.family_members) &&
-      dashboardData?.health_card
-    ) {
+    if (dashboardData?.health_card) {
+      const familyMembers = Array.isArray(dashboardData?.family_members)
+        ? dashboardData.family_members
+        : [];
+
       // Map family members with health card info
-      const familyMembersWithCard = dashboardData.family_members.map(
-        (member: any) => ({
-          ...member,
-          name: member.name,
-          bloodGroup: member.blood_group,
-          aadharNumber: member.aadhaar_number,
-          membershipId:
-            dashboardData?.health_card?.membership_id || t("home.notAvailable"),
-          dateOfIssue:
-            formatToDDMMYYY(dashboardData?.health_card?.date_of_issue) ||
-            t("home.notAvailable"),
-          dateOfExpiry:
-            formatToDDMMYYY(dashboardData?.health_card?.date_of_expiry) ||
-            t("home.notAvailable"),
-        }),
-      );
+      const familyMembersWithCard = familyMembers.map((member: any) => ({
+        ...member,
+        name: member.name,
+        bloodGroup: member.blood_group,
+        aadharNumber: member.aadhaar_number,
+        membershipId:
+          dashboardData?.health_card?.membership_id || t("home.notAvailable"),
+        dateOfIssue:
+          formatToDDMMYYY(dashboardData?.health_card?.date_of_issue) ||
+          t("home.notAvailable"),
+        dateOfExpiry:
+          formatToDDMMYYY(dashboardData?.health_card?.date_of_expiry) ||
+          t("home.notAvailable"),
+      }));
 
       // Create health card as standalone object (primary member)
       const healthCardObject = {
@@ -179,6 +176,9 @@ export default function CardScreen() {
 
   const handleEmailCard = async () => {
     const currentCard = familyCards[currentCardIndex];
+    if (!currentCard) {
+      return;
+    }
     const subject = `Health Card Details - ${currentCard.name}`;
     const body = `Family Health Card Details:
 
@@ -228,6 +228,7 @@ ${steps.map((s, i) => `Step ${i + 1}: ${s}`).join("\n")}`;
             style={styles.scanButton}
             activeOpacity={0.8}
             onPress={handleDownloadCard}
+            disabled={familyCards.length === 0}
           >
             <DownloadSimple color="#fff" weight="bold" size={14} />
             <Text style={styles.scanText}>
@@ -238,6 +239,7 @@ ${steps.map((s, i) => `Step ${i + 1}: ${s}`).join("\n")}`;
             style={styles.scanButton}
             activeOpacity={0.8}
             onPress={handleEmailCard}
+            disabled={familyCards.length === 0}
           >
             <EnvelopeSimple color="#fff" weight="bold" size={14} />
             <Text style={styles.scanText}>{t("card.emailCard", "Email")}</Text>
@@ -256,6 +258,15 @@ ${steps.map((s, i) => `Step ${i + 1}: ${s}`).join("\n")}`;
       ) : error ? (
         <View style={styles.errorContainer}>
           <Text style={styles.errorText}>{t("card.loadError")}</Text>
+        </View>
+      ) : familyCards.length === 0 ? (
+        <View style={styles.errorContainer}>
+          <Text style={styles.loadingText}>
+            {t(
+              "card.noCardsFound",
+              "No health cards found. Complete payment to view your card.",
+            )}
+          </Text>
         </View>
       ) : (
         <>

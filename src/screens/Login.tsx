@@ -14,9 +14,12 @@ import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../store/hook";
 import {
   setAuth,
+  clearAuth,
   useLoginMutation,
   useSaveNotificationTokenMutation,
 } from "@psi/shared-api";
+import { useLazyGetTermsVersionQuery } from "../api/legalApi";
+import { setLegalTermsRequired } from "../store/slices/legalSlice";
 import { isValidEmail } from "../utils/validator";
 import { logger } from "../utils/logger";
 import { spacing } from "../constants/spacing";
@@ -71,6 +74,7 @@ function LoginScreen({ navigation }: LoginScreenProps) {
   const [fcmToken, setFcmToken] = useState<string | null>(null);
   const [loginMutation, { isLoading, error }] = useLoginMutation();
   const [saveNotificationToken] = useSaveNotificationTokenMutation();
+  const [triggerGetTermsVersion] = useLazyGetTermsVersionQuery();
 
   useEffect(() => {
     const setupFirebase = async () => {
@@ -146,7 +150,31 @@ function LoginScreen({ navigation }: LoginScreenProps) {
         }
       }
 
-      // Navigation will be handled automatically by RootNavigator
+      // Verify terms version — BLOCKING: user must not enter the app if this fails
+      try {
+        const versionData = await triggerGetTermsVersion().unwrap();
+        const customerAny = result.customer as any;
+        if (customerAny.terms_version !== versionData.version) {
+          dispatch(
+            setLegalTermsRequired({
+              required: true,
+              serverVersion: versionData.version,
+            }),
+          );
+        } else {
+          dispatch(setLegalTermsRequired({ required: false }));
+        }
+        // RootNavigator's conditional screens handle navigation based on the state above
+      } catch (termsError) {
+        // Terms check failed — clear auth and block the user (legal compliance)
+        dispatch(clearAuth());
+        Alert.alert(
+          "Connection Error",
+          "Unable to verify Terms & Conditions. Please check your internet connection and try again.",
+        );
+        logger.error("Terms version check failed:", termsError);
+        return; // ⛔ stop — RootNavigator will redirect to Login because token is cleared
+      }
     } catch (err) {
       // Error is handled by useEffect above
       logger.error("Login error:", err);
@@ -192,6 +220,7 @@ function LoginScreen({ navigation }: LoginScreenProps) {
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry
+                showPasswordToggle
                 autoCapitalize="none"
                 autoComplete="password"
               />
@@ -224,18 +253,6 @@ function LoginScreen({ navigation }: LoginScreenProps) {
                   onPress={() => navigation.navigate("Register")}
                 >
                   {t("common.signUp")}
-                </Text>
-              </View>
-
-              <View style={styles.footer}>
-                <PTText variant="body" style={styles.footerText}>
-                  {t("login.haveResetToken", "Have a reset token?")}{" "}
-                </PTText>
-                <Text
-                  style={styles.link}
-                  onPress={() => navigation.navigate("ResetPassword")}
-                >
-                  {t("login.resetPassword", "Reset Password")}
                 </Text>
               </View>
             </View>

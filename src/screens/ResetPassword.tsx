@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
+  TextInput,
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
   Alert,
   ImageBackground,
   Image,
+  ScrollView,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import {
@@ -23,6 +25,8 @@ import PTInput from "../components/comman/PTInput";
 import PTContainer from "../components/comman/PTContainer";
 import PTText from "../components/comman/PTText";
 
+const OTP_LENGTH = 6;
+
 interface ResetPasswordScreenProps {
   navigation: any;
   route?: {
@@ -36,11 +40,14 @@ interface ResetPasswordScreenProps {
 function ResetPasswordScreen({ navigation, route }: ResetPasswordScreenProps) {
   const { t } = useTranslation();
   const [email, setEmail] = useState(route?.params?.email || "");
-  const [otp, setOtp] = useState("");
+  const [otpDigits, setOtpDigits] = useState<string[]>(
+    Array(OTP_LENGTH).fill(""),
+  );
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isOtpSent, setIsOtpSent] = useState(Boolean(route?.params?.otpSent));
   const [isOtpVerified, setIsOtpVerified] = useState(false);
+  const otpInputRefs = useRef<(TextInput | null)[]>([]);
 
   const [sendOtpMutation, { isLoading: isSendingOtp, error: sendOtpError }] =
     useSendOtpMutation();
@@ -73,6 +80,25 @@ function ResetPasswordScreen({ navigation, route }: ResetPasswordScreenProps) {
 
     Alert.alert(t("common.error"), message);
   }, [sendOtpError, verifyOtpError, resetPasswordError, t]);
+
+  const handleOtpChange = (text: string, index: number) => {
+    const digit = text.replace(/[^0-9]/g, "");
+    const newDigits = [...otpDigits];
+    newDigits[index] = digit.slice(-1);
+    setOtpDigits(newDigits);
+
+    if (digit && index < OTP_LENGTH - 1) {
+      otpInputRefs.current[index + 1]?.focus();
+    }
+  };
+
+  const handleOtpKeyPress = (key: string, index: number) => {
+    if (key === "Backspace" && !otpDigits[index] && index > 0) {
+      otpInputRefs.current[index - 1]?.focus();
+    }
+  };
+
+  const getOtpString = () => otpDigits.join("");
 
   const handleSendOtp = async () => {
     const normalizedEmail = email.trim().toLowerCase();
@@ -119,11 +145,11 @@ function ResetPasswordScreen({ navigation, route }: ResetPasswordScreenProps) {
   };
 
   const handleVerifyOtp = async () => {
-    const otpValue = otp.trim();
-    if (!otpValue) {
+    const otpValue = getOtpString();
+    if (otpValue.length !== OTP_LENGTH) {
       Alert.alert(
         t("common.error"),
-        t("resetPassword.enterOtp", "Please enter OTP"),
+        t("resetPassword.enterOtp", "Please enter the complete OTP"),
       );
       return;
     }
@@ -143,11 +169,6 @@ function ResetPasswordScreen({ navigation, route }: ResetPasswordScreenProps) {
       }
 
       setIsOtpVerified(true);
-      Alert.alert(
-        t("resetPassword.success", "Success"),
-        result?.message ||
-          t("resetPassword.otpVerified", "OTP verified successfully."),
-      );
     } catch (err) {
       logger.error("Verify OTP error:", err);
     }
@@ -155,8 +176,9 @@ function ResetPasswordScreen({ navigation, route }: ResetPasswordScreenProps) {
 
   const handleResetPassword = async () => {
     const normalizedEmail = email.trim().toLowerCase();
+    const otpValue = getOtpString();
 
-    if (!normalizedEmail || !otp.trim() || !newPassword || !confirmPassword) {
+    if (!newPassword || !confirmPassword) {
       Alert.alert(
         t("common.error"),
         t("resetPassword.fillAllFields", "Please fill in all fields"),
@@ -164,13 +186,10 @@ function ResetPasswordScreen({ navigation, route }: ResetPasswordScreenProps) {
       return;
     }
 
-    if (!isOtpVerified) {
+    if (otpValue.length !== OTP_LENGTH) {
       Alert.alert(
         t("common.error"),
-        t(
-          "resetPassword.verifyOtpFirst",
-          "Please verify OTP before resetting password",
-        ),
+        t("resetPassword.enterOtp", "Please enter the complete OTP"),
       );
       return;
     }
@@ -197,9 +216,10 @@ function ResetPasswordScreen({ navigation, route }: ResetPasswordScreenProps) {
     try {
       const result = await resetPasswordMutation({
         email: normalizedEmail,
+        otp: otpValue,
         password: newPassword,
         password_confirmation: confirmPassword,
-      }).unwrap();
+      } as any).unwrap();
 
       if (result?.error) {
         Alert.alert(
@@ -241,33 +261,143 @@ function ResetPasswordScreen({ navigation, route }: ResetPasswordScreenProps) {
     }
   };
 
-  const submitTitle = !isOtpSent
-    ? t("resetPassword.sendOtp", "Send OTP")
-    : !isOtpVerified
-    ? t("resetPassword.verifyOtp", "Verify OTP")
-    : t("resetPassword.resetPassword", "Reset Password");
+  // Step indicators
+  const currentStep = !isOtpSent ? 1 : !isOtpVerified ? 2 : 3;
+
+  const stepTitle =
+    currentStep === 2
+      ? t("resetPassword.enterOtpTitle", "Enter OTP")
+      : t("resetPassword.title", "Reset Password");
+
+  const stepSubtitle =
+    currentStep === 2
+      ? t(
+          "resetPassword.enterOtpSubtitle",
+          "We sent an OTP to your email. Please check and enter below to verify.",
+        )
+      : t(
+          "resetPassword.resetSubtitle",
+          "Please enter your registered Email to reset your password.",
+        );
+
+  const renderStepIndicator = () => (
+    <View style={styles.stepContainer}>
+      {[1, 2, 3].map((step) => (
+        <View key={step} style={styles.stepRow}>
+          <View
+            style={[
+              styles.stepDot,
+              currentStep >= step && styles.stepDotActive,
+            ]}
+          >
+            <Text
+              style={[
+                styles.stepNumber,
+                currentStep >= step && styles.stepNumberActive,
+              ]}
+            >
+              {step}
+            </Text>
+          </View>
+          {step < 3 && (
+            <View
+              style={[
+                styles.stepLine,
+                currentStep > step && styles.stepLineActive,
+              ]}
+            />
+          )}
+        </View>
+      ))}
+    </View>
+  );
+
+  const renderOtpInputs = () => (
+    <View style={styles.otpContainer}>
+      <PTText variant="caption" style={styles.otpLabel}>
+        {t("resetPassword.enterOtpLabel", "Enter OTP")}
+      </PTText>
+      <View style={styles.otpRow}>
+        {otpDigits.map((digit, index) => (
+          <TextInput
+            key={index}
+            ref={(ref) => {
+              otpInputRefs.current[index] = ref;
+            }}
+            style={[styles.otpBox, digit ? styles.otpBoxFilled : null]}
+            value={digit}
+            onChangeText={(text) => handleOtpChange(text, index)}
+            onKeyPress={({ nativeEvent }) =>
+              handleOtpKeyPress(nativeEvent.key, index)
+            }
+            keyboardType="number-pad"
+            maxLength={1}
+            textAlign="center"
+            selectTextOnFocus
+          />
+        ))}
+      </View>
+      <View style={styles.resendContainer}>
+        <Text
+          style={styles.resendLink}
+          onPress={isSendingOtp ? undefined : handleSendOtp}
+        >
+          {t("resetPassword.resendOtp", "Resend")}
+        </Text>
+      </View>
+    </View>
+  );
+
+  const renderPasswordFields = () => (
+    <>
+      <PTInput
+        label={t("resetPassword.newPassword", "New Password")}
+        placeholder={t(
+          "resetPassword.newPasswordPlaceholder",
+          "Enter new password",
+        )}
+        value={newPassword}
+        onChangeText={setNewPassword}
+        secureTextEntry
+        showPasswordToggle
+        autoCapitalize="none"
+        autoComplete="password-new"
+      />
+
+      <PTInput
+        label={t("resetPassword.confirmPassword", "Confirm Password")}
+        placeholder={t(
+          "resetPassword.confirmPasswordPlaceholder",
+          "Confirm new password",
+        )}
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+        secureTextEntry
+        showPasswordToggle
+        autoCapitalize="none"
+        autoComplete="password-new"
+      />
+    </>
+  );
 
   const handlePrimaryAction = () => {
-    if (!isOtpSent) {
-      handleSendOtp();
-      return;
-    }
-
-    if (!isOtpVerified) {
+    if (currentStep === 2) {
       handleVerifyOtp();
-      return;
+    } else if (currentStep === 3) {
+      handleResetPassword();
     }
-
-    handleResetPassword();
   };
 
-  const isPrimaryLoading =
-    isSendingOtp || isVerifyingOtp || isResettingPassword;
-  const isPrimaryDisabled = !isOtpSent
-    ? !email
-    : !isOtpVerified
-    ? !otp
-    : !newPassword || !confirmPassword;
+  const primaryButtonTitle =
+    currentStep === 2
+      ? t("resetPassword.verify", "Verify")
+      : t("resetPassword.resetPassword", "Reset Password");
+
+  const isPrimaryLoading = isVerifyingOtp || isResettingPassword;
+  const isPrimaryDisabled =
+    currentStep === 2
+      ? getOtpString().length !== OTP_LENGTH
+      : !newPassword || !confirmPassword;
 
   return (
     <PTContainer safeArea>
@@ -280,116 +410,68 @@ function ResetPasswordScreen({ navigation, route }: ResetPasswordScreenProps) {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={styles.container}
         >
-          <View style={styles.content}>
-            <Image
-              source={require("../../assets/images/logo-hd.png")}
-              style={styles.logo}
-              resizeMode="contain"
-            />
-
-            <PTText variant="h1" style={styles.title}>
-              {t("resetPassword.title", "Reset Password")}
-            </PTText>
-
-            <PTText variant="body" style={styles.subtitle}>
-              {t(
-                "resetPassword.subtitle",
-                "Send OTP, verify OTP, then choose a new password.",
-              )}
-            </PTText>
-
-            <View style={styles.form}>
-              <PTInput
-                label={t("common.email", "Email")}
-                placeholder={t(
-                  "forgotPassword.emailPlaceholder",
-                  "Enter your email",
-                )}
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
-                autoCapitalize="none"
-                autoComplete="email"
+          <ScrollView
+            contentContainerStyle={styles.scrollContent}
+            keyboardShouldPersistTaps="handled"
+          >
+            <View style={styles.content}>
+              <Image
+                source={require("../../assets/images/logo-hd.png")}
+                style={styles.logo}
+                resizeMode="contain"
               />
 
-              {isOtpSent && (
-                <PTInput
-                  label={t("resetPassword.otp", "OTP")}
-                  placeholder={t("resetPassword.otpPlaceholder", "Enter OTP")}
-                  value={otp}
-                  onChangeText={setOtp}
-                  keyboardType="number-pad"
-                  autoCapitalize="none"
-                />
-              )}
+              <PTText variant="h1" style={styles.title}>
+                {stepTitle}
+              </PTText>
 
-              {isOtpVerified && (
-                <>
+              <PTText variant="body" style={styles.subtitle}>
+                {stepSubtitle}
+              </PTText>
+
+              {renderStepIndicator()}
+
+              <View style={styles.form}>
+                {/* Email shown as read-only context */}
+                {isOtpSent && (
                   <PTInput
-                    label={t("resetPassword.newPassword", "New Password")}
-                    placeholder={t(
-                      "resetPassword.newPasswordPlaceholder",
-                      "Enter new password",
-                    )}
-                    value={newPassword}
-                    onChangeText={setNewPassword}
-                    secureTextEntry
-                    autoCapitalize="none"
-                    autoComplete="password-new"
+                    label={t("common.email", "Email")}
+                    value={email}
+                    editable={false}
+                    onChangeText={() => {}}
                   />
+                )}
 
-                  <PTInput
-                    label={t(
-                      "resetPassword.confirmPassword",
-                      "Confirm Password",
-                    )}
-                    placeholder={t(
-                      "resetPassword.confirmPasswordPlaceholder",
-                      "Confirm new password",
-                    )}
-                    value={confirmPassword}
-                    onChangeText={setConfirmPassword}
-                    secureTextEntry
-                    autoCapitalize="none"
-                    autoComplete="password-new"
-                  />
-                </>
-              )}
+                {/* Step 2: OTP digit boxes */}
+                {isOtpSent && !isOtpVerified && renderOtpInputs()}
 
-              <View style={styles.button}>
-                <PTButton
-                  title={submitTitle}
-                  variant="success"
-                  onPress={handlePrimaryAction}
-                  loading={isPrimaryLoading}
-                  disabled={isPrimaryDisabled}
-                />
-              </View>
+                {/* Step 3: Password fields */}
+                {isOtpVerified && renderPasswordFields()}
 
-              {isOtpSent && !isOtpVerified && (
-                <View style={styles.secondaryButton}>
+                <View style={styles.button}>
                   <PTButton
-                    title={t("resetPassword.resendOtp", "Resend OTP")}
-                    variant="outline"
-                    onPress={handleSendOtp}
-                    disabled={isPrimaryLoading}
+                    title={primaryButtonTitle}
+                    variant="success"
+                    onPress={handlePrimaryAction}
+                    loading={isPrimaryLoading}
+                    disabled={isPrimaryDisabled}
                   />
                 </View>
-              )}
 
-              <View style={styles.footer}>
-                <PTText variant="body" style={styles.footerText}>
-                  {t("resetPassword.backToLogin", "Back to")}{" "}
-                </PTText>
-                <Text
-                  style={styles.link}
-                  onPress={() => navigation.navigate("Login")}
-                >
-                  {t("common.signIn", "Sign In")}
-                </Text>
+                <View style={styles.footer}>
+                  <PTText variant="body" style={styles.footerText}>
+                    {t("resetPassword.backToLogin", "Back to")}{" "}
+                  </PTText>
+                  <Text
+                    style={styles.link}
+                    onPress={() => navigation.navigate("Login")}
+                  >
+                    {t("common.signIn", "Sign In")}
+                  </Text>
+                </View>
               </View>
             </View>
-          </View>
+          </ScrollView>
         </KeyboardAvoidingView>
       </ImageBackground>
     </PTContainer>
@@ -404,6 +486,9 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+  },
+  scrollContent: {
+    flexGrow: 1,
   },
   logo: {
     width: 120,
@@ -423,24 +508,91 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   subtitle: {
-    marginBottom: 24,
+    marginBottom: 16,
     textAlign: "center",
     color: "#666",
     paddingHorizontal: 20,
   },
+  stepContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 24,
+  },
+  stepRow: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  stepDot: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: "#E0E0E0",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  stepDotActive: {
+    backgroundColor: "#4d9734",
+  },
+  stepNumber: {
+    fontSize: 14,
+    fontWeight: "700",
+    color: "#999",
+  },
+  stepNumberActive: {
+    color: "#fff",
+  },
+  stepLine: {
+    width: 40,
+    height: 3,
+    backgroundColor: "#E0E0E0",
+    marginHorizontal: 4,
+  },
+  stepLineActive: {
+    backgroundColor: "#4d9734",
+  },
   form: {
     width: "100%",
+  },
+  otpContainer: {
+    marginBottom: 12,
+  },
+  otpLabel: {
+    marginBottom: 8,
+    fontWeight: "600",
+  },
+  otpRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  otpBox: {
+    width: 48,
+    height: 52,
+    borderWidth: 1.5,
+    borderColor: "#ccc",
+    borderRadius: 10,
+    fontSize: 22,
+    fontWeight: "700",
+    color: "#020050",
+    backgroundColor: "#fff",
+  },
+  otpBoxFilled: {
+    borderColor: "#4d9734",
+  },
+  resendContainer: {
+    alignItems: "flex-end",
+    marginTop: 10,
+  },
+  resendLink: {
+    color: "#007AFF",
+    fontWeight: "600",
+    fontSize: 14,
   },
   button: {
     marginTop: 16,
     width: "60%",
     alignSelf: "center",
     color: "#4d9734ff",
-  },
-  secondaryButton: {
-    marginTop: 10,
-    width: "60%",
-    alignSelf: "center",
   },
   footer: {
     flexDirection: "row",
