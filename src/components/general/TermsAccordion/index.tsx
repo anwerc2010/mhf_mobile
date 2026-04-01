@@ -25,6 +25,7 @@ const NGO_TERMS_POINTS = [
   "You are responsible for maintaining your account security.",
   "Services are provided for charitable and non-commercial use only.",
   "You will not misuse or disrupt the platform.",
+  "Our team will follow up with you within 24 hours.",
   "Your personal and health data will be handled as per our Privacy Policy.",
   "Services are provided on a best-effort basis and availability is not guaranteed.",
   "We may suspend accounts that violate these terms.",

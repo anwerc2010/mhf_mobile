@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Alert,
+  Linking,
 } from "react-native";
 import {
   CaretDown,
@@ -18,6 +19,12 @@ import {
   UsersThree,
   Heart,
   Phone,
+  Sparkle,
+  ShieldCheck,
+  HandHeart,
+  TrendUp,
+  MapPin,
+  EnvelopeSimple,
 } from "phosphor-react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useAppSelector, useAppDispatch } from "../store/hook";
@@ -25,6 +32,33 @@ import { clearAuth, useGetDashboardDetailsQuery } from "@psi/shared-api";
 import { useTranslation } from "react-i18next";
 
 const { width } = Dimensions.get("window");
+
+const ABOUT_IMPACT_STATS = [
+  {
+    key: "families",
+    icon: Users,
+    title: "37,000 Families Impacted",
+    subtitle: "Help and hope delivered across communities",
+    color: "#2563EB",
+    bg: "#EFF6FF",
+  },
+  {
+    key: "perFamily",
+    icon: HandHeart,
+    title: "2,500 per Family / Year",
+    subtitle: "Average annual support improving daily life",
+    color: "#10B981",
+    bg: "#ECFDF5",
+  },
+  {
+    key: "annualBenefit",
+    icon: TrendUp,
+    title: "9.25 Crores Annual Benefit",
+    subtitle: "Direct value reaching people who need it most",
+    color: "#7C3AED",
+    bg: "#F5F3FF",
+  },
+];
 
 export default function ProfileScreen() {
   const { t } = useTranslation();
@@ -70,6 +104,20 @@ export default function ProfileScreen() {
       return;
     }
     navigation.navigate("EditProfile");
+  };
+
+  const handleOpenWebsite = async () => {
+    const websiteUrl = "https://mhfglobal.com/";
+    try {
+      const canOpen = await Linking.canOpenURL(websiteUrl);
+      if (canOpen) {
+        await Linking.openURL(websiteUrl);
+      } else {
+        Alert.alert("Error", "Unable to open website");
+      }
+    } catch {
+      Alert.alert("Error", "Unable to open website");
+    }
   };
 
   // Get initials from fullname
@@ -258,13 +306,13 @@ export default function ProfileScreen() {
               bg: "#FFF7ED",
               color: "#FB923C",
             },
-            {
-              key: "volunteers",
-              title: t("profile.ourVolunteers"),
-              icon: Heart,
-              bg: "#FEF2F2",
-              color: "#F43F5E",
-            },
+            // {
+            //   key: "volunteers",
+            //   title: t("profile.ourVolunteers"),
+            //   icon: Heart,
+            //   bg: "#FEF2F2",
+            //   color: "#F43F5E",
+            // },
             {
               key: "contact",
               title: t("profile.contactInfo"),
@@ -275,26 +323,288 @@ export default function ProfileScreen() {
           ].map((item) => {
             const Icon = item.icon as any;
             return (
-              <TouchableOpacity
-                key={item.key}
-                style={styles.aboutItem}
-                onPress={() => toggle(item.key)}
-                activeOpacity={0.85}
-              >
-                <View style={styles.aboutItemInner}>
-                  <View
-                    style={[styles.iconCircle, { backgroundColor: item.bg }]}
-                  >
-                    <Icon color={item.color} size={18} />
+              <View key={item.key}>
+                <TouchableOpacity
+                  style={styles.aboutItem}
+                  onPress={() => toggle(item.key)}
+                  activeOpacity={0.85}
+                >
+                  <View style={styles.aboutItemInner}>
+                    <View
+                      style={[styles.iconCircle, { backgroundColor: item.bg }]}
+                    >
+                      <Icon color={item.color} size={18} />
+                    </View>
+                    <Text style={styles.aboutItemTitle}>{item.title}</Text>
                   </View>
-                  <Text style={styles.aboutItemTitle}>{item.title}</Text>
-                </View>
-                {expanded[item.key] ? (
-                  <CaretDown size={18} color="#0F172A" />
-                ) : (
-                  <CaretRight size={18} color="#9CA3AF" />
+                  {expanded[item.key] ? (
+                    <CaretDown size={18} color="#0F172A" />
+                  ) : (
+                    <CaretRight size={18} color="#9CA3AF" />
+                  )}
+                </TouchableOpacity>
+
+                {item.key === "about" && expanded[item.key] && (
+                  <View style={styles.aboutDropdownCard}>
+                    <View style={styles.aboutHeadingRow}>
+                      <View
+                        style={[
+                          styles.aboutHeadingIcon,
+                          { backgroundColor: "#EFF6FF" },
+                        ]}
+                      >
+                        <Sparkle size={18} color="#1D4ED8" />
+                      </View>
+                      <View style={{ flex: 1 }}>
+                        <Text style={styles.aboutHeading}>About Us</Text>
+                        <Text style={styles.aboutSubheading}>
+                          A Personal Story That Turned Grief Into a Mission of
+                          Health and Hope
+                        </Text>
+                      </View>
+                    </View>
+
+                    <Text style={styles.aboutParagraph}>
+                      Founded in 2018 by Mr. SM Mustafa Ahmed, Mujtaba Helping
+                      Foundation (MHF) was born from a deeply personal tragedy
+                      that changed one family forever.
+                    </Text>
+                    <Text style={styles.aboutParagraph}>
+                      Mr. Ahmed lost his 8-year-old son in a tragic
+                      electrocution accident, a pain no parent should ever face.
+                      From that heartbreak came a powerful promise: to protect
+                      other families from preventable loss.
+                    </Text>
+                    <Text style={styles.aboutParagraphLast}>
+                      Today, MHF works to make healthcare affordable and
+                      accessible for underprivileged and middle-class families
+                      so that no one is left behind due to lack of access,
+                      support, or awareness.
+                    </Text>
+
+                    <View style={styles.promiseRow}>
+                      <ShieldCheck size={18} color="#047857" />
+                      <Text style={styles.promiseText}>
+                        Our mission is simple: protect lives, restore dignity,
+                        and create healthier futures for every family we can
+                        reach.
+                      </Text>
+                    </View>
+
+                    {ABOUT_IMPACT_STATS.map((stat) => {
+                      const StatIcon = stat.icon as any;
+                      return (
+                        <View key={stat.key} style={styles.statRow}>
+                          <View
+                            style={[
+                              styles.statIconWrap,
+                              { backgroundColor: stat.bg },
+                            ]}
+                          >
+                            <StatIcon size={18} color={stat.color} />
+                          </View>
+                          <View style={{ flex: 1 }}>
+                            <Text style={styles.statTitle}>{stat.title}</Text>
+                            <Text style={styles.statSubtitle}>
+                              {stat.subtitle}
+                            </Text>
+                          </View>
+                        </View>
+                      );
+                    })}
+                  </View>
                 )}
-              </TouchableOpacity>
+
+                {item.key === "mission" && expanded[item.key] && (
+                  <View style={styles.aboutDropdownCard}>
+                    <View style={styles.aboutHeadingRow}>
+                      <View
+                        style={[
+                          styles.aboutHeadingIcon,
+                          { backgroundColor: "#EFF6FF" },
+                        ]}
+                      >
+                        <Target size={18} color="#2563EB" />
+                      </View>
+                      <View style={{ flex: 1 }}>
+                        <Text style={styles.aboutHeading}>OUR MISSION</Text>
+                        <Text style={styles.aboutSubheading}>
+                          Building health equity through affordable and
+                          accessible care
+                        </Text>
+                      </View>
+                    </View>
+
+                    <Text style={styles.aboutParagraphLast}>
+                      To make healthcare accessible and affordable for
+                      underprivileged families, reducing financial burdens and
+                      promoting health equity.
+                    </Text>
+                  </View>
+                )}
+
+                {item.key === "vision" && expanded[item.key] && (
+                  <View style={styles.aboutDropdownCard}>
+                    <View style={styles.aboutHeadingRow}>
+                      <View
+                        style={[
+                          styles.aboutHeadingIcon,
+                          { backgroundColor: "#ECFDF5" },
+                        ]}
+                      >
+                        <Eye size={18} color="#10B981" />
+                      </View>
+                      <View style={{ flex: 1 }}>
+                        <Text style={styles.aboutHeading}>OUR VISION</Text>
+                        <Text style={styles.aboutSubheading}>
+                          Inclusive healthcare for every individual and family
+                        </Text>
+                      </View>
+                    </View>
+
+                    <Text style={styles.aboutParagraphLast}>
+                      To build a healthcare ecosystem where no one suffers due
+                      to inaccessibility or lack of resources.
+                    </Text>
+                  </View>
+                )}
+
+                {item.key === "team" && expanded[item.key] && (
+                  <View style={styles.aboutDropdownCard}>
+                    <View style={styles.aboutHeadingRow}>
+                      <View
+                        style={[
+                          styles.aboutHeadingIcon,
+                          { backgroundColor: "#FFF7ED" },
+                        ]}
+                      >
+                        <UsersThree size={18} color="#EA580C" />
+                      </View>
+                      <View style={{ flex: 1 }}>
+                        <Text style={styles.aboutHeading}>What We Do?</Text>
+                        <Text style={styles.aboutSubheading}>Our Services</Text>
+                      </View>
+                    </View>
+
+                    <Text style={styles.aboutParagraphLast}>
+                      We provide essential humanitarian services, including
+                      healthcare, education for underprivileged children,
+                      emergency relief, food and blanket distribution, and
+                      orphan care. Our mission is to support vulnerable
+                      communities with compassion and commitment, ensuring
+                      access to vital resources and a better quality of life for
+                      those in need.
+                    </Text>
+                  </View>
+                )}
+
+                {item.key === "board" && expanded[item.key] && (
+                  <View style={styles.aboutDropdownCard}>
+                    <View style={styles.aboutHeadingRow}>
+                      <View
+                        style={[
+                          styles.aboutHeadingIcon,
+                          { backgroundColor: "#F5F3FF" },
+                        ]}
+                      >
+                        <Users size={18} color="#7C3AED" />
+                      </View>
+                      <View style={{ flex: 1 }}>
+                        <Text style={styles.aboutHeading}>OUR BOARD</Text>
+                        <Text style={styles.aboutSubheading}>
+                          A foundation built on service and community impact
+                        </Text>
+                      </View>
+                    </View>
+
+                    <Text style={styles.aboutParagraph}>
+                      MHF was officially established in 2015 at Khairtabad,
+                      Hyderabad, Telangana.
+                    </Text>
+                    <Text style={styles.aboutParagraph}>
+                      The aim of creating this organization is to help mankind
+                      with every possible effort within our hands.
+                    </Text>
+                    <Text style={styles.aboutParagraphLast}>
+                      We focus on making the maximum meaningful contribution to
+                      the community. Our members and volunteers carry the
+                      momentum that drives lasting change for the cause.
+                    </Text>
+                  </View>
+                )}
+
+                {item.key === "contact" && expanded[item.key] && (
+                  <View style={styles.aboutDropdownCard}>
+                    <View style={styles.aboutHeadingRow}>
+                      <View
+                        style={[
+                          styles.aboutHeadingIcon,
+                          { backgroundColor: "#E0F2FE" },
+                        ]}
+                      >
+                        <Phone size={18} color="#0369A1" />
+                      </View>
+                      <View style={{ flex: 1 }}>
+                        <Text style={styles.aboutHeading}>Contact</Text>
+                        <Text style={styles.aboutSubheading}>
+                          Reach us for support, services, and partnerships
+                        </Text>
+                      </View>
+                    </View>
+
+                    <View style={styles.contactRow}>
+                      <View
+                        style={[
+                          styles.contactIconWrap,
+                          { backgroundColor: "#EFF6FF" },
+                        ]}
+                      >
+                        <MapPin size={16} color="#1D4ED8" />
+                      </View>
+                      <Text style={styles.contactText}>
+                        #6-3-1240/219/4, 3rd Floor, M.S Maqtha, Raj Bhavan,
+                        Somajiguda, Hyderabad, Telangana, India - 500082
+                      </Text>
+                    </View>
+
+                    <View style={styles.contactRow}>
+                      <View
+                        style={[
+                          styles.contactIconWrap,
+                          { backgroundColor: "#ECFDF5" },
+                        ]}
+                      >
+                        <EnvelopeSimple size={16} color="#047857" />
+                      </View>
+                      <Text style={styles.contactText}>
+                        mujtabahelpingfoundation@gmail.com
+                      </Text>
+                    </View>
+
+                    <View style={styles.contactRowLast}>
+                      <View
+                        style={[
+                          styles.contactIconWrap,
+                          { backgroundColor: "#FEF2F2" },
+                        ]}
+                      >
+                        <Phone size={16} color="#DC2626" />
+                      </View>
+                      <Text style={styles.contactText}>+91 8886210001</Text>
+                    </View>
+
+                    <TouchableOpacity
+                      style={styles.websiteRow}
+                      activeOpacity={0.8}
+                      onPress={handleOpenWebsite}
+                    >
+                      <Text style={styles.websiteLinkText}>
+                        Visit Our Website
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              </View>
             );
           })}
         </View>
@@ -424,5 +734,133 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   aboutItemTitle: { marginLeft: 12, color: "#0F172A", fontWeight: "600" },
+  aboutDropdownCard: {
+    marginTop: 8,
+    marginHorizontal: 6,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+    backgroundColor: "#F8FAFC",
+    padding: 12,
+  },
+  aboutHeadingRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    marginBottom: 10,
+  },
+  aboutHeadingIcon: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 10,
+  },
+  aboutHeading: {
+    color: "#0F172A",
+    fontSize: 15,
+    fontWeight: "700",
+  },
+  aboutSubheading: {
+    color: "#475569",
+    marginTop: 4,
+    fontSize: 13,
+    lineHeight: 19,
+    fontWeight: "600",
+  },
+  aboutParagraph: {
+    color: "#334155",
+    fontSize: 13,
+    lineHeight: 20,
+    marginBottom: 8,
+  },
+  aboutParagraphLast: {
+    color: "#334155",
+    fontSize: 13,
+    lineHeight: 20,
+    marginBottom: 10,
+  },
+  promiseRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    backgroundColor: "#ECFDF5",
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 10,
+    gap: 8,
+  },
+  promiseText: {
+    flex: 1,
+    color: "#065F46",
+    fontSize: 12,
+    lineHeight: 18,
+    fontWeight: "600",
+  },
+  statRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: 10,
+    backgroundColor: "#FFFFFF",
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+    padding: 10,
+    marginBottom: 8,
+  },
+  statIconWrap: {
+    width: 34,
+    height: 34,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 10,
+  },
+  statTitle: {
+    color: "#0F172A",
+    fontSize: 13,
+    fontWeight: "700",
+  },
+  statSubtitle: {
+    color: "#64748B",
+    fontSize: 12,
+    marginTop: 2,
+  },
+  contactRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    marginBottom: 10,
+  },
+  contactRowLast: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+  },
+  contactIconWrap: {
+    width: 30,
+    height: 30,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 10,
+    marginTop: 1,
+  },
+  contactText: {
+    flex: 1,
+    color: "#334155",
+    fontSize: 13,
+    lineHeight: 20,
+    fontWeight: "500",
+  },
+  websiteRow: {
+    marginTop: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    borderRadius: 8,
+    backgroundColor: "#EFF6FF",
+  },
+  websiteLinkText: {
+    color: "#1D4ED8",
+    fontSize: 13,
+    fontWeight: "700",
+    textDecorationLine: "underline",
+  },
   accordionTitle: { color: "#0F172A" },
 });

@@ -76,6 +76,7 @@ export default function CardScreen() {
         bloodGroup: card.bloodGroup,
         aadharNumber: card.aadharNumber || t("home.notAvailable"),
         dateOfIssue: card.dateOfIssue || t("home.notAvailable"),
+        created_at: card.created_at || t("home.notAvailable"),
         dateOfExpiry: card.dateOfExpiry || t("home.notAvailable"),
       }));
 
@@ -133,6 +134,9 @@ export default function CardScreen() {
         dateOfIssue:
           formatToDDMMYYY(dashboardData?.health_card?.date_of_issue) ||
           t("home.notAvailable"),
+        created_at:
+          formatToDDMMYYY(dashboardData?.health_card?.created_at) ||
+          t("home.notAvailable"),
         dateOfExpiry:
           formatToDDMMYYY(dashboardData?.health_card?.date_of_expiry) ||
           t("home.notAvailable"),
@@ -151,6 +155,9 @@ export default function CardScreen() {
           dashboardData.health_card.aadhaar_number || t("home.notAvailable"),
         dateOfIssue:
           formatToDDMMYYY(dashboardData.health_card.date_of_issue) ||
+          t("home.notAvailable"),
+        created_at:
+          formatToDDMMYYY(dashboardData.health_card.created_at) ||
           t("home.notAvailable"),
         dateOfExpiry:
           formatToDDMMYYY(dashboardData.health_card.date_of_expiry) ||
@@ -175,27 +182,54 @@ export default function CardScreen() {
   };
 
   const handleEmailCard = async () => {
-    const currentCard = familyCards[currentCardIndex];
-    if (!currentCard) {
-      return;
-    }
-    const subject = `Health Card Details - ${currentCard.name}`;
-    const body = `Family Health Card Details:
+    try {
+      const currentCard = familyCards[currentCardIndex];
+      if (!currentCard) {
+        return;
+      }
+      const subject = `Health Card Details - ${currentCard.name}`;
+      const body = `Family Health Card Details:
 
 Name: ${currentCard.name}
 Membership ID: ${currentCard.membershipId}
 Blood Group: ${currentCard.bloodGroup}
 Aadhar Number: ${currentCard.aadharNumber}
 Date of Issue: ${currentCard.dateOfIssue}
-Date of Expiry: ${currentCard.dateOfExpiry}
+Date of Expiry: ${currentCard.dateOfExpiry}`;
 
-Card Benefits:
-${benefits.map((b, i) => `${i + 1}. ${b}`).join("\n")}
+      // Create and attach the same PDF used by Download.
+      const pdfPath = await createPdf();
 
-How to Use:
-${steps.map((s, i) => `Step ${i + 1}: ${s}`).join("\n")}`;
+      await RNShare.shareSingle({
+        social: RNShare.Social.EMAIL as any,
+        subject,
+        message: body,
+        title: subject,
+        url: `file://${pdfPath}`,
+        type: "application/pdf",
+      });
+    } catch (error: any) {
+      // Fallback to plain email composer if the email-share flow is unavailable.
+      const currentCard = familyCards[currentCardIndex];
+      if (!currentCard) {
+        return;
+      }
 
-    await openEmailComposer({ subject, body });
+      const subject = `Health Card Details - ${currentCard.name}`;
+      const body = `Family Health Card Details:
+
+Name: ${currentCard.name}
+Membership ID: ${currentCard.membershipId}
+Blood Group: ${currentCard.bloodGroup}
+Aadhar Number: ${currentCard.aadharNumber}
+Date of Issue: ${currentCard.dateOfIssue}
+Date of Expiry: ${currentCard.dateOfExpiry}`;
+
+      await openEmailComposer({ subject, body });
+      if (error?.code !== "E_CANCELLED" && error?.code !== "CANCELLED") {
+        console.error("Error sending email with PDF:", error);
+      }
+    }
   };
 
   const handleDownloadCard = async () => {

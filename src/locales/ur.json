@@ -130,6 +130,7 @@
     "bloodGroup": "خون کا گروپ",
     "aadharNumber": "آدھار نمبر",
     "dateOfIssue": "جاری کرنے کی تاریخ",
+    "createdAt": "بنانے کی تاریخ",
     "dateOfExpiry": "ختم ہونے کی تاریخ",
     "title": "خاندانی صحت کے کارڈز",
     "downloadCard": "ڈاؤن لوڈ کریں",
@@ -332,40 +333,40 @@
     },
     "programs": {
       "food": {
-        "title": "Food Distribution Drive",
-        "locations": "Multiple locations",
-        "desc": "Daily food distribution for families in need. Each kit usually includes rice, pulses, oil, and essential grocery items for a week.",
-        "tag1": "Daily",
-        "tag2": "Multiple Locations",
-        "tag3": "Family Kits",
-        "stats": "500+ families supported"
+        "title": "خوراک کی تقسیم مہم",
+        "locations": "متعدد مقامات",
+        "desc": "ضرورت مند خاندانوں کے لیے روزانہ خوراک کی تقسیم۔ ہر کٹ میں عام طور پر چاول، دالیں، تیل اور ایک ہفتے کی ضروری اشیاء شامل ہوتی ہیں۔",
+        "tag1": "روزانہ",
+        "tag2": "متعدد مقامات",
+        "tag3": "خاندانی کٹس",
+        "stats": "500+ خاندانوں کی مدد"
       },
       "flood": {
-        "title": "Flood Relief Support",
-        "locations": "Disaster-affected areas",
-        "desc": "Immediate relief to flood-affected families including clean water, dry ration, temporary shelter, and medical services.",
-        "tag1": "Flood Relief",
-        "tag2": "Shelter",
-        "tag3": "Medical",
-        "stats": "200+ families served"
+        "title": "سیلاب امداد",
+        "locations": "آفت سے متاثرہ علاقے",
+        "desc": "سیلاب سے متاثرہ خاندانوں کے لیے فوری امداد بشمول صاف پانی، خشک راشن، عارضی پناہ گاہ اور طبی خدمات۔",
+        "tag1": "سیلاب امداد",
+        "tag2": "پناہ گاہ",
+        "tag3": "طبی",
+        "stats": "200+ خاندانوں کی خدمت"
       },
       "winter": {
-        "title": "Winter Relief Campaign",
-        "locations": "Urban & rural areas",
-        "desc": "Distribution of blankets, sweaters, and essential items to those in need, especially elderly residents during harsh winters.",
-        "tag1": "Blankets",
-        "tag2": "Sweaters",
-        "tag3": "Elderly",
-        "stats": "300+ people covered"
+        "title": "سردیوں کی امداد مہم",
+        "locations": "شہری اور دیہی علاقے",
+        "desc": "ضرورت مندوں کو کمبل، سویٹر اور ضروری اشیاء کی تقسیم، خاص طور پر شدید سردیوں میں بزرگوں کے لیے۔",
+        "tag1": "کمبل",
+        "tag2": "سویٹر",
+        "tag3": "بزرگ",
+        "stats": "300+ لوگوں کی مدد"
       },
       "medical": {
-        "title": "Emergency Medical Relief",
-        "locations": "All relief zones",
-        "desc": "Emergency medical assistance including medicines, first aid, and medical transportation support for critical cases.",
-        "tag1": "Medical",
-        "tag2": "Emergency",
-        "tag3": "Ambulance",
-        "stats": "150+ cases"
+        "title": "ایمرجنسی طبی امداد",
+        "locations": "تمام امدادی علاقے",
+        "desc": "ایمرجنسی طبی مدد بشمول ادویات، ابتدائی طبی امداد اور نازک کیسز کے لیے طبی نقل و حمل کی مدد۔",
+        "tag1": "طبی",
+        "tag2": "ایمرجنسی",
+        "tag3": "ایمبولنس",
+        "stats": "150+ کیسز"
       }
     },
     "registrationStatus": "رجسٹریشن کی حالت",
@@ -421,28 +422,28 @@
     },
     "benefits": {
       "free": {
-        "title": "Free Consultations",
-        "subtitle": "Access to general physicians and specialists"
+        "title": "مفت مشاورت",
+        "subtitle": "عام ڈاکٹروں اور ماہرین تک رسائی"
       },
       "medicine": {
-        "title": "Medicine Assistance",
-        "subtitle": "Subsidized medicines for chronic conditions"
+        "title": "دوائی کی مدد",
+        "subtitle": "دائمی بیماریوں کے لیے سبسڈی والی دوائیں"
       },
       "emergency": {
-        "title": "Emergency Transport",
-        "subtitle": "24/7 emergency ambulance services"
+        "title": "ایمرجنسی نقل و حمل",
+        "subtitle": "24/7 ایمرجنسی ایمبولنس خدمات"
       },
       "checkups": {
-        "title": "Health Checkups",
-        "subtitle": "Regular health monitoring and diagnostics"
+        "title": "صحت کی جانچ",
+        "subtitle": "باقاعدہ صحت کی نگرانی اور تشخیص"
       },
       "records": {
-        "title": "Medical Records",
-        "subtitle": "Digital health records management"
+        "title": "طبی ریکارڈ",
+        "subtitle": "ڈیجیٹل صحت ریکارڈ کا انتظام"
       },
       "find": {
-        "title": "Find Clinics",
-        "subtitle": "Locate nearby partner healthcare centers"
+        "title": "کلینک تلاش کریں",
+        "subtitle": "قریبی شراکت دار صحت کے مراکز تلاش کریں"
       }
     },
     "help": {
@@ -593,298 +594,298 @@
       }
     },
     "training": {
-      "heading": "Registration Form",
+      "heading": "رجسٹریشن فارم",
       "sections": {
-        "personalDetails": "Personal Details",
-        "educationalBackground": "Educational Background",
-        "courseSelection": "Course Selection"
+        "personalDetails": "ذاتی تفصیلات",
+        "educationalBackground": "تعلیمی پس منظر",
+        "courseSelection": "کورس کا انتخاب"
       },
       "fields": {
-        "fullName": "Full Name",
-        "dateOfBirth": "Date of Birth",
-        "age": "Age",
-        "gender": "Gender",
-        "contactNumber": "Contact Number (Phone / WhatsApp)",
-        "parentGuardianContact": "Parent's / Guardian's Contact Number",
-        "maritalStatus": "Marital Status",
-        "emailAvailable": "Email ID (Available)",
-        "addressWithPincode": "Address (With Pin Code)",
-        "pincode": "Pin code",
-        "guardianName": "Guardian's Name (If any)",
-        "idProofType": "ID Proof (Aadhar / Other)",
-        "identificationNumber": "Identification Number",
-        "highestQualification": "Highest Qualification",
-        "mediumOfInstruction": "Medium of Instruction",
-        "schoolCollegeName": "School / College Name",
-        "schoolCollegeLocation": "Location",
-        "educationGapReason": "Gaps in Education / Dropout Reason",
-        "preferredCourses": "Please tick your preferred training"
+        "fullName": "مکمل نام",
+        "dateOfBirth": "پیدائش کی تاریخ",
+        "age": "عمر",
+        "gender": "صنف",
+        "contactNumber": "رابطہ نمبر (فون / واٹس ایپ)",
+        "parentGuardianContact": "والدین / سرپرست کا رابطہ نمبر",
+        "maritalStatus": "ازدواجی حیثیت",
+        "emailAvailable": "ای میل آئی ڈی (دستیاب)",
+        "addressWithPincode": "پتہ (پن کوڈ کے ساتھ)",
+        "pincode": "پن کوڈ",
+        "guardianName": "سرپرست کا نام (اگر ہو)",
+        "idProofType": "شناختی ثبوت (آدھار / دیگر)",
+        "identificationNumber": "شناختی نمبر",
+        "highestQualification": "اعلیٰ ترین تعلیم",
+        "mediumOfInstruction": "تعلیم کا ذریعہ",
+        "schoolCollegeName": "اسکول / کالج کا نام",
+        "schoolCollegeLocation": "مقام",
+        "educationGapReason": "تعلیم میں وقفے / ترک کی وجہ",
+        "preferredCourses": "براہ کرم اپنی پسندیدہ تربیت منتخب کریں"
       },
       "placeholders": {
-        "fullName": "Enter your full name",
-        "addressWithPincode": "Enter your complete address with pin code",
-        "pincode": "Enter your Pin code",
-        "idProofType": "Aadhar number or other ID proof number",
-        "educationGapReason": "If any gaps or dropout, please mention the reason"
+        "fullName": "اپنا مکمل نام درج کریں",
+        "addressWithPincode": "پن کوڈ کے ساتھ اپنا مکمل پتہ درج کریں",
+        "pincode": "اپنا پن کوڈ درج کریں",
+        "idProofType": "آدھار نمبر یا دیگر شناختی ثبوت نمبر",
+        "educationGapReason": "اگر کوئی وقفہ یا ترک ہو تو براہ کرم وجہ بتائیں"
       },
       "options": {
-        "graduation": "Graduation",
-        "hindi": "Hindi",
-        "english": "English"
+        "graduation": "گریجویشن",
+        "hindi": "ہندی",
+        "english": "انگریزی"
       },
       "course": {
-        "computer": "Computer",
-        "tailoring": "Tailoring",
-        "spokenEnglish": "Spoken English",
-        "handmadeDesigning": "Handmade Designing",
-        "other": "Others (please specify)"
+        "computer": "کمپیوٹر",
+        "tailoring": "سلائی",
+        "spokenEnglish": "بول چال انگریزی",
+        "handmadeDesigning": "ہاتھ سے بنی ڈیزائننگ",
+        "other": "دیگر (براہ کرم وضاحت کریں)"
       },
       "alerts": {
-        "submitSuccess": "Registration submitted successfully!",
-        "submitFailed": "Failed to submit registration. Please try again."
+        "submitSuccess": "رجسٹریشن کامیابی سے جمع ہو گئی!",
+        "submitFailed": "رجسٹریشن جمع کرنے میں ناکام۔ براہ کرم دوبارہ کوشش کریں۔"
       }
     },
     "relief": {
-      "heading": "Apply for Support",
+      "heading": "مدد کے لیے درخواست دیں",
       "sections": {
-        "personalInformation": "Personal Information",
-        "familyAndLivingSituation": "Family and Living Situation",
-        "reasonForRequest": "Reason for Request",
-        "assistanceRequired": "What Do You Need From Us?"
+        "personalInformation": "ذاتی معلومات",
+        "familyAndLivingSituation": "خاندانی اور رہائشی صورتحال",
+        "reasonForRequest": "درخواست کی وجہ",
+        "assistanceRequired": "آپ کو ہم سے کیا چاہیے؟"
       },
       "fields": {
-        "fullName": "Full Name",
-        "fatherOrHusbandName": "Father's / Husband's Name",
-        "dateOfBirth": "Date of Birth",
-        "age": "Age",
-        "gender": "Gender",
-        "mobileNumber": "Mobile Number",
-        "alternateNumber": "Alternate Number",
-        "emailAvailable": "Email ID (Available)",
-        "currentAddress": "Current Address (With Pin Code)",
-        "pincode": "Pin code",
-        "idProofType": "ID Proof Type",
-        "idProofNumber": "ID Proof Number",
-        "totalFamilyMembers": "Total Family Members",
-        "earningMembers": "Earning Members",
-        "childrenBelow5": "Children (Below 5)",
-        "childrenSchoolGoing": "Children (School-going)",
-        "elderlyDisabledMembers": "Elderly / Disabled Members",
-        "elderlyDisabledDetails": "Elderly / Disabled Details",
-        "houseType": "Type of House",
-        "reasonForRequest": "Reason for Request (Optional but helpful)",
-        "assistanceTypes": "Please tick the items you are requesting",
-        "declaration": "I declare that the information provided above is true and accurate to the best of my knowledge."
+        "fullName": "مکمل نام",
+        "fatherOrHusbandName": "والد / شوہر کا نام",
+        "dateOfBirth": "پیدائش کی تاریخ",
+        "age": "عمر",
+        "gender": "صنف",
+        "mobileNumber": "موبائل نمبر",
+        "alternateNumber": "متبادل نمبر",
+        "emailAvailable": "ای میل آئی ڈی (دستیاب)",
+        "currentAddress": "موجودہ پتہ (پن کوڈ کے ساتھ)",
+        "pincode": "پن کوڈ",
+        "idProofType": "شناختی ثبوت کی قسم",
+        "idProofNumber": "شناختی ثبوت نمبر",
+        "totalFamilyMembers": "کل خاندانی ارکان",
+        "earningMembers": "کمانے والے ارکان",
+        "childrenBelow5": "بچے (5 سال سے کم)",
+        "childrenSchoolGoing": "بچے (اسکول جانے والے)",
+        "elderlyDisabledMembers": "بزرگ / معذور ارکان",
+        "elderlyDisabledDetails": "بزرگ / معذور کی تفصیلات",
+        "houseType": "گھر کی قسم",
+        "reasonForRequest": "درخواست کی وجہ (اختیاری لیکن مددگار)",
+        "assistanceTypes": "براہ کرم درخواست کردہ اشیاء منتخب کریں",
+        "declaration": "میں اعلان کرتا ہوں کہ اوپر دی گئی معلومات میری بہترین معلومات کے مطابق درست ہے۔"
       },
       "placeholders": {
-        "fullName": "Enter your full name",
-        "fatherOrHusbandName": "Enter father's or husband's name",
-        "currentAddress": "Enter your complete address with pin code",
-        "pincode": "Enter your Pin code",
-        "idProofNumber": "Enter ID proof number",
-        "reasonForRequest": "Describe your situation and why you need assistance"
+        "fullName": "اپنا مکمل نام درج کریں",
+        "fatherOrHusbandName": "والد یا شوہر کا نام درج کریں",
+        "currentAddress": "پن کوڈ کے ساتھ اپنا مکمل پتہ درج کریں",
+        "pincode": "اپنا پن کوڈ درج کریں",
+        "idProofNumber": "شناختی ثبوت نمبر درج کریں",
+        "reasonForRequest": "اپنی صورتحال بیان کریں اور آپ کو مدد کیوں درکار ہے"
       },
       "options": {
-        "foodKit": "Food Kit",
-        "water": "Water",
-        "clothes": "Clothes",
-        "shelter": "Shelter / Temporary Housing",
-        "medicalHelp": "Medicine / Medical Help",
-        "other": "Others (please specify)",
-        "owned": "Owned",
-        "temporary": "Temporary",
-        "rented": "Rented",
-        "damaged": "Damaged"
+        "foodKit": "فوڈ کٹ",
+        "water": "پانی",
+        "clothes": "کپڑے",
+        "shelter": "پناہ گاہ / عارضی رہائش",
+        "medicalHelp": "دوائی / طبی مدد",
+        "other": "دیگر (براہ کرم وضاحت کریں)",
+        "owned": "ملکیت",
+        "temporary": "عارضی",
+        "rented": "کرایے پر",
+        "damaged": "نقصان شدہ"
       },
       "alerts": {
-        "submitSuccess": "Your relief request has been submitted successfully!",
-        "submitFailed": "Failed to submit relief request. Please try again."
+        "submitSuccess": "آپ کی امداد کی درخواست کامیابی سے جمع ہو گئی!",
+        "submitFailed": "امداد کی درخواست جمع کرنے میں ناکام۔ براہ کرم دوبارہ کوشش کریں۔"
       }
     },
     "applyCard": {
-      "heading": "Please fill in all the details to apply for a health card",
+      "heading": "صحت کے کارڈ کے لیے درخواست دینے کے لیے تمام تفصیلات بھریں",
       "sections": {
-        "cardHolderDetails": "Card Holder Details",
-        "cardDetails": "Card Details",
-        "familyMembers": "Family Members"
+        "cardHolderDetails": "کارڈ ہولڈر کی تفصیلات",
+        "cardDetails": "کارڈ کی تفصیلات",
+        "familyMembers": "خاندانی ارکان"
       },
       "fields": {
-        "cardHolderName": "Card Holder Name",
-        "aadhaarNumber": "Aadhaar Number",
-        "bloodGroup": "Blood Group",
-        "phone": "Phone",
-        "email": "Email",
-        "address": "Address",
-        "gender": "Gender",
-        "ageCategory": "Age Category",
-        "familyHeadImage": "Family Head Image",
-        "cardType": "Card Type",
-        "dateOfIssue": "Date of Issue",
-        "dateOfExpiry": "Date of Expiry",
-        "fullName": "Full Name",
-        "relationship": "Relationship",
-        "dateOfBirth": "Date of Birth"
+        "cardHolderName": "کارڈ ہولڈر کا نام",
+        "aadhaarNumber": "آدھار نمبر",
+        "bloodGroup": "خون کا گروپ",
+        "phone": "فون",
+        "email": "ای میل",
+        "address": "پتہ",
+        "gender": "صنف",
+        "ageCategory": "عمر کا زمرہ",
+        "familyHeadImage": "سربراہ خاندان کی تصویر",
+        "cardType": "کارڈ کی قسم",
+        "dateOfIssue": "جاری کرنے کی تاریخ",
+        "dateOfExpiry": "ختم ہونے کی تاریخ",
+        "fullName": "مکمل نام",
+        "relationship": "رشتہ",
+        "dateOfBirth": "پیدائش کی تاریخ"
       },
       "placeholders": {
-        "fullName": "Enter full name",
-        "phone": "Enter 10 digit number",
-        "email": "Enter email address",
-        "address": "Enter address"
+        "fullName": "مکمل نام درج کریں",
+        "phone": "10 ہندسوں کا نمبر درج کریں",
+        "email": "ای میل ایڈریس درج کریں",
+        "address": "پتہ درج کریں"
       },
       "options": {
-        "child": "Child",
-        "adult": "Adult",
-        "individual": "Individual",
-        "family": "Family",
-        "spouse": "Spouse",
-        "son": "Son",
-        "daughter": "Daughter",
-        "father": "Father",
-        "mother": "Mother",
-        "brother": "Brother",
-        "sister": "Sister"
+        "child": "بچہ",
+        "adult": "بالغ",
+        "individual": "انفرادی",
+        "family": "خاندانی",
+        "spouse": "شریک حیات",
+        "son": "بیٹا",
+        "daughter": "بیٹی",
+        "father": "والد",
+        "mother": "والدہ",
+        "brother": "بھائی",
+        "sister": "بہن"
       },
       "validation": {
-        "aadhaarFormat": "Enter valid Aadhaar number (XXXX XXXX XXXX)",
-        "aadhaarMaxLength": "Aadhaar number cannot exceed 14 characters"
+        "aadhaarFormat": "درست آدھار نمبر درج کریں (XXXX XXXX XXXX)",
+        "aadhaarMaxLength": "آدھار نمبر 14 حروف سے زیادہ نہیں ہو سکتا"
       },
-      "viewCard": "View Card",
+      "viewCard": "کارڈ دیکھیں",
       "alerts": {
-        "createdSuccess": "Your health card has been created successfully!",
-        "failed": "Failed to submit application"
+        "createdSuccess": "آپ کا صحت کا کارڈ کامیابی سے بن گیا!",
+        "failed": "درخواست جمع کرنے میں ناکام"
       }
     },
     "newCard": {
-      "heading": "Please fill in all the details to apply for a health card",
+      "heading": "صحت کے کارڈ کے لیے درخواست دینے کے لیے تمام تفصیلات بھریں",
       "sections": {
-        "treatmentDetails": "Treatment Details",
-        "medicalDocuments": "Medical Documents",
-        "referenceDetails": "Reference Details (Optional)"
+        "treatmentDetails": "علاج کی تفصیلات",
+        "medicalDocuments": "طبی دستاویزات",
+        "referenceDetails": "حوالہ کی تفصیلات (اختیاری)"
       },
       "fields": {
-        "fullName": "Full Name",
-        "emailAddress": "Email Address",
-        "contactNumber": "Contact Number",
-        "healthIssue": "Health Issue / Medical Condition",
-        "hospitalName": "Hospital Name Where Treatment Taken",
-        "hospitalAddress": "Hospital Address",
-        "hospitalType": "Hospital Type",
-        "treatmentDuration": "How Many Years About Your Treatment",
-        "medicalReports": "Upload Prescription / Medical Reports",
-        "referenceName": "Reference Name & Details",
-        "referenceContact": "Reference Contact Number"
+        "fullName": "مکمل نام",
+        "emailAddress": "ای میل ایڈریس",
+        "contactNumber": "رابطہ نمبر",
+        "healthIssue": "صحت کا مسئلہ / طبی حالت",
+        "hospitalName": "اسپتال کا نام جہاں علاج ہوا",
+        "hospitalAddress": "اسپتال کا پتہ",
+        "hospitalType": "اسپتال کی قسم",
+        "treatmentDuration": "آپ کے علاج کو کتنے سال ہوئے",
+        "medicalReports": "نسخہ / طبی رپورٹیں اپ لوڈ کریں",
+        "referenceName": "حوالہ کا نام اور تفصیلات",
+        "referenceContact": "حوالہ رابطہ نمبر"
       },
       "placeholders": {
-        "fullName": "Enter your full name",
-        "emailAddress": "Enter your email address",
-        "healthIssue": "Describe your health condition or medical issue",
-        "hospitalName": "Enter hospital name",
-        "hospitalAddress": "Enter complete hospital address with city and pincode",
-        "treatmentDuration": "e.g., 2 years, 6 months",
-        "referenceName": "Name of person referring you"
+        "fullName": "اپنا مکمل نام درج کریں",
+        "emailAddress": "اپنا ای میل ایڈریس درج کریں",
+        "healthIssue": "اپنی صحت کی حالت یا طبی مسئلے کی وضاحت کریں",
+        "hospitalName": "اسپتال کا نام درج کریں",
+        "hospitalAddress": "شہر اور پن کوڈ کے ساتھ اسپتال کا مکمل پتہ درج کریں",
+        "treatmentDuration": "مثلاً 2 سال، 6 ماہ",
+        "referenceName": "آپ کو ریفر کرنے والے شخص کا نام"
       },
       "options": {
-        "governmentHospital": "Government Hospital",
-        "privateHospital": "Private Hospital",
-        "clinic": "Clinic"
+        "governmentHospital": "سرکاری اسپتال",
+        "privateHospital": "نجی اسپتال",
+        "clinic": "کلینک"
       },
       "alerts": {
-        "submitSuccess": "Card request submitted successfully",
-        "submitFailed": "Failed to submit card request. Please try again."
+        "submitSuccess": "کارڈ کی درخواست کامیابی سے جمع ہو گئی",
+        "submitFailed": "کارڈ کی درخواست جمع کرنے میں ناکام۔ براہ کرم دوبارہ کوشش کریں۔"
       }
     },
     "volunteers": {
-      "heading": "Join Mujtaba Helping Foundation as a Volunteer",
+      "heading": "مجتبیٰ مدد فاؤنڈیشن میں رضاکار کے طور پر شامل ہوں",
       "sections": {
-        "personalDetails": "Personal Details",
-        "professionalDetails": "Professional Details",
-        "volunteeringPreferences": "Volunteering Preferences",
-        "experienceAndMotivation": "Experience & Motivation"
+        "personalDetails": "ذاتی تفصیلات",
+        "professionalDetails": "پیشہ ورانہ تفصیلات",
+        "volunteeringPreferences": "رضاکارانہ ترجیحات",
+        "experienceAndMotivation": "تجربہ اور حوصلہ"
       },
       "fields": {
-        "fullName": "Full Name",
-        "dateOfBirth": "Date of Birth",
-        "gender": "Gender",
-        "phoneNumber": "Phone Number",
-        "alternateContact": "Alternate Contact No.",
-        "emailAddress": "Email Address",
-        "address": "Address",
-        "qualification": "Qualification",
-        "employmentStatus": "Employment Status",
-        "occupation": "Occupation",
-        "volunteerArea": "Which areas would you like to volunteer in?",
-        "availability": "Availability",
-        "previousVolunteering": "Have you volunteered before?",
-        "motivation": "Why do you want to join Mujtaba Helping Foundation as a volunteer?",
-        "declaration": "I hereby declare that the information provided is true and I agree to volunteer responsibly."
+        "fullName": "مکمل نام",
+        "dateOfBirth": "پیدائش کی تاریخ",
+        "gender": "صنف",
+        "phoneNumber": "فون نمبر",
+        "alternateContact": "متبادل رابطہ نمبر",
+        "emailAddress": "ای میل ایڈریس",
+        "address": "پتہ",
+        "qualification": "تعلیم",
+        "employmentStatus": "ملازمت کی حیثیت",
+        "occupation": "پیشہ",
+        "volunteerArea": "آپ کن شعبوں میں رضاکارانہ خدمات دینا چاہتے ہیں؟",
+        "availability": "دستیابی",
+        "previousVolunteering": "کیا آپ نے پہلے رضاکارانہ خدمات دی ہیں؟",
+        "motivation": "آپ مجتبیٰ مدد فاؤنڈیشن میں رضاکار کیوں بننا چاہتے ہیں؟",
+        "declaration": "میں اعلان کرتا ہوں کہ فراہم کردہ معلومات درست ہے اور میں ذمہ داری سے رضاکارانہ خدمات دینے پر متفق ہوں۔"
       },
       "placeholders": {
-        "motivation": "Please share your motivation and what drives you to volunteer with us..."
+        "motivation": "براہ کرم اپنی حوصلہ افزائی اور ہمارے ساتھ رضاکارانہ خدمات کی وجہ بتائیں..."
       },
       "options": {
-        "student": "Student",
-        "employee": "Employee",
-        "selfEmployed": "Self Employed",
-        "healthCamps": "Health Camps",
-        "awarenessDrives": "Awareness Drives",
-        "dataEntry": "Data Entry / Office Work",
-        "socialMedia": "Social Media Promotion",
-        "fundraising": "Fundraising",
-        "communityOutreach": "Community Outreach",
-        "weekdays": "Weekdays",
-        "weekends": "Weekends",
-        "flexible": "Flexible"
+        "student": "طالب علم",
+        "employee": "ملازم",
+        "selfEmployed": "خود ملازم",
+        "healthCamps": "صحت کے کیمپ",
+        "awarenessDrives": "آگاہی مہمات",
+        "dataEntry": "ڈیٹا انٹری / دفتری کام",
+        "socialMedia": "سوشل میڈیا پروموشن",
+        "fundraising": "فنڈ ریزنگ",
+        "communityOutreach": "کمیونٹی آؤٹ ریچ",
+        "weekdays": "ہفتے کے دن",
+        "weekends": "ہفتے کے آخر",
+        "flexible": "لچکدار"
       }
     },
     "equipment": {
-      "heading": "Fill in the details below to request medical equipment",
-      "submitRequest": "Submit Request",
+      "heading": "طبی سامان کی درخواست کے لیے نیچے تفصیلات بھریں",
+      "submitRequest": "درخواست جمع کریں",
       "sections": {
-        "personalInformation": "Personal Information",
-        "addressDetails": "Address Details",
-        "equipmentDetails": "Equipment Details",
-        "referenceDetails": "Reference Details",
-        "consent": "Consent"
+        "personalInformation": "ذاتی معلومات",
+        "addressDetails": "پتے کی تفصیلات",
+        "equipmentDetails": "سامان کی تفصیلات",
+        "referenceDetails": "حوالہ کی تفصیلات",
+        "consent": "رضامندی"
       },
       "fields": {
-        "fullName": "Full Name",
-        "age": "Age",
-        "gender": "Gender",
-        "mobileNumber": "Mobile Number",
-        "email": "Email",
-        "address": "Address",
-        "pincode": "Pincode",
-        "equipmentType": "Equipment Type",
-        "medicalReason": "Medical Reason",
-        "durationRequired": "Duration Required",
-        "referenceName": "Reference Name",
-        "referenceContact": "Reference Contact",
-        "consentDeclaration": "I hereby declare that the information provided is true and accurate"
+        "fullName": "مکمل نام",
+        "age": "عمر",
+        "gender": "صنف",
+        "mobileNumber": "موبائل نمبر",
+        "email": "ای میل",
+        "address": "پتہ",
+        "pincode": "پن کوڈ",
+        "equipmentType": "سامان کی قسم",
+        "medicalReason": "طبی وجہ",
+        "durationRequired": "مطلوبہ مدت",
+        "referenceName": "حوالہ کا نام",
+        "referenceContact": "حوالہ رابطہ",
+        "consentDeclaration": "میں اعلان کرتا ہوں کہ فراہم کردہ معلومات درست ہے"
       },
       "placeholders": {
-        "fullName": "Enter your full name",
-        "age": "Enter your age",
-        "mobileNumber": "Enter mobile number",
-        "email": "Enter email address",
-        "address": "Enter your address",
-        "pincode": "Enter pincode",
-        "medicalReason": "Describe the medical reason for requesting equipment",
-        "durationRequired": "e.g., 2 weeks, 1 month",
-        "referenceName": "Enter reference person name",
-        "referenceContact": "Enter reference contact number"
+        "fullName": "اپنا مکمل نام درج کریں",
+        "age": "اپنی عمر درج کریں",
+        "mobileNumber": "موبائل نمبر درج کریں",
+        "email": "ای میل ایڈریس درج کریں",
+        "address": "اپنا پتہ درج کریں",
+        "pincode": "پن کوڈ درج کریں",
+        "medicalReason": "سامان کی درخواست کی طبی وجہ بیان کریں",
+        "durationRequired": "مثلاً 2 ہفتے، 1 ماہ",
+        "referenceName": "حوالہ شخص کا نام درج کریں",
+        "referenceContact": "حوالہ رابطہ نمبر درج کریں"
       },
       "options": {
-        "bloodPressureMonitor": "Blood Pressure Monitor",
-        "glucometer": "Glucometer",
-        "oxygenConcentrator": "Oxygen Concentrator",
-        "wheelchair": "Wheelchair",
-        "walkingAid": "Walking Aid",
-        "hospitalBed": "Hospital Bed",
-        "nebulizer": "Nebulizer"
+        "bloodPressureMonitor": "بلڈ پریشر مانیٹر",
+        "glucometer": "گلوکومیٹر",
+        "oxygenConcentrator": "آکسیجن کنسنٹریٹر",
+        "wheelchair": "وہیل چیئر",
+        "walkingAid": "چلنے کی مدد",
+        "hospitalBed": "اسپتال کا بستر",
+        "nebulizer": "نیبولائزر"
       },
       "alerts": {
-        "submitSuccess": "Equipment request submitted successfully! Request ID:",
-        "submitFailed": "Failed to submit equipment request. Please try again."
+        "submitSuccess": "سامان کی درخواست کامیابی سے جمع ہو گئی! درخواست ID:",
+        "submitFailed": "سامان کی درخواست جمع کرنے میں ناکام۔ براہ کرم دوبارہ کوشش کریں۔"
       }
     }
   }

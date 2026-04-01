@@ -130,6 +130,7 @@
     "bloodGroup": "రక్త సమూహం",
     "aadharNumber": "ఆధార్ సంఖ్య",
     "dateOfIssue": "జారీ చేసిన తేదీ",
+    "createdAt": "సృష్టించిన తేదీ",
     "dateOfExpiry": "గడువు ముగిసిన తేదీ",
     "title": "కుటుంబ ఆరోగ్య కార్డ్‌లు",
     "downloadCard": "డౌన్‌లోడ్ చేయండి",
@@ -332,40 +333,40 @@
     },
     "programs": {
       "food": {
-        "title": "Food Distribution Drive",
-        "locations": "Multiple locations",
-        "desc": "Daily food distribution for families in need. Each kit usually includes rice, pulses, oil, and essential grocery items for a week.",
-        "tag1": "Daily",
-        "tag2": "Multiple Locations",
-        "tag3": "Family Kits",
-        "stats": "500+ families supported"
+        "title": "ఆహార పంపిణీ డ్రైవ్",
+        "locations": "అనేక ప్రదేశాలు",
+        "desc": "అవసరమైన కుటుంబాలకు రోజువారీ ఆహార పంపిణీ. ప్రతి కిట్‌లో బియ్యం, పప్పులు, నూనె మరియు వారం కోసం అవసరమైన కిరాణా వస్తువులు ఉంటాయి.",
+        "tag1": "రోజువారీ",
+        "tag2": "అనేక ప్రదేశాలు",
+        "tag3": "కుటుంబ కిట్‌లు",
+        "stats": "500+ కుటుంబాలకు మద్దతు"
       },
       "flood": {
-        "title": "Flood Relief Support",
-        "locations": "Disaster-affected areas",
-        "desc": "Immediate relief to flood-affected families including clean water, dry ration, temporary shelter, and medical services.",
-        "tag1": "Flood Relief",
-        "tag2": "Shelter",
-        "tag3": "Medical",
-        "stats": "200+ families served"
+        "title": "వరద సహాయ మద్దతు",
+        "locations": "విపత్తు ప్రభావిత ప్రాంతాలు",
+        "desc": "వరద ప్రభావిత కుటుంబాలకు తక్షణ సహాయం - శుభ్రమైన నీరు, ఎండబెట్టిన ఆహారం, తాత్కాలిక ఆశ్రయం మరియు వైద్య సేవలు.",
+        "tag1": "వరద సహాయం",
+        "tag2": "ఆశ్రయం",
+        "tag3": "వైద్యం",
+        "stats": "200+ కుటుంబాలకు సేవ"
       },
       "winter": {
-        "title": "Winter Relief Campaign",
-        "locations": "Urban & rural areas",
-        "desc": "Distribution of blankets, sweaters, and essential items to those in need, especially elderly residents during harsh winters.",
-        "tag1": "Blankets",
-        "tag2": "Sweaters",
-        "tag3": "Elderly",
-        "stats": "300+ people covered"
+        "title": "శీతాకాల సహాయ ప్రచారం",
+        "locations": "పట్టణ & గ్రామీణ ప్రాంతాలు",
+        "desc": "అవసరమైన వారికి దుప్పట్లు, స్వెటర్లు మరియు అవసరమైన వస్తువుల పంపిణీ, ముఖ్యంగా తీవ్రమైన శీతాకాలంలో వృద్ధులకు.",
+        "tag1": "దుప్పట్లు",
+        "tag2": "స్వెటర్లు",
+        "tag3": "వృద్ధులు",
+        "stats": "300+ మందికి సహాయం"
       },
       "medical": {
-        "title": "Emergency Medical Relief",
-        "locations": "All relief zones",
-        "desc": "Emergency medical assistance including medicines, first aid, and medical transportation support for critical cases.",
-        "tag1": "Medical",
-        "tag2": "Emergency",
-        "tag3": "Ambulance",
-        "stats": "150+ cases"
+        "title": "ఎమర్జెన్సీ వైద్య సహాయం",
+        "locations": "అన్ని సహాయ ప్రాంతాలు",
+        "desc": "ఔషధాలు, ప్రథమ చికిత్స మరియు క్లిష్టమైన కేసులకు వైద్య రవాణా మద్దతుతో సహా అత్యవసర వైద్య సహాయం.",
+        "tag1": "వైద్యం",
+        "tag2": "ఎమర్జెన్సీ",
+        "tag3": "ఆంబులెన్స్",
+        "stats": "150+ కేసులు"
       }
     },
     "registrationStatus": "నమోదు స్థితి",
@@ -421,28 +422,28 @@
     },
     "benefits": {
       "free": {
-        "title": "Free Consultations",
-        "subtitle": "Access to general physicians and specialists"
+        "title": "ఉచిత సంప్రదింపులు",
+        "subtitle": "సాధారణ వైద్యులు మరియు నిపుణులకు ప్రాప్యత"
       },
       "medicine": {
-        "title": "Medicine Assistance",
-        "subtitle": "Subsidized medicines for chronic conditions"
+        "title": "ఔషధ సహాయం",
+        "subtitle": "దీర్ఘకాలిక వ్యాధులకు సబ్సిడీ ఔషధాలు"
       },
       "emergency": {
-        "title": "Emergency Transport",
-        "subtitle": "24/7 emergency ambulance services"
+        "title": "ఎమర్జెన్సీ రవాణా",
+        "subtitle": "24/7 ఎమర్జెన్సీ ఆంబులెన్స్ సేవలు"
       },
       "checkups": {
-        "title": "Health Checkups",
-        "subtitle": "Regular health monitoring and diagnostics"
+        "title": "ఆరోగ్య తనిఖీలు",
+        "subtitle": "క్రమబద్ధ ఆరోగ్య పర్యవేక్షణ మరియు నిర్ధారణలు"
       },
       "records": {
-        "title": "Medical Records",
-        "subtitle": "Digital health records management"
+        "title": "వైద్య రికార్డులు",
+        "subtitle": "డిజిటల్ ఆరోగ్య రికార్డుల నిర్వహణ"
       },
       "find": {
-        "title": "Find Clinics",
-        "subtitle": "Locate nearby partner healthcare centers"
+        "title": "క్లినిక్‌లు కనుగొనండి",
+        "subtitle": "సమీపంలోని భాగస్వామి ఆరోగ్య కేంద్రాలను గుర్తించండి"
       }
     },
     "help": {
@@ -593,298 +594,298 @@
       }
     },
     "training": {
-      "heading": "Registration Form",
+      "heading": "నమోదు ఫారమ్",
       "sections": {
-        "personalDetails": "Personal Details",
-        "educationalBackground": "Educational Background",
-        "courseSelection": "Course Selection"
+        "personalDetails": "వ్యక్తిగత వివరాలు",
+        "educationalBackground": "విద్యా నేపథ్యం",
+        "courseSelection": "కోర్సు ఎంపిక"
       },
       "fields": {
-        "fullName": "Full Name",
-        "dateOfBirth": "Date of Birth",
-        "age": "Age",
-        "gender": "Gender",
-        "contactNumber": "Contact Number (Phone / WhatsApp)",
-        "parentGuardianContact": "Parent's / Guardian's Contact Number",
-        "maritalStatus": "Marital Status",
-        "emailAvailable": "Email ID (Available)",
-        "addressWithPincode": "Address (With Pin Code)",
-        "pincode": "Pin code",
-        "guardianName": "Guardian's Name (If any)",
-        "idProofType": "ID Proof (Aadhar / Other)",
-        "identificationNumber": "Identification Number",
-        "highestQualification": "Highest Qualification",
-        "mediumOfInstruction": "Medium of Instruction",
-        "schoolCollegeName": "School / College Name",
-        "schoolCollegeLocation": "Location",
-        "educationGapReason": "Gaps in Education / Dropout Reason",
-        "preferredCourses": "Please tick your preferred training"
+        "fullName": "పూర్తి పేరు",
+        "dateOfBirth": "జన్మ తేదీ",
+        "age": "వయస్సు",
+        "gender": "లింగం",
+        "contactNumber": "సంప్రదింపు నంబర్ (ఫోన్ / వాట్సాప్)",
+        "parentGuardianContact": "తల్లిదండ్రుల / సంరక్షకుల సంప్రదింపు నంబర్",
+        "maritalStatus": "వైవాహిక స్థితి",
+        "emailAvailable": "ఇమెయిల్ ID (అందుబాటులో ఉంటే)",
+        "addressWithPincode": "చిరునామా (పిన్ కోడ్‌తో)",
+        "pincode": "పిన్ కోడ్",
+        "guardianName": "సంరక్షకుడి పేరు (ఉంటే)",
+        "idProofType": "ఐడి రుజువు (ఆధార్ / ఇతర)",
+        "identificationNumber": "గుర్తింపు నంబర్",
+        "highestQualification": "అత్యున్నత అర్హత",
+        "mediumOfInstruction": "బోధనా మాధ్యమం",
+        "schoolCollegeName": "పాఠశాల / కళాశాల పేరు",
+        "schoolCollegeLocation": "ప్రదేశం",
+        "educationGapReason": "విద్యలో అంతరాలు / మధ్యలో మానేసిన కారణం",
+        "preferredCourses": "దయచేసి మీ ఇష్టమైన శిక్షణను ఎంచుకోండి"
       },
       "placeholders": {
-        "fullName": "Enter your full name",
-        "addressWithPincode": "Enter your complete address with pin code",
-        "pincode": "Enter your Pin code",
-        "idProofType": "Aadhar number or other ID proof number",
-        "educationGapReason": "If any gaps or dropout, please mention the reason"
+        "fullName": "మీ పూర్తి పేరు నమోదు చేయండి",
+        "addressWithPincode": "పిన్ కోడ్‌తో మీ పూర్తి చిరునామా నమోదు చేయండి",
+        "pincode": "మీ పిన్ కోడ్ నమోదు చేయండి",
+        "idProofType": "ఆధార్ నంబర్ లేదా ఇతర ఐడి రుజువు నంబర్",
+        "educationGapReason": "అంతరాలు లేదా మధ్యలో మానేస్తే, దయచేసి కారణం తెలియజేయండి"
       },
       "options": {
-        "graduation": "Graduation",
-        "hindi": "Hindi",
-        "english": "English"
+        "graduation": "గ్రాడ్యుయేషన్",
+        "hindi": "హిందీ",
+        "english": "ఇంగ్లీష్"
       },
       "course": {
-        "computer": "Computer",
-        "tailoring": "Tailoring",
-        "spokenEnglish": "Spoken English",
-        "handmadeDesigning": "Handmade Designing",
-        "other": "Others (please specify)"
+        "computer": "కంప్యూటర్",
+        "tailoring": "కుట్టు పని",
+        "spokenEnglish": "స్పోకెన్ ఇంగ్లీష్",
+        "handmadeDesigning": "చేతి డిజైనింగ్",
+        "other": "ఇతరాలు (దయచేసి తెలియజేయండి)"
       },
       "alerts": {
-        "submitSuccess": "Registration submitted successfully!",
-        "submitFailed": "Failed to submit registration. Please try again."
+        "submitSuccess": "నమోదు విజయవంతంగా సమర్పించబడింది!",
+        "submitFailed": "నమోదు సమర్పణ విఫలమైంది. దయచేసి మళ్ళీ ప్రయత్నించండి."
       }
     },
     "relief": {
-      "heading": "Apply for Support",
+      "heading": "మద్దతు కోసం దరఖాస్తు చేయండి",
       "sections": {
-        "personalInformation": "Personal Information",
-        "familyAndLivingSituation": "Family and Living Situation",
-        "reasonForRequest": "Reason for Request",
-        "assistanceRequired": "What Do You Need From Us?"
+        "personalInformation": "వ్యక్తిగత సమాచారం",
+        "familyAndLivingSituation": "కుటుంబ మరియు నివాస పరిస్థితి",
+        "reasonForRequest": "అభ్యర్థన కారణం",
+        "assistanceRequired": "మీకు మా నుండి ఏమి కావాలి?"
       },
       "fields": {
-        "fullName": "Full Name",
-        "fatherOrHusbandName": "Father's / Husband's Name",
-        "dateOfBirth": "Date of Birth",
-        "age": "Age",
-        "gender": "Gender",
-        "mobileNumber": "Mobile Number",
-        "alternateNumber": "Alternate Number",
-        "emailAvailable": "Email ID (Available)",
-        "currentAddress": "Current Address (With Pin Code)",
-        "pincode": "Pin code",
-        "idProofType": "ID Proof Type",
-        "idProofNumber": "ID Proof Number",
-        "totalFamilyMembers": "Total Family Members",
-        "earningMembers": "Earning Members",
-        "childrenBelow5": "Children (Below 5)",
-        "childrenSchoolGoing": "Children (School-going)",
-        "elderlyDisabledMembers": "Elderly / Disabled Members",
-        "elderlyDisabledDetails": "Elderly / Disabled Details",
-        "houseType": "Type of House",
-        "reasonForRequest": "Reason for Request (Optional but helpful)",
-        "assistanceTypes": "Please tick the items you are requesting",
-        "declaration": "I declare that the information provided above is true and accurate to the best of my knowledge."
+        "fullName": "పూర్తి పేరు",
+        "fatherOrHusbandName": "తండ్రి / భర్త పేరు",
+        "dateOfBirth": "జన్మ తేదీ",
+        "age": "వయస్సు",
+        "gender": "లింగం",
+        "mobileNumber": "మొబైల్ నంబర్",
+        "alternateNumber": "ప్రత్యామ్నాయ నంబర్",
+        "emailAvailable": "ఇమెయిల్ ID (అందుబాటులో ఉంటే)",
+        "currentAddress": "ప్రస్తుత చిరునామా (పిన్ కోడ్‌తో)",
+        "pincode": "పిన్ కోడ్",
+        "idProofType": "ఐడి రుజువు రకం",
+        "idProofNumber": "ఐడి రుజువు నంబర్",
+        "totalFamilyMembers": "మొత్తం కుటుంబ సభ్యులు",
+        "earningMembers": "సంపాదించే సభ్యులు",
+        "childrenBelow5": "పిల్లలు (5 ఏళ్ల లోపు)",
+        "childrenSchoolGoing": "పిల్లలు (పాఠశాలకు వెళ్ళే)",
+        "elderlyDisabledMembers": "వృద్ధులు / వికలాంగులు",
+        "elderlyDisabledDetails": "వృద్ధుల / వికలాంగుల వివరాలు",
+        "houseType": "ఇంటి రకం",
+        "reasonForRequest": "అభ్యర్థన కారణం (ఐచ్ఛికం కానీ సహాయకరం)",
+        "assistanceTypes": "దయచేసి మీరు అభ్యర్థిస్తున్న అంశాలను ఎంచుకోండి",
+        "declaration": "పై సమాచారం నా జ్ఞానానికి సరైనది మరియు ఖచ్చితమైనది అని నేను ప్రకటిస్తున్నాను."
       },
       "placeholders": {
-        "fullName": "Enter your full name",
-        "fatherOrHusbandName": "Enter father's or husband's name",
-        "currentAddress": "Enter your complete address with pin code",
-        "pincode": "Enter your Pin code",
-        "idProofNumber": "Enter ID proof number",
-        "reasonForRequest": "Describe your situation and why you need assistance"
+        "fullName": "మీ పూర్తి పేరు నమోదు చేయండి",
+        "fatherOrHusbandName": "తండ్రి లేదా భర్త పేరు నమోదు చేయండి",
+        "currentAddress": "పిన్ కోడ్‌తో మీ పూర్తి చిరునామా నమోదు చేయండి",
+        "pincode": "మీ పిన్ కోడ్ నమోదు చేయండి",
+        "idProofNumber": "ఐడి రుజువు నంబర్ నమోదు చేయండి",
+        "reasonForRequest": "మీ పరిస్థితిని మరియు మీకు సహాయం ఎందుకు అవసరమో వివరించండి"
       },
       "options": {
-        "foodKit": "Food Kit",
-        "water": "Water",
-        "clothes": "Clothes",
-        "shelter": "Shelter / Temporary Housing",
-        "medicalHelp": "Medicine / Medical Help",
-        "other": "Others (please specify)",
-        "owned": "Owned",
-        "temporary": "Temporary",
-        "rented": "Rented",
-        "damaged": "Damaged"
+        "foodKit": "ఆహార కిట్",
+        "water": "నీరు",
+        "clothes": "బట్టలు",
+        "shelter": "ఆశ్రయం / తాత్కాలిక నివాసం",
+        "medicalHelp": "ఔషధం / వైద్య సహాయం",
+        "other": "ఇతరాలు (దయచేసి తెలియజేయండి)",
+        "owned": "సొంతం",
+        "temporary": "తాత్కాలికం",
+        "rented": "అద్దె",
+        "damaged": "దెబ్బతిన్నది"
       },
       "alerts": {
-        "submitSuccess": "Your relief request has been submitted successfully!",
-        "submitFailed": "Failed to submit relief request. Please try again."
+        "submitSuccess": "మీ సహాయ అభ్యర్థన విజయవంతంగా సమర్పించబడింది!",
+        "submitFailed": "సహాయ అభ్యర్థన సమర్పణ విఫలమైంది. దయచేసి మళ్ళీ ప్రయత్నించండి."
       }
     },
     "applyCard": {
-      "heading": "Please fill in all the details to apply for a health card",
+      "heading": "ఆరోగ్య కార్డ్ కోసం దరఖాస్తు చేయడానికి అన్ని వివరాలను నింపండి",
       "sections": {
-        "cardHolderDetails": "Card Holder Details",
-        "cardDetails": "Card Details",
-        "familyMembers": "Family Members"
+        "cardHolderDetails": "కార్డ్ హోల్డర్ వివరాలు",
+        "cardDetails": "కార్డ్ వివరాలు",
+        "familyMembers": "కుటుంబ సభ్యులు"
       },
       "fields": {
-        "cardHolderName": "Card Holder Name",
-        "aadhaarNumber": "Aadhaar Number",
-        "bloodGroup": "Blood Group",
-        "phone": "Phone",
-        "email": "Email",
-        "address": "Address",
-        "gender": "Gender",
-        "ageCategory": "Age Category",
-        "familyHeadImage": "Family Head Image",
-        "cardType": "Card Type",
-        "dateOfIssue": "Date of Issue",
-        "dateOfExpiry": "Date of Expiry",
-        "fullName": "Full Name",
-        "relationship": "Relationship",
-        "dateOfBirth": "Date of Birth"
+        "cardHolderName": "కార్డ్ హోల్డర్ పేరు",
+        "aadhaarNumber": "ఆధార్ నంబర్",
+        "bloodGroup": "రక్త సమూహం",
+        "phone": "ఫోన్",
+        "email": "ఇమెయిల్",
+        "address": "చిరునామా",
+        "gender": "లింగం",
+        "ageCategory": "వయస్సు వర్గం",
+        "familyHeadImage": "కుటుంబ పెద్ద ఫోటో",
+        "cardType": "కార్డ్ రకం",
+        "dateOfIssue": "జారీ తేదీ",
+        "dateOfExpiry": "గడువు తేదీ",
+        "fullName": "పూర్తి పేరు",
+        "relationship": "సంబంధం",
+        "dateOfBirth": "జన్మ తేదీ"
       },
       "placeholders": {
-        "fullName": "Enter full name",
-        "phone": "Enter 10 digit number",
-        "email": "Enter email address",
-        "address": "Enter address"
+        "fullName": "పూర్తి పేరు నమోదు చేయండి",
+        "phone": "10 అంకెల నంబర్ నమోదు చేయండి",
+        "email": "ఇమెయిల్ చిరునామా నమోదు చేయండి",
+        "address": "చిరునామా నమోదు చేయండి"
       },
       "options": {
-        "child": "Child",
-        "adult": "Adult",
-        "individual": "Individual",
-        "family": "Family",
-        "spouse": "Spouse",
-        "son": "Son",
-        "daughter": "Daughter",
-        "father": "Father",
-        "mother": "Mother",
-        "brother": "Brother",
-        "sister": "Sister"
+        "child": "పిల్లవాడు",
+        "adult": "వయోజనుడు",
+        "individual": "వ్యక్తిగత",
+        "family": "కుటుంబం",
+        "spouse": "భార్య/భర్త",
+        "son": "కుమారుడు",
+        "daughter": "కుమార్తె",
+        "father": "తండ్రి",
+        "mother": "తల్లి",
+        "brother": "సోదరుడు",
+        "sister": "సోదరి"
       },
       "validation": {
-        "aadhaarFormat": "Enter valid Aadhaar number (XXXX XXXX XXXX)",
-        "aadhaarMaxLength": "Aadhaar number cannot exceed 14 characters"
+        "aadhaarFormat": "సరైన ఆధార్ నంబర్ నమోదు చేయండి (XXXX XXXX XXXX)",
+        "aadhaarMaxLength": "ఆధార్ నంబర్ 14 అక్షరాలకు మించకూడదు"
       },
-      "viewCard": "View Card",
+      "viewCard": "కార్డ్ చూడండి",
       "alerts": {
-        "createdSuccess": "Your health card has been created successfully!",
-        "failed": "Failed to submit application"
+        "createdSuccess": "మీ ఆరోగ్య కార్డ్ విజయవంతంగా సృష్టించబడింది!",
+        "failed": "దరఖాస్తు సమర్పణ విఫలమైంది"
       }
     },
     "newCard": {
-      "heading": "Please fill in all the details to apply for a health card",
+      "heading": "ఆరోగ్య కార్డ్ కోసం దరఖాస్తు చేయడానికి అన్ని వివరాలను నింపండి",
       "sections": {
-        "treatmentDetails": "Treatment Details",
-        "medicalDocuments": "Medical Documents",
-        "referenceDetails": "Reference Details (Optional)"
+        "treatmentDetails": "చికిత్స వివరాలు",
+        "medicalDocuments": "వైద్య పత్రాలు",
+        "referenceDetails": "రిఫరెన్స్ వివరాలు (ఐచ్ఛికం)"
       },
       "fields": {
-        "fullName": "Full Name",
-        "emailAddress": "Email Address",
-        "contactNumber": "Contact Number",
-        "healthIssue": "Health Issue / Medical Condition",
-        "hospitalName": "Hospital Name Where Treatment Taken",
-        "hospitalAddress": "Hospital Address",
-        "hospitalType": "Hospital Type",
-        "treatmentDuration": "How Many Years About Your Treatment",
-        "medicalReports": "Upload Prescription / Medical Reports",
-        "referenceName": "Reference Name & Details",
-        "referenceContact": "Reference Contact Number"
+        "fullName": "పూర్తి పేరు",
+        "emailAddress": "ఇమెయిల్ చిరునామా",
+        "contactNumber": "సంప్రదింపు నంబర్",
+        "healthIssue": "ఆరోగ్య సమస్య / వైద్య పరిస్థితి",
+        "hospitalName": "చికిత్స తీసుకున్న ఆసుపత్రి పేరు",
+        "hospitalAddress": "ఆసుపత్రి చిరునామా",
+        "hospitalType": "ఆసుపత్రి రకం",
+        "treatmentDuration": "మీ చికిత్స ఎన్ని సంవత్సరాలు",
+        "medicalReports": "ప్రిస్క్రిప్షన్ / వైద్య నివేదికలు అప్‌లోడ్ చేయండి",
+        "referenceName": "రిఫరెన్స్ పేరు & వివరాలు",
+        "referenceContact": "రిఫరెన్స్ సంప్రదింపు నంబర్"
       },
       "placeholders": {
-        "fullName": "Enter your full name",
-        "emailAddress": "Enter your email address",
-        "healthIssue": "Describe your health condition or medical issue",
-        "hospitalName": "Enter hospital name",
-        "hospitalAddress": "Enter complete hospital address with city and pincode",
-        "treatmentDuration": "e.g., 2 years, 6 months",
-        "referenceName": "Name of person referring you"
+        "fullName": "మీ పూర్తి పేరు నమోదు చేయండి",
+        "emailAddress": "మీ ఇమెయిల్ చిరునామా నమోదు చేయండి",
+        "healthIssue": "మీ ఆరోగ్య పరిస్థితి లేదా వైద్య సమస్యను వివరించండి",
+        "hospitalName": "ఆసుపత్రి పేరు నమోదు చేయండి",
+        "hospitalAddress": "నగరం మరియు పిన్‌కోడ్‌తో పూర్తి ఆసుపత్రి చిరునామా నమోదు చేయండి",
+        "treatmentDuration": "ఉదా., 2 సంవత్సరాలు, 6 నెలలు",
+        "referenceName": "మిమ్మల్ని సూచిస్తున్న వ్యక్తి పేరు"
       },
       "options": {
-        "governmentHospital": "Government Hospital",
-        "privateHospital": "Private Hospital",
-        "clinic": "Clinic"
+        "governmentHospital": "ప్రభుత్వ ఆసుపత్రి",
+        "privateHospital": "ప్రైవేట్ ఆసుపత్రి",
+        "clinic": "క్లినిక్"
       },
       "alerts": {
-        "submitSuccess": "Card request submitted successfully",
-        "submitFailed": "Failed to submit card request. Please try again."
+        "submitSuccess": "కార్డ్ అభ్యర్థన విజయవంతంగా సమర్పించబడింది",
+        "submitFailed": "కార్డ్ అభ్యర్థన సమర్పణ విఫలమైంది. దయచేసి మళ్ళీ ప్రయత్నించండి."
       }
     },
     "volunteers": {
-      "heading": "Join Mujtaba Helping Foundation as a Volunteer",
+      "heading": "ముజ్తబా సహాయ ఫౌండేషన్‌లో స్వచ్ఛంద సేవకుడిగా చేరండి",
       "sections": {
-        "personalDetails": "Personal Details",
-        "professionalDetails": "Professional Details",
-        "volunteeringPreferences": "Volunteering Preferences",
-        "experienceAndMotivation": "Experience & Motivation"
+        "personalDetails": "వ్యక్తిగత వివరాలు",
+        "professionalDetails": "వృత్తిపరమైన వివరాలు",
+        "volunteeringPreferences": "స్వచ్ఛంద సేవ ప్రాధాన్యతలు",
+        "experienceAndMotivation": "అనుభవం & ప్రేరణ"
       },
       "fields": {
-        "fullName": "Full Name",
-        "dateOfBirth": "Date of Birth",
-        "gender": "Gender",
-        "phoneNumber": "Phone Number",
-        "alternateContact": "Alternate Contact No.",
-        "emailAddress": "Email Address",
-        "address": "Address",
-        "qualification": "Qualification",
-        "employmentStatus": "Employment Status",
-        "occupation": "Occupation",
-        "volunteerArea": "Which areas would you like to volunteer in?",
-        "availability": "Availability",
-        "previousVolunteering": "Have you volunteered before?",
-        "motivation": "Why do you want to join Mujtaba Helping Foundation as a volunteer?",
-        "declaration": "I hereby declare that the information provided is true and I agree to volunteer responsibly."
+        "fullName": "పూర్తి పేరు",
+        "dateOfBirth": "జన్మ తేదీ",
+        "gender": "లింగం",
+        "phoneNumber": "ఫోన్ నంబర్",
+        "alternateContact": "ప్రత్యామ్నాయ సంప్రదింపు నం.",
+        "emailAddress": "ఇమెయిల్ చిరునామా",
+        "address": "చిరునామా",
+        "qualification": "అర్హత",
+        "employmentStatus": "ఉద్యోగ స్థితి",
+        "occupation": "వృత్తి",
+        "volunteerArea": "మీరు ఏ రంగాలలో స్వచ్ఛంద సేవ చేయాలనుకుంటున్నారు?",
+        "availability": "అందుబాటు",
+        "previousVolunteering": "మీరు గతంలో స్వచ్ఛంద సేవ చేశారా?",
+        "motivation": "ముజ్తబా సహాయ ఫౌండేషన్‌లో స్వచ్ఛంద సేవకుడిగా ఎందుకు చేరాలనుకుంటున్నారు?",
+        "declaration": "అందించిన సమాచారం నిజమని మరియు బాధ్యతాయుతంగా స్వచ్ఛంద సేవ చేయడానికి అంగీకరిస్తున్నానని ప్రకటిస్తున్నాను."
       },
       "placeholders": {
-        "motivation": "Please share your motivation and what drives you to volunteer with us..."
+        "motivation": "దయచేసి మీ ప్రేరణను మరియు మాతో స్వచ్ఛంద సేవ చేయడానికి మిమ్మల్ని ఏది నడిపిస్తుందో పంచుకోండి..."
       },
       "options": {
-        "student": "Student",
-        "employee": "Employee",
-        "selfEmployed": "Self Employed",
-        "healthCamps": "Health Camps",
-        "awarenessDrives": "Awareness Drives",
-        "dataEntry": "Data Entry / Office Work",
-        "socialMedia": "Social Media Promotion",
-        "fundraising": "Fundraising",
-        "communityOutreach": "Community Outreach",
-        "weekdays": "Weekdays",
-        "weekends": "Weekends",
-        "flexible": "Flexible"
+        "student": "విద్యార్థి",
+        "employee": "ఉద్యోగి",
+        "selfEmployed": "స్వయం ఉపాధి",
+        "healthCamps": "ఆరోగ్య శిబిరాలు",
+        "awarenessDrives": "అవగాహన కార్యక్రమాలు",
+        "dataEntry": "డేటా ఎంట్రీ / ఆఫీస్ పని",
+        "socialMedia": "సోషల్ మీడియా ప్రమోషన్",
+        "fundraising": "నిధుల సేకరణ",
+        "communityOutreach": "సమాజ సేవ",
+        "weekdays": "వారపు రోజులు",
+        "weekends": "వారాంతాలు",
+        "flexible": "సౌలభ్యం"
       }
     },
     "equipment": {
-      "heading": "Fill in the details below to request medical equipment",
-      "submitRequest": "Submit Request",
+      "heading": "వైద్య సామగ్రి అభ్యర్థన కోసం క్రింది వివరాలను నింపండి",
+      "submitRequest": "అభ్యర్థన సమర్పించండి",
       "sections": {
-        "personalInformation": "Personal Information",
-        "addressDetails": "Address Details",
-        "equipmentDetails": "Equipment Details",
-        "referenceDetails": "Reference Details",
-        "consent": "Consent"
+        "personalInformation": "వ్యక్తిగత సమాచారం",
+        "addressDetails": "చిరునామా వివరాలు",
+        "equipmentDetails": "సామగ్రి వివరాలు",
+        "referenceDetails": "రిఫరెన్స్ వివరాలు",
+        "consent": "అంగీకారం"
       },
       "fields": {
-        "fullName": "Full Name",
-        "age": "Age",
-        "gender": "Gender",
-        "mobileNumber": "Mobile Number",
-        "email": "Email",
-        "address": "Address",
-        "pincode": "Pincode",
-        "equipmentType": "Equipment Type",
-        "medicalReason": "Medical Reason",
-        "durationRequired": "Duration Required",
-        "referenceName": "Reference Name",
-        "referenceContact": "Reference Contact",
-        "consentDeclaration": "I hereby declare that the information provided is true and accurate"
+        "fullName": "పూర్తి పేరు",
+        "age": "వయస్సు",
+        "gender": "లింగం",
+        "mobileNumber": "మొబైల్ నంబర్",
+        "email": "ఇమెయిల్",
+        "address": "చిరునామా",
+        "pincode": "పిన్‌కోడ్",
+        "equipmentType": "సామగ్రి రకం",
+        "medicalReason": "వైద్య కారణం",
+        "durationRequired": "అవసరమైన వ్యవధి",
+        "referenceName": "రిఫరెన్స్ పేరు",
+        "referenceContact": "రిఫరెన్స్ సంప్రదింపు",
+        "consentDeclaration": "అందించిన సమాచారం నిజమని మరియు ఖచ్చితమైనదని నేను ప్రకటిస్తున్నాను"
       },
       "placeholders": {
-        "fullName": "Enter your full name",
-        "age": "Enter your age",
-        "mobileNumber": "Enter mobile number",
-        "email": "Enter email address",
-        "address": "Enter your address",
-        "pincode": "Enter pincode",
-        "medicalReason": "Describe the medical reason for requesting equipment",
-        "durationRequired": "e.g., 2 weeks, 1 month",
-        "referenceName": "Enter reference person name",
-        "referenceContact": "Enter reference contact number"
+        "fullName": "మీ పూర్తి పేరు నమోదు చేయండి",
+        "age": "మీ వయస్సు నమోదు చేయండి",
+        "mobileNumber": "మొబైల్ నంబర్ నమోదు చేయండి",
+        "email": "ఇమెయిల్ చిరునామా నమోదు చేయండి",
+        "address": "మీ చిరునామా నమోదు చేయండి",
+        "pincode": "పిన్‌కోడ్ నమోదు చేయండి",
+        "medicalReason": "సామగ్రి అభ్యర్థనకు వైద్య కారణాన్ని వివరించండి",
+        "durationRequired": "ఉదా., 2 వారాలు, 1 నెల",
+        "referenceName": "రిఫరెన్స్ వ్యక్తి పేరు నమోదు చేయండి",
+        "referenceContact": "రిఫరెన్స్ సంప్రదింపు నంబర్ నమోదు చేయండి"
       },
       "options": {
-        "bloodPressureMonitor": "Blood Pressure Monitor",
-        "glucometer": "Glucometer",
-        "oxygenConcentrator": "Oxygen Concentrator",
-        "wheelchair": "Wheelchair",
-        "walkingAid": "Walking Aid",
-        "hospitalBed": "Hospital Bed",
-        "nebulizer": "Nebulizer"
+        "bloodPressureMonitor": "రక్తపోటు మానిటర్",
+        "glucometer": "గ్లూకోమీటర్",
+        "oxygenConcentrator": "ఆక్సిజన్ కాన్సంట్రేటర్",
+        "wheelchair": "వీల్‌చెయిర్",
+        "walkingAid": "నడక సహాయం",
+        "hospitalBed": "ఆసుపత్రి మంచం",
+        "nebulizer": "నెబ్యులైజర్"
       },
       "alerts": {
-        "submitSuccess": "Equipment request submitted successfully! Request ID:",
-        "submitFailed": "Failed to submit equipment request. Please try again."
+        "submitSuccess": "సామగ్రి అభ్యర్థన విజయవంతంగా సమర్పించబడింది! అభ్యర్థన ID:",
+        "submitFailed": "సామగ్రి అభ్యర్థన సమర్పణ విఫలమైంది. దయచేసి మళ్ళీ ప్రయత్నించండి."
       }
     }
   }

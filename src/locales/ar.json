@@ -130,6 +130,7 @@
     "bloodGroup": "فصيلة الدم",
     "aadharNumber": "رقم آدهار",
     "dateOfIssue": "تاريخ الإصدار",
+    "createdAt": "تاريخ الإنشاء",
     "dateOfExpiry": "تاريخ انتهاء الصلاحية",
     "title": "بطاقات العائلة الصحية",
     "downloadCard": "تحميل",
@@ -407,6 +408,43 @@
       "successMessage": "تم تقديم تسجيل الفعالية بنجاح",
       "errorTitle": "خطأ",
       "errorMessage": "فشل في تقديم تسجيل الفعالية"
+    },
+    "items": {
+      "medical": {
+        "title": "معسكر طبي صحي مجاني",
+        "date": "26 نوفمبر 2025",
+        "time": "10:00 صباحاً - 6:00 مساءً",
+        "location": "المركز المجتمعي، مالاد",
+        "desc": "فحوصات صحية شاملة تشمل ضغط الدم والسكر ومؤشر كتلة الجسم والاستشارة الأساسية والمتخصصة. خدمات مجانية متاحة.",
+        "tag1": "فحص عام",
+        "tag2": "تحاليل مخبرية",
+        "tag3": "استشارة",
+        "tag4": "فحص سكر الدم",
+        "stats": "50 تسجيل"
+      },
+      "blood": {
+        "title": "حملة التبرع بالدم",
+        "date": "28 نوفمبر 2025",
+        "time": "10:00 صباحاً - 4:00 مساءً",
+        "location": "حديقة SGP، أندهيري",
+        "desc": "حملة تبرع بالدم بالتعاون مع بنك دم معتمد. دعم طبي في الموقع. مرطبات مجانية.",
+        "tag1": "متطوعون مطلوبون",
+        "tag2": "أطباء في الموقع",
+        "tag3": "شهادات",
+        "tag4": "مرطبات",
+        "stats": "100+ متبرع متوقع"
+      },
+      "awareness": {
+        "title": "جلسة توعية صحية",
+        "date": "30 نوفمبر 2025",
+        "time": "2:00 مساءً - 5:00 مساءً",
+        "location": "افتراضي على زوم",
+        "desc": "جلسة تعليمية حول الرعاية الصحية الوقائية والتغذية والنظافة والصحة النفسية. جلسة تفاعلية مع أسئلة وأجوبة من الخبراء.",
+        "tag1": "دخول مجاني",
+        "tag2": "جلسة مباشرة",
+        "tag3": "مواد مجانية",
+        "stats": "200+ تسجيل"
+      }
     }
   },
   "blood": {
@@ -419,6 +457,63 @@
     }
   },
   "relief": {
+    "apply": "التقدم للحصول على إغاثة",
+    "donate": "تبرع الآن",
+    "activePrograms": "برامج الإغاثة النشطة",
+    "howToApply": "كيفية التقدم للحصول على الإغاثة",
+    "impactTitle": "أثر الإغاثة",
+    "requestNewCard": "+ طلب بطاقة جديدة",
+    "steps": {
+      "formTitle": "ملء نموذج الطلب",
+      "formDesc": "قدم طلب الإغاثة مع التفاصيل المطلوبة",
+      "verifyTitle": "عملية التحقق",
+      "verifyDesc": "سيقوم فريقنا بالتحقق من طلبك ووثائقك",
+      "distributeTitle": "توزيع الإغاثة",
+      "distributeDesc": "سيتم الاتصال بالمستفيدين المعتمدين للتوزيع"
+    },
+    "impact": {
+      "families": "عائلات تمت مساعدتها",
+      "drives": "حملات إغاثة",
+      "aid": "قيمة المساعدات"
+    },
+    "programs": {
+      "food": {
+        "title": "حملة توزيع الغذاء",
+        "locations": "مواقع متعددة",
+        "desc": "توزيع يومي للغذاء للعائلات المحتاجة. تتضمن كل حزمة عادةً أرز وبقوليات وزيت ومواد بقالة أساسية لمدة أسبوع.",
+        "tag1": "يومي",
+        "tag2": "مواقع متعددة",
+        "tag3": "حزم عائلية",
+        "stats": "500+ عائلة مدعومة"
+      },
+      "flood": {
+        "title": "دعم إغاثة الفيضانات",
+        "locations": "المناطق المتضررة من الكوارث",
+        "desc": "إغاثة فورية للعائلات المتضررة من الفيضانات تشمل مياه نظيفة وحصص غذائية جافة ومأوى مؤقت وخدمات طبية.",
+        "tag1": "إغاثة الفيضانات",
+        "tag2": "مأوى",
+        "tag3": "طبي",
+        "stats": "200+ عائلة تمت خدمتها"
+      },
+      "winter": {
+        "title": "حملة إغاثة الشتاء",
+        "locations": "المناطق الحضرية والريفية",
+        "desc": "توزيع البطانيات والسترات والمستلزمات الأساسية للمحتاجين، وخاصة كبار السن خلال فصول الشتاء القاسية.",
+        "tag1": "بطانيات",
+        "tag2": "سترات",
+        "tag3": "كبار السن",
+        "stats": "300+ شخص تمت تغطيتهم"
+      },
+      "medical": {
+        "title": "الإغاثة الطبية الطارئة",
+        "locations": "جميع مناطق الإغاثة",
+        "desc": "مساعدة طبية طارئة تشمل الأدوية والإسعافات الأولية ودعم النقل الطبي للحالات الحرجة.",
+        "tag1": "طبي",
+        "tag2": "طوارئ",
+        "tag3": "إسعاف",
+        "stats": "150+ حالة"
+      }
+    },
     "registrationStatus": "حالة التسجيل",
     "requestDetails": "تفاصيل طلب الإغاثة",
     "registrationId": "معرف التسجيل:",
@@ -499,298 +594,298 @@
       }
     },
     "training": {
-      "heading": "Registration Form",
+      "heading": "نموذج التسجيل",
       "sections": {
-        "personalDetails": "Personal Details",
-        "educationalBackground": "Educational Background",
-        "courseSelection": "Course Selection"
+        "personalDetails": "التفاصيل الشخصية",
+        "educationalBackground": "الخلفية التعليمية",
+        "courseSelection": "اختيار الدورة"
       },
       "fields": {
-        "fullName": "Full Name",
-        "dateOfBirth": "Date of Birth",
-        "age": "Age",
-        "gender": "Gender",
-        "contactNumber": "Contact Number (Phone / WhatsApp)",
-        "parentGuardianContact": "Parent's / Guardian's Contact Number",
-        "maritalStatus": "Marital Status",
-        "emailAvailable": "Email ID (Available)",
-        "addressWithPincode": "Address (With Pin Code)",
-        "pincode": "Pin code",
-        "guardianName": "Guardian's Name (If any)",
-        "idProofType": "ID Proof (Aadhar / Other)",
-        "identificationNumber": "Identification Number",
-        "highestQualification": "Highest Qualification",
-        "mediumOfInstruction": "Medium of Instruction",
-        "schoolCollegeName": "School / College Name",
-        "schoolCollegeLocation": "Location",
-        "educationGapReason": "Gaps in Education / Dropout Reason",
-        "preferredCourses": "Please tick your preferred training"
+        "fullName": "الاسم الكامل",
+        "dateOfBirth": "تاريخ الميلاد",
+        "age": "العمر",
+        "gender": "الجنس",
+        "contactNumber": "رقم الاتصال (هاتف / واتساب)",
+        "parentGuardianContact": "رقم اتصال ولي الأمر",
+        "maritalStatus": "الحالة الاجتماعية",
+        "emailAvailable": "البريد الإلكتروني (إن وجد)",
+        "addressWithPincode": "العنوان (مع الرمز البريدي)",
+        "pincode": "الرمز البريدي",
+        "guardianName": "اسم ولي الأمر (إن وجد)",
+        "idProofType": "إثبات الهوية (آدهار / أخرى)",
+        "identificationNumber": "رقم التعريف",
+        "highestQualification": "أعلى مؤهل",
+        "mediumOfInstruction": "لغة التدريس",
+        "schoolCollegeName": "اسم المدرسة / الكلية",
+        "schoolCollegeLocation": "الموقع",
+        "educationGapReason": "فجوات في التعليم / سبب الانقطاع",
+        "preferredCourses": "يرجى اختيار التدريب المفضل لديك"
       },
       "placeholders": {
-        "fullName": "Enter your full name",
-        "addressWithPincode": "Enter your complete address with pin code",
-        "pincode": "Enter your Pin code",
-        "idProofType": "Aadhar number or other ID proof number",
-        "educationGapReason": "If any gaps or dropout, please mention the reason"
+        "fullName": "أدخل اسمك الكامل",
+        "addressWithPincode": "أدخل عنوانك الكامل مع الرمز البريدي",
+        "pincode": "أدخل الرمز البريدي",
+        "idProofType": "رقم آدهار أو رقم إثبات هوية آخر",
+        "educationGapReason": "إذا كانت هناك فجوات أو انقطاع، يرجى ذكر السبب"
       },
       "options": {
-        "graduation": "Graduation",
-        "hindi": "Hindi",
-        "english": "English"
+        "graduation": "تخرج",
+        "hindi": "هندي",
+        "english": "إنجليزي"
       },
       "course": {
-        "computer": "Computer",
-        "tailoring": "Tailoring",
-        "spokenEnglish": "Spoken English",
-        "handmadeDesigning": "Handmade Designing",
-        "other": "Others (please specify)"
+        "computer": "حاسوب",
+        "tailoring": "خياطة",
+        "spokenEnglish": "اللغة الإنجليزية المحادثة",
+        "handmadeDesigning": "تصميم يدوي",
+        "other": "أخرى (يرجى التحديد)"
       },
       "alerts": {
-        "submitSuccess": "Registration submitted successfully!",
-        "submitFailed": "Failed to submit registration. Please try again."
+        "submitSuccess": "تم تقديم التسجيل بنجاح!",
+        "submitFailed": "فشل في تقديم التسجيل. يرجى المحاولة مرة أخرى."
       }
     },
     "relief": {
-      "heading": "Apply for Support",
+      "heading": "التقدم للحصول على الدعم",
       "sections": {
-        "personalInformation": "Personal Information",
-        "familyAndLivingSituation": "Family and Living Situation",
-        "reasonForRequest": "Reason for Request",
-        "assistanceRequired": "What Do You Need From Us?"
+        "personalInformation": "المعلومات الشخصية",
+        "familyAndLivingSituation": "الوضع الأسري والمعيشي",
+        "reasonForRequest": "سبب الطلب",
+        "assistanceRequired": "ما الذي تحتاجه منا؟"
       },
       "fields": {
-        "fullName": "Full Name",
-        "fatherOrHusbandName": "Father's / Husband's Name",
-        "dateOfBirth": "Date of Birth",
-        "age": "Age",
-        "gender": "Gender",
-        "mobileNumber": "Mobile Number",
-        "alternateNumber": "Alternate Number",
-        "emailAvailable": "Email ID (Available)",
-        "currentAddress": "Current Address (With Pin Code)",
-        "pincode": "Pin code",
-        "idProofType": "ID Proof Type",
-        "idProofNumber": "ID Proof Number",
-        "totalFamilyMembers": "Total Family Members",
-        "earningMembers": "Earning Members",
-        "childrenBelow5": "Children (Below 5)",
-        "childrenSchoolGoing": "Children (School-going)",
-        "elderlyDisabledMembers": "Elderly / Disabled Members",
-        "elderlyDisabledDetails": "Elderly / Disabled Details",
-        "houseType": "Type of House",
-        "reasonForRequest": "Reason for Request (Optional but helpful)",
-        "assistanceTypes": "Please tick the items you are requesting",
-        "declaration": "I declare that the information provided above is true and accurate to the best of my knowledge."
+        "fullName": "الاسم الكامل",
+        "fatherOrHusbandName": "اسم الأب / الزوج",
+        "dateOfBirth": "تاريخ الميلاد",
+        "age": "العمر",
+        "gender": "الجنس",
+        "mobileNumber": "رقم الهاتف المحمول",
+        "alternateNumber": "رقم بديل",
+        "emailAvailable": "البريد الإلكتروني (إن وجد)",
+        "currentAddress": "العنوان الحالي (مع الرمز البريدي)",
+        "pincode": "الرمز البريدي",
+        "idProofType": "نوع إثبات الهوية",
+        "idProofNumber": "رقم إثبات الهوية",
+        "totalFamilyMembers": "إجمالي أفراد الأسرة",
+        "earningMembers": "الأعضاء العاملون",
+        "childrenBelow5": "الأطفال (أقل من 5)",
+        "childrenSchoolGoing": "الأطفال (في سن المدرسة)",
+        "elderlyDisabledMembers": "كبار السن / ذوو الإعاقة",
+        "elderlyDisabledDetails": "تفاصيل كبار السن / ذوي الإعاقة",
+        "houseType": "نوع المنزل",
+        "reasonForRequest": "سبب الطلب (اختياري ولكنه مفيد)",
+        "assistanceTypes": "يرجى تحديد العناصر التي تطلبها",
+        "declaration": "أقر بأن المعلومات المقدمة أعلاه صحيحة ودقيقة على حد علمي."
       },
       "placeholders": {
-        "fullName": "Enter your full name",
-        "fatherOrHusbandName": "Enter father's or husband's name",
-        "currentAddress": "Enter your complete address with pin code",
-        "pincode": "Enter your Pin code",
-        "idProofNumber": "Enter ID proof number",
-        "reasonForRequest": "Describe your situation and why you need assistance"
+        "fullName": "أدخل اسمك الكامل",
+        "fatherOrHusbandName": "أدخل اسم الأب أو الزوج",
+        "currentAddress": "أدخل عنوانك الكامل مع الرمز البريدي",
+        "pincode": "أدخل الرمز البريدي",
+        "idProofNumber": "أدخل رقم إثبات الهوية",
+        "reasonForRequest": "صف وضعك ولماذا تحتاج إلى المساعدة"
       },
       "options": {
-        "foodKit": "Food Kit",
-        "water": "Water",
-        "clothes": "Clothes",
-        "shelter": "Shelter / Temporary Housing",
-        "medicalHelp": "Medicine / Medical Help",
-        "other": "Others (please specify)",
-        "owned": "Owned",
-        "temporary": "Temporary",
-        "rented": "Rented",
-        "damaged": "Damaged"
+        "foodKit": "حزمة غذائية",
+        "water": "ماء",
+        "clothes": "ملابس",
+        "shelter": "مأوى / سكن مؤقت",
+        "medicalHelp": "أدوية / مساعدة طبية",
+        "other": "أخرى (يرجى التحديد)",
+        "owned": "ملك",
+        "temporary": "مؤقت",
+        "rented": "مستأجر",
+        "damaged": "متضرر"
       },
       "alerts": {
-        "submitSuccess": "Your relief request has been submitted successfully!",
-        "submitFailed": "Failed to submit relief request. Please try again."
+        "submitSuccess": "تم تقديم طلب الإغاثة بنجاح!",
+        "submitFailed": "فشل في تقديم طلب الإغاثة. يرجى المحاولة مرة أخرى."
       }
     },
     "applyCard": {
-      "heading": "Please fill in all the details to apply for a health card",
+      "heading": "يرجى ملء جميع التفاصيل للتقدم للحصول على بطاقة صحية",
       "sections": {
-        "cardHolderDetails": "Card Holder Details",
-        "cardDetails": "Card Details",
-        "familyMembers": "Family Members"
+        "cardHolderDetails": "تفاصيل حامل البطاقة",
+        "cardDetails": "تفاصيل البطاقة",
+        "familyMembers": "أفراد الأسرة"
       },
       "fields": {
-        "cardHolderName": "Card Holder Name",
-        "aadhaarNumber": "Aadhaar Number",
-        "bloodGroup": "Blood Group",
-        "phone": "Phone",
-        "email": "Email",
-        "address": "Address",
-        "gender": "Gender",
-        "ageCategory": "Age Category",
-        "familyHeadImage": "Family Head Image",
-        "cardType": "Card Type",
-        "dateOfIssue": "Date of Issue",
-        "dateOfExpiry": "Date of Expiry",
-        "fullName": "Full Name",
-        "relationship": "Relationship",
-        "dateOfBirth": "Date of Birth"
+        "cardHolderName": "اسم حامل البطاقة",
+        "aadhaarNumber": "رقم آدهار",
+        "bloodGroup": "فصيلة الدم",
+        "phone": "الهاتف",
+        "email": "البريد الإلكتروني",
+        "address": "العنوان",
+        "gender": "الجنس",
+        "ageCategory": "الفئة العمرية",
+        "familyHeadImage": "صورة رب الأسرة",
+        "cardType": "نوع البطاقة",
+        "dateOfIssue": "تاريخ الإصدار",
+        "dateOfExpiry": "تاريخ انتهاء الصلاحية",
+        "fullName": "الاسم الكامل",
+        "relationship": "صلة القرابة",
+        "dateOfBirth": "تاريخ الميلاد"
       },
       "placeholders": {
-        "fullName": "Enter full name",
-        "phone": "Enter 10 digit number",
-        "email": "Enter email address",
-        "address": "Enter address"
+        "fullName": "أدخل الاسم الكامل",
+        "phone": "أدخل رقم من 10 أرقام",
+        "email": "أدخل عنوان البريد الإلكتروني",
+        "address": "أدخل العنوان"
       },
       "options": {
-        "child": "Child",
-        "adult": "Adult",
-        "individual": "Individual",
-        "family": "Family",
-        "spouse": "Spouse",
-        "son": "Son",
-        "daughter": "Daughter",
-        "father": "Father",
-        "mother": "Mother",
-        "brother": "Brother",
-        "sister": "Sister"
+        "child": "طفل",
+        "adult": "بالغ",
+        "individual": "فردي",
+        "family": "عائلي",
+        "spouse": "زوج/زوجة",
+        "son": "ابن",
+        "daughter": "ابنة",
+        "father": "أب",
+        "mother": "أم",
+        "brother": "أخ",
+        "sister": "أخت"
       },
       "validation": {
-        "aadhaarFormat": "Enter valid Aadhaar number (XXXX XXXX XXXX)",
-        "aadhaarMaxLength": "Aadhaar number cannot exceed 14 characters"
+        "aadhaarFormat": "أدخل رقم آدهار صالح (XXXX XXXX XXXX)",
+        "aadhaarMaxLength": "لا يمكن أن يتجاوز رقم آدهار 14 حرفاً"
       },
-      "viewCard": "View Card",
+      "viewCard": "عرض البطاقة",
       "alerts": {
-        "createdSuccess": "Your health card has been created successfully!",
-        "failed": "Failed to submit application"
+        "createdSuccess": "تم إنشاء بطاقتك الصحية بنجاح!",
+        "failed": "فشل في تقديم الطلب"
       }
     },
     "newCard": {
-      "heading": "Please fill in all the details to apply for a health card",
+      "heading": "يرجى ملء جميع التفاصيل للتقدم للحصول على بطاقة صحية",
       "sections": {
-        "treatmentDetails": "Treatment Details",
-        "medicalDocuments": "Medical Documents",
-        "referenceDetails": "Reference Details (Optional)"
+        "treatmentDetails": "تفاصيل العلاج",
+        "medicalDocuments": "المستندات الطبية",
+        "referenceDetails": "تفاصيل المرجع (اختياري)"
       },
       "fields": {
-        "fullName": "Full Name",
-        "emailAddress": "Email Address",
-        "contactNumber": "Contact Number",
-        "healthIssue": "Health Issue / Medical Condition",
-        "hospitalName": "Hospital Name Where Treatment Taken",
-        "hospitalAddress": "Hospital Address",
-        "hospitalType": "Hospital Type",
-        "treatmentDuration": "How Many Years About Your Treatment",
-        "medicalReports": "Upload Prescription / Medical Reports",
-        "referenceName": "Reference Name & Details",
-        "referenceContact": "Reference Contact Number"
+        "fullName": "الاسم الكامل",
+        "emailAddress": "عنوان البريد الإلكتروني",
+        "contactNumber": "رقم الاتصال",
+        "healthIssue": "المشكلة الصحية / الحالة الطبية",
+        "hospitalName": "اسم المستشفى حيث تم العلاج",
+        "hospitalAddress": "عنوان المستشفى",
+        "hospitalType": "نوع المستشفى",
+        "treatmentDuration": "كم سنة مضت على علاجك",
+        "medicalReports": "تحميل الوصفة / التقارير الطبية",
+        "referenceName": "اسم المرجع والتفاصيل",
+        "referenceContact": "رقم اتصال المرجع"
       },
       "placeholders": {
-        "fullName": "Enter your full name",
-        "emailAddress": "Enter your email address",
-        "healthIssue": "Describe your health condition or medical issue",
-        "hospitalName": "Enter hospital name",
-        "hospitalAddress": "Enter complete hospital address with city and pincode",
-        "treatmentDuration": "e.g., 2 years, 6 months",
-        "referenceName": "Name of person referring you"
+        "fullName": "أدخل اسمك الكامل",
+        "emailAddress": "أدخل عنوان بريدك الإلكتروني",
+        "healthIssue": "صف حالتك الصحية أو مشكلتك الطبية",
+        "hospitalName": "أدخل اسم المستشفى",
+        "hospitalAddress": "أدخل عنوان المستشفى الكامل مع المدينة والرمز البريدي",
+        "treatmentDuration": "مثال: سنتان، 6 أشهر",
+        "referenceName": "اسم الشخص الذي يحيلك"
       },
       "options": {
-        "governmentHospital": "Government Hospital",
-        "privateHospital": "Private Hospital",
-        "clinic": "Clinic"
+        "governmentHospital": "مستشفى حكومي",
+        "privateHospital": "مستشفى خاص",
+        "clinic": "عيادة"
       },
       "alerts": {
-        "submitSuccess": "Card request submitted successfully",
-        "submitFailed": "Failed to submit card request. Please try again."
+        "submitSuccess": "تم تقديم طلب البطاقة بنجاح",
+        "submitFailed": "فشل في تقديم طلب البطاقة. يرجى المحاولة مرة أخرى."
       }
     },
     "volunteers": {
-      "heading": "Join Mujtaba Helping Foundation as a Volunteer",
+      "heading": "انضم إلى مؤسسة مجتبى للمساعدة كمتطوع",
       "sections": {
-        "personalDetails": "Personal Details",
-        "professionalDetails": "Professional Details",
-        "volunteeringPreferences": "Volunteering Preferences",
-        "experienceAndMotivation": "Experience & Motivation"
+        "personalDetails": "التفاصيل الشخصية",
+        "professionalDetails": "التفاصيل المهنية",
+        "volunteeringPreferences": "تفضيلات التطوع",
+        "experienceAndMotivation": "الخبرة والدافع"
       },
       "fields": {
-        "fullName": "Full Name",
-        "dateOfBirth": "Date of Birth",
-        "gender": "Gender",
-        "phoneNumber": "Phone Number",
-        "alternateContact": "Alternate Contact No.",
-        "emailAddress": "Email Address",
-        "address": "Address",
-        "qualification": "Qualification",
-        "employmentStatus": "Employment Status",
-        "occupation": "Occupation",
-        "volunteerArea": "Which areas would you like to volunteer in?",
-        "availability": "Availability",
-        "previousVolunteering": "Have you volunteered before?",
-        "motivation": "Why do you want to join Mujtaba Helping Foundation as a volunteer?",
-        "declaration": "I hereby declare that the information provided is true and I agree to volunteer responsibly."
+        "fullName": "الاسم الكامل",
+        "dateOfBirth": "تاريخ الميلاد",
+        "gender": "الجنس",
+        "phoneNumber": "رقم الهاتف",
+        "alternateContact": "رقم اتصال بديل",
+        "emailAddress": "عنوان البريد الإلكتروني",
+        "address": "العنوان",
+        "qualification": "المؤهل",
+        "employmentStatus": "حالة التوظيف",
+        "occupation": "المهنة",
+        "volunteerArea": "في أي مجالات تود التطوع؟",
+        "availability": "التوفر",
+        "previousVolunteering": "هل تطوعت من قبل؟",
+        "motivation": "لماذا تريد الانضمام إلى مؤسسة مجتبى للمساعدة كمتطوع؟",
+        "declaration": "أقر بموجب هذا أن المعلومات المقدمة صحيحة وأوافق على التطوع بمسؤولية."
       },
       "placeholders": {
-        "motivation": "Please share your motivation and what drives you to volunteer with us..."
+        "motivation": "يرجى مشاركة دافعك وما يحفزك للتطوع معنا..."
       },
       "options": {
-        "student": "Student",
-        "employee": "Employee",
-        "selfEmployed": "Self Employed",
-        "healthCamps": "Health Camps",
-        "awarenessDrives": "Awareness Drives",
-        "dataEntry": "Data Entry / Office Work",
-        "socialMedia": "Social Media Promotion",
-        "fundraising": "Fundraising",
-        "communityOutreach": "Community Outreach",
-        "weekdays": "Weekdays",
-        "weekends": "Weekends",
-        "flexible": "Flexible"
+        "student": "طالب",
+        "employee": "موظف",
+        "selfEmployed": "عمل حر",
+        "healthCamps": "معسكرات صحية",
+        "awarenessDrives": "حملات توعية",
+        "dataEntry": "إدخال بيانات / عمل مكتبي",
+        "socialMedia": "الترويج عبر وسائل التواصل الاجتماعي",
+        "fundraising": "جمع التبرعات",
+        "communityOutreach": "التواصل المجتمعي",
+        "weekdays": "أيام الأسبوع",
+        "weekends": "عطلات نهاية الأسبوع",
+        "flexible": "مرن"
       }
     },
     "equipment": {
-      "heading": "Fill in the details below to request medical equipment",
-      "submitRequest": "Submit Request",
+      "heading": "املأ التفاصيل أدناه لطلب معدات طبية",
+      "submitRequest": "إرسال الطلب",
       "sections": {
-        "personalInformation": "Personal Information",
-        "addressDetails": "Address Details",
-        "equipmentDetails": "Equipment Details",
-        "referenceDetails": "Reference Details",
-        "consent": "Consent"
+        "personalInformation": "المعلومات الشخصية",
+        "addressDetails": "تفاصيل العنوان",
+        "equipmentDetails": "تفاصيل المعدات",
+        "referenceDetails": "تفاصيل المرجع",
+        "consent": "الموافقة"
       },
       "fields": {
-        "fullName": "Full Name",
-        "age": "Age",
-        "gender": "Gender",
-        "mobileNumber": "Mobile Number",
-        "email": "Email",
-        "address": "Address",
-        "pincode": "Pincode",
-        "equipmentType": "Equipment Type",
-        "medicalReason": "Medical Reason",
-        "durationRequired": "Duration Required",
-        "referenceName": "Reference Name",
-        "referenceContact": "Reference Contact",
-        "consentDeclaration": "I hereby declare that the information provided is true and accurate"
+        "fullName": "الاسم الكامل",
+        "age": "العمر",
+        "gender": "الجنس",
+        "mobileNumber": "رقم الهاتف المحمول",
+        "email": "البريد الإلكتروني",
+        "address": "العنوان",
+        "pincode": "الرمز البريدي",
+        "equipmentType": "نوع المعدات",
+        "medicalReason": "السبب الطبي",
+        "durationRequired": "المدة المطلوبة",
+        "referenceName": "اسم المرجع",
+        "referenceContact": "رقم اتصال المرجع",
+        "consentDeclaration": "أقر بموجب هذا أن المعلومات المقدمة صحيحة ودقيقة"
       },
       "placeholders": {
-        "fullName": "Enter your full name",
-        "age": "Enter your age",
-        "mobileNumber": "Enter mobile number",
-        "email": "Enter email address",
-        "address": "Enter your address",
-        "pincode": "Enter pincode",
-        "medicalReason": "Describe the medical reason for requesting equipment",
-        "durationRequired": "e.g., 2 weeks, 1 month",
-        "referenceName": "Enter reference person name",
-        "referenceContact": "Enter reference contact number"
+        "fullName": "أدخل اسمك الكامل",
+        "age": "أدخل عمرك",
+        "mobileNumber": "أدخل رقم الهاتف المحمول",
+        "email": "أدخل عنوان البريد الإلكتروني",
+        "address": "أدخل عنوانك",
+        "pincode": "أدخل الرمز البريدي",
+        "medicalReason": "صف السبب الطبي لطلب المعدات",
+        "durationRequired": "مثال: أسبوعان، شهر واحد",
+        "referenceName": "أدخل اسم الشخص المرجعي",
+        "referenceContact": "أدخل رقم اتصال المرجع"
       },
       "options": {
-        "bloodPressureMonitor": "Blood Pressure Monitor",
-        "glucometer": "Glucometer",
-        "oxygenConcentrator": "Oxygen Concentrator",
-        "wheelchair": "Wheelchair",
-        "walkingAid": "Walking Aid",
-        "hospitalBed": "Hospital Bed",
-        "nebulizer": "Nebulizer"
+        "bloodPressureMonitor": "جهاز قياس ضغط الدم",
+        "glucometer": "جهاز قياس السكر",
+        "oxygenConcentrator": "مكثف الأكسجين",
+        "wheelchair": "كرسي متحرك",
+        "walkingAid": "مساعدة المشي",
+        "hospitalBed": "سرير مستشفى",
+        "nebulizer": "جهاز رذاذ"
       },
       "alerts": {
-        "submitSuccess": "Equipment request submitted successfully! Request ID:",
-        "submitFailed": "Failed to submit equipment request. Please try again."
+        "submitSuccess": "تم تقديم طلب المعدات بنجاح! معرف الطلب:",
+        "submitFailed": "فشل في تقديم طلب المعدات. يرجى المحاولة مرة أخرى."
       }
     }
   }

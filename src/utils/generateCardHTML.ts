@@ -4,6 +4,7 @@ interface CardData {
   bloodGroup: string;
   aadharNumber: string;
   dateOfIssue: string;
+  created_at: string;
   dateOfExpiry: string;
 }
 
@@ -11,32 +12,37 @@ interface CardData {
 // Example: generateCardHTMLWithBenefits(cardsData, benefits, steps, base64ImageString)
 
 export const generateCardHTML = (cards: CardData[]): string => {
-  const cardsHTML = cards.map((card, index) => `
-    <div class="card-container" ${index > 0 ? 'style="page-break-before: always;"' : ''}>
+  const cardsHTML = cards
+    .map(
+      (card, index) => `
+    <div class="card-container" ${
+      index > 0 ? 'style="page-break-before: always;"' : ""
+    }>
       <div class="health-card">
         <div class="card-body">
           <div class="card-details">
             <div class="detail-row">
-              <span class="label">Name:</span>
+              <span class="label">Card Holder Name:</span>
               <span class="value">${card.name}</span>
             </div>
             
-            <div class="detail-row">
-              <span class="label">Membership ID:</span>
-              <span class="value">${card.membershipId}</span>
-            </div>
-            
-            <div class="detail-row">
-              <span class="label">Blood Group:</span>
-              <span class="value">${card.bloodGroup}</span>
-            </div>
-            
-            <div class="detail-row">
-              <span class="label">Aadhar Number:</span>
-              <span class="value">${card.aadharNumber}</span>
-            </div>
-            
             <div class="detail-grid">
+              <div class="detail-item">
+                <span class="label">Membership ID:</span>
+                <span class="value">${card.membershipId}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Blood Group:</span>
+                <span class="value">${card.bloodGroup}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Aadhar Number:</span>
+                <span class="value">${card.aadharNumber}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Created At:</span>
+                <span class="value">${card.created_at}</span>
+              </div>
               <div class="detail-item">
                 <span class="label">Date of Issue:</span>
                 <span class="value">${card.dateOfIssue}</span>
@@ -72,7 +78,9 @@ export const generateCardHTML = (cards: CardData[]): string => {
         </div>
       </div>
     </div>
-  `).join('');
+  `,
+    )
+    .join("");
 
   return `
     <!DOCTYPE html>
@@ -234,39 +242,44 @@ export const generateCardHTMLWithBenefits = (
   cards: CardData[],
   benefits: string[],
   steps: string[],
-  backgroundImageBase64?: string
+  backgroundImageBase64?: string,
 ): string => {
-  const bgImageStyle = backgroundImageBase64 
+  const bgImageStyle = backgroundImageBase64
     ? `background-image: url('data:image/png;base64,${backgroundImageBase64}'); background-size: cover; background-position: center; background-repeat: no-repeat;`
-    : 'background: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);';
+    : "background: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);";
 
-  const cardsHTML = cards.map((card, index) => `
-    <div class="card-container" ${index > 0 ? 'style="page-break-before: always;"' : ''}>
+  const cardsHTML = cards
+    .map(
+      (card, index) => `
+    <div class="card-container" ${
+      index > 0 ? 'style="page-break-before: always;"' : ""
+    }>
       <div class="health-card" style="${bgImageStyle}">
         <div class="card-body">
           
           <div class="card-details">
             <div class="detail-row">
-              <span class="label">Name:</span>
+              <span class="label">Card Holder Name:</span>
               <span class="value">${card.name}</span>
             </div>
             
-            <div class="detail-row">
-              <span class="label">Membership ID:</span>
-              <span class="value">${card.membershipId}</span>
-            </div>
-            
-            <div class="detail-row">
-              <span class="label">Blood Group:</span>
-              <span class="value">${card.bloodGroup}</span>
-            </div>
-            
-            <div class="detail-row">
-              <span class="label">Aadhar Number:</span>
-              <span class="value">${card.aadharNumber}</span>
-            </div>
-            
             <div class="detail-grid">
+              <div class="detail-item">
+                <span class="label">Membership ID:</span>
+                <span class="value">${card.membershipId}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Blood Group:</span>
+                <span class="value">${card.bloodGroup}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Aadhar Number:</span>
+                <span class="value">${card.aadharNumber}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Created At:</span>
+                <span class="value">${card.created_at}</span>
+              </div>
               <div class="detail-item">
                 <span class="label">Date of Issue:</span>
                 <span class="value">${card.dateOfIssue}</span>
@@ -280,21 +293,31 @@ export const generateCardHTMLWithBenefits = (
         </div>
       </div>
     </div>
-  `).join('');
+  `,
+    )
+    .join("");
 
-  const benefitsHTML = benefits.map((benefit, i) => `
+  const benefitsHTML = benefits
+    .map(
+      (benefit, i) => `
     <div class="benefit-item">
       <div class="check-icon">✓</div>
       <span>${benefit}</span>
     </div>
-  `).join('');
+  `,
+    )
+    .join("");
 
-  const stepsHTML = steps.map((step, i) => `
+  const stepsHTML = steps
+    .map(
+      (step, i) => `
     <div class="step-item">
       <div class="step-number">Step ${i + 1}</div>
       <p class="step-text">${step}</p>
     </div>
-  `).join('');
+  `,
+    )
+    .join("");
 
   return `
     <!DOCTYPE html>

@@ -253,14 +253,6 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
             }`;
           }
         }
-        console.log("Registration error response:", result);
-        console.log("Extracted error message:", errorMessage);
-        console.error("Registration error:", result);
-        console.log(
-          "Full registration payload:",
-          JSON.stringify(payload, null, 2),
-        );
-
         Alert.alert(t("register.registrationFailed"), errorMessage, [
           { text: "OK" },
         ]);

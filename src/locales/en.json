@@ -130,6 +130,7 @@
     "bloodGroup": "Blood Group",
     "aadharNumber": "Aadhar Number",
     "dateOfIssue": "Date of Issue",
+    "createdAt": "Created At",
     "dateOfExpiry": "Date of Expiry",
     "title": "Family Health Cards",
     "downloadCard": "Download",
