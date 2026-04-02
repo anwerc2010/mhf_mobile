@@ -15,12 +15,19 @@ import { useTranslation } from "react-i18next";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { useGetEventsQuery } from "@psi/shared-api";
 import AmountEntryModal from "../../../components/general/AmountEntryModal";
+import { GuideWrapper } from "../../../components/general/GuideWrapper";
+import { findGuideStep } from "../../../config/guideConfig";
+import { useGuideController } from "../../../hooks/useGuideController";
 
 const { width } = Dimensions.get("window");
 
 export default function EventsScreen() {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
+
+  // Initialize walkthrough guide for EventsScreen
+  useGuideController("EventsScreen");
+
   const {
     data: eventsResponse,
     isLoading,
@@ -159,7 +166,7 @@ export default function EventsScreen() {
 
         {!isLoading &&
           !error &&
-          events.map((e) => {
+          events.map((e, idx) => {
             const status = (e.status ?? "").toString().toLowerCase();
             const isActive = status === "upcoming" || status === "ongoing";
             const statusLabel = status
@@ -232,24 +239,46 @@ export default function EventsScreen() {
                 ) : (
                   isActive && (
                     <View style={styles.actionRow}>
-                      <TouchableOpacity
-                        style={[styles.registerBtn, styles.registerBtnHalf]}
-                        onPress={() =>
-                          navigation.navigate("RegisterForEvent", { event: e })
+                      <GuideWrapper
+                        step={
+                          idx === 0
+                            ? findGuideStep("EventsScreen", "eventsRegisterBtn")
+                            : undefined
                         }
+                        borderRadius={6}
+                        style={{ flex: 1 }}
                       >
-                        <Text style={styles.registerBtnText}>
-                          {t("events.registerNow")}
-                        </Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        style={[styles.sponsorBtn, styles.registerBtnHalf]}
-                        onPress={() => handleSponsorPress(e)}
+                        <TouchableOpacity
+                          style={[styles.registerBtn, styles.registerBtnHalf]}
+                          onPress={() =>
+                            navigation.navigate("RegisterForEvent", {
+                              event: e,
+                            })
+                          }
+                        >
+                          <Text style={styles.registerBtnText}>
+                            {t("events.registerNow")}
+                          </Text>
+                        </TouchableOpacity>
+                      </GuideWrapper>
+                      <GuideWrapper
+                        step={
+                          idx === 0
+                            ? findGuideStep("EventsScreen", "eventsSponsorBtn")
+                            : undefined
+                        }
+                        borderRadius={6}
+                        style={{ flex: 1 }}
                       >
-                        <Text style={styles.registerBtnText}>
-                          {t("education.programs.sponsor", "Sponsor")}
-                        </Text>
-                      </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[styles.sponsorBtn, styles.registerBtnHalf]}
+                          onPress={() => handleSponsorPress(e)}
+                        >
+                          <Text style={styles.registerBtnText}>
+                            {t("education.programs.sponsor", "Sponsor")}
+                          </Text>
+                        </TouchableOpacity>
+                      </GuideWrapper>
                     </View>
                   )
                 )}

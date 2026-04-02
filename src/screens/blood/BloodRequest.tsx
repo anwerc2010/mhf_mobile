@@ -10,12 +10,18 @@ import {
   useLocationDropdowns,
 } from "@psi/shared-api";
 import { useTranslation } from "react-i18next";
+import { GuideWrapper } from "../../components/general/GuideWrapper";
+import { findGuideStep } from "../../config/guideConfig";
+import { useGuideController } from "../../hooks/useGuideController";
 
 export default function BloodRequest() {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const formRef = useRef<PTDynamicFormRef>(null);
   const [createBloodRequest, { isLoading }] = useCreateBloodRequestMutation();
+
+  // Initialize walkthrough guide for BloodRequestScreen
+  useGuideController("BloodRequestScreen");
 
   // Location dropdown state
   const [stateId, setStateId] = useState<number | null>(null);
@@ -424,9 +430,14 @@ export default function BloodRequest() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.subtitle}>
-        {t("blood.subtitle", "Fill in the details below to request blood")}
-      </Text>
+      <GuideWrapper
+        step={findGuideStep("BloodRequestScreen", "bloodSubmitBtn")}
+        borderRadius={8}
+      >
+        <Text style={styles.subtitle}>
+          {t("blood.subtitle", "Fill in the details below to request blood")}
+        </Text>
+      </GuideWrapper>
       {isLoading && (
         <ActivityIndicator
           size="large"

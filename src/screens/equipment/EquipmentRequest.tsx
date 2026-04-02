@@ -11,6 +11,9 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../store/hook";
+import { GuideWrapper } from "../../components/general/GuideWrapper";
+import { findGuideStep } from "../../config/guideConfig";
+import { useGuideController } from "../../hooks/useGuideController";
 
 export default function EquipmentRequest() {
   const { t } = useTranslation();
@@ -19,6 +22,9 @@ export default function EquipmentRequest() {
   const formRef = useRef<PTDynamicFormRef>(null);
   const [createEquipmentRequest, { isLoading }] =
     useCreateEquipmentRequestMutation();
+
+  // Initialize walkthrough guide for EquipmentScreen
+  useGuideController("EquipmentScreen");
 
   // Location dropdown state
   const [stateId, setStateId] = useState<number | null>(null);
@@ -404,7 +410,12 @@ export default function EquipmentRequest() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.subtitle}>{t("forms.equipment.heading")}</Text>
+      <GuideWrapper
+        step={findGuideStep("EquipmentScreen", "equipmentRequestForm")}
+        borderRadius={8}
+      >
+        <Text style={styles.subtitle}>{t("forms.equipment.heading")}</Text>
+      </GuideWrapper>
       {isLoading && (
         <ActivityIndicator
           size="large"

@@ -15,12 +15,19 @@ import { useTranslation } from "react-i18next";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { useGetReliefWelfareQuery } from "@psi/shared-api";
 import AmountEntryModal from "../../../components/general/AmountEntryModal";
+import { GuideWrapper } from "../../../components/general/GuideWrapper";
+import { findGuideStep } from "../../../config/guideConfig";
+import { useGuideController } from "../../../hooks/useGuideController";
 
 const { width } = Dimensions.get("window");
 
 export default function ReliefScreen() {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
+
+  // Initialize walkthrough guide for ReliefScreen
+  useGuideController("ReliefScreen");
+
   const {
     data: reliefResponse,
     isLoading,
@@ -222,7 +229,7 @@ export default function ReliefScreen() {
     });
   };
 
-  const renderProgramItem = ({ item }: { item: any }) => (
+  const renderProgramItem = ({ item, index }: { item: any; index: number }) => (
     <View style={styles.programCard}>
       {!!item.status && (
         <View
@@ -287,22 +294,40 @@ export default function ReliefScreen() {
               !["canceled", "cancelled", "completed"].includes(
                 (item.status ?? "").toString().toLowerCase(),
               ) && (
-                <TouchableOpacity
-                  style={styles.primaryBtnSmall}
-                  onPress={() =>
-                    navigation.navigate("ApplyNewRelief", { program: item })
+                <GuideWrapper
+                  step={
+                    index === 0
+                      ? findGuideStep("ReliefScreen", "reliefApplyBtn")
+                      : undefined
                   }
+                  borderRadius={6}
                 >
-                  <Text style={styles.applyText}>{t("relief.apply")}</Text>
-                </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.primaryBtnSmall}
+                    onPress={() =>
+                      navigation.navigate("ApplyNewRelief", { program: item })
+                    }
+                  >
+                    <Text style={styles.applyText}>{t("relief.apply")}</Text>
+                  </TouchableOpacity>
+                </GuideWrapper>
               )}
             {item.allow_donate && (
-              <TouchableOpacity
-                style={styles.secondaryBtnSmall}
-                onPress={() => handleDonatePress(item)}
+              <GuideWrapper
+                step={
+                  index === 0
+                    ? findGuideStep("ReliefScreen", "reliefDonateBtn")
+                    : undefined
+                }
+                borderRadius={6}
               >
-                <Text style={styles.donateText}>{t("relief.donate")}</Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.secondaryBtnSmall}
+                  onPress={() => handleDonatePress(item)}
+                >
+                  <Text style={styles.donateText}>{t("relief.donate")}</Text>
+                </TouchableOpacity>
+              </GuideWrapper>
             )}
           </View>
         )

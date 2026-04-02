@@ -13,12 +13,19 @@ import AmountEntryModal from "../../../components/general/AmountEntryModal";
 import { useGetTrainingProgramsQuery, TrainingProgram } from "@psi/shared-api";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { GuideWrapper } from "../../../components/general/GuideWrapper";
+import { findGuideStep } from "../../../config/guideConfig";
+import { useGuideController } from "../../../hooks/useGuideController";
 
 // These will be translated dynamically using useTranslation hook
 
 export default function EducationScreen() {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
+
+  // Initialize walkthrough guide for EducationScreen
+  useGuideController("EducationScreen");
+
   const {
     data: trainingResponse,
     isLoading,
@@ -294,28 +301,55 @@ export default function EducationScreen() {
                     </TouchableOpacity>
                   ) : (
                     isRegisterEnabled && (
-                      <TouchableOpacity
-                        style={[styles.primaryBtnSmall]}
-                        onPress={() =>
-                          navigation.navigate("RegisterTraining", {
-                            program: p,
-                          })
+                      <GuideWrapper
+                        step={
+                          idx === 0
+                            ? findGuideStep(
+                                "EducationScreen",
+                                "educationRegisterBtn",
+                              )
+                            : undefined
                         }
+                        borderRadius={6}
                       >
-                        <Text style={styles.primaryBtnText}>
-                          {t("education.programs.registerNow", "Register Now")}
-                        </Text>
-                      </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[styles.primaryBtnSmall]}
+                          onPress={() =>
+                            navigation.navigate("RegisterTraining", {
+                              program: p,
+                            })
+                          }
+                        >
+                          <Text style={styles.primaryBtnText}>
+                            {t(
+                              "education.programs.registerNow",
+                              "Register Now",
+                            )}
+                          </Text>
+                        </TouchableOpacity>
+                      </GuideWrapper>
                     )
                   )}
-                  <TouchableOpacity
-                    style={styles.secondaryBtnSmall}
-                    onPress={() => handleSponsorPress(p)}
+                  <GuideWrapper
+                    step={
+                      idx === 0
+                        ? findGuideStep(
+                            "EducationScreen",
+                            "educationSponsorBtn",
+                          )
+                        : undefined
+                    }
+                    borderRadius={6}
                   >
-                    <Text style={styles.secondaryBtnText}>
-                      {t("education.programs.sponsor", "Sponsor")}
-                    </Text>
-                  </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.secondaryBtnSmall}
+                      onPress={() => handleSponsorPress(p)}
+                    >
+                      <Text style={styles.secondaryBtnText}>
+                        {t("education.programs.sponsor", "Sponsor")}
+                      </Text>
+                    </TouchableOpacity>
+                  </GuideWrapper>
                 </View>
               </View>
             );

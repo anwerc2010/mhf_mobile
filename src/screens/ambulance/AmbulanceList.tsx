@@ -13,6 +13,9 @@ import { useTranslation } from "react-i18next";
 import { useFocusEffect } from "@react-navigation/native";
 import { useGetAmbulancesQuery } from "@psi/shared-api";
 import { PhoneCall, MapPin, Clock, Truck } from "phosphor-react-native";
+import { GuideWrapper } from "../../components/general/GuideWrapper";
+import { findGuideStep } from "../../config/guideConfig";
+import { useGuideController } from "../../hooks/useGuideController";
 
 export default function AmbulanceList() {
   const { t } = useTranslation();
@@ -22,6 +25,9 @@ export default function AmbulanceList() {
     error,
     refetch,
   } = useGetAmbulancesQuery();
+
+  // Initialize walkthrough guide for AmbulanceScreen
+  useGuideController("AmbulanceScreen");
 
   useFocusEffect(
     React.useCallback(() => {
@@ -106,15 +112,20 @@ export default function AmbulanceList() {
         </View>
       </View>
 
-      <TouchableOpacity
-        style={styles.callButton}
-        onPress={() => handlePhoneCall(item.contact, item.service_name)}
+      <GuideWrapper
+        step={findGuideStep("AmbulanceScreen", "ambulanceCallBtn")}
+        borderRadius={10}
       >
-        <PhoneCall size={18} color="#fff" weight="fill" />
-        <Text style={styles.callButtonText}>
-          {t("ambulance.call", { contact: item.contact })}
-        </Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.callButton}
+          onPress={() => handlePhoneCall(item.contact, item.service_name)}
+        >
+          <PhoneCall size={18} color="#fff" weight="fill" />
+          <Text style={styles.callButtonText}>
+            {t("ambulance.call", { contact: item.contact })}
+          </Text>
+        </TouchableOpacity>
+      </GuideWrapper>
     </View>
   );
 

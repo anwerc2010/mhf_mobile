@@ -9,14 +9,40 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider, useSelector, useDispatch } from "react-redux";
+import { CopilotProvider } from "react-native-copilot";
 import { store, RootState } from "./src/store/store";
 import { setCurrentTheme } from "./src/store/slices/themeSlice";
 import RootNavigator from "./src/navigation/RootNavigator";
 import NetworkStatusBanner from "./src/components/general/NetworkStatusBanner";
+import GuideTooltip from "./src/components/general/GuideTooltip";
+import { GuideProvider } from "./src/context/GuideContext";
 import "./src/i18n";
 import React, { useEffect } from "react";
 import { bootstrapAuth } from "./src/services/authBootstrap";
 import { useAppDispatch } from "./src/store/hook";
+
+// Circular spotlight mask with per-step sizing.
+const circularGuideMaskPath = ({ size, position, canvasSize, step }: any) => {
+  const positionX = size?.x?._value != null ? position.x._value : 0;
+  const positionY = size?.y?._value != null ? position.y._value : 0;
+  const sizeX = size?.x?._value != null ? size.x._value : 0;
+  const sizeY = size?.y?._value != null ? size.y._value : 0;
+
+  const cx = positionX + sizeX / 2;
+  const cy = positionY + sizeY / 2;
+  const isHomeApplyCardStep = step?.name === "home_apply_card";
+  const baseRadius = Math.max(sizeX, sizeY) / 2;
+  const paddedRadius = baseRadius + (isHomeApplyCardStep ? 6 : 14);
+  const radius = isHomeApplyCardStep
+    ? Math.min(paddedRadius, 92)
+    : paddedRadius;
+
+  return `M0,0H${canvasSize.x}V${canvasSize.y}H0V0ZM${
+    cx - radius
+  },${cy}a${radius},${radius} 0 1,0 ${radius * 2},0a${radius},${radius} 0 1,0 ${
+    -radius * 2
+  },0Z`;
+};
 
 function AppContent() {
   const systemColorScheme = useColorScheme();
@@ -51,15 +77,34 @@ function AppContent() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaProvider>
-        <SafeAreaView style={{ flex: 1 }} edges={["top", "left", "right"]}>
-          <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
-          <NetworkStatusBanner />
-          <NavigationContainer>
-            <RootNavigator />
-          </NavigationContainer>
-        </SafeAreaView>
-      </SafeAreaProvider>
+      <CopilotProvider
+        tooltipComponent={GuideTooltip}
+        svgMaskPath={circularGuideMaskPath}
+        stepNumberComponent={() => null}
+        labels={{
+          previous: "Previous",
+          next: "Next",
+          skip: "Skip",
+          finish: "Finish",
+        }}
+        tooltipStyle={{
+          borderRadius: 12,
+          paddingHorizontal: 16,
+          paddingVertical: 12,
+        }}
+      >
+        <GuideProvider>
+          <SafeAreaProvider>
+            <SafeAreaView style={{ flex: 1 }} edges={["top", "left", "right"]}>
+              <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+              <NetworkStatusBanner />
+              <NavigationContainer>
+                <RootNavigator />
+              </NavigationContainer>
+            </SafeAreaView>
+          </SafeAreaProvider>
+        </GuideProvider>
+      </CopilotProvider>
     </GestureHandlerRootView>
   );
 }

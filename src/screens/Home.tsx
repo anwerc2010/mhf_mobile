@@ -23,6 +23,9 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { useGetDashboardDetailsQuery } from "@psi/shared-api";
 import FamilyCard from "../components/general/FamilyCard";
 import { formatToDDMMYYY } from "../utils/formatDate";
+import { GuideWrapper } from "../components/general/GuideWrapper";
+import { findGuideStep } from "../config/guideConfig";
+import { useGuideController } from "../hooks/useGuideController";
 
 const { width } = Dimensions.get("window");
 
@@ -42,6 +45,9 @@ export default function HomeScreen() {
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
   const partnerScrollRef = useRef<ScrollView>(null);
   const familyScrollRef = useRef<ScrollView>(null);
+
+  // Initialize walkthrough guide for HomeScreen
+  useGuideController("HomeScreen");
 
   // Fetch dashboard details
   const {
@@ -219,10 +225,30 @@ export default function HomeScreen() {
   const shouldShowPayAction = isSelectedRequestPaid && isSelectedRequestCanPay;
 
   const actions = [
-    { key: "education", Icon: GraduationCapIcon, label: t("home.education") },
-    { key: "relief", Icon: HeartIcon, label: t("home.relief") },
-    { key: "volunteers", Icon: UsersIcon, label: t("home.volunteers") },
-    { key: "events", Icon: CalendarBlankIcon, label: t("home.events") },
+    {
+      key: "education",
+      Icon: GraduationCapIcon,
+      label: t("home.education"),
+      guideTarget: "educationAction",
+    },
+    {
+      key: "relief",
+      Icon: HeartIcon,
+      label: t("home.relief"),
+      guideTarget: "reliefAction",
+    },
+    {
+      key: "volunteers",
+      Icon: UsersIcon,
+      label: t("home.volunteers"),
+      guideTarget: undefined,
+    },
+    {
+      key: "events",
+      Icon: CalendarBlankIcon,
+      label: t("home.events"),
+      guideTarget: "eventsAction",
+    },
   ];
 
   return (
@@ -312,30 +338,40 @@ export default function HomeScreen() {
           </Text>
 
           <View style={styles.actionsRow}>
-            {actions.map(({ key, Icon, label }) => (
-              <TouchableOpacity
-                style={styles.actionItem}
+            {actions.map(({ key, Icon, label, guideTarget }) => (
+              <GuideWrapper
                 key={key}
-                onPress={() => {
-                  if (key === "relief") navigation.navigate("Relief");
-                  else if (key === "education")
-                    navigation.navigate("Education");
-                  else if (key === "events") navigation.navigate("Events");
-                  else if (key === "volunteers")
-                    navigation.navigate("Volunteers");
-                }}
+                step={
+                  guideTarget
+                    ? findGuideStep("HomeScreen", guideTarget)
+                    : undefined
+                }
+                style={styles.actionItem}
+                borderRadius={10}
               >
-                <View
-                  style={{
-                    backgroundColor: "rgba(255,255,255,0.2)",
-                    borderRadius: 21,
-                    padding: 12,
+                <TouchableOpacity
+                  style={styles.actionItem}
+                  onPress={() => {
+                    if (key === "relief") navigation.navigate("Relief");
+                    else if (key === "education")
+                      navigation.navigate("Education");
+                    else if (key === "events") navigation.navigate("Events");
+                    else if (key === "volunteers")
+                      navigation.navigate("Volunteers");
                   }}
                 >
-                  <Icon color="#fff" weight="bold" size={20} />
-                </View>
-                <Text style={styles.actionText}>{label}</Text>
-              </TouchableOpacity>
+                  <View
+                    style={{
+                      backgroundColor: "rgba(255,255,255,0.2)",
+                      borderRadius: 21,
+                      padding: 12,
+                    }}
+                  >
+                    <Icon color="#fff" weight="bold" size={20} />
+                  </View>
+                  <Text style={styles.actionText}>{label}</Text>
+                </TouchableOpacity>
+              </GuideWrapper>
             ))}
           </View>
         </ImageBackground>
@@ -394,19 +430,26 @@ export default function HomeScreen() {
         )}
 
         {!dashboardData?.health_card && !hasCardRequests && (
-          <ImageBackground
-            source={require("../../assets/images/button_bg.png")}
-            style={styles.requestButton}
-            imageStyle={styles.requestButtonImage}
+          <GuideWrapper
+            step={findGuideStep("HomeScreen", "applyForCardBtn")}
+            borderRadius={24}
           >
-            <TouchableOpacity
-              style={styles.requestTouchable}
-              activeOpacity={0.8}
-              onPress={() => navigation.navigate("NewCardRequest")}
+            <ImageBackground
+              source={require("../../assets/images/button_bg.png")}
+              style={styles.requestButton}
+              imageStyle={styles.requestButtonImage}
             >
-              <Text style={styles.requestText}>{t("home.requestNewCard")}</Text>
-            </TouchableOpacity>
-          </ImageBackground>
+              <TouchableOpacity
+                style={styles.requestTouchable}
+                activeOpacity={0.8}
+                onPress={() => navigation.navigate("NewCardRequest")}
+              >
+                <Text style={styles.requestText}>
+                  {t("home.requestNewCard")}
+                </Text>
+              </TouchableOpacity>
+            </ImageBackground>
+          </GuideWrapper>
         )}
 
         {!dashboardData?.health_card && hasCardRequests && (

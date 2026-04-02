@@ -33,6 +33,9 @@ import {
   useGetProvidersQuery,
   useGetAmbulancesQuery,
 } from "@psi/shared-api";
+import { GuideWrapper } from "../components/general/GuideWrapper";
+import { findGuideStep } from "../config/guideConfig";
+import { useGuideController } from "../hooks/useGuideController";
 
 const { width } = Dimensions.get("window");
 
@@ -47,12 +50,23 @@ const CHIP_WIDTH = Math.floor(
 
 const TABS = ["Providers", "Blood", "Equipment", "Ambulance", "Benefits"];
 
+/** Map tab names to guide target keys in guideConfig */
+const TAB_GUIDE_MAP: Record<string, string> = {
+  Providers: "providersTab",
+  Blood: "bloodTab",
+  Equipment: "equipmentTab",
+  Ambulance: "ambulanceTab",
+};
+
 export default function ServicesScreen() {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const [activeTab, setActiveTab] = useState("Providers");
   const [query, setQuery] = useState("");
   const [activeChip, setActiveChip] = useState("All");
+
+  // Initialize walkthrough guide for ServicesScreen
+  useGuideController("ServicesScreen");
 
   // Fetch providers from API
   const {
@@ -261,23 +275,31 @@ export default function ServicesScreen() {
         >
           <View style={styles.tabRow}>
             {TABS.map((tab) => (
-              <TouchableOpacity
+              <GuideWrapper
                 key={tab}
-                style={[
-                  styles.tabItem,
-                  activeTab === tab && styles.tabItemActive,
-                ]}
-                onPress={() => setActiveTab(tab)}
+                step={
+                  TAB_GUIDE_MAP[tab]
+                    ? findGuideStep("ServicesScreen", TAB_GUIDE_MAP[tab])
+                    : undefined
+                }
               >
-                <Text
+                <TouchableOpacity
                   style={[
-                    styles.tabText,
-                    activeTab === tab && styles.tabTextActive,
+                    styles.tabItem,
+                    activeTab === tab && styles.tabItemActive,
                   ]}
+                  onPress={() => setActiveTab(tab)}
                 >
-                  {t(`services.tab.${tab.toLowerCase()}`, tab)}
-                </Text>
-              </TouchableOpacity>
+                  <Text
+                    style={[
+                      styles.tabText,
+                      activeTab === tab && styles.tabTextActive,
+                    ]}
+                  >
+                    {t(`services.tab.${tab.toLowerCase()}`, tab)}
+                  </Text>
+                </TouchableOpacity>
+              </GuideWrapper>
             ))}
           </View>
         </ScrollView>
