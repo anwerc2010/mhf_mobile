@@ -37,8 +37,21 @@ interface Notification {
 
 export default function NotificationsScreen() {
   const [notifications, setNotifications] = React.useState<Notification[]>([]);
-  const { data, isLoading, isError, refetch } = useGetNotificationsQuery();
+  const {
+    data,
+    isLoading,
+    isError,
+    error: queryError,
+    refetch,
+  } = useGetNotificationsQuery();
   const [markAsRead] = useMarkNotificationAsReadMutation();
+
+  console.log("Notifications query:", {
+    data,
+    isLoading,
+    isError,
+    error: queryError,
+  });
 
   // Refetch notifications when screen is focused
   useFocusEffect(

@@ -29,7 +29,12 @@ import PTContainer from "../components/comman/PTContainer";
 import PTText from "../components/comman/PTText";
 import LanguageSwitcher from "../components/general/LanguageSwitcher";
 import ThemeSwitcher from "../components/general/ThemeSwitcher";
-import messaging from "@react-native-firebase/messaging";
+import {
+  getMessaging,
+  getToken,
+  requestPermission,
+  AuthorizationStatus,
+} from "@react-native-firebase/messaging";
 
 interface LoginScreenProps {
   navigation: any;
@@ -37,10 +42,11 @@ interface LoginScreenProps {
 
 export async function requestUserPermission() {
   try {
-    const authStatus = await messaging().requestPermission();
+    const messaging = getMessaging();
+    const authStatus = await requestPermission(messaging);
     const enabled =
-      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+      authStatus === AuthorizationStatus.AUTHORIZED ||
+      authStatus === AuthorizationStatus.PROVISIONAL;
 
     if (enabled) {
       console.log("Notification permission granted");
@@ -54,7 +60,8 @@ export async function requestUserPermission() {
 
 export async function getFCMToken() {
   try {
-    const token = await messaging().getToken();
+    const messaging = getMessaging();
+    const token = await getToken(messaging);
     console.log("FCM Token:", token);
     return token;
   } catch (error) {
