@@ -129,7 +129,6 @@ function StackNavigator({
       screenOptions={{
         header: () => (
           <TopNavBar
-            notificationCount={3}
             currentLanguage={currentLanguage}
             onLanguageChange={onLanguageChange}
           />
@@ -177,7 +176,6 @@ function BottomTabNavigator({
       screenOptions={{
         header: () => (
           <TopNavBar
-            notificationCount={3}
             currentLanguage={currentLanguage}
             onLanguageChange={onLanguageChange}
           />
@@ -562,7 +560,6 @@ function TopTabNavigator({
       screenOptions={{
         header: () => (
           <TopNavBar
-            notificationCount={3}
             currentLanguage={currentLanguage}
             onLanguageChange={onLanguageChange}
           />
