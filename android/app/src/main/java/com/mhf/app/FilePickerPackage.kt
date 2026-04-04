@@ -1,4 +1,4 @@
-package com.origin.mhf
+package com.mhf.app
 
 import com.facebook.react.TurboReactPackage
 import com.facebook.react.bridge.NativeModule

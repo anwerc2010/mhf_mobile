@@ -1,4 +1,4 @@
-package com.origin.mhf
+package com.mhf.app
 
 import android.app.Application
 import com.facebook.react.PackageList
