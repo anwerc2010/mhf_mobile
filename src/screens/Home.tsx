@@ -89,6 +89,8 @@ export default function HomeScreen() {
       dateOfIssue:
         formatToDDMMYYY(dashboardData?.health_card?.date_of_issue) ||
         t("home.notAvailable"),
+      created_at:
+        dashboardData?.health_card?.created_at || t("home.notAvailable"),
       dateOfExpiry:
         formatToDDMMYYY(dashboardData?.health_card?.date_of_expiry) ||
         t("home.notAvailable"),
@@ -108,6 +110,8 @@ export default function HomeScreen() {
       dateOfIssue:
         formatToDDMMYYY(dashboardData.health_card.date_of_issue) ||
         t("home.notAvailable"),
+      created_at:
+        dashboardData.health_card.created_at || t("home.notAvailable"),
       dateOfExpiry:
         formatToDDMMYYY(dashboardData.health_card.date_of_expiry) ||
         t("home.notAvailable"),

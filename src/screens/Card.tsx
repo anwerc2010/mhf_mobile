@@ -28,7 +28,7 @@ import { generatePDF } from "react-native-html-to-pdf";
 import { generateCardHTMLWithBenefits } from "../utils/generateCardHTML";
 import { getCardImageBase64FromRequire } from "../utils/imageToBase64";
 import RNShare from "react-native-share";
-import { formatToDDMMYYY } from "../utils/formatDate";
+import { formatToDDMMYYYY } from "../utils/formatDate";
 
 export default function CardScreen() {
   const { t } = useTranslation();
@@ -132,13 +132,12 @@ export default function CardScreen() {
         membershipId:
           dashboardData?.health_card?.membership_id || t("home.notAvailable"),
         dateOfIssue:
-          formatToDDMMYYY(dashboardData?.health_card?.date_of_issue) ||
+          formatToDDMMYYYY(dashboardData?.health_card?.date_of_issue) ||
           t("home.notAvailable"),
         created_at:
-          formatToDDMMYYY(dashboardData?.health_card?.created_at) ||
-          t("home.notAvailable"),
+          dashboardData?.health_card?.created_at || t("home.notAvailable"),
         dateOfExpiry:
-          formatToDDMMYYY(dashboardData?.health_card?.date_of_expiry) ||
+          formatToDDMMYYYY(dashboardData?.health_card?.date_of_expiry) ||
           t("home.notAvailable"),
       }));
 
@@ -154,13 +153,12 @@ export default function CardScreen() {
         aadharNumber:
           dashboardData.health_card.aadhaar_number || t("home.notAvailable"),
         dateOfIssue:
-          formatToDDMMYYY(dashboardData.health_card.date_of_issue) ||
+          formatToDDMMYYYY(dashboardData.health_card.date_of_issue) ||
           t("home.notAvailable"),
         created_at:
-          formatToDDMMYYY(dashboardData.health_card.created_at) ||
-          t("home.notAvailable"),
+          dashboardData.health_card.created_at || t("home.notAvailable"),
         dateOfExpiry:
-          formatToDDMMYYY(dashboardData.health_card.date_of_expiry) ||
+          formatToDDMMYYYY(dashboardData.health_card.date_of_expiry) ||
           t("home.notAvailable"),
       };
 
