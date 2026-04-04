@@ -83,12 +83,12 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.origin.mhf"
+    namespace "com.mhf.app"
     defaultConfig {
-        applicationId "com.origin.mhf"
+        applicationId "com.mhf.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 13
+        versionCode 14
         versionName "2.0"
     }
    signingConfigs {
