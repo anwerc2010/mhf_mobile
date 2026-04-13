@@ -135,6 +135,7 @@ export default function EditProfileScreen() {
       ...raw,
       date_of_birth: raw.date_of_birth?.split("T")[0],
       joining_date: raw.joining_date?.split("T")[0],
+      terms_accepted: true,
       card_number: user?.card_number || "",
       status: user?.status || "active",
       password: "",
