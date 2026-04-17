@@ -133,6 +133,20 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
           path: "personalDetails.password",
         },
         {
+          id: "aadhaar_number",
+          label: "Aadhaar Number",
+          type: "text",
+          placeholder: "1111 2222 3333",
+          validations: [
+            {
+              name: "pattern",
+              value: /^[0-9]{4} [0-9]{4} [0-9]{4}$/,
+              message: "Enter a valid 12-digit Aadhaar number",
+            },
+          ],
+          path: "personalDetails.aadhaar_number",
+        },
+        {
           id: "blood_group",
           label: "Blood Group",
           type: "select",
@@ -233,6 +247,10 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
     payload.card_number = payload.card_number || "";
     payload.status = "active";
     payload.termsAccepted = true;
+    // Backend stores raw 12 digits (max:12), strip display spaces
+    if (payload.aadhaar_number) {
+      payload.aadhaar_number = payload.aadhaar_number.replace(/\s/g, "");
+    }
     console.log("Register form values:", JSON.stringify(payload, null, 2));
 
     try {
@@ -329,8 +347,26 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
           submitLoading={isLoading}
           onSubmit={handleRegister}
           scrollable={true}
-          onValueChange={(fieldId, value) => {
+          onValueChange={(fieldId, value, _allValues, fieldPath) => {
             console.log(`${fieldId} changed to`, value);
+
+            if (
+              fieldId === "aadhaar_number" &&
+              typeof value === "string" &&
+              fieldPath
+            ) {
+              const digits = value.replace(/\D/g, "");
+              if (digits.length <= 12) {
+                let formatted = "";
+                for (let i = 0; i < digits.length; i++) {
+                  if (i > 0 && i % 4 === 0) formatted += " ";
+                  formatted += digits[i];
+                }
+                if (formatted !== value) {
+                  formRef.current?.setValue(fieldPath, formatted);
+                }
+              }
+            }
           }}
           customSubmitButton={
             <View style={styles.customSubmitArea}>

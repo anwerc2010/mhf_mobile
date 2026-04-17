@@ -57,6 +57,20 @@ export default function EditProfileScreen() {
           path: "profile.phone",
         },
         {
+          id: "aadhaar_number",
+          label: "Aadhaar Number",
+          type: "text",
+          placeholder: "1111 2222 3333",
+          validations: [
+            {
+              name: "pattern",
+              value: /^[0-9]{4} [0-9]{4} [0-9]{4}$/,
+              message: "Enter a valid 12-digit Aadhaar number",
+            },
+          ],
+          path: "profile.aadhaar_number",
+        },
+        {
           id: "date_of_birth",
           label: "Date of Birth",
           type: "date",
@@ -115,11 +129,15 @@ export default function EditProfileScreen() {
     },
   ];
 
+
   const initialValues = {
     profile: {
       fullname: user?.fullname || "",
       email: user?.email || "",
       phone: user?.phone || "",
+      aadhaar_number: user?.aadhaar_number
+        ? user.aadhaar_number.replace(/(\d{4})(\d{4})(\d{4})/, "$1 $2 $3")
+        : "",
       date_of_birth: user?.date_of_birth || "",
       joining_date: user?.joining_date || "",
       blood_group: user?.blood_group || "",
@@ -133,6 +151,9 @@ export default function EditProfileScreen() {
     const raw = values.profile;
     const payload = {
       ...raw,
+      aadhaar_number: raw.aadhaar_number
+        ? raw.aadhaar_number.replace(/\s/g, "")
+        : undefined,
       date_of_birth: raw.date_of_birth?.split("T")[0],
       joining_date: raw.joining_date?.split("T")[0],
       terms_accepted: true,
@@ -188,6 +209,25 @@ export default function EditProfileScreen() {
         submitButtonText={t("common.save")}
         submitLoading={isLoading}
         onSubmit={handleSubmit}
+        onValueChange={(fieldId, value, _allValues, fieldPath) => {
+          if (
+            fieldId === "aadhaar_number" &&
+            typeof value === "string" &&
+            fieldPath
+          ) {
+            const digits = value.replace(/\D/g, "");
+            if (digits.length <= 12) {
+              let formatted = "";
+              for (let i = 0; i < digits.length; i++) {
+                if (i > 0 && i % 4 === 0) formatted += " ";
+                formatted += digits[i];
+              }
+              if (formatted !== value) {
+                formRef.current?.setValue(fieldPath, formatted);
+              }
+            }
+          }
+        }}
         scrollable={true}
       />
     </PTContainer>

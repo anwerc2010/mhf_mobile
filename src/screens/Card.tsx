@@ -3,10 +3,10 @@ import {
   View,
   Text,
   StyleSheet,
-  Dimensions,
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
+  useWindowDimensions,
 } from "react-native";
 import {
   QrCode,
@@ -34,7 +34,7 @@ export default function CardScreen() {
   const { t } = useTranslation();
   const familyScrollRef = useRef<ScrollView>(null);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  const { width } = Dimensions.get("window");
+  const { width } = useWindowDimensions();
   const viewShotRef = useRef<any>(null);
 
   // Fetch dashboard details
@@ -170,12 +170,9 @@ export default function CardScreen() {
     return [];
   }, [dashboardData?.family_members, dashboardData?.health_card]);
 
-  const cardWidth = width * 0.9 - 32; // cardItem width + margin
-
   const handleCardScroll = (event: any) => {
     const scrollX = event.nativeEvent.contentOffset.x;
-    console.log("Scroll X:", scrollX);
-    const index = Math.round(scrollX / cardWidth);
+    const index = Math.round(scrollX / width);
     setCurrentCardIndex(Math.max(0, Math.min(index, familyCards.length - 1)));
   };
 
@@ -305,21 +302,21 @@ Date of Expiry: ${currentCard.dateOfExpiry}`;
           <ViewShot ref={viewShotRef} options={{ format: "png", quality: 1 }}>
             <ScrollView
               horizontal
+              pagingEnabled
               showsHorizontalScrollIndicator={false}
               style={styles.familyScroll}
               ref={familyScrollRef}
-              snapToInterval={cardWidth}
-              decelerationRate={0}
+              decelerationRate="fast"
               scrollEventThrottle={16}
               onMomentumScrollEnd={handleCardScroll}
-              contentContainerStyle={styles.familyScrollContent}
             >
               {familyCards.map((c, i) => (
-                <FamilyCard
-                  key={i}
-                  data={c}
-                  image={require("../../assets/images/card.png")}
-                />
+                <View key={i} style={[styles.familyCardPage, { width }]}>
+                  <FamilyCard
+                    data={c}
+                    image={require("../../assets/images/card.png")}
+                  />
+                </View>
               ))}
             </ScrollView>
           </ViewShot>
@@ -454,6 +451,6 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#333",
   },
-  familyScroll: { marginTop: 8, width: "100%" },
-  familyScrollContent: { paddingRight: 8 },
+  familyScroll: { marginTop: 8, marginHorizontal: -16 },
+  familyCardPage: { paddingHorizontal: 16 },
 });

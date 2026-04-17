@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { View, Alert, Image } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { View, Alert } from "react-native";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import PTDynamicForm, {
   PTDynamicFormRef,
@@ -10,10 +10,12 @@ import {
   useApplyHealthCardMutation,
   useUploadDocumentMutation,
   useLocationDropdowns,
+  useGetProfileQuery,
 } from "@psi/shared-api";
 import { FileData } from "../../components/comman/PTFilePicker";
 import { formatToDDMMYYY } from "../../utils/formatDate";
 import { useTranslation } from "react-i18next";
+import { useAppSelector } from "../../store/hook";
 
 type ApplyCardRouteParams = {
   ApplyCardRequest?: {
@@ -23,6 +25,30 @@ type ApplyCardRouteParams = {
     canPay?: boolean;
   };
 };
+
+/**
+ * Normalise a stored phone to a bare 10-digit string for form display.
+ * Backend may prefix with '#', '+91', '91', or '0091'.
+ */
+function normalisePhone(raw: string | null | undefined): string {
+  if (!raw) return "";
+  return raw
+    .replace(/^#/, "")
+    .replace(/^\+?(?:91|0091)/, "")
+    .replace(/\D/g, "")
+    .slice(-10);
+}
+
+/**
+ * Normalise a stored Aadhaar to "XXXX XXXX XXXX" display format.
+ * Backend may prefix with '#' and store without spaces.
+ */
+function normaliseAadhaar(raw: string | null | undefined): string {
+  if (!raw) return "";
+  const digits = raw.replace(/^#/, "").replace(/\D/g, "");
+  if (digits.length !== 12) return raw.replace(/^#/, "");
+  return `${digits.slice(0, 4)} ${digits.slice(4, 8)} ${digits.slice(8)}`;
+}
 
 function ApplyCardRequest() {
   const { t } = useTranslation();
@@ -39,6 +65,18 @@ function ApplyCardRequest() {
     useUploadDocumentMutation();
   const isSubmitting = isLoading || isUploading;
 
+  // Profile sources: fresh API call with Redux state as fallback
+  const reduxUser = useAppSelector((state) => state.auth.user);
+  const { data: profileResponse } = useGetProfileQuery();
+  const profile: Record<string, any> =
+    profileResponse?.data ?? profileResponse?.customer ?? profileResponse ?? reduxUser ?? {};
+
+  // Pre-filled, locked identity values derived from the customer profile
+  const prefillName: string = profile.fullname ?? reduxUser?.fullname ?? "";
+  const prefillPhone: string = normalisePhone(profile.phone ?? reduxUser?.phone);
+  const prefillEmail: string = profile.email ?? reduxUser?.email ?? "";
+  const prefillAadhaar: string = normaliseAadhaar(profile.aadhaar_number);
+
   const {
     states,
     districts,
@@ -49,6 +87,19 @@ function ApplyCardRequest() {
     blocksLoading,
     mandalsLoading,
   } = useLocationDropdowns(stateId, districtId, blockId);
+
+  // Seed locked fields whenever profile resolves
+  useEffect(() => {
+    if (!formRef.current) return;
+    if (prefillName)
+      formRef.current.setValue("card_holder.card_holder_name", prefillName);
+    if (prefillPhone)
+      formRef.current.setValue("card_holder.phone", prefillPhone);
+    if (prefillEmail)
+      formRef.current.setValue("card_holder.email", prefillEmail);
+    if (prefillAadhaar)
+      formRef.current.setValue("card_holder.aadhaar_number", prefillAadhaar);
+  }, [prefillName, prefillPhone, prefillEmail, prefillAadhaar]);
 
   const handleStateChange = (val: number) => {
     setStateId(val);
@@ -97,6 +148,36 @@ function ApplyCardRequest() {
           path: "card_holder.card_holder_name",
         },
         {
+          id: "phone",
+          label: t("forms.applyCard.fields.phone"),
+          type: "tel",
+          placeholder: t("forms.applyCard.placeholders.phone"),
+          validations: [
+            { name: "required", value: true },
+            {
+              name: "pattern",
+              value: /^[0-9]{10}$/,
+              message: t("forms.common.validation.phone10"),
+            },
+          ],
+          path: "card_holder.phone",
+        },
+        {
+          id: "email",
+          label: t("forms.applyCard.fields.email"),
+          type: "email",
+          placeholder: t("forms.applyCard.placeholders.email"),
+          validations: [
+            { name: "required", value: true },
+            {
+              name: "pattern",
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: t("forms.common.validation.invalidEmailAddress"),
+            },
+          ],
+          path: "card_holder.email",
+        },
+        {
           id: "aadhaar_number",
           label: t("forms.applyCard.fields.aadhaarNumber"),
           type: "text",
@@ -132,36 +213,6 @@ function ApplyCardRequest() {
           ],
           validations: [{ name: "required", value: true }],
           path: "card_holder.blood_group",
-        },
-        {
-          id: "phone",
-          label: t("forms.applyCard.fields.phone"),
-          type: "tel",
-          placeholder: t("forms.applyCard.placeholders.phone"),
-          validations: [
-            { name: "required", value: true },
-            {
-              name: "pattern",
-              value: /^[0-9]{10}$/,
-              message: t("forms.common.validation.phone10"),
-            },
-          ],
-          path: "card_holder.phone",
-        },
-        {
-          id: "email",
-          label: t("forms.applyCard.fields.email"),
-          type: "email",
-          placeholder: t("forms.applyCard.placeholders.email"),
-          validations: [
-            { name: "required", value: true },
-            {
-              name: "pattern",
-              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: t("forms.common.validation.invalidEmailAddress"),
-            },
-          ],
-          path: "card_holder.email",
         },
         {
           id: "address",
@@ -264,6 +315,28 @@ function ApplyCardRequest() {
           path: "card_holder.age_category",
         },
         {
+          id: "reference_name",
+          label: t("forms.applyCard.fields.referenceName", "Reference Name"),
+          type: "text",
+          placeholder: t(
+            "forms.applyCard.placeholders.referenceName",
+            "Enter reference name (optional)",
+          ),
+          validations: [],
+          path: "card_holder.reference_name",
+        },
+        {
+          id: "professions",
+          label: t("forms.applyCard.fields.professions", "Profession"),
+          type: "text",
+          placeholder: t(
+            "forms.applyCard.placeholders.professions",
+            "Enter your profession (optional)",
+          ),
+          validations: [],
+          path: "card_holder.professions",
+        },
+        {
           id: "family_head_image",
           label: t("forms.applyCard.fields.familyHeadImage"),
           type: "file",
@@ -311,7 +384,6 @@ function ApplyCardRequest() {
     },
   ];
 
-  // Conditionally add family members section only if card type is 'family'
   if (cardType === "family") {
     sections.push({
       title: t("forms.applyCard.sections.familyMembers"),
@@ -389,6 +461,7 @@ function ApplyCardRequest() {
             { id: "Male", name: t("forms.common.options.male") },
             { id: "Female", name: t("forms.common.options.female") },
           ],
+          validations: [{ name: "required", value: true }],
         },
         {
           id: "age_category",
@@ -398,6 +471,7 @@ function ApplyCardRequest() {
             { id: "Child", name: t("forms.applyCard.options.child") },
             { id: "Adult", name: t("forms.applyCard.options.adult") },
           ],
+          validations: [{ name: "required", value: true }],
         },
       ],
     });
@@ -443,7 +517,7 @@ function ApplyCardRequest() {
       const uploadedImageUrls = await uploadDocuments(imageInputs);
       const uploadedImageUrl =
         uploadedImageUrls.length > 0 ? uploadedImageUrls[0] : "";
-      // Add date of issue (today) and date of expiry (1 year from today)
+
       const today = new Date();
       const nextYear = new Date(today);
       nextYear.setFullYear(today.getFullYear() + 1);
@@ -451,7 +525,6 @@ function ApplyCardRequest() {
       const dateOfIssue = formatToDDMMYYY(today);
       const dateOfExpiry = formatToDDMMYYY(nextYear);
 
-      // Flatten and format data to match API expected structure
       const selectedPaymentType =
         route.params?.paymentType?.toString().toLowerCase() || "";
       const selectedPaymentStatus =
@@ -474,12 +547,18 @@ function ApplyCardRequest() {
         mandal_id: values.card_holder?.mandal_id ?? null,
         gender: values.card_holder?.gender,
         age_category: values.card_holder?.age_category,
+        reference_name: values.card_holder?.reference_name || null,
+        professions: values.card_holder?.professions || null,
         family_head_image: uploadedImageUrl,
         type: values.card_details?.type,
         mode: resolvedMode as "free" | "online",
         date_of_issue: dateOfIssue,
         date_of_expiry: dateOfExpiry,
-        family_members: values.family_members || [],
+        family_members: (values.family_members || []).map((m: any) => ({
+          ...m,
+          gender: m.gender || "Male",
+          age_category: m.age_category || "Adult",
+        })),
       };
 
       console.log(
@@ -487,7 +566,6 @@ function ApplyCardRequest() {
         JSON.stringify(formattedData, null, 2),
       );
 
-      // Call the mutation
       const response = await applyHealthCard(formattedData).unwrap();
 
       console.log("Health Card Application Response:", response);
@@ -526,7 +604,6 @@ function ApplyCardRequest() {
       );
       const cardCreated = Boolean(responseData?.card_created);
 
-      // Hard stop for free requests: never open payment for free flow.
       const isFreeFlow =
         isLockedFreeRequest ||
         normalizedPaymentType === "free" ||
@@ -546,8 +623,6 @@ function ApplyCardRequest() {
         isFreeFlow && !requiresPayment && cardCreated && Boolean(healthCard);
 
       if (shouldOpenPayment) {
-        // Paid flow: health_card is null (deferred creation until payment verified)
-        // Use customer.id from response (always present) and healthCard?.id (null for now)
         Alert.alert(
           t("common.success"),
           response?.message ||
@@ -587,7 +662,6 @@ function ApplyCardRequest() {
           ),
         );
       } else if (shouldCompleteFreeFlow) {
-        // Free flow → card is already created and active
         Alert.alert(
           t("common.success"),
           t("forms.applyCard.alerts.createdSuccess"),
@@ -632,6 +706,12 @@ function ApplyCardRequest() {
         ref={formRef}
         sections={sections}
         initialValues={{
+          card_holder: {
+            card_holder_name: prefillName,
+            phone: prefillPhone,
+            email: prefillEmail,
+            aadhaar_number: prefillAadhaar,
+          },
           card_details: {
             date_of_issue: formatToDDMMYYY(new Date()),
             date_of_expiry: formatToDDMMYYY(
@@ -646,7 +726,6 @@ function ApplyCardRequest() {
         onValueChange={(fieldId, value, allValues, fieldPath) => {
           console.log(`${fieldId} changed to`, value);
 
-          // Format Aadhaar number as XXXX XXXX XXXX (max 14 characters)
           if (
             fieldId === "aadhaar_number" &&
             typeof value === "string" &&

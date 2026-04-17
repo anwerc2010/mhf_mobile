@@ -25,7 +25,13 @@ import {
   Truck,
   MapPin,
   Clock,
+  SlidersHorizontal,
+  X,
 } from "phosphor-react-native";
+import ProviderFilterSheet, {
+  ProviderFilter,
+  EMPTY_FILTER,
+} from "../components/general/ProviderFilterSheet";
 import { useTranslation } from "react-i18next";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
@@ -64,6 +70,8 @@ export default function ServicesScreen() {
   const [activeTab, setActiveTab] = useState("Providers");
   const [query, setQuery] = useState("");
   const [activeChip, setActiveChip] = useState("All");
+  const [filterVisible, setFilterVisible] = useState(false);
+  const [locationFilter, setLocationFilter] = useState<ProviderFilter>(EMPTY_FILTER);
 
   // Initialize walkthrough guide for ServicesScreen
   useGuideController("ServicesScreen");
@@ -103,11 +111,17 @@ export default function ServicesScreen() {
     }, [refetch, refetchBlood, refetchAmbulances]),
   );
 
-  // Filter providers based on activeChip and search query
-  const filtered = useMemo(() => {
-    let providers = providersData?.data || [];
+  const activeFilterCount =
+    (locationFilter.stateId ? 1 : 0) +
+    (locationFilter.districtId ? 1 : 0) +
+    (locationFilter.blockId ? 1 : 0) +
+    (locationFilter.mandalId ? 1 : 0);
 
-    // Filter by category (activeChip)
+  // Filter providers based on activeChip, search query and location filters
+  const filtered = useMemo(() => {
+    let providers: any[] = providersData?.data || [];
+
+    // Category chip filter
     if (activeChip !== "All") {
       providers = providers.filter((p: any) => {
         const category =
@@ -116,7 +130,7 @@ export default function ServicesScreen() {
       });
     }
 
-    // Filter by search query
+    // Text search filter
     if (query.trim()) {
       const searchLower = query.toLowerCase();
       providers = providers.filter((p: any) => {
@@ -131,8 +145,41 @@ export default function ServicesScreen() {
       });
     }
 
+    // Location filter — name-based match (providers may not carry IDs)
+    if (activeFilterCount > 0) {
+      const match = (fieldValue: any, filterName: string, filterId: number | null): boolean => {
+        const haystack = [
+          String(fieldValue ?? ""),
+        ].map((v) => v.toLowerCase());
+        // Accept either an exact ID match OR a case-insensitive name match
+        if (filterId !== null && haystack.includes(String(filterId))) return true;
+        if (filterName && haystack.some((v) => v === filterName.toLowerCase())) return true;
+        return false;
+      };
+
+      providers = providers.filter((p: any) => {
+        if (locationFilter.stateId) {
+          const pVal = p.state_id ?? p.state_name ?? p.state ?? "";
+          if (!match(pVal, locationFilter.stateName, locationFilter.stateId)) return false;
+        }
+        if (locationFilter.districtId) {
+          const pVal = p.district_id ?? p.district_name ?? p.district ?? "";
+          if (!match(pVal, locationFilter.districtName, locationFilter.districtId)) return false;
+        }
+        if (locationFilter.blockId) {
+          const pVal = p.block_id ?? p.block_name ?? p.block ?? "";
+          if (!match(pVal, locationFilter.blockName, locationFilter.blockId)) return false;
+        }
+        if (locationFilter.mandalId) {
+          const pVal = p.mandal_id ?? p.mandal_name ?? p.mandal ?? "";
+          if (!match(pVal, locationFilter.mandalName, locationFilter.mandalId)) return false;
+        }
+        return true;
+      });
+    }
+
     return providers;
-  }, [providersData?.data, activeChip, query]);
+  }, [providersData?.data, activeChip, query, locationFilter, activeFilterCount]);
 
   const handleProviderPress = (provider: any) => {
     navigation.navigate("ProviderDetails", { provider: provider });
@@ -469,18 +516,108 @@ export default function ServicesScreen() {
         )}
 
         {activeTab === "Providers" && (
-          <View style={styles.searchRow}>
-            <MagnifyingGlass color="#9CA3AF" size={18} />
-            <TextInput
-              placeholder={t(
-                "services.searchPlaceholder",
-                "Search providers, specialties, location...",
-              )}
-              value={query}
-              onChangeText={setQuery}
-              style={styles.searchInput}
-            />
-          </View>
+          <>
+            <View style={styles.searchRow}>
+              <MagnifyingGlass color="#9CA3AF" size={18} />
+              <TextInput
+                placeholder={t(
+                  "services.searchPlaceholder",
+                  "Search providers, specialties, location...",
+                )}
+                value={query}
+                onChangeText={setQuery}
+                style={styles.searchInput}
+              />
+              <GuideWrapper
+                step={findGuideStep("ServicesScreen", "providerFilterBtn")}
+                borderRadius={8}
+              >
+                <TouchableOpacity
+                  style={[styles.filterBtn, activeFilterCount > 0 && styles.filterBtnActive]}
+                  onPress={() => setFilterVisible(true)}
+                  activeOpacity={0.8}
+                >
+                  <SlidersHorizontal
+                    size={16}
+                    color={activeFilterCount > 0 ? "#0369A1" : "#6B7280"}
+                    weight={activeFilterCount > 0 ? "bold" : "regular"}
+                  />
+                  {activeFilterCount > 0 && (
+                    <View style={styles.filterBadge}>
+                      <Text style={styles.filterBadgeText}>{activeFilterCount}</Text>
+                    </View>
+                  )}
+                </TouchableOpacity>
+              </GuideWrapper>
+            </View>
+
+            {/* Active filter chips */}
+            {activeFilterCount > 0 && (
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                style={styles.activeFiltersRow}
+                contentContainerStyle={{ gap: 6, paddingRight: 4 }}
+              >
+                {locationFilter.stateName ? (
+                  <TouchableOpacity
+                    style={styles.activeFilterChip}
+                    onPress={() => setLocationFilter(EMPTY_FILTER)}
+                  >
+                    <Text style={styles.activeFilterChipText}>{locationFilter.stateName}</Text>
+                    <X size={11} color="#0369A1" weight="bold" />
+                  </TouchableOpacity>
+                ) : null}
+                {locationFilter.districtName ? (
+                  <TouchableOpacity
+                    style={styles.activeFilterChip}
+                    onPress={() =>
+                      setLocationFilter({
+                        ...locationFilter,
+                        districtId: null,
+                        districtName: "",
+                        blockId: null,
+                        blockName: "",
+                        mandalId: null,
+                        mandalName: "",
+                      })
+                    }
+                  >
+                    <Text style={styles.activeFilterChipText}>{locationFilter.districtName}</Text>
+                    <X size={11} color="#0369A1" weight="bold" />
+                  </TouchableOpacity>
+                ) : null}
+                {locationFilter.blockName ? (
+                  <TouchableOpacity
+                    style={styles.activeFilterChip}
+                    onPress={() =>
+                      setLocationFilter({
+                        ...locationFilter,
+                        blockId: null,
+                        blockName: "",
+                        mandalId: null,
+                        mandalName: "",
+                      })
+                    }
+                  >
+                    <Text style={styles.activeFilterChipText}>{locationFilter.blockName}</Text>
+                    <X size={11} color="#0369A1" weight="bold" />
+                  </TouchableOpacity>
+                ) : null}
+                {locationFilter.mandalName ? (
+                  <TouchableOpacity
+                    style={styles.activeFilterChip}
+                    onPress={() =>
+                      setLocationFilter({ ...locationFilter, mandalId: null, mandalName: "" })
+                    }
+                  >
+                    <Text style={styles.activeFilterChipText}>{locationFilter.mandalName}</Text>
+                    <X size={11} color="#0369A1" weight="bold" />
+                  </TouchableOpacity>
+                ) : null}
+              </ScrollView>
+            )}
+          </>
         )}
 
         {activeTab === "Providers" && (
@@ -947,6 +1084,13 @@ export default function ServicesScreen() {
           </View>
         )}
       </ScrollView>
+
+      <ProviderFilterSheet
+        visible={filterVisible}
+        onClose={() => setFilterVisible(false)}
+        value={locationFilter}
+        onChange={(f) => setLocationFilter(f)}
+      />
     </View>
   );
 }
@@ -973,15 +1117,54 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff",
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
     borderRadius: 10,
     marginTop: 8,
     shadowColor: "#000",
     shadowOpacity: 0.03,
     shadowOffset: { width: 0, height: 2 },
     elevation: 1,
+    gap: 8,
   },
-  searchInput: { marginLeft: 8, flex: 1, height: 36 },
+  searchInput: { flex: 1, height: 36 },
+  filterBtn: {
+    padding: 8,
+    borderRadius: 8,
+    backgroundColor: "#F3F4F6",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  filterBtnActive: {
+    backgroundColor: "#EFF6FF",
+    borderWidth: 1,
+    borderColor: "#BFDBFE",
+  },
+  filterBadge: {
+    position: "absolute",
+    top: -4,
+    right: -4,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    backgroundColor: "#0369A1",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  filterBadgeText: { fontSize: 9, color: "#fff", fontWeight: "800" },
+  activeFiltersRow: { marginTop: 8 },
+  activeFilterChip: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+    backgroundColor: "#EFF6FF",
+    borderWidth: 1,
+    borderColor: "#BFDBFE",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 20,
+  },
+  activeFilterChipText: { fontSize: 12, color: "#0369A1", fontWeight: "600" },
   resultsCount: { marginTop: 12, marginBottom: 8, color: "#6B7280" },
   providerCard: {
     flexDirection: "row",

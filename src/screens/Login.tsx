@@ -20,7 +20,6 @@ import {
 } from "@psi/shared-api";
 import { useLazyGetTermsVersionQuery } from "../api/legalApi";
 import { setLegalTermsRequired } from "../store/slices/legalSlice";
-import { isValidEmail } from "../utils/validator";
 import { logger } from "../utils/logger";
 import { spacing } from "../constants/spacing";
 import PTButton from "../components/comman/PTButton";
@@ -76,7 +75,7 @@ function LoginScreen({ navigation }: LoginScreenProps) {
   const currentLanguage = useAppSelector(
     (state) => state.language.currentLanguage,
   );
-  const [email, setEmail] = useState(""); //('customer101@gmail.com');
+  const [loginInput, setLoginInput] = useState("");
   const [password, setPassword] = useState(""); //('Test@123');
   const [fcmToken, setFcmToken] = useState<string | null>(null);
   const [loginMutation, { isLoading, error }] = useLoginMutation();
@@ -121,19 +120,16 @@ function LoginScreen({ navigation }: LoginScreenProps) {
   }, [error, t]);
 
   const handleLogin = async () => {
-    if (!email || !password) {
+    if (!loginInput || !password) {
       Alert.alert(t("common.error"), t("login.fillAllFields"));
       return;
     }
 
-    // Validate email using config
-    if (!isValidEmail(email)) {
-      Alert.alert(t("common.error"), t("login.invalidCredentials"));
-      return;
-    }
-
     try {
-      const result = await loginMutation({ email, password }).unwrap();
+      const result = await loginMutation({
+        login: loginInput,
+        password,
+      }).unwrap();
       if (!result.access_token || !result.customer) {
         Alert.alert(t("login.loginFailed"), t("login.invalidCredentials"));
         return;
@@ -216,11 +212,16 @@ function LoginScreen({ navigation }: LoginScreenProps) {
 
             <View style={styles.form}>
               <PTInput
-                label={t("common.email")}
-                placeholder={t("login.emailPlaceholder")}
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
+                label={t(
+                  "login.loginLabel",
+                  "Email / Phone / Aadhaar / Membership ID HC-2026-123456",
+                )}
+                placeholder={t(
+                  "login.loginPlaceholder",
+                  "Enter email, phone, aadhaar or HC-XXXXX",
+                )}
+                value={loginInput}
+                onChangeText={setLoginInput}
                 autoCapitalize="none"
                 autoComplete="email"
               />
@@ -251,7 +252,7 @@ function LoginScreen({ navigation }: LoginScreenProps) {
                   variant="success"
                   onPress={handleLogin}
                   loading={isLoading}
-                  disabled={!email || !password}
+                  disabled={!loginInput || !password}
                 />
               </View>
 

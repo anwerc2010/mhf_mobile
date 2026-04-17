@@ -5,12 +5,10 @@ import {
   ImageBackground,
   ImageSourcePropType,
   StyleSheet,
-  Dimensions,
+  useWindowDimensions,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import { formatToDDMMYYYY } from "../../utils/formatDate";
-
-const { width } = Dimensions.get("window");
 
 export interface FamilyCardData {
   name: string;
@@ -27,8 +25,16 @@ interface FamilyCardProps {
   image?: ImageSourcePropType;
 }
 
+const CARD_ASPECT_RATIO = 1.586; // ISO/IEC 7810 ID-1 standard card ratio
+
 const FamilyCard: React.FC<FamilyCardProps> = ({ data, image }) => {
   const { t } = useTranslation();
+  const { width } = useWindowDimensions();
+
+  // Font scale based on usable card width (screen - 32px padding)
+  const scale = (width - 32) / 340;
+  const fs = (base: number) => Math.round(base * scale);
+
   const formattedCreatedAt = data.created_at
     ? formatToDDMMYYYY(data.created_at)
     : "";
@@ -42,39 +48,67 @@ const FamilyCard: React.FC<FamilyCardProps> = ({ data, image }) => {
       <View style={styles.cardOverlay}>
         {/* Card Holder Name */}
         <View style={styles.cardSection}>
-          <Text style={styles.cardLabel}>{t("card.cardHolderName")}</Text>
-          <Text style={styles.cardNameMain}>{data.name}</Text>
+          <Text style={[styles.cardLabel, { fontSize: fs(10) }]}>
+            {t("card.cardHolderName")}
+          </Text>
+          <Text style={[styles.cardNameMain, { fontSize: fs(14) }]}>
+            {data.name}
+          </Text>
         </View>
 
         {/* Two column layout */}
         <View style={styles.cardTwoColumn}>
           <View style={styles.cardColumn}>
             <View style={styles.cardFieldGroup}>
-              <Text style={styles.cardLabel}>{t("card.membershipId")}</Text>
-              <Text style={styles.cardValue}>{data.membershipId}</Text>
+              <Text style={[styles.cardLabel, { fontSize: fs(10) }]}>
+                {t("card.membershipId")}
+              </Text>
+              <Text style={[styles.cardValue, { fontSize: fs(11) }]}>
+                {data.membershipId}
+              </Text>
             </View>
             <View style={styles.cardFieldGroup}>
-              <Text style={styles.cardLabel}>{t("card.aadharNumber")}</Text>
-              <Text style={styles.cardValue}>{data.aadharNumber}</Text>
+              <Text style={[styles.cardLabel, { fontSize: fs(10) }]}>
+                {t("card.aadharNumber")}
+              </Text>
+              <Text style={[styles.cardValue, { fontSize: fs(11) }]}>
+                {data.aadharNumber}
+              </Text>
             </View>
             <View style={styles.cardFieldGroup}>
-              <Text style={styles.cardLabel}>{t("card.dateOfIssue")}</Text>
-              <Text style={styles.cardValue}>{data.dateOfIssue}</Text>
+              <Text style={[styles.cardLabel, { fontSize: fs(10) }]}>
+                {t("card.dateOfIssue")}
+              </Text>
+              <Text style={[styles.cardValue, { fontSize: fs(11) }]}>
+                {data.dateOfIssue}
+              </Text>
             </View>
           </View>
 
           <View style={styles.cardColumn}>
             <View style={styles.cardFieldGroup}>
-              <Text style={styles.cardLabel}>{t("card.bloodGroup")}</Text>
-              <Text style={styles.cardValue}>{data.bloodGroup}</Text>
+              <Text style={[styles.cardLabel, { fontSize: fs(10) }]}>
+                {t("card.bloodGroup")}
+              </Text>
+              <Text style={[styles.cardValue, { fontSize: fs(11) }]}>
+                {data.bloodGroup}
+              </Text>
             </View>
             <View style={styles.cardFieldGroup}>
-              <Text style={styles.cardLabel}>{t("card.createdAt")}</Text>
-              <Text style={styles.cardValue}>{formattedCreatedAt}</Text>
+              <Text style={[styles.cardLabel, { fontSize: fs(10) }]}>
+                {t("card.createdAt")}
+              </Text>
+              <Text style={[styles.cardValue, { fontSize: fs(11) }]}>
+                {formattedCreatedAt}
+              </Text>
             </View>
             <View style={styles.cardFieldGroup}>
-              <Text style={styles.cardLabel}>{t("card.dateOfExpiry")}</Text>
-              <Text style={styles.cardValue}>{data.dateOfExpiry}</Text>
+              <Text style={[styles.cardLabel, { fontSize: fs(10) }]}>
+                {t("card.dateOfExpiry")}
+              </Text>
+              <Text style={[styles.cardValue, { fontSize: fs(11) }]}>
+                {data.dateOfExpiry}
+              </Text>
             </View>
           </View>
         </View>
@@ -85,36 +119,51 @@ const FamilyCard: React.FC<FamilyCardProps> = ({ data, image }) => {
 
 const styles = StyleSheet.create({
   cardItem: {
-    width: width * 0.8,
-    height: 200,
+    width: "100%",
+    aspectRatio: 1.586,
     borderRadius: 12,
     overflow: "hidden",
-    marginRight: 12,
     backgroundColor: "#1B4968",
   },
-  cardImageStyle: { borderRadius: 12 },
+  cardImageStyle: {
+    borderRadius: 12,
+  },
   cardOverlay: {
     flex: 1,
-    padding: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
     justifyContent: "space-between",
     backgroundColor: "rgba(27, 73, 104, 0.2)",
   },
-  cardSection: { marginBottom: 6, marginTop: 40 },
+  cardSection: {
+    marginTop: "20%",
+  },
   cardLabel: {
-    fontSize: 10,
     fontWeight: "500",
     color: "#B0C4D4",
     letterSpacing: 0.5,
   },
-  cardNameMain: { fontSize: 14, fontWeight: "700", color: "#fff" },
+  cardNameMain: {
+    fontWeight: "700",
+    color: "#fff",
+    marginTop: 2,
+  },
   cardTwoColumn: {
     flexDirection: "row",
     justifyContent: "space-between",
     gap: 12,
   },
-  cardColumn: { flex: 1 },
-  cardFieldGroup: { marginBottom: 6 },
-  cardValue: { fontSize: 12, fontWeight: "600", color: "#fff", marginTop: 1 },
+  cardColumn: {
+    flex: 1,
+  },
+  cardFieldGroup: {
+    marginBottom: 4,
+  },
+  cardValue: {
+    fontWeight: "600",
+    color: "#fff",
+    marginTop: 1,
+  },
 });
 
 export default FamilyCard;

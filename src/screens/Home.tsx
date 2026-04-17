@@ -61,7 +61,6 @@ export default function HomeScreen() {
       refetch();
     }, [refetch]),
   );
-
   const hasPendingPayment = useMemo(() => {
     return (dashboardData?.card_requests ?? []).some(
       (req: any) => req?.payment_status === "pending",
@@ -146,11 +145,9 @@ export default function HomeScreen() {
     setCurrentPartnerIndex(index);
   };
 
-  const cardWidth = width * 0.9 - 32; // cardItem width + margin
   const handleCardScroll = (event: any) => {
     const scrollX = event.nativeEvent.contentOffset.x;
-    const cardWidth = width * 0.9 + 32; // cardItem width + margin
-    const index = Math.round(scrollX / cardWidth);
+    const index = Math.round(scrollX / width);
     setCurrentCardIndex(index);
   };
 
@@ -163,9 +160,10 @@ export default function HomeScreen() {
 
   const hasCardRequests =
     Array.isArray(dashboardData?.card_requests) &&
-    dashboardData.card_requests.some(
-      (req: any) => req?.status?.toString().toLowerCase() === "approved",
-    );
+    dashboardData.card_requests.some((req: any) => {
+      const s = req?.status?.toString().toLowerCase();
+      return s === "approved" || s === "pending";
+    });
 
   const getCardRequestStatusColor = (status: string) => {
     const statusLower = (status ?? "").toString().toLowerCase();
@@ -387,21 +385,21 @@ export default function HomeScreen() {
           <>
             <ScrollView
               horizontal
+              pagingEnabled
               showsHorizontalScrollIndicator={false}
               style={styles.familyScroll}
               ref={familyScrollRef}
-              snapToInterval={cardWidth}
-              decelerationRate={0}
+              decelerationRate="fast"
               scrollEventThrottle={16}
               onMomentumScrollEnd={handleCardScroll}
-              contentContainerStyle={styles.familyScrollContent}
             >
               {familyCardsData.map((cardData: any, i: number) => (
-                <FamilyCard
-                  key={i}
-                  data={cardData}
-                  image={require("../../assets/images/card.png")}
-                />
+                <View key={i} style={styles.familyCardPage}>
+                  <FamilyCard
+                    data={cardData}
+                    image={require("../../assets/images/card.png")}
+                  />
+                </View>
               ))}
             </ScrollView>
 
@@ -462,10 +460,10 @@ export default function HomeScreen() {
               {t("home.cardRequests")}
             </Text>
             {dashboardData.card_requests
-              .filter(
-                (req: any) =>
-                  req?.status?.toString().toLowerCase() === "approved",
-              )
+              .filter((req: any) => {
+                const s = req?.status?.toString().toLowerCase();
+                return s === "approved" || s === "pending";
+              })
               .map((req: any) => (
                 <TouchableOpacity
                   key={req.id}
@@ -494,16 +492,18 @@ export default function HomeScreen() {
                           : ""}
                       </Text>
                     </View>
-                    <View
-                      style={[
-                        styles.cardRequestStatusBadge,
-                        getPaymentTypeBadgeStyle(req),
-                      ]}
-                    >
-                      <Text style={styles.cardRequestStatusText}>
-                        {getPaymentTypeLabel(req)}
-                      </Text>
-                    </View>
+                    {getPaymentType(req) !== "unknown" && (
+                      <View
+                        style={[
+                          styles.cardRequestStatusBadge,
+                          getPaymentTypeBadgeStyle(req),
+                        ]}
+                      >
+                        <Text style={styles.cardRequestStatusText}>
+                          {getPaymentTypeLabel(req)}
+                        </Text>
+                      </View>
+                    )}
                     {getPaymentType(req) === "paid" &&
                       getPaymentStatus(req) === "pending" && (
                         <View
@@ -859,8 +859,12 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#333",
   },
-  familyScroll: { marginTop: 8, width: "100%" },
-  familyScrollContent: { paddingRight: 8 },
+  // Escape parent's horizontal padding so pagingEnabled snaps on full screen width
+  familyScroll: { marginTop: 8, marginHorizontal: -16 },
+  familyCardPage: {
+    width: width,
+    paddingHorizontal: 16,
+  },
   noCardsContainer: {
     marginTop: 24,
     paddingVertical: 40,

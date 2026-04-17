@@ -77,6 +77,12 @@ export const GUIDE_CONFIG: GuideConfig = {
       order: 4,
       target: "ambulanceTab",
     },
+    {
+      id: "services_provider_filter",
+      text: "Tap here to filter providers by State, District, Block and Mandal. Find providers closest to your location.",
+      order: 5,
+      target: "providerFilterBtn",
+    },
   ],
 
   BloodRequestScreen: [
