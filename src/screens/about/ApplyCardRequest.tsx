@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { View, Alert } from "react-native";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import PTDynamicForm, {
@@ -10,12 +10,11 @@ import {
   useApplyHealthCardMutation,
   useUploadDocumentMutation,
   useLocationDropdowns,
-  useGetProfileQuery,
+  useGetProfessionsQuery,
 } from "@psi/shared-api";
 import { FileData } from "../../components/comman/PTFilePicker";
 import { formatToDDMMYYY } from "../../utils/formatDate";
 import { useTranslation } from "react-i18next";
-import { useAppSelector } from "../../store/hook";
 
 type ApplyCardRouteParams = {
   ApplyCardRequest?: {
@@ -25,30 +24,6 @@ type ApplyCardRouteParams = {
     canPay?: boolean;
   };
 };
-
-/**
- * Normalise a stored phone to a bare 10-digit string for form display.
- * Backend may prefix with '#', '+91', '91', or '0091'.
- */
-function normalisePhone(raw: string | null | undefined): string {
-  if (!raw) return "";
-  return raw
-    .replace(/^#/, "")
-    .replace(/^\+?(?:91|0091)/, "")
-    .replace(/\D/g, "")
-    .slice(-10);
-}
-
-/**
- * Normalise a stored Aadhaar to "XXXX XXXX XXXX" display format.
- * Backend may prefix with '#' and store without spaces.
- */
-function normaliseAadhaar(raw: string | null | undefined): string {
-  if (!raw) return "";
-  const digits = raw.replace(/^#/, "").replace(/\D/g, "");
-  if (digits.length !== 12) return raw.replace(/^#/, "");
-  return `${digits.slice(0, 4)} ${digits.slice(4, 8)} ${digits.slice(8)}`;
-}
 
 function ApplyCardRequest() {
   const { t } = useTranslation();
@@ -65,18 +40,6 @@ function ApplyCardRequest() {
     useUploadDocumentMutation();
   const isSubmitting = isLoading || isUploading;
 
-  // Profile sources: fresh API call with Redux state as fallback
-  const reduxUser = useAppSelector((state) => state.auth.user);
-  const { data: profileResponse } = useGetProfileQuery();
-  const profile: Record<string, any> =
-    profileResponse?.data ?? profileResponse?.customer ?? profileResponse ?? reduxUser ?? {};
-
-  // Pre-filled, locked identity values derived from the customer profile
-  const prefillName: string = profile.fullname ?? reduxUser?.fullname ?? "";
-  const prefillPhone: string = normalisePhone(profile.phone ?? reduxUser?.phone);
-  const prefillEmail: string = profile.email ?? reduxUser?.email ?? "";
-  const prefillAadhaar: string = normaliseAadhaar(profile.aadhaar_number);
-
   const {
     states,
     districts,
@@ -88,18 +51,12 @@ function ApplyCardRequest() {
     mandalsLoading,
   } = useLocationDropdowns(stateId, districtId, blockId);
 
-  // Seed locked fields whenever profile resolves
-  useEffect(() => {
-    if (!formRef.current) return;
-    if (prefillName)
-      formRef.current.setValue("card_holder.card_holder_name", prefillName);
-    if (prefillPhone)
-      formRef.current.setValue("card_holder.phone", prefillPhone);
-    if (prefillEmail)
-      formRef.current.setValue("card_holder.email", prefillEmail);
-    if (prefillAadhaar)
-      formRef.current.setValue("card_holder.aadhaar_number", prefillAadhaar);
-  }, [prefillName, prefillPhone, prefillEmail, prefillAadhaar]);
+  // Fetch profession list once on mount
+  const { data: professionsResponse } = useGetProfessionsQuery();
+  const professionOptions = (professionsResponse?.data ?? []).map((p) => ({
+    label: p.occupation_name,
+    value: p.id,
+  }));
 
   const handleStateChange = (val: number) => {
     setStateId(val);
@@ -315,6 +272,18 @@ function ApplyCardRequest() {
           path: "card_holder.age_category",
         },
         {
+          id: "professions",
+          label: t("forms.applyCard.fields.professions", "Profession"),
+          type: "autocomplete",
+          placeholder: t(
+            "forms.applyCard.placeholders.professions",
+            "Enter your profession (optional)",
+          ),
+          options: professionOptions,
+          validations: [],
+          path: "card_holder.professions",
+        },
+        {
           id: "reference_name",
           label: t("forms.applyCard.fields.referenceName", "Reference Name"),
           type: "text",
@@ -324,17 +293,6 @@ function ApplyCardRequest() {
           ),
           validations: [],
           path: "card_holder.reference_name",
-        },
-        {
-          id: "professions",
-          label: t("forms.applyCard.fields.professions", "Profession"),
-          type: "text",
-          placeholder: t(
-            "forms.applyCard.placeholders.professions",
-            "Enter your profession (optional)",
-          ),
-          validations: [],
-          path: "card_holder.professions",
         },
         {
           id: "family_head_image",
@@ -548,7 +506,10 @@ function ApplyCardRequest() {
         gender: values.card_holder?.gender,
         age_category: values.card_holder?.age_category,
         reference_name: values.card_holder?.reference_name || null,
-        professions: values.card_holder?.professions || null,
+        professions:
+          values.card_holder?.professions != null
+            ? String(values.card_holder.professions)
+            : null,
         family_head_image: uploadedImageUrl,
         type: values.card_details?.type,
         mode: resolvedMode as "free" | "online",
@@ -706,12 +667,6 @@ function ApplyCardRequest() {
         ref={formRef}
         sections={sections}
         initialValues={{
-          card_holder: {
-            card_holder_name: prefillName,
-            phone: prefillPhone,
-            email: prefillEmail,
-            aadhaar_number: prefillAadhaar,
-          },
           card_details: {
             date_of_issue: formatToDDMMYYY(new Date()),
             date_of_expiry: formatToDDMMYYY(

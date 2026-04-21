@@ -214,11 +214,11 @@ function LoginScreen({ navigation }: LoginScreenProps) {
               <PTInput
                 label={t(
                   "login.loginLabel",
-                  "Email / Phone / Aadhaar / Membership ID HC-2026-123456",
+                  "Email /Phone / Aadhaar / Membership ID HC-2026-123456",
                 )}
                 placeholder={t(
                   "login.loginPlaceholder",
-                  "Enter email, phone, aadhaar or HC-XXXXX",
+                  "Enter phone, aadhaar or HC-XXXXX",
                 )}
                 value={loginInput}
                 onChangeText={setLoginInput}

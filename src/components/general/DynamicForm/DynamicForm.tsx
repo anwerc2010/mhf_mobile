@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useMemo } from "react";
+import React, { useEffect, useCallback, useMemo, useState } from "react";
 import {
   View,
   ViewStyle,
@@ -6,6 +6,10 @@ import {
   KeyboardAvoidingView,
   Platform,
   TouchableOpacity,
+  FlatList,
+  TextInput,
+  ActivityIndicator,
+  StyleSheet,
 } from "react-native";
 import {
   useForm,
@@ -46,7 +50,8 @@ export type FormFieldType =
   | "radio"
   | "date"
   | "time"
-  | "file";
+  | "file"
+  | "autocomplete";
 
 export interface FormFieldOption {
   label?: string;
@@ -102,6 +107,7 @@ export interface FormField {
   maxSize?: number;
   acceptedTypes?: string[];
   onChange?: (value: any) => void;
+  searchable?: boolean;
 }
 
 export interface FormSection {
@@ -174,6 +180,182 @@ export interface PTDynamicFormProps {
   showRemoveButton?: boolean;
   addButtonText?: string;
   removeButtonText?: string;
+}
+
+// ============================================================================
+// AutocompleteField — inline searchable dropdown, no Modal
+// ============================================================================
+
+interface AutocompleteFieldProps {
+  label?: string;
+  placeholder?: string;
+  value?: string | number | null;
+  options: { label: string; value: string | number }[];
+  onChange: (value: string | number | null) => void;
+  disabled?: boolean;
+  error?: string;
+  required?: boolean;
+  style?: ViewStyle;
+}
+
+function AutocompleteField({
+  label,
+  placeholder = "Search...",
+  value,
+  options,
+  onChange,
+  disabled = false,
+  error,
+  required = false,
+  style,
+}: AutocompleteFieldProps) {
+  const [searchText, setSearchText] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  // The label matching the currently stored value (integer id → name)
+  const selectedLabel =
+    value !== null && value !== undefined
+      ? (options.find((o) => o.value === value)?.label ?? "")
+      : "";
+
+  // While the dropdown is open we show what the user is typing;
+  // once closed we show the resolved name of the stored value.
+  const inputValue = isOpen ? searchText : selectedLabel;
+
+  const filtered = isOpen
+    ? options.filter((o) =>
+        o.label.toLowerCase().includes(searchText.toLowerCase()),
+      )
+    : [];
+
+  const handleFocus = () => {
+    if (disabled) return;
+    // Pre-fill search with the current selection so the user can refine it
+    setSearchText(selectedLabel);
+    setIsOpen(true);
+  };
+
+  // Delay closing so a tap on a list row fires before the blur hides the list
+  const handleBlur = () => {
+    setTimeout(() => setIsOpen(false), 200);
+  };
+
+  const handleChangeText = (text: string) => {
+    setSearchText(text);
+    // Clear stored value if the user erases the field completely
+    if (!text) onChange(null);
+  };
+
+  const handleSelect = (option: { label: string; value: string | number }) => {
+    onChange(option.value);
+    setSearchText(option.label);
+    setIsOpen(false);
+  };
+
+  const borderColor = error ? "#e53935" : isOpen ? "#1976d2" : "#ccc";
+
+  return (
+    <View style={[{ marginBottom: 16 }, style]}>
+      {label && (
+        <PTText
+          variant="caption"
+          color="text"
+          style={{ marginBottom: 4, fontWeight: "600" }}
+        >
+          {label}
+          {required && (
+            <PTText variant="caption" color="error">
+              {" "}*
+            </PTText>
+          )}
+        </PTText>
+      )}
+
+      {/* Text input — typing here filters the list inline below */}
+      <TextInput
+        value={inputValue}
+        onChangeText={handleChangeText}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        placeholder={placeholder}
+        placeholderTextColor="#999"
+        editable={!disabled}
+        style={{
+          borderWidth: 1,
+          borderColor,
+          borderRadius: isOpen ? 8 : 8,
+          borderBottomLeftRadius: isOpen ? 0 : 8,
+          borderBottomRightRadius: isOpen ? 0 : 8,
+          paddingHorizontal: 12,
+          paddingVertical: 12,
+          fontSize: 14,
+          color: "#000",
+          backgroundColor: disabled ? "#f5f5f5" : "#fff",
+          minHeight: 48,
+        }}
+      />
+
+      {/* Inline dropdown list — visible only while focused */}
+      {isOpen && (
+        <View
+          style={{
+            borderWidth: 1,
+            borderTopWidth: 0,
+            borderColor,
+            borderBottomLeftRadius: 8,
+            borderBottomRightRadius: 8,
+            backgroundColor: "#fff",
+            maxHeight: 220,
+            overflow: "hidden",
+          }}
+        >
+          {options.length === 0 ? (
+            <ActivityIndicator style={{ marginVertical: 16 }} />
+          ) : filtered.length === 0 ? (
+            <PTText
+              variant="body"
+              color="textTertiary"
+              style={{ textAlign: "center", padding: 16 }}
+            >
+              No results found
+            </PTText>
+          ) : (
+            <FlatList
+              data={filtered}
+              keyExtractor={(item) => String(item.value)}
+              keyboardShouldPersistTaps="handled"
+              nestedScrollEnabled
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  onPress={() => handleSelect(item)}
+                  style={{
+                    paddingVertical: 12,
+                    paddingHorizontal: 12,
+                    borderBottomWidth: StyleSheet.hairlineWidth,
+                    borderBottomColor: "#f0f0f0",
+                  }}
+                >
+                  <PTText variant="body" color="text">
+                    {item.label}
+                  </PTText>
+                </TouchableOpacity>
+              )}
+            />
+          )}
+        </View>
+      )}
+
+      {error && (
+        <PTText
+          variant="caption"
+          color="error"
+          style={{ marginTop: 4 }}
+        >
+          {error}
+        </PTText>
+      )}
+    </View>
+  );
 }
 
 // ============================================================================
@@ -1013,6 +1195,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                       required={field.validations?.some(
                         (v) => v.name === "required",
                       )}
+                      searchable={field.searchable}
                     />
                     {field.helpText && !(errorMessage || field.error) && (
                       <PTText
@@ -1121,6 +1304,40 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
                       helpText={field.helpText}
                     />
                   </View>
+                )}
+              />
+            );
+
+          case "autocomplete":
+            const autocompleteOptions = (field.options || []).map((opt) => ({
+              label:
+                opt.label ||
+                opt.name ||
+                String(opt.value !== undefined ? opt.value : opt.id),
+              value: opt.value !== undefined ? opt.value : opt.id,
+            }));
+            return (
+              <Controller
+                key={fieldPath}
+                control={control}
+                name={fieldPath}
+                rules={rules}
+                render={({ field: { onChange, value } }) => (
+                  <AutocompleteField
+                    label={getFieldLabel(field)}
+                    placeholder={field.placeholder}
+                    value={value}
+                    options={autocompleteOptions as { label: string; value: string | number }[]}
+                    onChange={(selected) => {
+                      onChange(selected);
+                      handleValueChange(fieldId, selected, fieldPath, true);
+                      if (field.onChange) field.onChange(selected);
+                    }}
+                    disabled={field.disabled}
+                    error={errorMessage || field.error}
+                    required={field.validations?.some((v) => v.name === "required")}
+                    style={field.style}
+                  />
                 )}
               />
             );

@@ -8,7 +8,19 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { useTranslation } from "react-i18next";
-import { formatToDDMMYYYY } from "../../utils/formatDate";
+
+function maskAadhaar(raw: string | null | undefined): string {
+  if (!raw) return "";
+  const digits = raw.replace(/\s/g, "");
+  if (digits.length < 4) return raw;
+  return "**** **** " + digits.slice(-4);
+}
+
+function yearOnly(dateStr: string | null | undefined): string {
+  if (!dateStr) return "";
+  const year = new Date(dateStr).getFullYear();
+  return isNaN(year) ? dateStr : String(year);
+}
 
 export interface FamilyCardData {
   name: string;
@@ -35,9 +47,8 @@ const FamilyCard: React.FC<FamilyCardProps> = ({ data, image }) => {
   const scale = (width - 32) / 340;
   const fs = (base: number) => Math.round(base * scale);
 
-  const formattedCreatedAt = data.created_at
-    ? formatToDDMMYYYY(data.created_at)
-    : "";
+  const formattedCreatedAt = yearOnly(data.created_at);
+  const maskedAadhaar = maskAadhaar(data.aadharNumber);
 
   return (
     <ImageBackground
@@ -72,7 +83,7 @@ const FamilyCard: React.FC<FamilyCardProps> = ({ data, image }) => {
                 {t("card.aadharNumber")}
               </Text>
               <Text style={[styles.cardValue, { fontSize: fs(11) }]}>
-                {data.aadharNumber}
+                {maskedAadhaar}
               </Text>
             </View>
             <View style={styles.cardFieldGroup}>

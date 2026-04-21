@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, Modal, ScrollView } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  Modal,
+  FlatList,
+  TextInput,
+} from "react-native";
 import { useTheme } from "../../../hooks/useTheme";
 import PTText from "../PTText";
 import PTCard from "../PTCard";
@@ -11,60 +17,19 @@ export interface SelectOption {
 }
 
 interface PTSelectProps {
-  /**
-   * Label for the select field
-   */
   label?: string;
-
-  /**
-   * Placeholder text
-   */
   placeholder?: string;
-
-  /**
-   * Selected value
-   */
   value?: string | number | null;
-
-  /**
-   * Array of options
-   */
   options: SelectOption[];
-
-  /**
-   * Callback when selection changes
-   */
   onValueChange: (value: string | number) => void;
-
-  /**
-   * Whether field is disabled
-   */
   disabled?: boolean;
-
-  /**
-   * Error message
-   */
   error?: string;
-
-  /**
-   * Whether field is required
-   */
   required?: boolean;
-
-  /**
-   * Whether multiple selection is allowed
-   */
   multiple?: boolean;
-
-  /**
-   * Selected values (for multiple selection)
-   */
   selectedValues?: (string | number)[];
-
-  /**
-   * Callback for multiple selection
-   */
   onMultipleValueChange?: (values: (string | number)[]) => void;
+  /** Shows a search input inside the Modal to filter options */
+  searchable?: boolean;
 }
 
 export default function PTSelect({
@@ -79,9 +44,28 @@ export default function PTSelect({
   multiple = false,
   selectedValues = [],
   onMultipleValueChange,
+  searchable = false,
 }: PTSelectProps) {
   const theme = useTheme();
   const [modalVisible, setModalVisible] = useState(false);
+  const [searchText, setSearchText] = useState("");
+
+  const openModal = () => {
+    if (disabled) return;
+    setSearchText("");
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setSearchText("");
+    setModalVisible(false);
+  };
+
+  const visibleOptions = searchable
+    ? options.filter((o) =>
+        o.label.toLowerCase().includes(searchText.toLowerCase()),
+      )
+    : options;
 
   const handleSelect = (optionValue: string | number) => {
     if (multiple && onMultipleValueChange) {
@@ -91,35 +75,26 @@ export default function PTSelect({
       onMultipleValueChange(newValues);
     } else {
       onValueChange(optionValue);
-      setModalVisible(false);
+      closeModal();
     }
   };
 
   const getDisplayText = () => {
     if (multiple) {
-      if (selectedValues.length === 0) {
-        return placeholder;
-      }
+      if (selectedValues.length === 0) return placeholder;
       if (selectedValues.length === 1) {
         const option = options.find((opt) => opt.value === selectedValues[0]);
         return option?.label || placeholder;
       }
       return `${selectedValues.length} items selected`;
-    } else {
-      if (value === null || value === undefined) {
-        return placeholder;
-      }
-      const option = options.find((opt) => opt.value === value);
-      return option?.label || placeholder;
     }
+    if (value === null || value === undefined) return placeholder;
+    const option = options.find((opt) => opt.value === value);
+    return option?.label || placeholder;
   };
 
-  const isSelected = (optionValue: string | number) => {
-    if (multiple) {
-      return selectedValues.includes(optionValue);
-    }
-    return value === optionValue;
-  };
+  const isSelected = (optionValue: string | number) =>
+    multiple ? selectedValues.includes(optionValue) : value === optionValue;
 
   return (
     <View style={{ marginBottom: theme.spacing.md }}>
@@ -140,15 +115,7 @@ export default function PTSelect({
       )}
 
       <TouchableOpacity
-        onPress={() => {
-          console.log("PTSelect open", {
-            label,
-            disabled,
-            count: options.length,
-          });
-          if (disabled) return;
-          setModalVisible(true);
-        }}
+        onPress={openModal}
         disabled={disabled}
         activeOpacity={0.7}
         style={{
@@ -166,9 +133,7 @@ export default function PTSelect({
       >
         <PTText
           variant="body"
-          color={
-            value === null || value === undefined ? "textTertiary" : "text"
-          }
+          color={value === null || value === undefined ? "textTertiary" : "text"}
         >
           {getDisplayText()}
         </PTText>
@@ -188,7 +153,7 @@ export default function PTSelect({
         visible={modalVisible}
         transparent
         animationType="fade"
-        onRequestClose={() => setModalVisible(false)}
+        onRequestClose={closeModal}
       >
         <View
           style={{
@@ -210,71 +175,90 @@ export default function PTSelect({
               </PTText>
             )}
 
-            <ScrollView
-              style={{ maxHeight: 320, width: "100%" }}
-              contentContainerStyle={{ paddingBottom: theme.spacing.sm }}
+            {searchable && (
+              <TextInput
+                value={searchText}
+                onChangeText={setSearchText}
+                placeholder="Search..."
+                autoFocus
+                style={{
+                  borderWidth: 1,
+                  borderColor: theme.colors.border,
+                  borderRadius: theme.borderRadius.md,
+                  paddingHorizontal: theme.spacing.md,
+                  paddingVertical: theme.spacing.sm,
+                  marginBottom: theme.spacing.md,
+                  fontSize: 14,
+                  color: theme.colors.text,
+                }}
+              />
+            )}
+
+            <FlatList
+              data={visibleOptions}
+              keyExtractor={(item) => String(item.value)}
               keyboardShouldPersistTaps="handled"
-            >
-              {options.length === 0 ? (
+              style={{ maxHeight: 320 }}
+              contentContainerStyle={{ paddingBottom: theme.spacing.sm }}
+              ListEmptyComponent={
                 <View
                   style={{
                     padding: theme.spacing.md,
                     alignItems: "center",
-                    justifyContent: "center",
                   }}
                 >
                   <PTText variant="body" color="textTertiary">
-                    No options available
+                    {searchable && searchText
+                      ? "No results found"
+                      : "No options available"}
                   </PTText>
                 </View>
-              ) : (
-                options.map((option) => {
-                  const selected = isSelected(option.value);
-                  return (
-                    <TouchableOpacity
-                      key={String(option.value)}
-                      style={{
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        paddingVertical: theme.spacing.md,
-                        paddingHorizontal: theme.spacing.md,
-                        marginBottom: theme.spacing.sm,
-                        borderRadius: theme.borderRadius.md,
-                        backgroundColor: selected
-                          ? theme.colors.primary
-                          : theme.colors.backgroundSecondary,
-                      }}
-                      onPress={() => handleSelect(option.value)}
-                      activeOpacity={0.7}
+              }
+              renderItem={({ item }) => {
+                const selected = isSelected(item.value);
+                return (
+                  <TouchableOpacity
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      paddingVertical: theme.spacing.md,
+                      paddingHorizontal: theme.spacing.md,
+                      marginBottom: theme.spacing.sm,
+                      borderRadius: theme.borderRadius.md,
+                      backgroundColor: selected
+                        ? theme.colors.primary
+                        : theme.colors.backgroundSecondary,
+                    }}
+                    onPress={() => handleSelect(item.value)}
+                    activeOpacity={0.7}
+                  >
+                    <PTText
+                      variant="body"
+                      color={selected ? "primary" : "text"}
+                      style={selected ? { fontWeight: "600" } : {}}
                     >
+                      {item.label}
+                    </PTText>
+                    {selected && (
                       <PTText
-                        variant="body"
-                        color={selected ? "primary" : "text"}
-                        style={selected ? { fontWeight: "600" } : {}}
+                        style={{
+                          color: theme.colors.textInverse,
+                          fontSize: 18,
+                          fontWeight: "bold",
+                        }}
                       >
-                        {option.label}
+                        {multiple ? "☑" : "✓"}
                       </PTText>
-                      {selected && (
-                        <PTText
-                          style={{
-                            color: theme.colors.textInverse,
-                            fontSize: 18,
-                            fontWeight: "bold",
-                          }}
-                        >
-                          {multiple ? "☑" : "✓"}
-                        </PTText>
-                      )}
-                    </TouchableOpacity>
-                  );
-                })
-              )}
-            </ScrollView>
+                    )}
+                  </TouchableOpacity>
+                );
+              }}
+            />
 
             {multiple && (
               <View style={{ marginTop: theme.spacing.md }}>
-                <PTButton title="Done" onPress={() => setModalVisible(false)} />
+                <PTButton title="Done" onPress={closeModal} />
               </View>
             )}
 
@@ -284,14 +268,10 @@ export default function PTSelect({
                 paddingVertical: theme.spacing.md - 4,
                 alignItems: "center",
               }}
-              onPress={() => setModalVisible(false)}
+              onPress={closeModal}
               activeOpacity={0.7}
             >
-              <PTText
-                variant="body"
-                color="primary"
-                style={{ fontWeight: "600" }}
-              >
+              <PTText variant="body" color="primary" style={{ fontWeight: "600" }}>
                 Cancel
               </PTText>
             </TouchableOpacity>
