@@ -180,48 +180,30 @@ export default function EditProfileScreen() {
     imageFile: FileData | FileData[] | null | undefined,
   ): Promise<string | undefined> => {
     const file = Array.isArray(imageFile) ? imageFile[0] : imageFile;
-    console.log("[EditProfile] uploadImageIfPresent – received:", file);
-
-    if (!file?.uri) {
-      console.log("[EditProfile] uploadImageIfPresent – no uri, skipping");
-      return undefined;
-    }
-
+    if (!file?.uri) return undefined;
     const formData = new FormData();
     formData.append("image", {
       uri: file.uri,
       name: file.name,
       type: file.type,
     } as any);
-
-    console.log("[EditProfile] Uploading image to /customer/upload-image …");
     const response = await uploadCustomerImage(formData).unwrap();
-    console.log("[EditProfile] Upload response:", response);
     return response?.image_url || undefined;
   };
 
   const handleSubmit = async (values: Record<string, any>) => {
     const raw = values.profile;
-    console.log("[EditProfile] handleSubmit – raw.image:", raw.image);
-    console.log("[EditProfile] handleSubmit – full raw:", raw);
 
     // Upload new image if a file was selected; keep existing URL otherwise
     let imageUrl: string | undefined = user?.image ?? undefined;
     if (raw.image) {
       try {
         const uploaded = await uploadImageIfPresent(raw.image);
-        console.log("[EditProfile] Uploaded image URL:", uploaded);
         if (uploaded) imageUrl = uploaded;
-      } catch (err) {
-        console.error("[EditProfile] Image upload error:", err);
+      } catch {
         Alert.alert(t("common.error"), t("profile.imageUploadFailed"));
         return;
       }
-    } else {
-      console.log(
-        "[EditProfile] No new image selected, keeping existing:",
-        imageUrl,
-      );
     }
 
     const payload = {
@@ -238,15 +220,11 @@ export default function EditProfileScreen() {
       password: "",
     };
 
-    console.log("[EditProfile] Final payload:", payload);
-
     try {
       const result = await updateCustomer({
         id: user!.id,
         data: payload,
       }).unwrap();
-      console.log("[EditProfile] updateCustomer result:", result);
-
       if (result.error) {
         Alert.alert(
           t("profile.updateFailed", "Update Failed"),
@@ -263,7 +241,6 @@ export default function EditProfileScreen() {
         [{ text: "OK", onPress: () => navigation.goBack() }],
       );
     } catch (err: any) {
-      console.error("[EditProfile] updateCustomer error:", err);
       const msg = err?.data?.message;
       const errorText =
         msg && typeof msg === "object"
@@ -297,7 +274,6 @@ export default function EditProfileScreen() {
           // Live preview: update local state when a new image file is picked
           if (fieldId === "image") {
             const file = Array.isArray(value) ? value[0] : value;
-            console.log("[EditProfile] image field changed:", file);
             setSelectedImageUri(file?.uri ?? null);
           }
 
