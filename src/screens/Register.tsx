@@ -10,8 +10,12 @@ import {
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../store/hook";
-import { useRegisterMutation } from "@psi/shared-api";
+import {
+  useRegisterMutation,
+  useUploadCustomerImageMutation,
+} from "@psi/shared-api";
 import { RegisterRequest } from "@psi/shared-api";
+import { FileData } from "../components/comman/PTFilePicker";
 import { logger } from "../utils/logger";
 import { spacing } from "../constants/spacing";
 import PTContainer from "../components/comman/PTContainer";
@@ -38,6 +42,8 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
     (state) => state.language.currentLanguage,
   );
   const [registerMutation, { isLoading, error }] = useRegisterMutation();
+  const [uploadCustomerImage, { isLoading: isUploading }] =
+    useUploadCustomerImageMutation();
   const [termsAgreed, setTermsAgreed] = useState(false);
   const [toastState, setToastState] = useState({
     visible: false,
@@ -147,6 +153,15 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
           path: "personalDetails.aadhaar_number",
         },
         {
+          id: "image",
+          label: t("register.profileImageLabel"),
+          type: "file",
+          maxFiles: 1,
+          acceptedTypes: ["image/png", "image/jpg", "image/jpeg"],
+          validations: [],
+          path: "personalDetails.image",
+        },
+        {
           id: "blood_group",
           label: "Blood Group",
           type: "select",
@@ -233,6 +248,21 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
     }
   };
 
+  const uploadImageIfPresent = async (
+    imageFile: FileData | FileData[] | null | undefined,
+  ): Promise<string | undefined> => {
+    const file = Array.isArray(imageFile) ? imageFile[0] : imageFile;
+    if (!file?.uri) return undefined;
+    const formData = new FormData();
+    formData.append("image", {
+      uri: file.uri,
+      name: file.name,
+      type: file.type,
+    } as any);
+    const response = await uploadCustomerImage(formData).unwrap();
+    return response?.image_url || undefined;
+  };
+
   const handleRegister = async (values: Record<string, any>) => {
     if (!termsAgreed) {
       Alert.alert(
@@ -251,6 +281,23 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
     if (payload.aadhaar_number) {
       payload.aadhaar_number = payload.aadhaar_number.replace(/\s/g, "");
     }
+
+    // Upload profile image if provided
+    if (payload.image) {
+      try {
+        const imageUrl = await uploadImageIfPresent(payload.image);
+        payload.image = imageUrl;
+      } catch {
+        Alert.alert(
+          t("common.error"),
+          t("profile.imageUploadFailed"),
+        );
+        return;
+      }
+    } else {
+      delete payload.image;
+    }
+
     console.log("Register form values:", JSON.stringify(payload, null, 2));
 
     try {
@@ -372,10 +419,14 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
             <View style={styles.customSubmitArea}>
               <TermsAccordion value={termsAgreed} onChange={setTermsAgreed} />
               <PTButton
-                title={t("common.signUp")}
+                title={
+                  isUploading
+                    ? t("profile.uploadingImage")
+                    : t("common.signUp")
+                }
                 onPress={() => formRef.current?.submit()}
-                loading={isLoading}
-                disabled={!termsAgreed}
+                loading={isLoading || isUploading}
+                disabled={!termsAgreed || isLoading || isUploading}
               />
               <View style={styles.footer}>
                 <PTText variant="body" style={styles.footerText}>

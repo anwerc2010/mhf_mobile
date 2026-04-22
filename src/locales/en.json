@@ -56,10 +56,11 @@
     "confirmPasswordPlaceholder": "Confirm your password",
     "hasAccount": "Already have an account?",
     "registrationFailed": "Registration Failed",
-    "register.registrationSuccess": "Registration successful! Please log in.",
+    "registrationSuccess": "Registration successful! Please log in.",
     "passwordsNotMatch": "Passwords do not match",
     "passwordMinLength": "Password must be at least 6 characters",
     "fillAllFields": "Please fill in all fields",
+    "profileImageLabel": "Profile Image",
     "toast": {
       "success": "Customer registered successfully",
       "error": "Registration failed"
@@ -180,7 +181,11 @@
     "user": "User",
     "updateFailed": "Update Failed",
     "somethingWentWrong": "Something went wrong",
-    "updatedSuccessfully": "Profile updated successfully"
+    "updatedSuccessfully": "Profile updated successfully",
+    "profileImage": "Profile Image",
+    "profileImageHint": "JPG or PNG, max 20 MB",
+    "uploadingImage": "Uploading image...",
+    "imageUploadFailed": "Image upload failed"
   },
   "settings": {
     "title": "Settings Screen"

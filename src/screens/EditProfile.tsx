@@ -1,8 +1,19 @@
-import React, { useRef } from "react";
-import { View, Alert, StyleSheet } from "react-native";
+import React, { useRef, useState } from "react";
+import {
+  View,
+  Alert,
+  StyleSheet,
+  Image,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useAppDispatch, useAppSelector } from "../store/hook";
-import { setUser, useUpdateCustomerMutation } from "@psi/shared-api";
+import {
+  setUser,
+  useUpdateCustomerMutation,
+  useUploadCustomerImageMutation,
+} from "@psi/shared-api";
 import PTContainer from "../components/comman/PTContainer";
 import PTDynamicForm, {
   FormSection,
@@ -11,6 +22,7 @@ import PTDynamicForm, {
 import PTText from "../components/comman/PTText";
 import { spacing } from "../constants/spacing";
 import { useTranslation } from "react-i18next";
+import { FileData } from "../components/comman/PTFilePicker";
 
 export default function EditProfileScreen() {
   const { t } = useTranslation();
@@ -19,6 +31,14 @@ export default function EditProfileScreen() {
   const user = useAppSelector((state) => state.auth.user);
   const formRef = useRef<PTDynamicFormRef>(null);
   const [updateCustomer, { isLoading }] = useUpdateCustomerMutation();
+  const [uploadCustomerImage, { isLoading: isUploading }] =
+    useUploadCustomerImageMutation();
+
+  // Track the locally-selected file for live preview
+  const [selectedImageUri, setSelectedImageUri] = useState<string | null>(null);
+
+  // The preview shows: newly selected file → existing saved URL → nothing
+  const previewUri = selectedImageUri ?? user?.image ?? null;
 
   const sections: FormSection[] = [
     {
@@ -125,10 +145,18 @@ export default function EditProfileScreen() {
           validations: [],
           path: "profile.emergency_contact_number",
         },
+        {
+          id: "image",
+          label: t("profile.profileImage"),
+          type: "file",
+          maxFiles: 1,
+          acceptedTypes: ["image/png", "image/jpg", "image/jpeg"],
+          validations: [],
+          path: "profile.image",
+        },
       ],
     },
   ];
-
 
   const initialValues = {
     profile: {
@@ -144,13 +172,61 @@ export default function EditProfileScreen() {
       allergies: user?.allergies || "",
       chronic_conditions: user?.chronic_conditions || "",
       emergency_contact_number: user?.emergency_contact_number || "",
+      image: null,
     },
+  };
+
+  const uploadImageIfPresent = async (
+    imageFile: FileData | FileData[] | null | undefined,
+  ): Promise<string | undefined> => {
+    const file = Array.isArray(imageFile) ? imageFile[0] : imageFile;
+    console.log("[EditProfile] uploadImageIfPresent – received:", file);
+
+    if (!file?.uri) {
+      console.log("[EditProfile] uploadImageIfPresent – no uri, skipping");
+      return undefined;
+    }
+
+    const formData = new FormData();
+    formData.append("image", {
+      uri: file.uri,
+      name: file.name,
+      type: file.type,
+    } as any);
+
+    console.log("[EditProfile] Uploading image to /customer/upload-image …");
+    const response = await uploadCustomerImage(formData).unwrap();
+    console.log("[EditProfile] Upload response:", response);
+    return response?.image_url || undefined;
   };
 
   const handleSubmit = async (values: Record<string, any>) => {
     const raw = values.profile;
+    console.log("[EditProfile] handleSubmit – raw.image:", raw.image);
+    console.log("[EditProfile] handleSubmit – full raw:", raw);
+
+    // Upload new image if a file was selected; keep existing URL otherwise
+    let imageUrl: string | undefined = user?.image ?? undefined;
+    if (raw.image) {
+      try {
+        const uploaded = await uploadImageIfPresent(raw.image);
+        console.log("[EditProfile] Uploaded image URL:", uploaded);
+        if (uploaded) imageUrl = uploaded;
+      } catch (err) {
+        console.error("[EditProfile] Image upload error:", err);
+        Alert.alert(t("common.error"), t("profile.imageUploadFailed"));
+        return;
+      }
+    } else {
+      console.log(
+        "[EditProfile] No new image selected, keeping existing:",
+        imageUrl,
+      );
+    }
+
     const payload = {
       ...raw,
+      image: imageUrl,
       aadhaar_number: raw.aadhaar_number
         ? raw.aadhaar_number.replace(/\s/g, "")
         : undefined,
@@ -162,11 +238,15 @@ export default function EditProfileScreen() {
       password: "",
     };
 
+    console.log("[EditProfile] Final payload:", payload);
+
     try {
       const result = await updateCustomer({
         id: user!.id,
         data: payload,
       }).unwrap();
+      console.log("[EditProfile] updateCustomer result:", result);
+
       if (result.error) {
         Alert.alert(
           t("profile.updateFailed", "Update Failed"),
@@ -183,6 +263,7 @@ export default function EditProfileScreen() {
         [{ text: "OK", onPress: () => navigation.goBack() }],
       );
     } catch (err: any) {
+      console.error("[EditProfile] updateCustomer error:", err);
       const msg = err?.data?.message;
       const errorText =
         msg && typeof msg === "object"
@@ -201,15 +282,25 @@ export default function EditProfileScreen() {
           {t("profile.editProfile")}
         </PTText>
       </View>
+
       <PTDynamicForm
         ref={formRef}
         sections={sections}
         initialValues={initialValues}
         mode="onBlur"
-        submitButtonText={t("common.save")}
-        submitLoading={isLoading}
+        submitButtonText={
+          isUploading ? t("profile.uploadingImage") : t("common.save")
+        }
+        submitLoading={isLoading || isUploading}
         onSubmit={handleSubmit}
         onValueChange={(fieldId, value, _allValues, fieldPath) => {
+          // Live preview: update local state when a new image file is picked
+          if (fieldId === "image") {
+            const file = Array.isArray(value) ? value[0] : value;
+            console.log("[EditProfile] image field changed:", file);
+            setSelectedImageUri(file?.uri ?? null);
+          }
+
           if (
             fieldId === "aadhaar_number" &&
             typeof value === "string" &&
@@ -242,5 +333,36 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: "center",
+  },
+  avatarSection: {
+    alignItems: "center",
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: "#EEF2F7",
+    marginBottom: 4,
+  },
+  avatarPreview: {
+    width: 88,
+    height: 88,
+    borderRadius: 44,
+    backgroundColor: "#E5E7EB",
+  },
+  avatarPlaceholder: {
+    width: 88,
+    height: 88,
+    borderRadius: 44,
+    backgroundColor: "#2563EB",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  avatarInitials: {
+    color: "#fff",
+    fontSize: 28,
+    fontWeight: "700",
+  },
+  avatarHint: {
+    marginTop: 6,
+    fontSize: 12,
+    color: "#6B7280",
   },
 });

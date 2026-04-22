@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import {
   View,
   Text,
+  Image,
+  Modal,
+  StatusBar,
+  SafeAreaView,
   StyleSheet,
   ScrollView,
   TouchableOpacity,
@@ -63,6 +67,7 @@ const ABOUT_IMPACT_STATS = [
 export default function ProfileScreen() {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState<{ [k: string]: boolean }>({});
+  const [imageModalVisible, setImageModalVisible] = useState(false);
   const navigation = useNavigation<any>();
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
@@ -147,13 +152,55 @@ export default function ProfileScreen() {
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={styles.header}>{t("profile.title")}</Text>
 
+        {/* Full-screen image viewer modal */}
+        {user?.image ? (
+          <Modal
+            visible={imageModalVisible}
+            transparent
+            animationType="fade"
+            statusBarTranslucent
+            onRequestClose={() => setImageModalVisible(false)}
+          >
+            <StatusBar backgroundColor="#000" barStyle="light-content" />
+            <SafeAreaView style={styles.modalContainer}>
+              <TouchableOpacity
+                style={styles.modalClose}
+                onPress={() => setImageModalVisible(false)}
+                activeOpacity={0.8}
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              >
+                <Text style={styles.modalCloseIcon}>✕</Text>
+              </TouchableOpacity>
+              <Image
+                source={{ uri: user.image }}
+                style={styles.modalImage}
+                resizeMode="contain"
+              />
+            </SafeAreaView>
+          </Modal>
+        ) : null}
+
         <View style={styles.profileCard}>
           <View style={styles.profileTopRow}>
-            <View style={styles.avatar}>
-              <Text style={styles.avatarInitials}>
-                {getInitials(user?.fullname)}
-              </Text>
-            </View>
+            {user?.image ? (
+              <TouchableOpacity
+                onPress={() => setImageModalVisible(true)}
+                activeOpacity={0.85}
+                style={styles.avatar}
+              >
+                <Image
+                  source={{ uri: user.image }}
+                  style={styles.avatarImage}
+                  resizeMode="cover"
+                />
+              </TouchableOpacity>
+            ) : (
+              <View style={styles.avatar}>
+                <Text style={styles.avatarInitials}>
+                  {getInitials(user?.fullname)}
+                </Text>
+              </View>
+            )}
             <View style={{ marginLeft: 12, flex: 1 }}>
               <Text style={styles.name}>
                 {user?.fullname || t("profile.user")}
@@ -626,14 +673,49 @@ const styles = StyleSheet.create({
   },
   profileTopRow: { flexDirection: "row", alignItems: "center" },
   avatar: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
     backgroundColor: "#2563EB",
     alignItems: "center",
     justifyContent: "center",
+    overflow: "hidden",
   },
-  avatarInitials: { color: "#fff", fontWeight: "700" },
+  avatarInitials: { color: "#fff", fontWeight: "700", fontSize: 22 },
+  avatarImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+  },
+  // Full-screen image viewer
+  modalContainer: {
+    flex: 1,
+    backgroundColor: "#000",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalClose: {
+    position: "absolute",
+    top: 16,
+    right: 16,
+    zIndex: 10,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: "rgba(255,255,255,0.18)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalCloseIcon: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "700",
+    lineHeight: 20,
+  },
+  modalImage: {
+    width,
+    height: width,
+  },
   name: { fontSize: 16, fontWeight: "700", color: "#0F172A" },
   memberSince: { color: "#6B7280", marginTop: 4 },
   activeBadge: {
