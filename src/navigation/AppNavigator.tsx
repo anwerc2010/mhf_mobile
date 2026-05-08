@@ -31,6 +31,7 @@ import {
   CaretLeftIcon,
 } from "phosphor-react-native";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import DrawerNavigatorComponent from "./DrawerNavigator";
 
 // Screens
@@ -162,6 +163,84 @@ function StackNavigator({
 // Bottom Tab Navigator
 const BottomTab = createBottomTabNavigator();
 
+function BottomTabsContent() {
+  const insets = useSafeAreaInsets();
+
+  return (
+    <BottomTab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: "#1E3A8A",
+        tabBarInactiveTintColor: "#999",
+        headerShown: false,
+        tabBarStyle: {
+          height: 60 + insets.bottom,
+          paddingBottom: Math.max(insets.bottom, 8),
+          paddingTop: 6,
+          backgroundColor: "#FFFFFF",
+          borderTopWidth: 1,
+          borderTopColor: "#E5E7EB",
+          elevation: 10,
+        },
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: "500",
+          marginBottom: 2,
+        },
+        tabBarItemStyle: {
+          justifyContent: "center",
+          alignItems: "center",
+        },
+        tabBarAllowFontScaling: false,
+      }}
+    >
+      <BottomTab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          title: "Home",
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color, size }) => (
+            <HouseIcon color={color} size={size} weight="fill" />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Card"
+        component={CardScreen}
+        options={{
+          title: "Card",
+          tabBarLabel: "Card",
+          tabBarIcon: ({ color, size }) => (
+            <CreditCardIcon color={color} size={size} weight="fill" />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Services"
+        component={ServicesScreen}
+        options={{
+          title: "Services",
+          tabBarLabel: "Services",
+          tabBarIcon: ({ color, size }) => (
+            <StethoscopeIcon color={color} size={size} weight="fill" />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          title: "Profile",
+          tabBarLabel: "Profile",
+          tabBarIcon: ({ color, size }) => (
+            <UserIcon color={color} size={size} weight="fill" />
+          ),
+        }}
+      />
+    </BottomTab.Navigator>
+  );
+}
+
 const BottomTabStack = createNativeStackNavigator();
 
 function BottomTabNavigator({
@@ -182,70 +261,11 @@ function BottomTabNavigator({
         ),
       }}
     >
-      <BottomTabStack.Screen name="BottomTabs" options={{ title: "Tabs" }}>
-        {() => (
-          <BottomTab.Navigator
-            screenOptions={{
-              tabBarActiveTintColor: "#1E3A8A",
-              tabBarInactiveTintColor: "#999",
-              headerShown: false,
-              tabBarStyle: {
-                paddingBottom: 5,
-                height: 60,
-              },
-              tabBarLabelStyle: {
-                fontSize: 12,
-                fontWeight: "500",
-              },
-            }}
-          >
-            <BottomTab.Screen
-              name="Home"
-              component={HomeScreen}
-              options={{
-                title: "Home",
-                tabBarLabel: "Home",
-                tabBarIcon: ({ color, size }) => (
-                  <HouseIcon color={color} size={size} weight="fill" />
-                ),
-              }}
-            />
-            <BottomTab.Screen
-              name="Card"
-              component={CardScreen}
-              options={{
-                title: "Card",
-                tabBarLabel: "Card",
-                tabBarIcon: ({ color, size }) => (
-                  <CreditCardIcon color={color} size={size} weight="fill" />
-                ),
-              }}
-            />
-            <BottomTab.Screen
-              name="Services"
-              component={ServicesScreen}
-              options={{
-                title: "Services",
-                tabBarLabel: "Services",
-                tabBarIcon: ({ color, size }) => (
-                  <StethoscopeIcon color={color} size={size} weight="fill" />
-                ),
-              }}
-            />
-            <BottomTab.Screen
-              name="Profile"
-              component={ProfileScreen}
-              options={{
-                title: "Profile",
-                tabBarLabel: "Profile",
-                tabBarIcon: ({ color, size }) => (
-                  <UserIcon color={color} size={size} weight="fill" />
-                ),
-              }}
-            />
-          </BottomTab.Navigator>
-        )}
-      </BottomTabStack.Screen>
+      <BottomTabStack.Screen
+        name="BottomTabs"
+        component={BottomTabsContent}
+        options={{ title: "Tabs" }}
+      />
       <BottomTabStack.Screen
         name="Relief"
         component={ReliefScreen}

@@ -295,7 +295,7 @@ export default function HomeScreen() {
                       : defaultPartnerImages[idx % defaultPartnerImages.length]
                   }
                   style={styles.partnerImage}
-                  resizeMode="cover"
+                  resizeMode="stretch"
                   onError={() =>
                     setImageErrors((prev) => ({ ...prev, [idx]: true }))
                   }
@@ -786,10 +786,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: "hidden",
     backgroundColor: "#E5E7EB",
-    marginRight: 0,
     elevation: 2,
   },
-  partnerImage: { width: "100%", height: 190 },
+  partnerImage: { width: "100%", height: "100%" },
   partnerOverlay: {
     position: "absolute",
     bottom: 0,

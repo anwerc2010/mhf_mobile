@@ -303,6 +303,15 @@ function ApplyCardRequest() {
           validations: [{ name: "required", value: true }],
           path: "card_holder.family_head_image",
         },
+        {
+          id: "aadhaar_image",
+          label: t("forms.applyCard.fields.aadhaarImage", "Aadhaar Image"),
+          type: "file",
+          maxFiles: 1,
+          acceptedTypes: ["image/png", "image/jpg", "image/jpeg"],
+          validations: [{ name: "required", value: true }],
+          path: "card_holder.aadhaar_image",
+        },
       ],
     },
     {
@@ -476,6 +485,24 @@ function ApplyCardRequest() {
       const uploadedImageUrl =
         uploadedImageUrls.length > 0 ? uploadedImageUrls[0] : "";
 
+      const aadhaarImageInputs = normalizeDocuments(
+        values.card_holder?.aadhaar_image,
+      );
+      const uploadedAadhaarImageUrls = await uploadDocuments(
+        aadhaarImageInputs,
+      );
+      const uploadedAadhaarImageUrl =
+        uploadedAadhaarImageUrls.length > 0 ? uploadedAadhaarImageUrls[0] : "";
+
+      const addressImageInputs = normalizeDocuments(
+        values.card_holder?.address_image,
+      );
+      const uploadedAddressImageUrls = await uploadDocuments(
+        addressImageInputs,
+      );
+      const uploadedAddressImageUrl =
+        uploadedAddressImageUrls.length > 0 ? uploadedAddressImageUrls[0] : "";
+
       const today = new Date();
       const nextYear = new Date(today);
       nextYear.setFullYear(today.getFullYear() + 1);
@@ -511,6 +538,8 @@ function ApplyCardRequest() {
             ? String(values.card_holder.professions)
             : null,
         family_head_image: uploadedImageUrl,
+        aadhaar_image: uploadedAadhaarImageUrl,
+        address_image: uploadedAddressImageUrl,
         type: values.card_details?.type,
         mode: resolvedMode as "free" | "online",
         date_of_issue: dateOfIssue,

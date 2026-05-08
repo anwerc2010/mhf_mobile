@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import {
   View,
   Text,
@@ -10,7 +10,10 @@ import {
   ActivityIndicator,
   Linking,
   Alert,
+  Platform,
+  PermissionsAndroid,
 } from "react-native";
+import Geolocation from "@react-native-community/geolocation";
 import {
   MagnifyingGlass,
   Star,
@@ -37,6 +40,7 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
   useGetBloodRequestsQuery,
   useGetProvidersQuery,
+  useGetProvidersByLocationQuery,
   useGetAmbulancesQuery,
 } from "@psi/shared-api";
 import { GuideWrapper } from "../components/general/GuideWrapper";
@@ -72,17 +76,71 @@ export default function ServicesScreen() {
   const [activeChip, setActiveChip] = useState("All");
   const [filterVisible, setFilterVisible] = useState(false);
   const [locationFilter, setLocationFilter] = useState<ProviderFilter>(EMPTY_FILTER);
+  const [userLocation, setUserLocation] = useState<{
+    latitude: number;
+    longitude: number;
+  } | null>(null);
 
   // Initialize walkthrough guide for ServicesScreen
   useGuideController("ServicesScreen");
 
-  // Fetch providers from API
+  // Request GPS permission on mount; keep null on deny so A-Z fallback kicks in
+  useEffect(() => {
+    const requestLocation = async () => {
+      if (Platform.OS === "android") {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        );
+        if (granted !== PermissionsAndroid.RESULTS.GRANTED) return;
+      }
+      Geolocation.getCurrentPosition(
+        (pos) =>
+          setUserLocation({
+            latitude: pos.coords.latitude,
+            longitude: pos.coords.longitude,
+          }),
+        () => setUserLocation(null),
+        { enableHighAccuracy: true, timeout: 10000 },
+      );
+    };
+    requestLocation();
+  }, []);
+
+  // Primary source — always fetched; contains specialities, benefits and all fields
   const {
     data: providersData,
-    isLoading,
-    error,
-    refetch,
+    isLoading: providersLoading,
+    error: providersError,
+    refetch: refetchProviders,
   } = useGetProvidersQuery();
+
+  // Location source — fetched only when GPS is available; used solely for distance_km ordering
+  const {
+    data: locationData,
+    isLoading: locationLoading,
+    error: locationError,
+    refetch: refetchLocation,
+  } = useGetProvidersByLocationQuery(
+    {
+      latitude: userLocation?.latitude ?? 0,
+      longitude: userLocation?.longitude ?? 0,
+      radius: 20000,
+    },
+    { skip: !userLocation },
+  );
+
+  const isLoading =
+    providersLoading || (!!userLocation && locationLoading && !locationData);
+  const error = providersError;
+
+  // id → distance_km lookup built from the location endpoint response
+  const distanceMap = useMemo<Record<number, number>>(() => {
+    if (!locationData?.data) return {};
+    return Object.fromEntries(
+      (locationData.data as any[]).map((p) => [p.id, p.distance_km]),
+    );
+  }, [locationData?.data]);
+
   const {
     data: bloodRequestsData,
     isLoading: bloodLoading,
@@ -96,19 +154,14 @@ export default function ServicesScreen() {
     refetch: refetchAmbulances,
   } = useGetAmbulancesQuery();
 
-  // console.log("Providers data:", error ? error : providersData);
-  // console.log(
-  //   "Blood requests data:",
-  //   bloodError ? bloodError : bloodRequestsData,
-  // );
-
-  // Refetch providers when screen comes into focus
+  // Refetch on screen focus
   useFocusEffect(
     React.useCallback(() => {
-      refetch();
+      refetchProviders();
+      if (userLocation) refetchLocation();
       refetchBlood();
       refetchAmbulances();
-    }, [refetch, refetchBlood, refetchAmbulances]),
+    }, [userLocation, refetchProviders, refetchLocation, refetchBlood, refetchAmbulances]),
   );
 
   const activeFilterCount =
@@ -117,9 +170,14 @@ export default function ServicesScreen() {
     (locationFilter.blockId ? 1 : 0) +
     (locationFilter.mandalId ? 1 : 0);
 
-  // Filter providers based on activeChip, search query and location filters
+  // Build filtered + sorted provider list
   const filtered = useMemo(() => {
-    let providers: any[] = providersData?.data || [];
+    // Always use the full list as the base so specialities and all fields are present.
+    // Inject distanceKm from the location query (matches the p.distanceKm field in the card UI).
+    let providers: any[] = (providersData?.data || []).map((p: any) => ({
+      ...p,
+      distanceKm: distanceMap[p.id] ?? null,
+    }));
 
     // Category chip filter
     if (activeChip !== "All") {
@@ -178,8 +236,25 @@ export default function ServicesScreen() {
       });
     }
 
+    // Sorting:
+    //   Location granted → nearest first (providers without coordinates go to end)
+    //   Location denied  → alphabetical A–Z by provider name
+    if (userLocation) {
+      providers = [...providers].sort((a, b) => {
+        if (a.distanceKm === null && b.distanceKm === null) return 0;
+        if (a.distanceKm === null) return 1;
+        if (b.distanceKm === null) return -1;
+        return a.distanceKm - b.distanceKm;
+      });
+    } else {
+      providers = [...providers].sort((a, b) =>
+        (a.provider_name || "").localeCompare(b.provider_name || ""),
+      );
+    }
+
     return providers;
-  }, [providersData?.data, activeChip, query, locationFilter, activeFilterCount]);
+  }, [providersData?.data, distanceMap, activeChip, query, locationFilter, activeFilterCount, userLocation]);
+
 
   const handleProviderPress = (provider: any) => {
     navigation.navigate("ProviderDetails", { provider: provider });
@@ -690,20 +765,13 @@ export default function ServicesScreen() {
                         )}
                       </View>
 
-                      {(p.distanceKm || p.offerPercent) && (
+                      {p.offerPercent && (
                         <View style={styles.bottomRow}>
-                          {p.distanceKm && (
-                            <Text style={styles.distanceText}>
-                              {p.distanceKm} km
+                          <View style={styles.offerPill}>
+                            <Text style={styles.offerText}>
+                              {p.offerPercent}% OFF
                             </Text>
-                          )}
-                          {p.offerPercent && (
-                            <View style={styles.offerPill}>
-                              <Text style={styles.offerText}>
-                                {p.offerPercent}% OFF
-                              </Text>
-                            </View>
-                          )}
+                          </View>
                         </View>
                       )}
 
