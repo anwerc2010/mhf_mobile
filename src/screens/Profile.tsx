@@ -29,11 +29,13 @@ import {
   TrendUp,
   MapPin,
   EnvelopeSimple,
+  WhatsappLogo,
 } from "phosphor-react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useAppSelector, useAppDispatch } from "../store/hook";
 import { clearAuth, useGetDashboardDetailsQuery } from "@psi/shared-api";
 import { useTranslation } from "react-i18next";
+import { APP_CONFIG } from "../constants/config";
 
 const { width } = Dimensions.get("window");
 
@@ -72,6 +74,7 @@ export default function ProfileScreen() {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
   const { data: dashboardData } = useGetDashboardDetailsQuery();
+  const whatsappPhoneNumber = APP_CONFIG.MHF_WHATSAPP_NUMBER_E164;
 
   const toggle = (k: string) =>
     setExpanded((prev) => ({ ...prev, [k]: !prev[k] }));
@@ -108,7 +111,7 @@ export default function ProfileScreen() {
   };
 
   const handleOpenWebsite = async () => {
-    const websiteUrl = "https://mhfglobal.com/";
+    const websiteUrl = APP_CONFIG.MHF_WEBSITE_URL;
     try {
       const canOpen = await Linking.canOpenURL(websiteUrl);
       if (canOpen) {
@@ -118,6 +121,33 @@ export default function ProfileScreen() {
       }
     } catch {
       Alert.alert("Error", "Unable to open website");
+    }
+  };
+
+  const handleOpenWhatsapp = async () => {
+    const initialMessage = encodeURIComponent(
+      t("profile.whatsappInitialMessage", "Hello MHF team, I need support."),
+    );
+    const appUrl = `whatsapp://send?phone=${whatsappPhoneNumber}&text=${initialMessage}`;
+    const webUrl = `https://wa.me/${whatsappPhoneNumber}?text=${initialMessage}`;
+
+    try {
+      const canOpenWhatsapp = await Linking.canOpenURL(appUrl);
+
+      if (canOpenWhatsapp) {
+        await Linking.openURL(appUrl);
+        return;
+      }
+
+      await Linking.openURL(webUrl);
+    } catch {
+      Alert.alert(
+        t("common.error", "Error"),
+        t(
+          "profile.whatsappOpenError",
+          "Unable to open WhatsApp chat right now.",
+        ),
+      );
     }
   };
 
@@ -362,6 +392,13 @@ export default function ProfileScreen() {
               icon: Phone,
               bg: "#F0F9FF",
               color: "#0369A1",
+            },
+            {
+              key: "whatsapp",
+              title: t("profile.whatsapp", "WhatsApp"),
+              icon: WhatsappLogo,
+              bg: "#ECFDF5",
+              color: "#16A34A",
             },
           ].map((item) => {
             const Icon = item.icon as any;
@@ -633,7 +670,9 @@ export default function ProfileScreen() {
                       >
                         <Phone size={16} color="#DC2626" />
                       </View>
-                      <Text style={styles.contactText}>+91 8886210001</Text>
+                      <Text style={styles.contactText}>
+                        {APP_CONFIG.MHF_WHATSAPP_DISPLAY_NUMBER}
+                      </Text>
                     </View>
 
                     <TouchableOpacity
@@ -643,6 +682,57 @@ export default function ProfileScreen() {
                     >
                       <Text style={styles.websiteLinkText}>
                         Visit Our Website
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+
+                {item.key === "whatsapp" && expanded[item.key] && (
+                  <View style={styles.aboutDropdownCard}>
+                    <View style={styles.aboutHeadingRow}>
+                      <View
+                        style={[
+                          styles.aboutHeadingIcon,
+                          { backgroundColor: "#DCFCE7" },
+                        ]}
+                      >
+                        <WhatsappLogo size={18} color="#16A34A" />
+                      </View>
+                      <View style={{ flex: 1 }}>
+                        <Text style={styles.aboutHeading}>
+                          {t("profile.whatsapp", "WhatsApp")}
+                        </Text>
+                        <Text style={styles.aboutSubheading}>
+                          {t(
+                            "profile.whatsappSubheading",
+                            "Chat with us directly on WhatsApp",
+                          )}
+                        </Text>
+                      </View>
+                    </View>
+
+                    <View style={styles.contactRow}>
+                      <View
+                        style={[
+                          styles.contactIconWrap,
+                          { backgroundColor: "#ECFDF5" },
+                        ]}
+                      >
+                        <Phone size={16} color="#16A34A" />
+                      </View>
+                      <Text style={styles.contactText}>
+                        {APP_CONFIG.MHF_WHATSAPP_DISPLAY_NUMBER}
+                      </Text>
+                    </View>
+
+                    <TouchableOpacity
+                      style={styles.whatsappButton}
+                      activeOpacity={0.85}
+                      onPress={handleOpenWhatsapp}
+                    >
+                      <WhatsappLogo size={16} color="#FFFFFF" />
+                      <Text style={styles.whatsappButtonText}>
+                        {t("profile.openWhatsapp", "Open WhatsApp Chat")}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -939,6 +1029,22 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: "700",
     textDecorationLine: "underline",
+  },
+  whatsappButton: {
+    marginTop: 2,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderRadius: 10,
+    backgroundColor: "#16A34A",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+  },
+  whatsappButtonText: {
+    color: "#FFFFFF",
+    fontSize: 13,
+    fontWeight: "700",
   },
   accordionTitle: { color: "#0F172A" },
 });

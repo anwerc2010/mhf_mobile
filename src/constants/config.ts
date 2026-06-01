@@ -1,13 +1,13 @@
 /**
  * Application Configuration
- * 
+ *
  * Centralized configuration for the entire application.
  * This file contains environment-specific settings, API endpoints,
  * feature flags, and other app-wide constants.
  */
 
 // Environment Detection
-export type Environment = 'development' | 'staging' | 'production';
+export type Environment = "development" | "staging" | "production";
 
 /**
  * Get current environment
@@ -19,14 +19,14 @@ const getEnvironment = (): Environment => {
   // or a library like react-native-config
 
   if (__DEV__) {
-    return 'development';
+    return "development";
   }
 
   // You can also check for environment variables
   // For example, using react-native-config:
   // return (process.env.ENV as Environment) || 'development';
 
-  return 'production';
+  return "production";
 };
 
 export const ENV: Environment = getEnvironment();
@@ -37,14 +37,14 @@ export const ENV: Environment = getEnvironment();
 export const API_CONFIG = {
   // Base API URL - change based on environment
   BASE_URL: __DEV__
-    ? 'http://localhost:3000/api' // Development API
-    : 'https://api.production.com/api', // Production API
+    ? "http://localhost:3000/api" // Development API
+    : "https://api.production.com/api", // Production API
 
   // API Timeouts
   TIMEOUT: 30000, // 30 seconds
 
   // API Version
-  VERSION: 'v1',
+  VERSION: "v1",
 
   // Retry Configuration
   MAX_RETRIES: 3,
@@ -52,8 +52,8 @@ export const API_CONFIG = {
 
   // Request Headers
   DEFAULT_HEADERS: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
+    "Content-Type": "application/json",
+    Accept: "application/json",
   },
 } as const;
 
@@ -61,18 +61,23 @@ export const API_CONFIG = {
  * App Information
  */
 export const APP_CONFIG = {
-  NAME: 'Patrn',
-  VERSION: '0.0.1',
-  BUILD_NUMBER: '1',
+  NAME: "Patrn",
+  VERSION: "0.0.1",
+  BUILD_NUMBER: "1",
 
   // App URLs
-  SUPPORT_EMAIL: 'support@patrn.com',
-  PRIVACY_POLICY_URL: 'https://patrn.com/privacy',
-  TERMS_OF_SERVICE_URL: 'https://patrn.com/terms',
+  SUPPORT_EMAIL: "support@patrn.com",
+  PRIVACY_POLICY_URL: "https://patrn.com/privacy",
+  TERMS_OF_SERVICE_URL: "https://patrn.com/terms",
 
   // App Store Links
-  APP_STORE_URL: 'https://apps.apple.com/app/patrn',
-  PLAY_STORE_URL: 'https://play.google.com/store/apps/details?id=com.patrn',
+  APP_STORE_URL: "https://apps.apple.com/app/patrn",
+  PLAY_STORE_URL: "https://play.google.com/store/apps/details?id=com.patrn",
+
+  // Organization contacts
+  MHF_WEBSITE_URL: "https://mhfglobal.com/",
+  MHF_WHATSAPP_NUMBER_E164: "918331960001",
+  MHF_WHATSAPP_DISPLAY_NUMBER: "+91 8331960001",
 } as const;
 
 /**
@@ -86,8 +91,8 @@ export const FEATURE_FLAGS = {
   ENABLE_REDUX_DEVTOOLS: __DEV__,
 
   // Feature toggles
-  ENABLE_ANALYTICS: ENV === 'production',
-  ENABLE_CRASH_REPORTING: ENV === 'production',
+  ENABLE_ANALYTICS: ENV === "production",
+  ENABLE_CRASH_REPORTING: ENV === "production",
   ENABLE_PUSH_NOTIFICATIONS: true,
   ENABLE_BIOMETRIC_AUTH: true,
   ENABLE_DARK_MODE: true,
@@ -103,9 +108,9 @@ export const FEATURE_FLAGS = {
  */
 export const AUTH_CONFIG = {
   // Token storage keys
-  TOKEN_STORAGE_KEY: '@patrn:auth_token',
-  USER_STORAGE_KEY: '@patrn:user_data',
-  REFRESH_TOKEN_STORAGE_KEY: '@patrn:refresh_token',
+  TOKEN_STORAGE_KEY: "@patrn:auth_token",
+  USER_STORAGE_KEY: "@patrn:user_data",
+  REFRESH_TOKEN_STORAGE_KEY: "@patrn:refresh_token",
 
   // Token expiration
   TOKEN_EXPIRY_BUFFER: 5 * 60 * 1000, // 5 minutes before actual expiry
@@ -127,7 +132,7 @@ export const NETWORK_CONFIG = {
 
   // Offline queue
   MAX_OFFLINE_REQUESTS: 50,
-  OFFLINE_QUEUE_STORAGE_KEY: '@patrn:offline_queue',
+  OFFLINE_QUEUE_STORAGE_KEY: "@patrn:offline_queue",
 
   // Request caching
   CACHE_ENABLED: true,
@@ -189,14 +194,14 @@ export const VALIDATION_CONFIG = {
  */
 export const STORAGE_CONFIG = {
   // Storage keys
-  THEME_STORAGE_KEY: '@patrn:theme',
-  LANGUAGE_STORAGE_KEY: '@patrn:language',
-  ONBOARDING_STORAGE_KEY: '@patrn:onboarding_completed',
-  SETTINGS_STORAGE_KEY: '@patrn:settings',
+  THEME_STORAGE_KEY: "@patrn:theme",
+  LANGUAGE_STORAGE_KEY: "@patrn:language",
+  ONBOARDING_STORAGE_KEY: "@patrn:onboarding_completed",
+  SETTINGS_STORAGE_KEY: "@patrn:settings",
 
   // Cache keys
-  CACHE_PREFIX: '@patrn:cache:',
-  CACHE_EXPIRY_PREFIX: '@patrn:cache_expiry:',
+  CACHE_PREFIX: "@patrn:cache:",
+  CACHE_EXPIRY_PREFIX: "@patrn:cache_expiry:",
 } as const;
 
 /**
@@ -204,13 +209,14 @@ export const STORAGE_CONFIG = {
  */
 export const ERROR_CONFIG = {
   // Error messages
-  DEFAULT_ERROR_MESSAGE: 'An unexpected error occurred. Please try again.',
-  NETWORK_ERROR_MESSAGE: 'Network error. Please check your internet connection.',
-  TIMEOUT_ERROR_MESSAGE: 'Request timed out. Please try again.',
+  DEFAULT_ERROR_MESSAGE: "An unexpected error occurred. Please try again.",
+  NETWORK_ERROR_MESSAGE:
+    "Network error. Please check your internet connection.",
+  TIMEOUT_ERROR_MESSAGE: "Request timed out. Please try again.",
 
   // Error reporting
-  ENABLE_ERROR_REPORTING: ENV === 'production',
-  ERROR_REPORTING_URL: 'https://api.patrn.com/errors',
+  ENABLE_ERROR_REPORTING: ENV === "production",
+  ERROR_REPORTING_URL: "https://api.patrn.com/errors",
 
   // Retry configuration
   MAX_ERROR_RETRIES: 3,
@@ -223,7 +229,8 @@ export const ANALYTICS_CONFIG = {
   ENABLED: FEATURE_FLAGS.ENABLE_ANALYTICS,
 
   // Analytics providers
-  GOOGLE_ANALYTICS_ID: ENV === 'production' ? 'GA-PRODUCTION-ID' : 'GA-DEVELOPMENT-ID',
+  GOOGLE_ANALYTICS_ID:
+    ENV === "production" ? "GA-PRODUCTION-ID" : "GA-DEVELOPMENT-ID",
   FIREBASE_ANALYTICS_ENABLED: true,
 
   // Event tracking
@@ -240,7 +247,7 @@ export const DEV_CONFIG = {
   USE_MOCK_API: __DEV__ && false, // Set to true to use mock data
 
   // Logging
-  LOG_LEVEL: __DEV__ ? 'debug' : 'error',
+  LOG_LEVEL: __DEV__ ? "debug" : "error",
   LOG_NETWORK_REQUESTS: __DEV__,
   LOG_REDUX_ACTIONS: __DEV__,
 
@@ -270,29 +277,32 @@ export const CONFIG = {
 /**
  * Helper function to check if running in development
  */
-export const isDevelopment = (): boolean => ENV === 'development';
+export const isDevelopment = (): boolean => ENV === "development";
 
 /**
  * Helper function to check if running in production
  */
-export const isProduction = (): boolean => ENV === 'production';
+export const isProduction = (): boolean => ENV === "production";
 
 /**
  * Helper function to get API URL with version
  */
-export const getApiUrl = (endpoint: string = ''): string => {
+export const getApiUrl = (endpoint: string = ""): string => {
   const baseUrl = API_CONFIG.BASE_URL;
   const version = API_CONFIG.VERSION;
-  const cleanEndpoint = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
-  return `${baseUrl}/${version}/${cleanEndpoint}`.replace(/\/+/g, '/').replace(/\/$/, '');
+  const cleanEndpoint = endpoint.startsWith("/") ? endpoint.slice(1) : endpoint;
+  return `${baseUrl}/${version}/${cleanEndpoint}`
+    .replace(/\/+/g, "/")
+    .replace(/\/$/, "");
 };
 
 /**
  * Helper function to check if a feature is enabled
  */
-export const isFeatureEnabled = (feature: keyof typeof FEATURE_FLAGS): boolean => {
+export const isFeatureEnabled = (
+  feature: keyof typeof FEATURE_FLAGS,
+): boolean => {
   return FEATURE_FLAGS[feature];
 };
 
 export default CONFIG;
-
