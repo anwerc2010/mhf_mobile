@@ -598,16 +598,25 @@ function TopTabNavigator({
 // Main App Navigator - Configurable
 export default function AppNavigator() {
   const resolveInitialLanguage = (): AppLanguage => {
-    if (i18n.language?.startsWith("ar")) {
-      return "ar";
-    }
-    if (i18n.language?.startsWith("ur")) {
-      return "ur";
-    }
-    if (i18n.language?.startsWith("tel")) {
-      return "tel";
-    }
-    return "en";
+    const supportedLanguages: AppLanguage[] = [
+      "en",
+      "ar",
+      "ur",
+      "tel",
+      "hi",
+      "mr",
+      "ta",
+      "pa",
+      "kn",
+      "bn",
+      "gu",
+    ];
+
+    const matchedLanguage = supportedLanguages.find((code) =>
+      i18n.language?.startsWith(code),
+    );
+
+    return matchedLanguage ?? "en";
   };
 
   const [language, setLanguage] = useState<AppLanguage>(

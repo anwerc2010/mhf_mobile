@@ -1,0 +1,905 @@
+{
+  "common": {
+    "email": "ईमेल",
+    "password": "पासवर्ड",
+    "name": "नाम",
+    "confirmPassword": "पासवर्ड की पुष्टि करें",
+    "signIn": "साइन इन",
+    "signUp": "साइन अप",
+    "signOut": "साइन आउट",
+    "cancel": "रद्द करें",
+    "save": "सहेजें",
+    "delete": "हटाएं",
+    "edit": "संपादित करें",
+    "loading": "लोड हो रहा है...",
+    "error": "त्रुटि",
+    "success": "सफलता",
+    "step": "चरण"
+  },
+  "filePicker": {
+    "chooseUploadType": "अपलोड प्रकार चुनें",
+    "imageFromGallery": "गैलरी से छवि",
+    "file": "फ़ाइल",
+    "uploadFile": "अपलोड करने के लिए टैप करें",
+    "selectFile": "फ़ाइल चुनें",
+    "simulatedFile": "डेमो के लिए एक नकली फ़ाइल बनाई गई है।",
+    "useSimulatedFile": "नकली फ़ाइल का उपयोग करें",
+    "noFileSelected": "कोई फ़ाइल नहीं चुनी गई",
+    "pleaseSelectFile": "कृपया कम से कम एक फ़ाइल चुनें।",
+    "fileTooLarge": "फ़ाइल बहुत बड़ी है",
+    "fileExceedsSize": "कुछ फ़ाइलें {{size}} की अधिकतम सीमा से अधिक हैं। कृपया छोटी फ़ाइलें चुनें।",
+    "tooManyFiles": "बहुत अधिक फ़ाइलें",
+    "maxFilesAllowed": "अधिकतम {{max}} फ़ाइलें अनुमत हैं। आप {{remaining}} और जोड़ सकते हैं।",
+    "maximumFilesReached": "अधिकतम फ़ाइलें पहुंच गई ({{max}})",
+    "filepickerNotAvailable": "FilePickerModule उपलब्ध नहीं है, नकली फ़ाइल पिकर का उपयोग हो रहा है",
+    "failedToPickFile": "फ़ाइल चुनने में विफल: {{error}}। कृपया पुनः प्रयास करें।",
+    "failedToOpenPicker": "फ़ाइल पिकर खोलने में विफल: {{error}}। कृपया पुनः प्रयास करें।",
+    "filePickerFuture": "इस प्लेटफ़ॉर्म के लिए फ़ाइल पिकर भविष्य के अपडेट के साथ लागू किया जाएगा।"
+  },
+  "login": {
+    "title": "वापस स्वागत है",
+    "subtitle": "जारी रखने के लिए साइन इन करें",
+    "emailPlaceholder": "अपना ईमेल दर्ज करें",
+    "passwordPlaceholder": "अपना पासवर्ड दर्ज करें",
+    "noAccount": "खाता नहीं है?",
+    "loginFailed": "लॉगिन विफल",
+    "invalidCredentials": "अमान्य ईमेल या पासवर्ड",
+    "errorOccurred": "एक त्रुटि हुई। कृपया पुनः प्रयास करें।",
+    "fillAllFields": "कृपया सभी फ़ील्ड भरें"
+  },
+  "register": {
+    "title": "खाता बनाएं",
+    "subtitle": "शुरू करने के लिए साइन अप करें",
+    "namePlaceholder": "अपना पूरा नाम दर्ज करें",
+    "emailPlaceholder": "अपना ईमेल दर्ज करें",
+    "passwordPlaceholder": "अपना पासवर्ड दर्ज करें",
+    "confirmPasswordPlaceholder": "अपना पासवर्ड पुष्टि करें",
+    "hasAccount": "पहले से खाता है?",
+    "registrationFailed": "पंजीकरण विफल",
+    "registrationSuccess": "पंजीकरण सफल! कृपया लॉगिन करें।",
+    "passwordsNotMatch": "पासवर्ड मेल नहीं खाते",
+    "passwordMinLength": "पासवर्ड कम से कम 6 अक्षर का होना चाहिए",
+    "fillAllFields": "कृपया सभी फ़ील्ड भरें",
+    "profileImageLabel": "प्रोफ़ाइल छवि",
+    "toast": {
+      "success": "ग्राहक सफलतापूर्वक पंजीकृत हुआ",
+      "error": "पंजीकरण विफल"
+    },
+    "validation": {
+      "fullnameRequired": "पूरा नाम आवश्यक है",
+      "ageRequired": "आयु आवश्यक है",
+      "agePositive": "आयु सकारात्मक होनी चाहिए",
+      "genderRequired": "लिंग आवश्यक है",
+      "phoneRequired": "फोन आवश्यक है",
+      "addressRequired": "पता आवश्यक है",
+      "emailRequired": "ईमेल आवश्यक है",
+      "emailInvalid": "कृपया वैध ईमेल दर्ज करें",
+      "passwordRequired": "पासवर्ड आवश्यक है",
+      "passwordMin": "पासवर्ड कम से कम 8 अक्षर का होना चाहिए",
+      "equipmentTypeRequired": "उपकरण प्रकार आवश्यक है",
+      "medicalReasonRequired": "चिकित्सा कारण आवश्यक है",
+      "durationRequired": "अवधि आवश्यक है",
+      "referenceNameRequired": "संदर्भ नाम आवश्यक है",
+      "referenceContactRequired": "संदर्भ संपर्क आवश्यक है"
+    }
+  },
+  "language": {
+    "changeLanguage": "भाषा बदलें",
+    "english": "अंग्रेज़ी",
+    "arabic": "अरबी",
+    "selectLanguage": "भाषा चुनें",
+    "urdu": "उर्दू",
+    "telugu": "तेलुगु",
+    "hindi": "हिंदी",
+    "marathi": "मराठी",
+    "tamil": "तमिल",
+    "punjabi": "पंजाबी",
+    "kannada": "कन्नड़",
+    "bengali": "बंगाली",
+    "gujarati": "गुजराती"
+  },
+  "theme": {
+    "light": "हल्का",
+    "dark": "गहरा",
+    "system": "सिस्टम",
+    "selectTheme": "थीम चुनें",
+    "changeTheme": "थीम बदलें"
+  },
+  "home": {
+    "title": "होम स्क्रीन",
+    "featuredPartners": "विशेष साझेदार",
+    "viewAll": "सभी देखें",
+    "welcomeBack": "वापस स्वागत है,",
+    "education": "शिक्षा",
+    "relief": "राहत",
+    "volunteers": "स्वयंसेवक",
+    "events": "कार्यक्रम",
+    "familyHealthCards": "पारिवारिक स्वास्थ्य कार्ड",
+    "requestNewCard": "+  नया कार्ड अनुरोध करें",
+    "errorLoadingData": "डैशबोर्ड डेटा लोड करने में त्रुटि",
+    "guest": "अतिथि",
+    "noCardsFound": "कोई कार्ड नहीं मिला",
+    "cardRequests": "कार्ड अनुरोध",
+    "cardRequestDetails": "कार्ड अनुरोध विवरण",
+    "requestId": "अनुरोध आईडी:",
+    "status": "स्थिति:",
+    "requested": "अनुरोध किया:",
+    "updated": "अपडेट किया:",
+    "reviewNotes": "समीक्षा नोट:",
+    "noReviewNotes": "कोई समीक्षा नोट उपलब्ध नहीं है",
+    "close": "बंद करें",
+    "applyForCard": "कार्ड के लिए आवेदन करें",
+    "notAvailable": "N/A",
+    "primaryMember": "प्राथमिक सदस्य"
+  },
+  "card": {
+    "healthCard": "स्वास्थ्य कार्ड",
+    "cardHolderName": "कार्ड धारक का नाम",
+    "membershipId": "सदस्यता आईडी",
+    "bloodGroup": "रक्त समूह",
+    "aadharNumber": "आधार संख्या",
+    "dateOfIssue": "जारी करने की तारीख",
+    "createdAt": "बनाया गया",
+    "dateOfExpiry": "समाप्ति तिथि",
+    "title": "पारिवारिक स्वास्थ्य कार्ड",
+    "downloadCard": "डाउनलोड",
+    "emailCard": "ईमेल",
+    "loading": "कार्ड लोड हो रहे हैं...",
+    "loadError": "कार्ड लोड करने में विफल",
+    "swipeHint": "सभी 4 परिवार सदस्य कार्ड देखने के लिए स्वाइप करें",
+    "cardBenefits": "कार्ड लाभ",
+    "benefits": {
+      "freeConsultations": "100+ साझेदार क्लीनिक में मुफ्त परामर्श",
+      "discount": "दवाओं पर 50% तक की छूट",
+      "checkup": "मुफ्त वार्षिक स्वास्थ्य जांच",
+      "helpline": "24/7 आपातकालीन हेल्पलाइन सहायता"
+    },
+    "howToUse": {
+      "title": "उपयोग कैसे करें",
+      "step1": "किसी भी साझेदार स्वास्थ्य सुविधा पर जाएं",
+      "step2": "अपना डिजिटल स्वास्थ्य कार्ड या सदस्य आईडी दिखाएं",
+      "step3": "अपने कार्ड लाभों के अनुसार सेवाएं प्राप्त करें"
+    }
+  },
+  "profile": {
+    "title": "मेरी प्रोफ़ाइल",
+    "memberSince": "सदस्य बने",
+    "activeMember": "सदस्य",
+    "memberId": "सदस्य आईडी",
+    "bloodGroup": "रक्त समूह",
+    "dateOfBirth": "जन्म तिथि",
+    "contact": "संपर्क",
+    "email": "ईमेल",
+    "medicalInfo": "चिकित्सा जानकारी",
+    "allergies": "एलर्जी",
+    "chronicConditions": "पुरानी स्थितियां",
+    "emergencyContact": "आपातकालीन संपर्क",
+    "editProfile": "प्रोफ़ाइल संपादित करें",
+    "logout": "लॉगआउट",
+    "logoutConfirm": "क्या आप वाकई लॉगआउट करना चाहते हैं?",
+    "about": "MHF फाउंडेशन के बारे में",
+    "aboutMHF": "MHF के बारे में",
+    "ourVision": "हमारा दृष्टिकोण",
+    "ourMission": "हमारा मिशन",
+    "ourBoard": "हमारा बोर्ड",
+    "ourTeam": "हमारी टीम",
+    "ourVolunteers": "हमारे स्वयंसेवक",
+    "contactInfo": "संपर्क जानकारी",
+    "user": "उपयोगकर्ता",
+    "updateFailed": "अपडेट विफल",
+    "somethingWentWrong": "कुछ गलत हो गया",
+    "updatedSuccessfully": "प्रोफ़ाइल सफलतापूर्वक अपडेट हुई",
+    "profileImage": "प्रोफ़ाइल छवि",
+    "profileImageHint": "JPG या PNG, अधिकतम 20 MB",
+    "uploadingImage": "छवि अपलोड हो रही है...",
+    "imageUploadFailed": "छवि अपलोड विफल"
+  },
+  "settings": {
+    "title": "सेटिंग स्क्रीन"
+  },
+  "notifications": {
+    "title": "सूचनाएं",
+    "unread": "अपठित सूचना",
+    "unreadPlural": "अपठित सूचनाएं",
+    "allCaughtUp": "सब कुछ ठीक है!",
+    "noNotifications": "कोई सूचना नहीं",
+    "noNotificationsText": "आप अपडेट हैं! बाद में अपडेट के लिए वापस देखें।",
+    "samples": {
+      "cardApproved": {
+        "title": "कार्ड अनुरोध स्वीकृत",
+        "message": "आपका कार्ड अनुरोध स्वीकृत हो गया है और प्रसंस्करण हो रहा है।"
+      },
+      "newEvent": {
+        "title": "नया कार्यक्रम उपलब्ध",
+        "message": "स्वास्थ्य जागरूकता शिविर अगले सप्ताह निर्धारित है। अभी पंजीकरण करें!"
+      },
+      "profileIncomplete": {
+        "title": "प्रोफ़ाइल अधूरी",
+        "message": "सभी सुविधाओं तक पहुंचने के लिए अपनी प्रोफ़ाइल पूरी करें।"
+      },
+      "reliefUpdate": {
+        "title": "राहत आवेदन अपडेट",
+        "message": "आपका राहत आवेदन समीक्षाधीन है। प्रसंस्करण के बाद आपको सूचित किया जाएगा।"
+      },
+      "trainingRegistered": {
+        "title": "प्रशिक्षण पंजीकृत",
+        "message": "आप कौशल विकास प्रशिक्षण कार्यक्रम के लिए सफलतापूर्वक पंजीकृत हो गए हैं।"
+      }
+    },
+    "timeAgo": {
+      "hoursAgo": "घंटे पहले",
+      "dayAgo": "दिन पहले",
+      "daysAgo": "दिन पहले"
+    }
+  },
+  "network": {
+    "noConnection": "कोई इंटरनेट कनेक्शन नहीं",
+    "connected": "जुड़ा हुआ",
+    "disconnected": "डिसकनेक्टेड",
+    "wifi": "वाई-फाई",
+    "cellular": "सेलुलर",
+    "ethernet": "ईथरनेट",
+    "unknown": "अज्ञात"
+  },
+  "events": {
+    "title": "कार्यक्रम और शिविर",
+    "subtitle": "हमारे सामुदायिक स्वास्थ्य कार्यक्रमों में शामिल हों।",
+    "registerHeader": "कार्यक्रमों के लिए पंजीकरण",
+    "upcoming": "आगामी कार्यक्रम",
+    "registerNow": "अभी पंजीकरण करें",
+    "impactTitle": "हमारा प्रभाव",
+    "impact": {
+      "events": "आयोजित कार्यक्रम",
+      "people": "सेवा किए गए लोग",
+      "volunteers": "सक्रिय स्वयंसेवक"
+    },
+    "register": {
+      "title": "कार्यक्रम पंजीकरण",
+      "subtitle": "कार्यक्रम पंजीकरण के लिए सभी विवरण भरें",
+      "personalInfo": "व्यक्तिगत जानकारी",
+      "fullName": "पूरा नाम",
+      "fullNamePlaceholder": "अपना पूरा नाम दर्ज करें",
+      "phoneNumber": "फ़ोन नंबर",
+      "phoneNumberPlaceholder": "+91-XXXXXXXXXX",
+      "phoneInvalid": "वैध 10 अंकों का नंबर दर्ज करें",
+      "emailAddress": "ईमेल पता",
+      "emailPlaceholder": "your.email@example.com",
+      "emailInvalid": "अमान्य ईमेल पता",
+      "dateOfBirth": "जन्म तिथि",
+      "age": "आयु",
+      "gender": "लिंग",
+      "genderMale": "पुरुष",
+      "genderFemale": "महिला",
+      "genderOther": "अन्य",
+      "address": "पता",
+      "addressPlaceholder": "अपना पूरा पता दर्ज करें",
+      "participationType": "चुनें कि आप कैसे भाग लेना चाहते हैं",
+      "participant": "प्रतिभागी",
+      "volunteer": "स्वयंसेवक",
+      "declaration": "घोषणा",
+      "declarationText": "मैं एतद्द्वारा घोषणा करता/करती हूं कि प्रदान की गई जानकारी सत्य है। मैं मुजतबा हेल्पिंग फाउंडेशन के सिद्धांतों और दिशा-निर्देशों का पालन करने और चुने गए कार्यक्रम में जिम्मेदारी से भाग लेने के लिए सहमत हूं।",
+      "iAgree": "मैं सहमत हूं",
+      "saveDetails": "विवरण सहेजें",
+      "submitting": "जमा हो रहा है...",
+      "successTitle": "सफलता",
+      "successMessage": "कार्यक्रम पंजीकरण सफलतापूर्वक जमा हुआ",
+      "errorTitle": "त्रुटि",
+      "errorMessage": "कार्यक्रम पंजीकरण जमा करने में विफल"
+    },
+    "items": {
+      "medical": {
+        "title": "मुफ्त चिकित्सा स्वास्थ्य शिविर",
+        "date": "26 नवंबर 2025",
+        "time": "सुबह 10:00 - शाम 6:00",
+        "location": "सामुदायिक केंद्र, मालाड",
+        "desc": "बीपी, रक्त शर्करा, बीएमआई, बुनियादी परामर्श और विशेषज्ञ सहित व्यापक स्वास्थ्य जांच। मुफ्त सेवाएं उपलब्ध।",
+        "tag1": "सामान्य जांच",
+        "tag2": "प्रयोगशाला परीक्षण",
+        "tag3": "परामर्श",
+        "tag4": "रक्त शर्करा परीक्षण",
+        "stats": "50 पंजीकरण"
+      },
+      "blood": {
+        "title": "रक्तदान अभियान",
+        "date": "28 नवंबर 2025",
+        "time": "सुबह 10:00 - शाम 4:00",
+        "location": "SGP गार्डन, अंधेरी",
+        "desc": "प्रमाणित ब्लड बैंक के सहयोग से रक्तदान शिविर। साइट पर चिकित्सा सहायता। मुफ्त जलपान।",
+        "tag1": "स्वयंसेवकों की आवश्यकता",
+        "tag2": "साइट पर डॉक्टर",
+        "tag3": "प्रमाण पत्र",
+        "tag4": "जलपान",
+        "stats": "100+ दाताओं की उम्मीद"
+      },
+      "awareness": {
+        "title": "स्वास्थ्य जागरूकता सत्र",
+        "date": "30 नवंबर 2025",
+        "time": "दोपहर 2:00 - शाम 5:00",
+        "location": "ज़ूम पर वर्चुअल",
+        "desc": "निवारक स्वास्थ्य देखभाल, पोषण, स्वच्छता और मानसिक स्वास्थ्य पर शैक्षिक सत्र। विशेषज्ञ Q&A के साथ इंटरैक्टिव सत्र।",
+        "tag1": "मुफ्त प्रवेश",
+        "tag2": "लाइव सत्र",
+        "tag3": "मुफ्त सामग्री",
+        "stats": "200+ पंजीकरण"
+      }
+    }
+  },
+  "relief": {
+    "apply": "राहत के लिए आवेदन करें",
+    "donate": "अभी दान करें",
+    "activePrograms": "सक्रिय राहत कार्यक्रम",
+    "howToApply": "राहत के लिए कैसे आवेदन करें",
+    "impactTitle": "राहत प्रभाव",
+    "requestNewCard": "+  नया कार्ड अनुरोध करें",
+    "steps": {
+      "formTitle": "आवेदन फ़ॉर्म भरें",
+      "formDesc": "आवश्यक विवरण के साथ अपना राहत अनुरोध जमा करें",
+      "verifyTitle": "सत्यापन प्रक्रिया",
+      "verifyDesc": "हमारी टीम आपके अनुरोध और दस्तावेज़ों का सत्यापन करेगी",
+      "distributeTitle": "राहत वितरण",
+      "distributeDesc": "स्वीकृत लाभार्थियों से वितरण के लिए संपर्क किया जाएगा"
+    },
+    "impact": {
+      "families": "परिवारों की मदद की",
+      "drives": "राहत अभियान",
+      "aid": "सहायता का मूल्य"
+    },
+    "programs": {
+      "food": {
+        "title": "खाद्य वितरण अभियान",
+        "locations": "कई स्थान",
+        "desc": "जरूरतमंद परिवारों के लिए दैनिक खाद्य वितरण। प्रत्येक किट में आमतौर पर चावल, दालें, तेल और एक सप्ताह की आवश्यक किराना सामग्री शामिल होती है।",
+        "tag1": "दैनिक",
+        "tag2": "कई स्थान",
+        "tag3": "पारिवारिक किट",
+        "stats": "500+ परिवारों की मदद"
+      },
+      "flood": {
+        "title": "बाढ़ राहत सहायता",
+        "locations": "आपदा प्रभावित क्षेत्र",
+        "desc": "बाढ़ प्रभावित परिवारों को तत्काल राहत जिसमें स्वच्छ पानी, सूखा राशन, अस्थायी आश्रय और चिकित्सा सेवाएं शामिल हैं।",
+        "tag1": "बाढ़ राहत",
+        "tag2": "आश्रय",
+        "tag3": "चिकित्सा",
+        "stats": "200+ परिवारों की सेवा"
+      },
+      "winter": {
+        "title": "शीतकालीन राहत अभियान",
+        "locations": "शहरी और ग्रामीण क्षेत्र",
+        "desc": "जरूरतमंदों को कंबल, स्वेटर और आवश्यक वस्तुओं का वितरण, विशेषकर कड़ी सर्दियों में बुजुर्ग निवासियों को।",
+        "tag1": "कंबल",
+        "tag2": "स्वेटर",
+        "tag3": "बुजुर्ग",
+        "stats": "300+ लोगों को कवर"
+      },
+      "medical": {
+        "title": "आपातकालीन चिकित्सा राहत",
+        "locations": "सभी राहत क्षेत्र",
+        "desc": "दवाएं, प्राथमिक चिकित्सा और गंभीर मामलों के लिए चिकित्सा परिवहन सहायता सहित आपातकालीन चिकित्सा सहायता।",
+        "tag1": "चिकित्सा",
+        "tag2": "आपातकाल",
+        "tag3": "एम्बुलेंस",
+        "stats": "150+ मामले"
+      }
+    },
+    "registrationStatus": "पंजीकरण स्थिति",
+    "requestDetails": "राहत अनुरोध विवरण",
+    "registrationId": "पंजीकरण आईडी:",
+    "noReviewNote": "कोई समीक्षा नोट उपलब्ध नहीं है"
+  },
+  "services": {
+    "title": "सेवाएं और प्रदाता",
+    "subtitle": "अपने पास अनुमोदित स्वास्थ्य सेवा प्रदाता खोजें",
+    "searchPlaceholder": "प्रदाता, विशेषताएं, स्थान खोजें...",
+    "resultsFound": "प्रदाता मिले",
+    "loading": "प्रदाता लोड हो रहे हैं...",
+    "loadError": "प्रदाता लोड करने में विफल",
+    "tab": {
+      "providers": "प्रदाता",
+      "blood": "रक्त",
+      "equipment": "उपकरण",
+      "ambulance": "एम्बुलेंस",
+      "benefits": "लाभ"
+    },
+    "categories": {
+      "all": "सभी",
+      "hospital": "अस्पताल",
+      "diagnostics": "निदान",
+      "pharmacy": "फार्मेसी",
+      "clinics": "क्लीनिक",
+      "rehab": "पुनर्वास",
+      "labs": "प्रयोगशाला",
+      "surgical": "शल्य चिकित्सा"
+    },
+    "provider": {
+      "unknown": "अज्ञात प्रदाता",
+      "noAddress": "पता उपलब्ध नहीं",
+      "noPhone": "N/A"
+    },
+    "blood": {
+      "emergency": "आपातकालीन रक्त की आवश्यकता!",
+      "cta": "हमारे दाता नेटवर्क से रक्त का अनुरोध करें",
+      "requestNow": "अभी रक्त का अनुरोध करें",
+      "loading": "रक्त अनुरोध लोड हो रहे हैं...",
+      "loadError": "रक्त अनुरोध लोड करने में विफल",
+      "noRequests": "कोई रक्त अनुरोध नहीं मिला",
+      "yourRequests": "आपके रक्त अनुरोध",
+      "myRequests": "मेरे रक्त अनुरोध",
+      "patient": "मरीज",
+      "bloodGroup": "रक्त समूह:",
+      "units": "इकाइयां:",
+      "required": "आवश्यक:",
+      "urgency": "तात्कालिकता:",
+      "hospital": "अस्पताल:",
+      "contact": "संपर्क:"
+    },
+    "benefits": {
+      "free": {
+        "title": "मुफ्त परामर्श",
+        "subtitle": "सामान्य चिकित्सकों और विशेषज्ञों तक पहुंच"
+      },
+      "medicine": {
+        "title": "दवा सहायता",
+        "subtitle": "पुरानी स्थितियों के लिए सब्सिडी वाली दवाएं"
+      },
+      "emergency": {
+        "title": "आपातकालीन परिवहन",
+        "subtitle": "24/7 आपातकालीन एम्बुलेंस सेवाएं"
+      },
+      "checkups": {
+        "title": "स्वास्थ्य जांच",
+        "subtitle": "नियमित स्वास्थ्य निगरानी और निदान"
+      },
+      "records": {
+        "title": "चिकित्सा रिकॉर्ड",
+        "subtitle": "डिजिटल स्वास्थ्य रिकॉर्ड प्रबंधन"
+      },
+      "find": {
+        "title": "क्लीनिक खोजें",
+        "subtitle": "पास के साझेदार स्वास्थ्य केंद्र खोजें"
+      }
+    },
+    "help": {
+      "title": "मदद चाहिए?",
+      "desc": "हमारी सहायता टीम आपकी सहायता के लिए 24/7 उपलब्ध है",
+      "contact": "सहायता से संपर्क करें"
+    },
+    "noContactFor": "{{serviceName}} के लिए कोई संपर्क नंबर उपलब्ध नहीं है"
+  },
+  "providerDetails": {
+    "error": "त्रुटि",
+    "phoneError": "फोन कॉल करने में असमर्थ",
+    "mapError": "मानचित्र खोलने में असमर्थ",
+    "emailError": "ईमेल खोलने में असमर्थ",
+    "shareError": "प्रदाता विवरण साझा करने में असमर्थ",
+    "notFound": "प्रदाता विवरण नहीं मिला",
+    "contactInfo": "संपर्क जानकारी",
+    "phone": "फोन",
+    "email": "ईमेल",
+    "address": "पता",
+    "specialities": "विशेषताएं",
+    "benefits": "लाभ",
+    "viewOnMap": "मानचित्र पर देखें",
+    "callNow": "अभी कॉल करें"
+  },
+  "equipment": {
+    "subtitle": "अपने उपकरण अनुरोध इतिहास देखें",
+    "loading": "अनुरोध लोड हो रहे हैं...",
+    "error": "अनुरोध लोड करने में विफल",
+    "submit": {
+      "success": "सफलता",
+      "successMessage": "उपकरण अनुरोध सफलतापूर्वक जमा हुआ! हमारी टीम आपके अनुरोध की समीक्षा करेगी।",
+      "error": "त्रुटि",
+      "errorMessage": "उपकरण अनुरोध जमा करने में विफल। कृपया पुनः प्रयास करें।",
+      "submitting": "जमा हो रहा है...",
+      "submitButton": "अनुरोध जमा करें"
+    },
+    "need": "चिकित्सा उपकरण चाहिए?",
+    "needSubtitle": "घरेलू देखभाल के लिए उपकरण सहायता का अनुरोध करें",
+    "request": "उपकरण का अनुरोध करें",
+    "myRequests": "मेरे उपकरण अनुरोध",
+    "viewAll": "सभी अनुरोध देखें",
+    "items": "आइटम",
+    "details": {
+      "fullName": "पूरा नाम:",
+      "duration": "अवधि:",
+      "medicalReason": "चिकित्सा कारण:",
+      "requestDetails": "अनुरोध विवरण",
+      "requestId": "अनुरोध आईडी:",
+      "status": "स्थिति:",
+      "equipment": "उपकरण:"
+    }
+  },
+  "ambulance": {
+    "loading": "एम्बुलेंस लोड हो रही हैं...",
+    "error": "एम्बुलेंस लोड करने में विफल",
+    "title": "आपातकालीन एम्बुलेंस सेवाएं",
+    "subtitle": "24/7 आपातकालीन एम्बुलेंस सहायता",
+    "view": "सेवाएं देखें",
+    "details": {
+      "vehicleType": "वाहन प्रकार:",
+      "serviceArea": "सेवा क्षेत्र:",
+      "responseTime": "प्रतिक्रिया समय:"
+    },
+    "call": "{{contact}} कॉल करें"
+  },
+  "blood": {
+    "requestDetails": "रक्त अनुरोध विवरण",
+    "hospitalDetails": "अस्पताल और डॉक्टर विवरण",
+    "subtitle": "रक्त का अनुरोध करने के लिए नीचे विवरण भरें",
+    "submit": {
+      "successMessage": "रक्त अनुरोध सफलतापूर्वक जमा हुआ",
+      "errorMessage": "रक्त अनुरोध जमा करने में विफल। कृपया पुनः प्रयास करें।"
+    }
+  },
+  "payment": {
+    "failed": "भुगतान विफल",
+    "customerMissing": "वर्तमान ग्राहक की पहचान करने में असमर्थ।",
+    "contributionType": "योगदान प्रकार",
+    "amountPayable": "देय राशि",
+    "continueUpi": "UPI पर जारी रखें",
+    "payNow": "अभी भुगतान करें",
+    "receiptGenerateError": "रसीद छवि बनाने में असमर्थ।",
+    "receiptTitle": "भुगतान रसीद",
+    "campaignReceipt": "अभियान भुगतान रसीद",
+    "healthCardReceipt": "स्वास्थ्य कार्ड भुगतान रसीद",
+    "receiptShareError": "रसीद छवि डाउनलोड/साझा करने में असमर्थ।",
+    "successTitle": "भुगतान सफल!",
+    "downloadReceipt": "रसीद डाउनलोड करें",
+    "viewHealthCard": "स्वास्थ्य कार्ड देखें",
+    "goHome": "होम पर जाएं"
+  },
+  "volunteers": {
+    "submitSuccess": "स्वयंसेवक पंजीकरण सफलतापूर्वक जमा हुआ",
+    "submitError": "पंजीकरण जमा करने में विफल"
+  },
+  "newCard": {
+    "patientDetails": "रोगी विवरण"
+  },
+  "forms": {
+    "common": {
+      "saveDetails": "विवरण सहेजें",
+      "ok": "ठीक है",
+      "submitting": "जमा हो रहा है...",
+      "iAgree": "मैं सहमत हूं",
+      "sections": {
+        "locationDetails": "स्थान विवरण",
+        "declaration": "घोषणा"
+      },
+      "fields": {
+        "state": "राज्य",
+        "district": "जिला",
+        "block": "ब्लॉक",
+        "mandal": "मंडल"
+      },
+      "loading": {
+        "states": "राज्य लोड हो रहे हैं...",
+        "districts": "जिले लोड हो रहे हैं...",
+        "blocks": "ब्लॉक लोड हो रहे हैं...",
+        "mandals": "मंडल लोड हो रहे हैं..."
+      },
+      "select": {
+        "state": "राज्य चुनें",
+        "stateFirst": "पहले राज्य चुनें",
+        "district": "जिला चुनें",
+        "districtFirst": "पहले जिला चुनें",
+        "block": "ब्लॉक चुनें",
+        "blockFirst": "पहले ब्लॉक चुनें",
+        "mandal": "मंडल चुनें"
+      },
+      "options": {
+        "male": "पुरुष",
+        "female": "महिला",
+        "other": "अन्य",
+        "single": "अविवाहित",
+        "married": "विवाहित",
+        "yes": "हां",
+        "no": "नहीं",
+        "aadhar": "आधार",
+        "voterId": "मतदाता पहचान पत्र",
+        "panCard": "PAN कार्ड"
+      },
+      "validation": {
+        "phone10": "वैध 10 अंकों का नंबर दर्ज करें",
+        "invalidEmail": "अमान्य ईमेल",
+        "invalidEmailAddress": "अमान्य ईमेल पता",
+        "pincode6": "वैध 6 अंकों का पिनकोड दर्ज करें"
+      }
+    },
+    "training": {
+      "heading": "पंजीकरण फ़ॉर्म",
+      "sections": {
+        "personalDetails": "व्यक्तिगत विवरण",
+        "educationalBackground": "शैक्षिक पृष्ठभूमि",
+        "courseSelection": "कोर्स चयन"
+      },
+      "fields": {
+        "fullName": "पूरा नाम",
+        "dateOfBirth": "जन्म तिथि",
+        "age": "आयु",
+        "gender": "लिंग",
+        "contactNumber": "संपर्क नंबर (फोन / व्हाट्सएप)",
+        "parentGuardianContact": "माता-पिता / अभिभावक का संपर्क नंबर",
+        "maritalStatus": "वैवाहिक स्थिति",
+        "emailAvailable": "ईमेल आईडी (उपलब्ध)",
+        "addressWithPincode": "पता (पिनकोड के साथ)",
+        "pincode": "पिनकोड",
+        "guardianName": "अभिभावक का नाम (यदि कोई)",
+        "idProofType": "पहचान प्रमाण (आधार / अन्य)",
+        "identificationNumber": "पहचान संख्या",
+        "highestQualification": "उच्चतम योग्यता",
+        "mediumOfInstruction": "शिक्षण माध्यम",
+        "schoolCollegeName": "स्कूल / कॉलेज का नाम",
+        "schoolCollegeLocation": "स्थान",
+        "educationGapReason": "शिक्षा में अंतराल / छोड़ने का कारण",
+        "preferredCourses": "कृपया अपना पसंदीदा प्रशिक्षण चुनें"
+      },
+      "placeholders": {
+        "fullName": "अपना पूरा नाम दर्ज करें",
+        "addressWithPincode": "पिनकोड के साथ अपना पूरा पता दर्ज करें",
+        "pincode": "अपना पिनकोड दर्ज करें",
+        "idProofType": "आधार नंबर या अन्य पहचान प्रमाण नंबर",
+        "educationGapReason": "यदि कोई अंतराल या छोड़ना है, तो कारण बताएं"
+      },
+      "options": {
+        "graduation": "स्नातक",
+        "hindi": "हिंदी",
+        "english": "अंग्रेज़ी"
+      },
+      "course": {
+        "computer": "कंप्यूटर",
+        "tailoring": "सिलाई",
+        "spokenEnglish": "बोली जाने वाली अंग्रेज़ी",
+        "handmadeDesigning": "हस्तनिर्मित डिज़ाइनिंग",
+        "other": "अन्य (कृपया निर्दिष्ट करें)"
+      },
+      "alerts": {
+        "submitSuccess": "पंजीकरण सफलतापूर्वक जमा हुआ!",
+        "submitFailed": "पंजीकरण जमा करने में विफल। कृपया पुनः प्रयास करें।"
+      }
+    },
+    "relief": {
+      "heading": "सहायता के लिए आवेदन करें",
+      "sections": {
+        "personalInformation": "व्यक्तिगत जानकारी",
+        "familyAndLivingSituation": "पारिवारिक और रहने की स्थिति",
+        "reasonForRequest": "अनुरोध का कारण",
+        "assistanceRequired": "आपको हमसे क्या चाहिए?"
+      },
+      "fields": {
+        "fullName": "पूरा नाम",
+        "fatherOrHusbandName": "पिता / पति का नाम",
+        "dateOfBirth": "जन्म तिथि",
+        "age": "आयु",
+        "gender": "लिंग",
+        "mobileNumber": "मोबाइल नंबर",
+        "alternateNumber": "वैकल्पिक नंबर",
+        "emailAvailable": "ईमेल आईडी (उपलब्ध)",
+        "currentAddress": "वर्तमान पता (पिनकोड के साथ)",
+        "pincode": "पिनकोड",
+        "idProofType": "पहचान प्रमाण प्रकार",
+        "idProofNumber": "पहचान प्रमाण संख्या",
+        "totalFamilyMembers": "कुल परिवार के सदस्य",
+        "earningMembers": "कमाने वाले सदस्य",
+        "childrenBelow5": "बच्चे (5 से कम)",
+        "childrenSchoolGoing": "बच्चे (स्कूल जाने वाले)",
+        "elderlyDisabledMembers": "बुजुर्ग / विकलांग सदस्य",
+        "elderlyDisabledDetails": "बुजुर्ग / विकलांग विवरण",
+        "houseType": "घर का प्रकार",
+        "reasonForRequest": "अनुरोध का कारण (वैकल्पिक लेकिन सहायक)",
+        "assistanceTypes": "कृपया अनुरोधित आइटम चुनें",
+        "declaration": "मैं घोषणा करता/करती हूं कि ऊपर दी गई जानकारी मेरी जानकारी के अनुसार सत्य और सटीक है।"
+      },
+      "placeholders": {
+        "fullName": "अपना पूरा नाम दर्ज करें",
+        "fatherOrHusbandName": "पिता या पति का नाम दर्ज करें",
+        "currentAddress": "पिनकोड के साथ अपना पूरा पता दर्ज करें",
+        "pincode": "अपना पिनकोड दर्ज करें",
+        "idProofNumber": "पहचान प्रमाण नंबर दर्ज करें",
+        "reasonForRequest": "अपनी स्थिति और क्यों आपको सहायता की आवश्यकता है, बताएं"
+      },
+      "options": {
+        "foodKit": "खाद्य किट",
+        "water": "पानी",
+        "clothes": "कपड़े",
+        "shelter": "आश्रय / अस्थायी आवास",
+        "medicalHelp": "दवा / चिकित्सा सहायता",
+        "other": "अन्य (कृपया निर्दिष्ट करें)",
+        "owned": "स्वामित्व",
+        "temporary": "अस्थायी",
+        "rented": "किराए पर",
+        "damaged": "क्षतिग्रस्त"
+      },
+      "alerts": {
+        "submitSuccess": "आपका राहत अनुरोध सफलतापूर्वक जमा हुआ!",
+        "submitFailed": "राहत अनुरोध जमा करने में विफल। कृपया पुनः प्रयास करें।"
+      }
+    },
+    "applyCard": {
+      "heading": "स्वास्थ्य कार्ड के लिए आवेदन करने के लिए सभी विवरण भरें",
+      "sections": {
+        "cardHolderDetails": "कार्ड धारक विवरण",
+        "cardDetails": "कार्ड विवरण",
+        "familyMembers": "परिवार के सदस्य"
+      },
+      "fields": {
+        "cardHolderName": "कार्ड धारक का नाम",
+        "aadhaarNumber": "आधार संख्या",
+        "bloodGroup": "रक्त समूह",
+        "phone": "फोन",
+        "email": "ईमेल",
+        "address": "पता",
+        "gender": "लिंग",
+        "ageCategory": "आयु श्रेणी",
+        "familyHeadImage": "परिवार प्रमुख की छवि",
+        "cardType": "कार्ड प्रकार",
+        "dateOfIssue": "जारी करने की तारीख",
+        "dateOfExpiry": "समाप्ति तिथि",
+        "fullName": "पूरा नाम",
+        "relationship": "संबंध",
+        "dateOfBirth": "जन्म तिथि"
+      },
+      "placeholders": {
+        "fullName": "पूरा नाम दर्ज करें",
+        "phone": "10 अंकों का नंबर दर्ज करें",
+        "email": "ईमेल पता दर्ज करें",
+        "address": "पता दर्ज करें"
+      },
+      "options": {
+        "child": "बच्चा",
+        "adult": "वयस्क",
+        "individual": "व्यक्तिगत",
+        "family": "परिवार",
+        "spouse": "जीवनसाथी",
+        "son": "बेटा",
+        "daughter": "बेटी",
+        "father": "पिता",
+        "mother": "माता",
+        "brother": "भाई",
+        "sister": "बहन"
+      },
+      "validation": {
+        "aadhaarFormat": "वैध आधार नंबर दर्ज करें (XXXX XXXX XXXX)",
+        "aadhaarMaxLength": "आधार नंबर 14 अक्षर से अधिक नहीं हो सकता"
+      },
+      "viewCard": "कार्ड देखें",
+      "alerts": {
+        "createdSuccess": "आपका स्वास्थ्य कार्ड सफलतापूर्वक बन गया!",
+        "failed": "आवेदन जमा करने में विफल"
+      }
+    },
+    "newCard": {
+      "heading": "स्वास्थ्य कार्ड के लिए आवेदन करने के लिए सभी विवरण भरें",
+      "sections": {
+        "treatmentDetails": "उपचार विवरण",
+        "medicalDocuments": "चिकित्सा दस्तावेज़",
+        "referenceDetails": "संदर्भ विवरण (वैकल्पिक)"
+      },
+      "fields": {
+        "fullName": "पूरा नाम",
+        "emailAddress": "ईमेल पता",
+        "contactNumber": "संपर्क नंबर",
+        "healthIssue": "स्वास्थ्य समस्या / चिकित्सा स्थिति",
+        "hospitalName": "उपचार किए गए अस्पताल का नाम",
+        "hospitalAddress": "अस्पताल का पता",
+        "hospitalType": "अस्पताल प्रकार",
+        "treatmentDuration": "आपके उपचार के कितने साल",
+        "medicalReports": "प्रिस्क्रिप्शन / चिकित्सा रिपोर्ट अपलोड करें",
+        "referenceName": "संदर्भ नाम और विवरण",
+        "referenceContact": "संदर्भ संपर्क नंबर"
+      },
+      "placeholders": {
+        "fullName": "अपना पूरा नाम दर्ज करें",
+        "emailAddress": "अपना ईमेल पता दर्ज करें",
+        "healthIssue": "अपनी स्वास्थ्य स्थिति या चिकित्सा समस्या का वर्णन करें",
+        "hospitalName": "अस्पताल का नाम दर्ज करें",
+        "hospitalAddress": "शहर और पिनकोड के साथ पूरा अस्पताल पता दर्ज करें",
+        "treatmentDuration": "जैसे, 2 साल, 6 महीने",
+        "referenceName": "आपको रेफर करने वाले व्यक्ति का नाम"
+      },
+      "options": {
+        "governmentHospital": "सरकारी अस्पताल",
+        "privateHospital": "निजी अस्पताल",
+        "clinic": "क्लीनिक"
+      },
+      "alerts": {
+        "submitSuccess": "कार्ड अनुरोध सफलतापूर्वक जमा हुआ",
+        "submitFailed": "कार्ड अनुरोध जमा करने में विफल। कृपया पुनः प्रयास करें।"
+      }
+    },
+    "volunteers": {
+      "heading": "मुजतबा हेल्पिंग फाउंडेशन में स्वयंसेवक के रूप में जुड़ें",
+      "sections": {
+        "personalDetails": "व्यक्तिगत विवरण",
+        "professionalDetails": "पेशेवर विवरण",
+        "volunteeringPreferences": "स्वयंसेवा प्राथमिकताएं",
+        "experienceAndMotivation": "अनुभव और प्रेरणा"
+      },
+      "fields": {
+        "fullName": "पूरा नाम",
+        "dateOfBirth": "जन्म तिथि",
+        "gender": "लिंग",
+        "phoneNumber": "फ़ोन नंबर",
+        "alternateContact": "वैकल्पिक संपर्क नं.",
+        "emailAddress": "ईमेल पता",
+        "address": "पता",
+        "qualification": "योग्यता",
+        "employmentStatus": "रोजगार स्थिति",
+        "occupation": "व्यवसाय",
+        "volunteerArea": "आप किन क्षेत्रों में स्वयंसेवा करना चाहते हैं?",
+        "availability": "उपलब्धता",
+        "previousVolunteering": "क्या आपने पहले स्वयंसेवा की है?",
+        "motivation": "आप मुजतबा हेल्पिंग फाउंडेशन में स्वयंसेवक के रूप में क्यों जुड़ना चाहते हैं?",
+        "declaration": "मैं एतद्द्वारा घोषणा करता/करती हूं कि प्रदान की गई जानकारी सत्य है और मैं जिम्मेदारी से स्वयंसेवा करने के लिए सहमत हूं।"
+      },
+      "placeholders": {
+        "motivation": "कृपया अपनी प्रेरणा और हमारे साथ स्वयंसेवा करने की इच्छा साझा करें..."
+      },
+      "options": {
+        "student": "छात्र",
+        "employee": "कर्मचारी",
+        "selfEmployed": "स्व-नियोजित",
+        "healthCamps": "स्वास्थ्य शिविर",
+        "awarenessDrives": "जागरूकता अभियान",
+        "dataEntry": "डेटा एंट्री / कार्यालय कार्य",
+        "socialMedia": "सोशल मीडिया प्रचार",
+        "fundraising": "धन संग्रह",
+        "communityOutreach": "सामुदायिक आउटरीच",
+        "weekdays": "सप्ताह के दिन",
+        "weekends": "सप्ताहांत",
+        "flexible": "लचीला"
+      }
+    },
+    "equipment": {
+      "heading": "चिकित्सा उपकरण का अनुरोध करने के लिए नीचे विवरण भरें",
+      "submitRequest": "अनुरोध जमा करें",
+      "sections": {
+        "personalInformation": "व्यक्तिगत जानकारी",
+        "addressDetails": "पता विवरण",
+        "equipmentDetails": "उपकरण विवरण",
+        "referenceDetails": "संदर्भ विवरण",
+        "consent": "सहमति"
+      },
+      "fields": {
+        "fullName": "पूरा नाम",
+        "age": "आयु",
+        "gender": "लिंग",
+        "mobileNumber": "मोबाइल नंबर",
+        "email": "ईमेल",
+        "address": "पता",
+        "pincode": "पिनकोड",
+        "equipmentType": "उपकरण प्रकार",
+        "medicalReason": "चिकित्सा कारण",
+        "durationRequired": "आवश्यक अवधि",
+        "referenceName": "संदर्भ नाम",
+        "referenceContact": "संदर्भ संपर्क",
+        "consentDeclaration": "मैं एतद्द्वारा घोषणा करता/करती हूं कि प्रदान की गई जानकारी सत्य और सटीक है"
+      },
+      "placeholders": {
+        "fullName": "अपना पूरा नाम दर्ज करें",
+        "age": "अपनी आयु दर्ज करें",
+        "mobileNumber": "मोबाइल नंबर दर्ज करें",
+        "email": "ईमेल पता दर्ज करें",
+        "address": "अपना पता दर्ज करें",
+        "pincode": "पिनकोड दर्ज करें",
+        "medicalReason": "उपकरण का अनुरोध करने का चिकित्सा कारण बताएं",
+        "durationRequired": "जैसे, 2 सप्ताह, 1 महीना",
+        "referenceName": "संदर्भ व्यक्ति का नाम दर्ज करें",
+        "referenceContact": "संदर्भ संपर्क नंबर दर्ज करें"
+      },
+      "options": {
+        "bloodPressureMonitor": "रक्तचाप मॉनिटर",
+        "glucometer": "ग्लूकोमीटर",
+        "oxygenConcentrator": "ऑक्सीजन कंसन्ट्रेटर",
+        "wheelchair": "व्हीलचेयर",
+        "walkingAid": "चलने में सहायक",
+        "hospitalBed": "अस्पताल बिस्तर",
+        "nebulizer": "नेब्युलाइज़र"
+      },
+      "alerts": {
+        "submitSuccess": "उपकरण अनुरोध सफलतापूर्वक जमा हुआ! अनुरोध आईडी:",
+        "submitFailed": "उपकरण अनुरोध जमा करने में विफल। कृपया पुनः प्रयास करें।"
+      }
+    }
+  }
+}

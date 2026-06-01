@@ -1,0 +1,289 @@
+{
+  "common": {
+    "email": "ಇಮೇಲ್",
+    "password": "ಪಾಸ್‌ವರ್ಡ್",
+    "name": "ಹೆಸರು",
+    "confirmPassword": "ಪಾಸ್‌ವರ್ಡ್ ದೃಢೀಕರಿಸಿ",
+    "signIn": "ಸೈನ್ ಇನ್",
+    "signUp": "ಸೈನ್ ಅಪ್",
+    "signOut": "ಸೈನ್ ಔಟ್",
+    "cancel": "ರದ್ದು ಮಾಡಿ",
+    "save": "ಉಳಿಸಿ",
+    "delete": "ಅಳಿಸಿ",
+    "edit": "ಸಂಪಾದಿಸಿ",
+    "loading": "ಲೋಡ್ ಆಗುತ್ತಿದೆ...",
+    "error": "ದೋಷ",
+    "success": "ಯಶಸ್ಸು",
+    "step": "ಹಂತ"
+  },
+  "filePicker": {
+    "chooseUploadType": "ಅಪ್‌ಲೋಡ್ ಪ್ರಕಾರ ಆಯ್ಕೆ ಮಾಡಿ",
+    "imageFromGallery": "ಗ್ಯಾಲರಿಯಿಂದ ಚಿತ್ರ",
+    "file": "ಫೈಲ್",
+    "uploadFile": "ಅಪ್‌ಲೋಡ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ",
+    "selectFile": "ಫೈಲ್ ಆಯ್ಕೆ ಮಾಡಿ",
+    "simulatedFile": "ಡೆಮೋ ಉದ್ದೇಶಗಳಿಗಾಗಿ ಒಂದು ಅನುಕರಣಾ ಫೈಲ್ ರಚಿಸಲಾಗಿದೆ.",
+    "useSimulatedFile": "ಅನುಕರಣಾ ಫೈಲ್ ಬಳಸಿ",
+    "noFileSelected": "ಯಾವುದೇ ಫೈಲ್ ಆಯ್ಕೆ ಮಾಡಲಾಗಿಲ್ಲ",
+    "pleaseSelectFile": "ದಯವಿಟ್ಟು ಕನಿಷ್ಠ ಒಂದು ಫೈಲ್ ಆಯ್ಕೆ ಮಾಡಿ.",
+    "fileTooLarge": "ಫೈಲ್ ತುಂಬಾ ದೊಡ್ಡದಾಗಿದೆ",
+    "fileExceedsSize": "ಕೆಲವು ಫೈಲ್‌ಗಳು {{size}} ಗರಿಷ್ಠ ಗಾತ್ರವನ್ನು ಮೀರುತ್ತವೆ. ಚಿಕ್ಕ ಫೈಲ್‌ಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಿ.",
+    "tooManyFiles": "ತುಂಬಾ ಹೆಚ್ಚು ಫೈಲ್‌ಗಳು",
+    "maxFilesAllowed": "ಗರಿಷ್ಠ {{max}} ಫೈಲ್‌ಗಳು ಅನುಮತಿಸಲಾಗಿದೆ. ನೀವು {{remaining}} ಹೆಚ್ಚು ಸೇರಿಸಬಹುದು.",
+    "maximumFilesReached": "ಗರಿಷ್ಠ ಫೈಲ್‌ಗಳನ್ನು ತಲುಪಲಾಗಿದೆ ({{max}})",
+    "filepickerNotAvailable": "FilePickerModule ಲಭ್ಯವಿಲ್ಲ, ಅನುಕರಣಾ ಫೈಲ್ ಪಿಕರ್ ಬಳಸಲಾಗುತ್ತಿದೆ",
+    "failedToPickFile": "ಫೈಲ್ ಆಯ್ಕೆ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ: {{error}}. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+    "failedToOpenPicker": "ಫೈಲ್ ಪಿಕರ್ ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ: {{error}}. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+    "filePickerFuture": "ಈ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್‌ಗೆ ಫೈಲ್ ಪಿಕರ್ ಭವಿಷ್ಯದ ಅಪ್‌ಡೇಟ್‌ನೊಂದಿಗೆ ಅನುಷ್ಠಾನಗೊಳ್ಳುತ್ತದೆ."
+  },
+  "login": {
+    "title": "ಮರಳಿ ಸ್ವಾಗತ",
+    "subtitle": "ಮುಂದುವರಿಯಲು ಸೈನ್ ಇನ್ ಮಾಡಿ",
+    "emailPlaceholder": "ನಿಮ್ಮ ಇಮೇಲ್ ನಮೂದಿಸಿ",
+    "passwordPlaceholder": "ನಿಮ್ಮ ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ",
+    "noAccount": "ಖಾತೆ ಇಲ್ಲವೇ?",
+    "loginFailed": "ಲಾಗಿನ್ ವಿಫಲ",
+    "invalidCredentials": "ತಪ್ಪಾದ ಇಮೇಲ್ ಅಥವಾ ಪಾಸ್‌ವರ್ಡ್",
+    "errorOccurred": "ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+    "fillAllFields": "ದಯವಿಟ್ಟು ಎಲ್ಲಾ ಕ್ಷೇತ್ರಗಳನ್ನು ತುಂಬಿಸಿ"
+  },
+  "register": {
+    "title": "ಖಾತೆ ರಚಿಸಿ",
+    "subtitle": "ಪ್ರಾರಂಭಿಸಲು ಸೈನ್ ಅಪ್ ಮಾಡಿ",
+    "namePlaceholder": "ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು ನಮೂದಿಸಿ",
+    "emailPlaceholder": "ನಿಮ್ಮ ಇಮೇಲ್ ನಮೂದಿಸಿ",
+    "passwordPlaceholder": "ನಿಮ್ಮ ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ",
+    "confirmPasswordPlaceholder": "ನಿಮ್ಮ ಪಾಸ್‌ವರ್ಡ್ ದೃಢೀಕರಿಸಿ",
+    "hasAccount": "ಈಗಾಗಲೇ ಖಾತೆ ಇದೆಯೇ?",
+    "registrationFailed": "ನೋಂದಣಿ ವಿಫಲ",
+    "registrationSuccess": "ನೋಂದಣಿ ಯಶಸ್ವಿ! ದಯವಿಟ್ಟು ಲಾಗಿನ್ ಮಾಡಿ.",
+    "passwordsNotMatch": "ಪಾಸ್‌ವರ್ಡ್‌ಗಳು ಹೊಂದಾಣಿಕೆಯಾಗುತ್ತಿಲ್ಲ",
+    "passwordMinLength": "ಪಾಸ್‌ವರ್ಡ್ ಕನಿಷ್ಠ 6 ಅಕ್ಷರಗಳಾಗಿರಬೇಕು",
+    "fillAllFields": "ದಯವಿಟ್ಟು ಎಲ್ಲಾ ಕ್ಷೇತ್ರಗಳನ್ನು ತುಂಬಿಸಿ",
+    "profileImageLabel": "ಪ್ರೊಫೈಲ್ ಚಿತ್ರ",
+    "toast": { "success": "ಗ್ರಾಹಕರನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನೋಂದಾಯಿಸಲಾಗಿದೆ", "error": "ನೋಂದಣಿ ವಿಫಲ" },
+    "validation": {
+      "fullnameRequired": "ಪೂರ್ಣ ಹೆಸರು ಅಗತ್ಯ", "ageRequired": "ವಯಸ್ಸು ಅಗತ್ಯ", "agePositive": "ವಯಸ್ಸು ಧನಾತ್ಮಕವಾಗಿರಬೇಕು",
+      "genderRequired": "ಲಿಂಗ ಅಗತ್ಯ", "phoneRequired": "ಫೋನ್ ಅಗತ್ಯ", "addressRequired": "ವಿಳಾಸ ಅಗತ್ಯ",
+      "emailRequired": "ಇಮೇಲ್ ಅಗತ್ಯ", "emailInvalid": "ದಯವಿಟ್ಟು ಮಾನ್ಯ ಇಮೇಲ್ ನಮೂದಿಸಿ",
+      "passwordRequired": "ಪಾಸ್‌ವರ್ಡ್ ಅಗತ್ಯ", "passwordMin": "ಪಾಸ್‌ವರ್ಡ್ ಕನಿಷ್ಠ 8 ಅಕ್ಷರಗಳಾಗಿರಬೇಕು",
+      "equipmentTypeRequired": "ಉಪಕರಣ ಪ್ರಕಾರ ಅಗತ್ಯ", "medicalReasonRequired": "ವೈದ್ಯಕೀಯ ಕಾರಣ ಅಗತ್ಯ",
+      "durationRequired": "ಅವಧಿ ಅಗತ್ಯ", "referenceNameRequired": "ಉಲ್ಲೇಖ ಹೆಸರು ಅಗತ್ಯ", "referenceContactRequired": "ಉಲ್ಲೇಖ ಸಂಪರ್ಕ ಅಗತ್ಯ"
+    }
+  },
+  "language": {
+    "changeLanguage": "ಭಾಷೆ ಬದಲಾಯಿಸಿ", "english": "ಇಂಗ್ಲಿಷ್", "arabic": "ಅರಬಿಕ್",
+    "selectLanguage": "ಭಾಷೆ ಆಯ್ಕೆ ಮಾಡಿ", "urdu": "ಉರ್ದು", "telugu": "ತೆಲುಗು",
+    "hindi": "ಹಿಂದಿ", "marathi": "ಮರಾಠಿ", "tamil": "ತಮಿಳು",
+    "punjabi": "ಪಂಜಾಬಿ", "kannada": "ಕನ್ನಡ", "bengali": "ಬೆಂಗಾಲಿ", "gujarati": "ಗುಜರಾತಿ"
+  },
+  "theme": { "light": "ತಿಳಿ", "dark": "ಕತ್ತಲೆ", "system": "ಸಿಸ್ಟಮ್", "selectTheme": "ಥೀಮ್ ಆಯ್ಕೆ ಮಾಡಿ", "changeTheme": "ಥೀಮ್ ಬದಲಾಯಿಸಿ" },
+  "home": {
+    "title": "ಮುಖಪುಟ ಪರದೆ", "featuredPartners": "ವಿಶೇಷ ಪಾಲುದಾರರು", "viewAll": "ಎಲ್ಲ ವೀಕ್ಷಿಸಿ",
+    "welcomeBack": "ಮರಳಿ ಸ್ವಾಗತ,", "education": "ಶಿಕ್ಷಣ", "relief": "ಪರಿಹಾರ",
+    "volunteers": "ಸ್ವಯಂಸೇವಕರು", "events": "ಕಾರ್ಯಕ್ರಮಗಳು", "familyHealthCards": "ಕುಟುಂಬ ಆರೋಗ್ಯ ಕಾರ್ಡ್‌ಗಳು",
+    "requestNewCard": "+  ಹೊಸ ಕಾರ್ಡ್‌ಗಾಗಿ ವಿನಂತಿ", "errorLoadingData": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಡೇಟಾ ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ",
+    "guest": "ಅತಿಥಿ", "noCardsFound": "ಯಾವುದೇ ಕಾರ್ಡ್‌ಗಳು ಕಂಡುಬಂದಿಲ್ಲ",
+    "cardRequests": "ಕಾರ್ಡ್ ವಿನಂತಿಗಳು", "cardRequestDetails": "ಕಾರ್ಡ್ ವಿನಂತಿ ವಿವರಗಳು",
+    "requestId": "ವಿನಂತಿ ಐಡಿ:", "status": "ಸ್ಥಿತಿ:", "requested": "ವಿನಂತಿಸಲಾಗಿದೆ:", "updated": "ನವೀಕರಿಸಲಾಗಿದೆ:",
+    "reviewNotes": "ವಿಮರ್ಶೆ ಟಿಪ್ಪಣಿಗಳು:", "noReviewNotes": "ಯಾವುದೇ ವಿಮರ್ಶೆ ಟಿಪ್ಪಣಿಗಳು ಲಭ್ಯವಿಲ್ಲ",
+    "close": "ಮುಚ್ಚಿ", "applyForCard": "ಕಾರ್ಡ್‌ಗಾಗಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ", "notAvailable": "N/A", "primaryMember": "ಪ್ರಾಥಮಿಕ ಸದಸ್ಯ"
+  },
+  "card": {
+    "healthCard": "ಆರೋಗ್ಯ ಕಾರ್ಡ್", "cardHolderName": "ಕಾರ್ಡ್ ಧಾರಕರ ಹೆಸರು", "membershipId": "ಸದಸ್ಯತ್ವ ಐಡಿ",
+    "bloodGroup": "ರಕ್ತ ಗುಂಪು", "aadharNumber": "ಆಧಾರ್ ಸಂಖ್ಯೆ", "dateOfIssue": "ನೀಡಿದ ದಿನಾಂಕ",
+    "createdAt": "ರಚಿಸಲಾಗಿದೆ", "dateOfExpiry": "ಮುಕ್ತಾಯ ದಿನಾಂಕ", "title": "ಕುಟುಂಬ ಆರೋಗ್ಯ ಕಾರ್ಡ್‌ಗಳು",
+    "downloadCard": "ಡೌನ್‌ಲೋಡ್", "emailCard": "ಇಮೇಲ್", "loading": "ಕಾರ್ಡ್‌ಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...",
+    "loadError": "ಕಾರ್ಡ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ವಿಫಲ", "swipeHint": "ಎಲ್ಲಾ 4 ಕುಟುಂಬ ಸದಸ್ಯ ಕಾರ್ಡ್‌ಗಳನ್ನು ನೋಡಲು ಸ್ವೈಪ್ ಮಾಡಿ",
+    "cardBenefits": "ಕಾರ್ಡ್ ಪ್ರಯೋಜನಗಳು",
+    "benefits": { "freeConsultations": "100+ ಪಾಲುದಾರ ಕ್ಲಿನಿಕ್‌ಗಳಲ್ಲಿ ಉಚಿತ ಸಮಾಲೋಚನೆ", "discount": "ಔಷಧಿಗಳಲ್ಲಿ 50% ರಿಯಾಯಿತಿ", "checkup": "ಉಚಿತ ವಾರ್ಷಿಕ ಆರೋಗ್ಯ ತಪಾಸಣೆ", "helpline": "24/7 ತುರ್ತು ಸಹಾಯವಾಣಿ ಬೆಂಬಲ" },
+    "howToUse": { "title": "ಹೇಗೆ ಬಳಸುವುದು", "step1": "ಯಾವುದೇ ಪಾಲುದಾರ ಆರೋಗ್ಯ ಸೌಲಭ್ಯಕ್ಕೆ ಭೇಟಿ ನೀಡಿ", "step2": "ನಿಮ್ಮ ಡಿಜಿಟಲ್ ಆರೋಗ್ಯ ಕಾರ್ಡ್ ಅಥವಾ ಸದಸ್ಯ ಐಡಿ ತೋರಿಸಿ", "step3": "ನಿಮ್ಮ ಕಾರ್ಡ್ ಪ್ರಯೋಜನಗಳ ಪ್ರಕಾರ ಸೇವೆಗಳನ್ನು ಪಡೆಯಿರಿ" }
+  },
+  "profile": {
+    "title": "ನನ್ನ ಪ್ರೊಫೈಲ್", "memberSince": "ಸದಸ್ಯರಾದ ದಿನಾಂಕ", "activeMember": "ಸದಸ್ಯ", "memberId": "ಸದಸ್ಯ ಐಡಿ",
+    "bloodGroup": "ರಕ್ತ ಗುಂಪು", "dateOfBirth": "ಹುಟ್ಟಿದ ದಿನಾಂಕ", "contact": "ಸಂಪರ್ಕ", "email": "ಇಮೇಲ್",
+    "medicalInfo": "ವೈದ್ಯಕೀಯ ಮಾಹಿತಿ", "allergies": "ಅಲರ್ಜಿ", "chronicConditions": "ದೀರ್ಘಕಾಲಿಕ ಸ್ಥಿತಿಗಳು",
+    "emergencyContact": "ತುರ್ತು ಸಂಪರ್ಕ", "editProfile": "ಪ್ರೊಫೈಲ್ ಸಂಪಾದಿಸಿ", "logout": "ಲಾಗ್‌ಔಟ್",
+    "logoutConfirm": "ನೀವು ನಿಜವಾಗಿಯೂ ಲಾಗ್‌ಔಟ್ ಮಾಡಲು ಬಯಸುತ್ತೀರಾ?",
+    "about": "MHF ಫೌಂಡೇಶನ್ ಬಗ್ಗೆ", "aboutMHF": "MHF ಬಗ್ಗೆ", "ourVision": "ನಮ್ಮ ದೃಷ್ಟಿ",
+    "ourMission": "ನಮ್ಮ ಧ್ಯೇಯ", "ourBoard": "ನಮ್ಮ ಮಂಡಳಿ", "ourTeam": "ನಮ್ಮ ತಂಡ",
+    "ourVolunteers": "ನಮ್ಮ ಸ್ವಯಂಸೇವಕರು", "contactInfo": "ಸಂಪರ್ಕ ಮಾಹಿತಿ", "user": "ಬಳಕೆದಾರ",
+    "updateFailed": "ನವೀಕರಣ ವಿಫಲ", "somethingWentWrong": "ಏನೋ ತಪ್ಪಾಗಿದೆ",
+    "updatedSuccessfully": "ಪ್ರೊಫೈಲ್ ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಲಾಗಿದೆ",
+    "profileImage": "ಪ್ರೊಫೈಲ್ ಚಿತ್ರ", "profileImageHint": "JPG ಅಥವಾ PNG, ಗರಿಷ್ಠ 20 MB",
+    "uploadingImage": "ಚಿತ್ರ ಅಪ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ...", "imageUploadFailed": "ಚಿತ್ರ ಅಪ್‌ಲೋಡ್ ವಿಫಲ"
+  },
+  "settings": { "title": "ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಪರದೆ" },
+  "notifications": {
+    "title": "ಅಧಿಸೂಚನೆಗಳು", "unread": "ಓದದ ಅಧಿಸೂಚನೆ", "unreadPlural": "ಓದದ ಅಧಿಸೂಚನೆಗಳು",
+    "allCaughtUp": "ಎಲ್ಲಾ ಸರಿಯಾಗಿದೆ!", "noNotifications": "ಯಾವುದೇ ಅಧಿಸೂಚನೆಗಳಿಲ್ಲ",
+    "noNotificationsText": "ನೀವು ನವೀಕೃತರಾಗಿದ್ದೀರಿ! ನಂತರ ನವೀಕರಣಗಳಿಗಾಗಿ ಮರಳಿ ಪರಿಶೀಲಿಸಿ.",
+    "samples": {
+      "cardApproved": { "title": "ಕಾರ್ಡ್ ವಿನಂತಿ ಅನುಮೋದಿಸಲಾಗಿದೆ", "message": "ನಿಮ್ಮ ಕಾರ್ಡ್ ವಿನಂತಿ ಅನುಮೋದಿಸಲಾಗಿದೆ ಮತ್ತು ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿದೆ." },
+      "newEvent": { "title": "ಹೊಸ ಕಾರ್ಯಕ್ರಮ ಲಭ್ಯ", "message": "ಆರೋಗ್ಯ ಜಾಗೃತಿ ಶಿಬಿರ ಮುಂದಿನ ವಾರ ನಿಗದಿಪಡಿಸಲಾಗಿದೆ. ಈಗಲೇ ನೋಂದಾಯಿಸಿ!" },
+      "profileIncomplete": { "title": "ಪ್ರೊಫೈಲ್ ಅಪೂರ್ಣ", "message": "ಎಲ್ಲಾ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಪ್ರವೇಶಿಸಲು ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಪೂರ್ಣಗೊಳಿಸಿ." },
+      "reliefUpdate": { "title": "ಪರಿಹಾರ ಅರ್ಜಿ ನವೀಕರಣ", "message": "ನಿಮ್ಮ ಪರಿಹಾರ ಅರ್ಜಿ ಪರಿಶೀಲನೆಯಲ್ಲಿದೆ. ಪ್ರಕ್ರಿಯೆಯಾದ ನಂತರ ನಿಮಗೆ ತಿಳಿಸಲಾಗುತ್ತದೆ." },
+      "trainingRegistered": { "title": "ತರಬೇತಿ ನೋಂದಾಯಿಸಲಾಗಿದೆ", "message": "ನೀವು ಕೌಶಲ್ಯ ಅಭಿವೃದ್ಧಿ ತರಬೇತಿ ಕಾರ್ಯಕ್ರಮಕ್ಕೆ ಯಶಸ್ವಿಯಾಗಿ ನೋಂದಾಯಿಸಲಾಗಿದೆ." }
+    },
+    "timeAgo": { "hoursAgo": "ಗಂಟೆಗಳ ಹಿಂದೆ", "dayAgo": "ದಿನದ ಹಿಂದೆ", "daysAgo": "ದಿನಗಳ ಹಿಂದೆ" }
+  },
+  "network": { "noConnection": "ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕವಿಲ್ಲ", "connected": "ಸಂಪರ್ಕಿತ", "disconnected": "ಸಂಪರ್ಕ ಕಡಿತ", "wifi": "ವೈ-ಫೈ", "cellular": "ಸೆಲ್ಯುಲಾರ್", "ethernet": "ಈಥರ್ನೆಟ್", "unknown": "ಅಜ್ಞಾತ" },
+  "events": {
+    "title": "ಕಾರ್ಯಕ್ರಮಗಳು ಮತ್ತು ಶಿಬಿರಗಳು", "subtitle": "ನಮ್ಮ ಸಮುದಾಯ ಆರೋಗ್ಯ ಕಾರ್ಯಕ್ರಮಗಳಲ್ಲಿ ಸೇರಿ.",
+    "registerHeader": "ಕಾರ್ಯಕ್ರಮಗಳಿಗೆ ನೋಂದಾಯಿಸಿ", "upcoming": "ಮುಂಬರುವ ಕಾರ್ಯಕ್ರಮಗಳು", "registerNow": "ಈಗಲೇ ನೋಂದಾಯಿಸಿ",
+    "impactTitle": "ನಮ್ಮ ಪ್ರಭಾವ",
+    "impact": { "events": "ನಡೆದ ಕಾರ್ಯಕ್ರಮಗಳು", "people": "ಸೇವೆ ಪಡೆದ ಜನರು", "volunteers": "ಸಕ್ರಿಯ ಸ್ವಯಂಸೇವಕರು" },
+    "register": {
+      "title": "ಕಾರ್ಯಕ್ರಮ ನೋಂದಣಿ", "subtitle": "ಕಾರ್ಯಕ್ರಮ ನೋಂದಣಿಗಾಗಿ ಎಲ್ಲಾ ವಿವರಗಳನ್ನು ತುಂಬಿಸಿ",
+      "personalInfo": "ವೈಯಕ್ತಿಕ ಮಾಹಿತಿ", "fullName": "ಪೂರ್ಣ ಹೆಸರು", "fullNamePlaceholder": "ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು ನಮೂದಿಸಿ",
+      "phoneNumber": "ಫೋನ್ ಸಂಖ್ಯೆ", "phoneNumberPlaceholder": "+91-XXXXXXXXXX", "phoneInvalid": "ಮಾನ್ಯ 10 ಅಂಕಿ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ",
+      "emailAddress": "ಇಮೇಲ್ ವಿಳಾಸ", "emailPlaceholder": "your.email@example.com", "emailInvalid": "ಅಮಾನ್ಯ ಇಮೇಲ್ ವಿಳಾಸ",
+      "dateOfBirth": "ಹುಟ್ಟಿದ ದಿನಾಂಕ", "age": "ವಯಸ್ಸು", "gender": "ಲಿಂಗ",
+      "genderMale": "ಪುರುಷ", "genderFemale": "ಮಹಿಳೆ", "genderOther": "ಇತರೆ",
+      "address": "ವಿಳಾಸ", "addressPlaceholder": "ನಿಮ್ಮ ಸಂಪೂರ್ಣ ವಿಳಾಸ ನಮೂದಿಸಿ",
+      "participationType": "ನೀವು ಹೇಗೆ ಭಾಗವಹಿಸಲು ಬಯಸುತ್ತೀರಿ ಎಂದು ಆಯ್ಕೆ ಮಾಡಿ",
+      "participant": "ಭಾಗವಹಿಸುವವರು", "volunteer": "ಸ್ವಯಂಸೇವಕ", "declaration": "ಘೋಷಣೆ",
+      "declarationText": "ಒದಗಿಸಿದ ಮಾಹಿತಿ ನಿಜ ಎಂದು ನಾನು ಇದರ ಮೂಲಕ ಘೋಷಿಸುತ್ತೇನೆ.",
+      "iAgree": "ನಾನು ಒಪ್ಪುತ್ತೇನೆ", "saveDetails": "ವಿವರಗಳನ್ನು ಉಳಿಸಿ", "submitting": "ಸಲ್ಲಿಸಲಾಗುತ್ತಿದೆ...",
+      "successTitle": "ಯಶಸ್ಸು", "successMessage": "ಕಾರ್ಯಕ್ರಮ ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ",
+      "errorTitle": "ದೋಷ", "errorMessage": "ಕಾರ್ಯಕ್ರಮ ನೋಂದಣಿ ಸಲ್ಲಿಸಲು ವಿಫಲ"
+    },
+    "items": {
+      "medical": { "title": "ಉಚಿತ ವೈದ್ಯಕೀಯ ಆರೋಗ್ಯ ಶಿಬಿರ", "date": "ನವೆಂಬರ್ 26, 2025", "time": "ಬೆಳಿಗ್ಗೆ 10:00 - ಸಂಜೆ 6:00", "location": "ಕಮ್ಯೂನಿಟಿ ಸೆಂಟರ್, ಮಾಲಾಡ್", "desc": "BP, ರಕ್ತ ಸಕ್ಕರೆ, BMI, ಮೂಲ ಸಮಾಲೋಚನೆ ಮತ್ತು ತಜ್ಞರನ್ನು ಒಳಗೊಂಡ ಸಮಗ್ರ ಆರೋಗ್ಯ ತಪಾಸಣೆ.", "tag1": "ಸಾಮಾನ್ಯ ತಪಾಸಣೆ", "tag2": "ಲ್ಯಾಬ್ ಪರೀಕ್ಷೆಗಳು", "tag3": "ಸಮಾಲೋಚನೆ", "tag4": "ರಕ್ತ ಸಕ್ಕರೆ ಪರೀಕ್ಷೆ", "stats": "50 ನೋಂದಣಿಗಳು" },
+      "blood": { "title": "ರಕ್ತದಾನ ಅಭಿಯಾನ", "date": "ನವೆಂಬರ್ 28, 2025", "time": "ಬೆಳಿಗ್ಗೆ 10:00 - ಸಂಜೆ 4:00", "location": "SGP ಗಾರ್ಡನ್, ಅಂಧೇರಿ", "desc": "ಪ್ರಮಾಣೀಕೃತ ರಕ್ತ ಬ್ಯಾಂಕ್ ಸಹಯೋಗದೊಂದಿಗೆ ರಕ್ತದಾನ ಶಿಬಿರ.", "tag1": "ಸ್ವಯಂಸೇವಕರು ಬೇಕು", "tag2": "ಸ್ಥಳದಲ್ಲಿ ವೈದ್ಯರು", "tag3": "ಪ್ರಮಾಣಪತ್ರಗಳು", "tag4": "ಉಪಹಾರ", "stats": "100+ ದಾನಿಗಳ ನಿರೀಕ್ಷೆ" },
+      "awareness": { "title": "ಆರೋಗ್ಯ ಜಾಗೃತಿ ಅಧಿವೇಶನ", "date": "ನವೆಂಬರ್ 30, 2025", "time": "ಮಧ್ಯಾಹ್ನ 2:00 - ಸಂಜೆ 5:00", "location": "ಝೂಮ್‌ನಲ್ಲಿ ವರ್ಚುವಲ್", "desc": "ತಡೆಗಟ್ಟುವ ಆರೋಗ್ಯ ರಕ್ಷಣೆ, ಪೋಷಣೆ, ನೈರ್ಮಲ್ಯ ಮತ್ತು ಮಾನಸಿಕ ಯೋಗಕ್ಷೇಮದ ಶೈಕ್ಷಣಿಕ ಅಧಿವೇಶನ.", "tag1": "ಉಚಿತ ಪ್ರವೇಶ", "tag2": "ಲೈವ್ ಅಧಿವೇಶನ", "tag3": "ಉಚಿತ ಸಾಮಗ್ರಿಗಳು", "stats": "200+ ನೋಂದಣಿಗಳು" }
+    }
+  },
+  "relief": {
+    "apply": "ಪರಿಹಾರಕ್ಕಾಗಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ", "donate": "ಈಗಲೇ ದೇಣಿಗೆ ನೀಡಿ",
+    "activePrograms": "ಸಕ್ರಿಯ ಪರಿಹಾರ ಕಾರ್ಯಕ್ರಮಗಳು", "howToApply": "ಪರಿಹಾರಕ್ಕಾಗಿ ಹೇಗೆ ಅರ್ಜಿ ಸಲ್ಲಿಸುವುದು",
+    "impactTitle": "ಪರಿಹಾರ ಪ್ರಭಾವ", "requestNewCard": "+  ಹೊಸ ಕಾರ್ಡ್‌ಗಾಗಿ ವಿನಂತಿ",
+    "steps": { "formTitle": "ಅರ್ಜಿ ಫಾರ್ಮ್ ತುಂಬಿಸಿ", "formDesc": "ಅಗತ್ಯ ವಿವರಗಳೊಂದಿಗೆ ನಿಮ್ಮ ಪರಿಹಾರ ವಿನಂತಿ ಸಲ್ಲಿಸಿ", "verifyTitle": "ಪರಿಶೀಲನೆ ಪ್ರಕ್ರಿಯೆ", "verifyDesc": "ನಮ್ಮ ತಂಡ ನಿಮ್ಮ ವಿನಂತಿ ಮತ್ತು ದಾಖಲೆಗಳನ್ನು ಪರಿಶೀಲಿಸುತ್ತದೆ", "distributeTitle": "ಪರಿಹಾರ ವಿತರಣೆ", "distributeDesc": "ಅನುಮೋದಿತ ಫಲಾನುಭವಿಗಳಿಗೆ ವಿತರಣೆಗಾಗಿ ಸಂಪರ್ಕಿಸಲಾಗುತ್ತದೆ" },
+    "impact": { "families": "ಕುಟುಂಬಗಳಿಗೆ ಸಹಾಯ", "drives": "ಪರಿಹಾರ ಅಭಿಯಾನಗಳು", "aid": "ಸಹಾಯದ ಮೌಲ್ಯ" },
+    "programs": {
+      "food": { "title": "ಆಹಾರ ವಿತರಣೆ ಅಭಿಯಾನ", "locations": "ಅನೇಕ ಸ್ಥಳಗಳು", "desc": "ಅಗತ್ಯವಿರುವ ಕುಟುಂಬಗಳಿಗೆ ದೈನಂದಿನ ಆಹಾರ ವಿತರಣೆ.", "tag1": "ದೈನಂದಿನ", "tag2": "ಅನೇಕ ಸ್ಥಳಗಳು", "tag3": "ಕುಟುಂಬ ಕಿಟ್‌ಗಳು", "stats": "500+ ಕುಟುಂಬಗಳಿಗೆ ಬೆಂಬಲ" },
+      "flood": { "title": "ಪ್ರವಾಹ ಪರಿಹಾರ ಬೆಂಬಲ", "locations": "ವಿಪತ್ತು ಪ್ರಭಾವಿತ ಪ್ರದೇಶಗಳು", "desc": "ಪ್ರವಾಹ ಪ್ರಭಾವಿತ ಕುಟುಂಬಗಳಿಗೆ ತಕ್ಷಣದ ಪರಿಹಾರ.", "tag1": "ಪ್ರವಾಹ ಪರಿಹಾರ", "tag2": "ಆಶ್ರಯ", "tag3": "ವೈದ್ಯಕೀಯ", "stats": "200+ ಕುಟುಂಬಗಳಿಗೆ ಸೇವೆ" },
+      "winter": { "title": "ಚಳಿಗಾಲ ಪರಿಹಾರ ಅಭಿಯಾನ", "locations": "ನಗರ ಮತ್ತು ಗ್ರಾಮೀಣ ಪ್ರದೇಶಗಳು", "desc": "ಅಗತ್ಯವಿರುವವರಿಗೆ ಹೊದಿಕೆ, ಸ್ವೆಟರ್‌ಗಳು ಮತ್ತು ಅಗತ್ಯ ವಸ್ತುಗಳ ವಿತರಣೆ.", "tag1": "ಹೊದಿಕೆಗಳು", "tag2": "ಸ್ವೆಟರ್‌ಗಳು", "tag3": "ವೃದ್ಧರು", "stats": "300+ ಜನರಿಗೆ ಕವರೇಜ್" },
+      "medical": { "title": "ತುರ್ತು ವೈದ್ಯಕೀಯ ಪರಿಹಾರ", "locations": "ಎಲ್ಲಾ ಪರಿಹಾರ ವಲಯಗಳು", "desc": "ಔಷಧಿಗಳು, ಪ್ರಥಮ ಚಿಕಿತ್ಸೆ ಮತ್ತು ನಿರ್ಣಾಯಕ ಪ್ರಕರಣಗಳಿಗೆ ವೈದ್ಯಕೀಯ ಸಾರಿಗೆ ಸೇರಿದಂತೆ ತುರ್ತು ವೈದ್ಯಕೀಯ ಸಹಾಯ.", "tag1": "ವೈದ್ಯಕೀಯ", "tag2": "ತುರ್ತು", "tag3": "ಆಂಬ್ಯುಲೆನ್ಸ್", "stats": "150+ ಪ್ರಕರಣಗಳು" }
+    },
+    "registrationStatus": "ನೋಂದಣಿ ಸ್ಥಿತಿ", "requestDetails": "ಪರಿಹಾರ ವಿನಂತಿ ವಿವರಗಳು",
+    "registrationId": "ನೋಂದಣಿ ಐಡಿ:", "noReviewNote": "ಯಾವುದೇ ವಿಮರ್ಶೆ ಟಿಪ್ಪಣಿ ಲಭ್ಯವಿಲ್ಲ"
+  },
+  "services": {
+    "title": "ಸೇವೆಗಳು ಮತ್ತು ಪ್ರದಾತರು", "subtitle": "ನಿಮ್ಮ ಬಳಿ ಅನುಮೋದಿತ ಆರೋಗ್ಯ ರಕ್ಷಣೆ ಪ್ರದಾತರನ್ನು ಹುಡುಕಿ",
+    "searchPlaceholder": "ಪ್ರದಾತರು, ವಿಶೇಷತೆಗಳು, ಸ್ಥಳ ಹುಡುಕಿ...",
+    "resultsFound": "ಪ್ರದಾತರು ಕಂಡುಬಂದರು", "loading": "ಪ್ರದಾತರು ಲೋಡ್ ಆಗುತ್ತಿದ್ದಾರೆ...", "loadError": "ಪ್ರದಾತರನ್ನು ಲೋಡ್ ಮಾಡಲು ವಿಫಲ",
+    "tab": { "providers": "ಪ್ರದಾತರು", "blood": "ರಕ್ತ", "equipment": "ಉಪಕರಣಗಳು", "ambulance": "ಆಂಬ್ಯುಲೆನ್ಸ್", "benefits": "ಪ್ರಯೋಜನಗಳು" },
+    "categories": { "all": "ಎಲ್ಲಾ", "hospital": "ಆಸ್ಪತ್ರೆ", "diagnostics": "ರೋಗನಿರ್ಣಯ", "pharmacy": "ಔಷಧಾಲಯ", "clinics": "ಕ್ಲಿನಿಕ್‌ಗಳು", "rehab": "ಪುನರ್ವಸತಿ", "labs": "ಪ್ರಯೋಗಾಲಯಗಳು", "surgical": "ಶಸ್ತ್ರಚಿಕಿತ್ಸೆ" },
+    "provider": { "unknown": "ಅಜ್ಞಾತ ಪ್ರದಾತ", "noAddress": "ವಿಳಾಸ ಲಭ್ಯವಿಲ್ಲ", "noPhone": "N/A" },
+    "blood": { "emergency": "ತುರ್ತು ರಕ್ತ ಬೇಕಾಗಿದೆ!", "cta": "ನಮ್ಮ ದಾನಿ ನೆಟ್‌ವರ್ಕ್‌ನಿಂದ ರಕ್ತ ವಿನಂತಿಸಿ", "requestNow": "ಈಗಲೇ ರಕ್ತ ವಿನಂತಿಸಿ", "loading": "ರಕ್ತ ವಿನಂತಿಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...", "loadError": "ರಕ್ತ ವಿನಂತಿಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ವಿಫಲ", "noRequests": "ಯಾವುದೇ ರಕ್ತ ವಿನಂತಿಗಳು ಕಂಡುಬಂದಿಲ್ಲ", "yourRequests": "ನಿಮ್ಮ ರಕ್ತ ವಿನಂತಿಗಳು", "myRequests": "ನನ್ನ ರಕ್ತ ವಿನಂತಿಗಳು", "patient": "ರೋಗಿ", "bloodGroup": "ರಕ್ತ ಗುಂಪು:", "units": "ಘಟಕಗಳು:", "required": "ಅಗತ್ಯ:", "urgency": "ತುರ್ತು:", "hospital": "ಆಸ್ಪತ್ರೆ:", "contact": "ಸಂಪರ್ಕ:" },
+    "benefits": {
+      "free": { "title": "ಉಚಿತ ಸಮಾಲೋಚನೆ", "subtitle": "ಸಾಮಾನ್ಯ ವೈದ್ಯರು ಮತ್ತು ತಜ್ಞರನ್ನು ಪ್ರವೇಶಿಸಿ" },
+      "medicine": { "title": "ಔಷಧ ಸಹಾಯ", "subtitle": "ದೀರ್ಘಕಾಲಿಕ ಸ್ಥಿತಿಗಳಿಗೆ ಸಬ್ಸಿಡಿ ಔಷಧಿಗಳು" },
+      "emergency": { "title": "ತುರ್ತು ಸಾರಿಗೆ", "subtitle": "24/7 ತುರ್ತು ಆಂಬ್ಯುಲೆನ್ಸ್ ಸೇವೆಗಳು" },
+      "checkups": { "title": "ಆರೋಗ್ಯ ತಪಾಸಣೆ", "subtitle": "ನಿಯಮಿತ ಆರೋಗ್ಯ ಮೇಲ್ವಿಚಾರಣೆ ಮತ್ತು ರೋಗನಿರ್ಣಯ" },
+      "records": { "title": "ವೈದ್ಯಕೀಯ ದಾಖಲೆಗಳು", "subtitle": "ಡಿಜಿಟಲ್ ಆರೋಗ್ಯ ದಾಖಲೆ ನಿರ್ವಹಣೆ" },
+      "find": { "title": "ಕ್ಲಿನಿಕ್‌ಗಳನ್ನು ಹುಡುಕಿ", "subtitle": "ಹತ್ತಿರದ ಪಾಲುದಾರ ಆರೋಗ್ಯ ಕೇಂದ್ರಗಳನ್ನು ಪತ್ತೆ ಮಾಡಿ" }
+    },
+    "help": { "title": "ಸಹಾಯ ಬೇಕೇ?", "desc": "ನಮ್ಮ ಬೆಂಬಲ ತಂಡ ನಿಮಗೆ ಸಹಾಯ ಮಾಡಲು 24/7 ಲಭ್ಯ", "contact": "ಬೆಂಬಲ ಸಂಪರ್ಕಿಸಿ" },
+    "noContactFor": "{{serviceName}} ಗಾಗಿ ಯಾವುದೇ ಸಂಪರ್ಕ ಸಂಖ್ಯೆ ಲಭ್ಯವಿಲ್ಲ"
+  },
+  "providerDetails": {
+    "error": "ದೋಷ", "phoneError": "ಫೋನ್ ಕರೆ ಮಾಡಲು ಅಸಮರ್ಥ", "mapError": "ನಕ್ಷೆ ತೆರೆಯಲು ಅಸಮರ್ಥ",
+    "emailError": "ಇಮೇಲ್ ತೆರೆಯಲು ಅಸಮರ್ಥ", "shareError": "ಪ್ರದಾತ ವಿವರಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಅಸಮರ್ಥ",
+    "notFound": "ಪ್ರದಾತ ವಿವರಗಳು ಕಂಡುಬಂದಿಲ್ಲ", "contactInfo": "ಸಂಪರ್ಕ ಮಾಹಿತಿ",
+    "phone": "ಫೋನ್", "email": "ಇಮೇಲ್", "address": "ವಿಳಾಸ", "specialities": "ವಿಶೇಷತೆಗಳು",
+    "benefits": "ಪ್ರಯೋಜನಗಳು", "viewOnMap": "ನಕ್ಷೆಯಲ್ಲಿ ವೀಕ್ಷಿಸಿ", "callNow": "ಈಗಲೇ ಕರೆ ಮಾಡಿ"
+  },
+  "equipment": {
+    "subtitle": "ನಿಮ್ಮ ಉಪಕರಣ ವಿನಂತಿ ಇತಿಹಾಸ ವೀಕ್ಷಿಸಿ", "loading": "ವಿನಂತಿಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...", "error": "ವಿನಂತಿಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ವಿಫಲ",
+    "submit": { "success": "ಯಶಸ್ಸು", "successMessage": "ಉಪಕರಣ ವಿನಂತಿ ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ!", "error": "ದೋಷ", "errorMessage": "ಉಪಕರಣ ವಿನಂತಿ ಸಲ್ಲಿಸಲು ವಿಫಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.", "submitting": "ಸಲ್ಲಿಸಲಾಗುತ್ತಿದೆ...", "submitButton": "ವಿನಂತಿ ಸಲ್ಲಿಸಿ" },
+    "need": "ವೈದ್ಯಕೀಯ ಉಪಕರಣಗಳು ಬೇಕೇ?", "needSubtitle": "ಮನೆ ಆರೈಕೆಗಾಗಿ ಉಪಕರಣ ಬೆಂಬಲ ವಿನಂತಿಸಿ",
+    "request": "ಉಪಕರಣ ವಿನಂತಿಸಿ", "myRequests": "ನನ್ನ ಉಪಕರಣ ವಿನಂತಿಗಳು", "viewAll": "ಎಲ್ಲಾ ವಿನಂತಿಗಳನ್ನು ವೀಕ್ಷಿಸಿ", "items": "ವಸ್ತುಗಳು",
+    "details": { "fullName": "ಪೂರ್ಣ ಹೆಸರು:", "duration": "ಅವಧಿ:", "medicalReason": "ವೈದ್ಯಕೀಯ ಕಾರಣ:", "requestDetails": "ವಿನಂತಿ ವಿವರಗಳು", "requestId": "ವಿನಂತಿ ಐಡಿ:", "status": "ಸ್ಥಿತಿ:", "equipment": "ಉಪಕರಣ:" }
+  },
+  "ambulance": {
+    "loading": "ಆಂಬ್ಯುಲೆನ್ಸ್‌ಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...", "error": "ಆಂಬ್ಯುಲೆನ್ಸ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ವಿಫಲ",
+    "title": "ತುರ್ತು ಆಂಬ್ಯುಲೆನ್ಸ್ ಸೇವೆಗಳು", "subtitle": "24/7 ತುರ್ತು ಆಂಬ್ಯುಲೆನ್ಸ್ ಬೆಂಬಲ", "view": "ಸೇವೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ",
+    "details": { "vehicleType": "ವಾಹನ ಪ್ರಕಾರ:", "serviceArea": "ಸೇವಾ ಪ್ರದೇಶ:", "responseTime": "ಪ್ರತಿಕ್ರಿಯೆ ಸಮಯ:" },
+    "call": "{{contact}} ಕರೆ ಮಾಡಿ"
+  },
+  "blood": {
+    "requestDetails": "ರಕ್ತ ವಿನಂತಿ ವಿವರಗಳು", "hospitalDetails": "ಆಸ್ಪತ್ರೆ ಮತ್ತು ವೈದ್ಯರ ವಿವರಗಳು",
+    "subtitle": "ರಕ್ತ ವಿನಂತಿಸಲು ಕೆಳಗೆ ವಿವರಗಳನ್ನು ತುಂಬಿಸಿ",
+    "submit": { "successMessage": "ರಕ್ತ ವಿನಂತಿ ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ", "errorMessage": "ರಕ್ತ ವಿನಂತಿ ಸಲ್ಲಿಸಲು ವಿಫಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ." }
+  },
+  "payment": {
+    "failed": "ಪಾವತಿ ವಿಫಲ", "customerMissing": "ಪ್ರಸ್ತುತ ಗ್ರಾಹಕರನ್ನು ಗುರುತಿಸಲು ಅಸಮರ್ಥ.",
+    "contributionType": "ಕೊಡುಗೆ ಪ್ರಕಾರ", "amountPayable": "ಪಾವತಿಸಬೇಕಾದ ಮೊತ್ತ", "continueUpi": "UPI ಗೆ ಮುಂದುವರಿಯಿರಿ",
+    "payNow": "ಈಗಲೇ ಪಾವತಿಸಿ", "receiptGenerateError": "ರಶೀದಿ ಚಿತ್ರ ಉತ್ಪಾದಿಸಲು ಅಸಮರ್ಥ.",
+    "receiptTitle": "ಪಾವತಿ ರಶೀದಿ", "campaignReceipt": "ಅಭಿಯಾನ ಪಾವತಿ ರಶೀದಿ",
+    "healthCardReceipt": "ಆರೋಗ್ಯ ಕಾರ್ಡ್ ಪಾವತಿ ರಶೀದಿ", "receiptShareError": "ರಶೀದಿ ಚಿತ್ರ ಡೌನ್‌ಲೋಡ್/ಹಂಚಿಕೊಳ್ಳಲು ಅಸಮರ್ಥ.",
+    "successTitle": "ಪಾವತಿ ಯಶಸ್ವಿ!", "downloadReceipt": "ರಶೀದಿ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
+    "viewHealthCard": "ಆರೋಗ್ಯ ಕಾರ್ಡ್ ವೀಕ್ಷಿಸಿ", "goHome": "ಮುಖಪುಟಕ್ಕೆ ಹೋಗಿ"
+  },
+  "volunteers": { "submitSuccess": "ಸ್ವಯಂಸೇವಕ ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ", "submitError": "ನೋಂದಣಿ ಸಲ್ಲಿಸಲು ವಿಫಲ" },
+  "newCard": { "patientDetails": "ರೋಗಿ ವಿವರಗಳು" },
+  "forms": {
+    "common": {
+      "saveDetails": "ವಿವರಗಳನ್ನು ಉಳಿಸಿ", "ok": "ಸರಿ", "submitting": "ಸಲ್ಲಿಸಲಾಗುತ್ತಿದೆ...", "iAgree": "ನಾನು ಒಪ್ಪುತ್ತೇನೆ",
+      "sections": { "locationDetails": "ಸ್ಥಳ ವಿವರಗಳು", "declaration": "ಘೋಷಣೆ" },
+      "fields": { "state": "ರಾಜ್ಯ", "district": "ಜಿಲ್ಲೆ", "block": "ಬ್ಲಾಕ್", "mandal": "ಮಂಡಲ" },
+      "loading": { "states": "ರಾಜ್ಯಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...", "districts": "ಜಿಲ್ಲೆಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...", "blocks": "ಬ್ಲಾಕ್‌ಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...", "mandals": "ಮಂಡಲಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ..." },
+      "select": { "state": "ರಾಜ್ಯ ಆಯ್ಕೆ ಮಾಡಿ", "stateFirst": "ಮೊದಲು ರಾಜ್ಯ ಆಯ್ಕೆ ಮಾಡಿ", "district": "ಜಿಲ್ಲೆ ಆಯ್ಕೆ ಮಾಡಿ", "districtFirst": "ಮೊದಲು ಜಿಲ್ಲೆ ಆಯ್ಕೆ ಮಾಡಿ", "block": "ಬ್ಲಾಕ್ ಆಯ್ಕೆ ಮಾಡಿ", "blockFirst": "ಮೊದಲು ಬ್ಲಾಕ್ ಆಯ್ಕೆ ಮಾಡಿ", "mandal": "ಮಂಡಲ ಆಯ್ಕೆ ಮಾಡಿ" },
+      "options": { "male": "ಪುರುಷ", "female": "ಮಹಿಳೆ", "other": "ಇತರೆ", "single": "ಅವಿವಾಹಿತ", "married": "ವಿವಾಹಿತ", "yes": "ಹೌದು", "no": "ಇಲ್ಲ", "aadhar": "ಆಧಾರ್", "voterId": "ಮತದಾರ ಗುರುತಿನ ಚೀಟಿ", "panCard": "PAN ಕಾರ್ಡ್" },
+      "validation": { "phone10": "ಮಾನ್ಯ 10 ಅಂಕಿ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ", "invalidEmail": "ಅಮಾನ್ಯ ಇಮೇಲ್", "invalidEmailAddress": "ಅಮಾನ್ಯ ಇಮೇಲ್ ವಿಳಾಸ", "pincode6": "ಮಾನ್ಯ 6 ಅಂಕಿ ಪಿನ್‌ಕೋಡ್ ನಮೂದಿಸಿ" }
+    },
+    "training": {
+      "heading": "ನೋಂದಣಿ ಫಾರ್ಮ್",
+      "sections": { "personalDetails": "ವೈಯಕ್ತಿಕ ವಿವರಗಳು", "educationalBackground": "ಶೈಕ್ಷಣಿಕ ಹಿನ್ನೆಲೆ", "courseSelection": "ಕೋರ್ಸ್ ಆಯ್ಕೆ" },
+      "fields": { "fullName": "ಪೂರ್ಣ ಹೆಸರು", "dateOfBirth": "ಹುಟ್ಟಿದ ದಿನಾಂಕ", "age": "ವಯಸ್ಸು", "gender": "ಲಿಂಗ", "contactNumber": "ಸಂಪರ್ಕ ಸಂಖ್ಯೆ (ಫೋನ್ / ವಾಟ್ಸ್‌ಆಪ್)", "parentGuardianContact": "ಪೋಷಕ / ಪಾಲಕ ಸಂಪರ್ಕ ಸಂಖ್ಯೆ", "maritalStatus": "ವೈವಾಹಿಕ ಸ್ಥಿತಿ", "emailAvailable": "ಇಮೇಲ್ ಐಡಿ (ಲಭ್ಯ)", "addressWithPincode": "ವಿಳಾಸ (ಪಿನ್‌ಕೋಡ್‌ನೊಂದಿಗೆ)", "pincode": "ಪಿನ್‌ಕೋಡ್", "guardianName": "ಪಾಲಕರ ಹೆಸರು (ಇದ್ದಲ್ಲಿ)", "idProofType": "ಐಡಿ ಪ್ರೂಫ್ (ಆಧಾರ್ / ಇತರೆ)", "identificationNumber": "ಗುರುತಿನ ಸಂಖ್ಯೆ", "highestQualification": "ಅತ್ಯಧಿಕ ಅರ್ಹತೆ", "mediumOfInstruction": "ಬೋಧನಾ ಮಾಧ್ಯಮ", "schoolCollegeName": "ಶಾಲೆ / ಕಾಲೇಜು ಹೆಸರು", "schoolCollegeLocation": "ಸ್ಥಳ", "educationGapReason": "ಶಿಕ್ಷಣದಲ್ಲಿ ಅಂತರ / ಬಿಡಿದ ಕಾರಣ", "preferredCourses": "ನಿಮ್ಮ ಆದ್ಯತೆಯ ತರಬೇತಿ ಆಯ್ಕೆ ಮಾಡಿ" },
+      "placeholders": { "fullName": "ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು ನಮೂದಿಸಿ", "addressWithPincode": "ಪಿನ್‌ಕೋಡ್‌ನೊಂದಿಗೆ ನಿಮ್ಮ ಸಂಪೂರ್ಣ ವಿಳಾಸ ನಮೂದಿಸಿ", "pincode": "ನಿಮ್ಮ ಪಿನ್‌ಕೋಡ್ ನಮೂದಿಸಿ", "idProofType": "ಆಧಾರ್ ಸಂಖ್ಯೆ ಅಥವಾ ಇತರ ಐಡಿ ಪ್ರೂಫ್ ಸಂಖ್ಯೆ", "educationGapReason": "ಯಾವುದೇ ಅಂತರ ಅಥವಾ ಬಿಡಿಸುವಿಕೆ ಇದ್ದಲ್ಲಿ, ಕಾರಣ ಉಲ್ಲೇಖಿಸಿ" },
+      "options": { "graduation": "ಪದವಿ", "hindi": "ಹಿಂದಿ", "english": "ಇಂಗ್ಲಿಷ್" },
+      "course": { "computer": "ಕಂಪ್ಯೂಟರ್", "tailoring": "ಹೊಲಿಗೆ", "spokenEnglish": "ಮಾತನಾಡುವ ಇಂಗ್ಲಿಷ್", "handmadeDesigning": "ಕೈಮಾಡಿದ ವಿನ್ಯಾಸ", "other": "ಇತರೆ (ದಯವಿಟ್ಟು ನಿರ್ದಿಷ್ಟಪಡಿಸಿ)" },
+      "alerts": { "submitSuccess": "ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ!", "submitFailed": "ನೋಂದಣಿ ಸಲ್ಲಿಸಲು ವಿಫಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ." }
+    },
+    "relief": {
+      "heading": "ಬೆಂಬಲಕ್ಕಾಗಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ",
+      "sections": { "personalInformation": "ವೈಯಕ್ತಿಕ ಮಾಹಿತಿ", "familyAndLivingSituation": "ಕುಟುಂಬ ಮತ್ತು ಜೀವನ ಸ್ಥಿತಿ", "reasonForRequest": "ವಿನಂತಿಯ ಕಾರಣ", "assistanceRequired": "ನಿಮಗೆ ನಮ್ಮಿಂದ ಏನು ಬೇಕು?" },
+      "fields": { "fullName": "ಪೂರ್ಣ ಹೆಸರು", "fatherOrHusbandName": "ತಂದೆ / ಪತಿ ಹೆಸರು", "dateOfBirth": "ಹುಟ್ಟಿದ ದಿನಾಂಕ", "age": "ವಯಸ್ಸು", "gender": "ಲಿಂಗ", "mobileNumber": "ಮೊಬೈಲ್ ಸಂಖ್ಯೆ", "alternateNumber": "ಪರ್ಯಾಯ ಸಂಖ್ಯೆ", "emailAvailable": "ಇಮೇಲ್ ಐಡಿ (ಲಭ್ಯ)", "currentAddress": "ಪ್ರಸ್ತುತ ವಿಳಾಸ (ಪಿನ್‌ಕೋಡ್‌ನೊಂದಿಗೆ)", "pincode": "ಪಿನ್‌ಕೋಡ್", "idProofType": "ಐಡಿ ಪ್ರೂಫ್ ಪ್ರಕಾರ", "idProofNumber": "ಐಡಿ ಪ್ರೂಫ್ ಸಂಖ್ಯೆ", "totalFamilyMembers": "ಒಟ್ಟು ಕುಟುಂಬ ಸದಸ್ಯರು", "earningMembers": "ಗಳಿಸುವ ಸದಸ್ಯರು", "childrenBelow5": "ಮಕ್ಕಳು (5 ವರ್ಷಕ್ಕಿಂತ ಕಡಿಮೆ)", "childrenSchoolGoing": "ಮಕ್ಕಳು (ಶಾಲೆಗೆ ಹೋಗುವ)", "elderlyDisabledMembers": "ವಯೋವೃದ್ಧ / ಅಂಗವಿಕಲ ಸದಸ್ಯರು", "elderlyDisabledDetails": "ವಯೋವೃದ್ಧ / ಅಂಗವಿಕಲ ವಿವರಗಳು", "houseType": "ಮನೆ ಪ್ರಕಾರ", "reasonForRequest": "ವಿನಂತಿಯ ಕಾರಣ (ಐಚ್ಛಿಕ ಆದರೆ ಸಹಾಯಕ)", "assistanceTypes": "ನೀವು ವಿನಂತಿಸುತ್ತಿರುವ ವಸ್ತುಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಿ", "declaration": "ಮೇಲೆ ನೀಡಿದ ಮಾಹಿತಿ ನನ್ನ ಅರಿವಿಗೆ ಸರಿ ಮತ್ತು ನಿಖರ ಎಂದು ಘೋಷಿಸುತ್ತೇನೆ." },
+      "placeholders": { "fullName": "ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು ನಮೂದಿಸಿ", "fatherOrHusbandName": "ತಂದೆ ಅಥವಾ ಪತಿ ಹೆಸರು ನಮೂದಿಸಿ", "currentAddress": "ಪಿನ್‌ಕೋಡ್‌ನೊಂದಿಗೆ ನಿಮ್ಮ ಸಂಪೂರ್ಣ ವಿಳಾಸ ನಮೂದಿಸಿ", "pincode": "ನಿಮ್ಮ ಪಿನ್‌ಕೋಡ್ ನಮೂದಿಸಿ", "idProofNumber": "ಐಡಿ ಪ್ರೂಫ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ", "reasonForRequest": "ನಿಮ್ಮ ಪರಿಸ್ಥಿತಿ ಮತ್ತು ಸಹಾಯ ಏಕೆ ಬೇಕು ಎಂದು ವಿವರಿಸಿ" },
+      "options": { "foodKit": "ಆಹಾರ ಕಿಟ್", "water": "ನೀರು", "clothes": "ಬಟ್ಟೆ", "shelter": "ಆಶ್ರಯ / ತಾತ್ಕಾಲಿಕ ವಸತಿ", "medicalHelp": "ಔಷಧ / ವೈದ್ಯಕೀಯ ಸಹಾಯ", "other": "ಇತರೆ (ದಯವಿಟ್ಟು ನಿರ್ದಿಷ್ಟಪಡಿಸಿ)", "owned": "ಸ್ವಂತ", "temporary": "ತಾತ್ಕಾಲಿಕ", "rented": "ಬಾಡಿಗೆ", "damaged": "ಹಾನಿಗೊಳಗಾದ" },
+      "alerts": { "submitSuccess": "ನಿಮ್ಮ ಪರಿಹಾರ ವಿನಂತಿ ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ!", "submitFailed": "ಪರಿಹಾರ ವಿನಂತಿ ಸಲ್ಲಿಸಲು ವಿಫಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ." }
+    },
+    "applyCard": {
+      "heading": "ಆರೋಗ್ಯ ಕಾರ್ಡ್‌ಗಾಗಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಲು ಎಲ್ಲಾ ವಿವರಗಳನ್ನು ತುಂಬಿಸಿ",
+      "sections": { "cardHolderDetails": "ಕಾರ್ಡ್ ಧಾರಕ ವಿವರಗಳು", "cardDetails": "ಕಾರ್ಡ್ ವಿವರಗಳು", "familyMembers": "ಕುಟುಂಬ ಸದಸ್ಯರು" },
+      "fields": { "cardHolderName": "ಕಾರ್ಡ್ ಧಾರಕರ ಹೆಸರು", "aadhaarNumber": "ಆಧಾರ್ ಸಂಖ್ಯೆ", "bloodGroup": "ರಕ್ತ ಗುಂಪು", "phone": "ಫೋನ್", "email": "ಇಮೇಲ್", "address": "ವಿಳಾಸ", "gender": "ಲಿಂಗ", "ageCategory": "ವಯಸ್ಸಿನ ವರ್ಗ", "familyHeadImage": "ಕುಟುಂಬ ಮುಖ್ಯಸ್ಥ ಚಿತ್ರ", "cardType": "ಕಾರ್ಡ್ ಪ್ರಕಾರ", "dateOfIssue": "ನೀಡಿದ ದಿನಾಂಕ", "dateOfExpiry": "ಮುಕ್ತಾಯ ದಿನಾಂಕ", "fullName": "ಪೂರ್ಣ ಹೆಸರು", "relationship": "ಸಂಬಂಧ", "dateOfBirth": "ಹುಟ್ಟಿದ ದಿನಾಂಕ" },
+      "placeholders": { "fullName": "ಪೂರ್ಣ ಹೆಸರು ನಮೂದಿಸಿ", "phone": "10 ಅಂಕಿ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ", "email": "ಇಮೇಲ್ ವಿಳಾಸ ನಮೂದಿಸಿ", "address": "ವಿಳಾಸ ನಮೂದಿಸಿ" },
+      "options": { "child": "ಮಗು", "adult": "ವಯಸ್ಕ", "individual": "ವ್ಯಕ್ತಿಗತ", "family": "ಕುಟುಂಬ", "spouse": "ಜೀವನ ಸಂಗಾತಿ", "son": "ಮಗ", "daughter": "ಮಗಳು", "father": "ತಂದೆ", "mother": "ತಾಯಿ", "brother": "ಅಣ್ಣ/ತಮ್ಮ", "sister": "ಅಕ್ಕ/ತಂಗಿ" },
+      "validation": { "aadhaarFormat": "ಮಾನ್ಯ ಆಧಾರ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ (XXXX XXXX XXXX)", "aadhaarMaxLength": "ಆಧಾರ್ ಸಂಖ್ಯೆ 14 ಅಕ್ಷರಗಳನ್ನು ಮೀರಲಾಗದು" },
+      "viewCard": "ಕಾರ್ಡ್ ವೀಕ್ಷಿಸಿ",
+      "alerts": { "createdSuccess": "ನಿಮ್ಮ ಆರೋಗ್ಯ ಕಾರ್ಡ್ ಯಶಸ್ವಿಯಾಗಿ ರಚಿಸಲಾಗಿದೆ!", "failed": "ಅರ್ಜಿ ಸಲ್ಲಿಸಲು ವಿಫಲ" }
+    },
+    "newCard": {
+      "heading": "ಆರೋಗ್ಯ ಕಾರ್ಡ್‌ಗಾಗಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಲು ಎಲ್ಲಾ ವಿವರಗಳನ್ನು ತುಂಬಿಸಿ",
+      "sections": { "treatmentDetails": "ಚಿಕಿತ್ಸೆ ವಿವರಗಳು", "medicalDocuments": "ವೈದ್ಯಕೀಯ ದಾಖಲೆಗಳು", "referenceDetails": "ಉಲ್ಲೇಖ ವಿವರಗಳು (ಐಚ್ಛಿಕ)" },
+      "fields": { "fullName": "ಪೂರ್ಣ ಹೆಸರು", "emailAddress": "ಇಮೇಲ್ ವಿಳಾಸ", "contactNumber": "ಸಂಪರ್ಕ ಸಂಖ್ಯೆ", "healthIssue": "ಆರೋಗ್ಯ ಸಮಸ್ಯೆ / ವೈದ್ಯಕೀಯ ಸ್ಥಿತಿ", "hospitalName": "ಚಿಕಿತ್ಸೆ ಪಡೆದ ಆಸ್ಪತ್ರೆ ಹೆಸರು", "hospitalAddress": "ಆಸ್ಪತ್ರೆ ವಿಳಾಸ", "hospitalType": "ಆಸ್ಪತ್ರೆ ಪ್ರಕಾರ", "treatmentDuration": "ನಿಮ್ಮ ಚಿಕಿತ್ಸೆ ಎಷ್ಟು ವರ್ಷಗಳು", "medicalReports": "ಪ್ರಿಸ್ಕ್ರಿಪ್ಷನ್ / ವೈದ್ಯಕೀಯ ವರದಿಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ", "referenceName": "ಉಲ್ಲೇಖ ಹೆಸರು ಮತ್ತು ವಿವರಗಳು", "referenceContact": "ಉಲ್ಲೇಖ ಸಂಪರ್ಕ ಸಂಖ್ಯೆ" },
+      "placeholders": { "fullName": "ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು ನಮೂದಿಸಿ", "emailAddress": "ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸ ನಮೂದಿಸಿ", "healthIssue": "ನಿಮ್ಮ ಆರೋಗ್ಯ ಸ್ಥಿತಿ ವಿವರಿಸಿ", "hospitalName": "ಆಸ್ಪತ್ರೆ ಹೆಸರು ನಮೂದಿಸಿ", "hospitalAddress": "ನಗರ ಮತ್ತು ಪಿನ್‌ಕೋಡ್‌ನೊಂದಿಗೆ ಸಂಪೂರ್ಣ ಆಸ್ಪತ್ರೆ ವಿಳಾಸ ನಮೂದಿಸಿ", "treatmentDuration": "ಉದಾ., 2 ವರ್ಷಗಳು, 6 ತಿಂಗಳುಗಳು", "referenceName": "ನಿಮ್ಮನ್ನು ಶಿಫಾರಸು ಮಾಡುವ ವ್ಯಕ್ತಿ ಹೆಸರು" },
+      "options": { "governmentHospital": "ಸರ್ಕಾರಿ ಆಸ್ಪತ್ರೆ", "privateHospital": "ಖಾಸಗಿ ಆಸ್ಪತ್ರೆ", "clinic": "ಕ್ಲಿನಿಕ್" },
+      "alerts": { "submitSuccess": "ಕಾರ್ಡ್ ವಿನಂತಿ ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ", "submitFailed": "ಕಾರ್ಡ್ ವಿನಂತಿ ಸಲ್ಲಿಸಲು ವಿಫಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ." }
+    },
+    "volunteers": {
+      "heading": "ಮುಜ್ತಬಾ ಹೆಲ್ಪಿಂಗ್ ಫೌಂಡೇಶನ್‌ನಲ್ಲಿ ಸ್ವಯಂಸೇವಕರಾಗಿ ಸೇರಿ",
+      "sections": { "personalDetails": "ವೈಯಕ್ತಿಕ ವಿವರಗಳು", "professionalDetails": "ವೃತ್ತಿಪರ ವಿವರಗಳು", "volunteeringPreferences": "ಸ್ವಯಂಸೇವೆ ಆದ್ಯತೆಗಳು", "experienceAndMotivation": "ಅನುಭವ ಮತ್ತು ಪ್ರೇರಣೆ" },
+      "fields": { "fullName": "ಪೂರ್ಣ ಹೆಸರು", "dateOfBirth": "ಹುಟ್ಟಿದ ದಿನಾಂಕ", "gender": "ಲಿಂಗ", "phoneNumber": "ಫೋನ್ ಸಂಖ್ಯೆ", "alternateContact": "ಪರ್ಯಾಯ ಸಂಪರ್ಕ ಸಂ.", "emailAddress": "ಇಮೇಲ್ ವಿಳಾಸ", "address": "ವಿಳಾಸ", "qualification": "ಅರ್ಹತೆ", "employmentStatus": "ಉದ್ಯೋಗ ಸ್ಥಿತಿ", "occupation": "ವೃತ್ತಿ", "volunteerArea": "ನೀವು ಯಾವ ಕ್ಷೇತ್ರಗಳಲ್ಲಿ ಸ್ವಯಂಸೇವೆ ಮಾಡಲು ಬಯಸುತ್ತೀರಿ?", "availability": "ಲಭ್ಯತೆ", "previousVolunteering": "ನೀವು ಮೊದಲು ಸ್ವಯಂಸೇವೆ ಮಾಡಿದ್ದೀರಾ?", "motivation": "ನೀವು ಮುಜ್ತಬಾ ಹೆಲ್ಪಿಂಗ್ ಫೌಂಡೇಶನ್‌ನಲ್ಲಿ ಸ್ವಯಂಸೇವಕರಾಗಿ ಏಕೆ ಸೇರಲು ಬಯಸುತ್ತೀರಿ?", "declaration": "ಒದಗಿಸಿದ ಮಾಹಿತಿ ನಿಜ ಎಂದು ಘೋಷಿಸುತ್ತೇನೆ ಮತ್ತು ಜವಾಬ್ದಾರಿಯುತವಾಗಿ ಸ್ವಯಂಸೇವೆ ಮಾಡಲು ಒಪ್ಪುತ್ತೇನೆ." },
+      "placeholders": { "motivation": "ದಯವಿಟ್ಟು ನಮ್ಮೊಂದಿಗೆ ಸ್ವಯಂಸೇವೆ ಮಾಡಲು ನಿಮ್ಮ ಪ್ರೇರಣೆ ಹಂಚಿಕೊಳ್ಳಿ..." },
+      "options": { "student": "ವಿದ್ಯಾರ್ಥಿ", "employee": "ಉದ್ಯೋಗಿ", "selfEmployed": "ಸ್ವ-ಉದ್ಯೋಗ", "healthCamps": "ಆರೋಗ್ಯ ಶಿಬಿರಗಳು", "awarenessDrives": "ಜಾಗೃತಿ ಅಭಿಯಾನಗಳು", "dataEntry": "ಡೇಟಾ ಎಂಟ್ರಿ / ಕಚೇರಿ ಕೆಲಸ", "socialMedia": "ಸಾಮಾಜಿಕ ಮಾಧ್ಯಮ ಪ್ರಚಾರ", "fundraising": "ಹಣ ಸಂಗ್ರಹ", "communityOutreach": "ಸಮುದಾಯ ಸಂಪರ್ಕ", "weekdays": "ವಾರದ ದಿನಗಳು", "weekends": "ವಾರಾಂತ್ಯಗಳು", "flexible": "ಹೊಂದಿಕೊಳ್ಳಬಲ್ಲ" }
+    },
+    "equipment": {
+      "heading": "ವೈದ್ಯಕೀಯ ಉಪಕರಣ ವಿನಂತಿಸಲು ಕೆಳಗೆ ವಿವರಗಳನ್ನು ತುಂಬಿಸಿ",
+      "submitRequest": "ವಿನಂತಿ ಸಲ್ಲಿಸಿ",
+      "sections": { "personalInformation": "ವೈಯಕ್ತಿಕ ಮಾಹಿತಿ", "addressDetails": "ವಿಳಾಸ ವಿವರಗಳು", "equipmentDetails": "ಉಪಕರಣ ವಿವರಗಳು", "referenceDetails": "ಉಲ್ಲೇಖ ವಿವರಗಳು", "consent": "ಸಮ್ಮತಿ" },
+      "fields": { "fullName": "ಪೂರ್ಣ ಹೆಸರು", "age": "ವಯಸ್ಸು", "gender": "ಲಿಂಗ", "mobileNumber": "ಮೊಬೈಲ್ ಸಂಖ್ಯೆ", "email": "ಇಮೇಲ್", "address": "ವಿಳಾಸ", "pincode": "ಪಿನ್‌ಕೋಡ್", "equipmentType": "ಉಪಕರಣ ಪ್ರಕಾರ", "medicalReason": "ವೈದ್ಯಕೀಯ ಕಾರಣ", "durationRequired": "ಅಗತ್ಯ ಅವಧಿ", "referenceName": "ಉಲ್ಲೇಖ ಹೆಸರು", "referenceContact": "ಉಲ್ಲೇಖ ಸಂಪರ್ಕ", "consentDeclaration": "ಒದಗಿಸಿದ ಮಾಹಿತಿ ನಿಜ ಮತ್ತು ನಿಖರ ಎಂದು ಘೋಷಿಸುತ್ತೇನೆ" },
+      "placeholders": { "fullName": "ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು ನಮೂದಿಸಿ", "age": "ನಿಮ್ಮ ವಯಸ್ಸು ನಮೂದಿಸಿ", "mobileNumber": "ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ", "email": "ಇಮೇಲ್ ವಿಳಾಸ ನಮೂದಿಸಿ", "address": "ನಿಮ್ಮ ವಿಳಾಸ ನಮೂದಿಸಿ", "pincode": "ಪಿನ್‌ಕೋಡ್ ನಮೂದಿಸಿ", "medicalReason": "ಉಪಕರಣ ವಿನಂತಿಸುವ ವೈದ್ಯಕೀಯ ಕಾರಣ ವಿವರಿಸಿ", "durationRequired": "ಉದಾ., 2 ವಾರಗಳು, 1 ತಿಂಗಳು", "referenceName": "ಉಲ್ಲೇಖ ವ್ಯಕ್ತಿ ಹೆಸರು ನಮೂದಿಸಿ", "referenceContact": "ಉಲ್ಲೇಖ ಸಂಪರ್ಕ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ" },
+      "options": { "bloodPressureMonitor": "ರಕ್ತದೊತ್ತಡ ಮಾನಿಟರ್", "glucometer": "ಗ್ಲುಕೋಮೀಟರ್", "oxygenConcentrator": "ಆಕ್ಸಿಜನ್ ಕಾನ್ಸೆಂಟ್ರೇಟರ್", "wheelchair": "ಚಕ್ರದ ಕುರ್ಚಿ", "walkingAid": "ನಡಿಗೆ ಸಹಾಯಕ", "hospitalBed": "ಆಸ್ಪತ್ರೆ ಹಾಸಿಗೆ", "nebulizer": "ನೆಬ್ಯುಲೈಜರ್" },
+      "alerts": { "submitSuccess": "ಉಪಕರಣ ವಿನಂತಿ ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ! ವಿನಂತಿ ಐಡಿ:", "submitFailed": "ಉಪಕರಣ ವಿನಂತಿ ಸಲ್ಲಿಸಲು ವಿಫಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ." }
+    }
+  }
+}

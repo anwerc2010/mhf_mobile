@@ -56,9 +56,11 @@
     "confirmPasswordPlaceholder": "పాస్‌వర్డ్‌ను నిర్ధారించండི",
     "hasAccount": "ఇప్పటికే ఖాతా ఉందు?",
     "registrationFailed": "నమోదు విఫలమైంది",
+    "registrationSuccess": "నమోదు విజయవంతమైంది! దయచేసి లాగిన్ చేయండి.",
     "passwordsNotMatch": "పాస్‌వర్డ్‌లు సరిపోలవు",
     "passwordMinLength": "కనీసం 6 అక్షరాలు",
     "fillAllFields": "దయచేసి అన్ని ఫీల్డ్‌లను నింపండి",
+    "profileImageLabel": "ప్రొఫైల్ చిత్రం",
     "toast": {
       "success": "కస్టమర్ విజయవంతంగా నమోదు",
       "error": "నమోదు విఫలమైంది"
@@ -87,7 +89,14 @@
     "arabic": "అరబిక్",
     "selectLanguage": "భాష ఎంచుకోండి",
     "urdu": "ఉర్దూ",
-    "telugu": "తెలుగు"
+    "telugu": "తెలుగు",
+    "hindi": "హిందీ",
+    "marathi": "మరాఠీ",
+    "tamil": "తమిళం",
+    "punjabi": "పంజాబీ",
+    "kannada": "కన్నడ",
+    "bengali": "బెంగాలీ",
+    "gujarati": "గుజరాతీ"
   },
   "theme": {
     "light": "తెలిసిన",
@@ -179,7 +188,11 @@
     "user": "ఉపయోగకర్త",
     "updateFailed": "అపడేట్ విఫలమైంది",
     "somethingWentWrong": "ఏదో తప్పుగా జరిగింది",
-    "updatedSuccessfully": "ప్రొఫైల్ విజయవంతంగా అపడేట్ చేయబడింది"
+    "updatedSuccessfully": "ప్రొఫైల్ విజయవంతంగా అపడేట్ చేయబడింది",
+    "profileImage": "ప్రొఫైల్ చిత్రం",
+    "profileImageHint": "JPG లేదా PNG, గరిష్టంగా 20 MB",
+    "uploadingImage": "చిత్రం అప్‌లోడ్ అవుతోంది...",
+    "imageUploadFailed": "చిత్రం అప్‌లోడ్ విఫలమైంది"
   },
   "settings": {
     "title": "సెట్టింగ్‌ల స్క్రీన్"

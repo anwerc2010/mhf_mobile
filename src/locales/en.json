@@ -89,7 +89,14 @@
     "arabic": "Arabic",
     "selectLanguage": "Select Language",
     "urdu": "Urdu",
-    "telugu": "Telugu"
+    "telugu": "Telugu",
+    "hindi": "Hindi",
+    "marathi": "Marathi",
+    "tamil": "Tamil",
+    "punjabi": "Punjabi",
+    "kannada": "Kannada",
+    "bengali": "Bengali",
+    "gujarati": "Gujarati"
   },
   "theme": {
     "light": "Light",

@@ -56,9 +56,11 @@
     "confirmPasswordPlaceholder": "اپنا پاس ورڈ دوبارہ درج کریں",
     "hasAccount": "پہلے سے اکاؤنٹ ہے؟",
     "registrationFailed": "رجسٹریشن ناکام",
+    "registrationSuccess": "رجسٹریشن کامیاب! براہ کرم لاگ ان کریں۔",
     "passwordsNotMatch": "پاس ورڈ مماثل نہیں ہیں",
     "passwordMinLength": "پاس ورڈ کم از کم 6 حروف ہونے چاہییں",
     "fillAllFields": "براہ کرم تمام فیلڈ بھریں",
+    "profileImageLabel": "پروفائل تصویر",
     "toast": {
       "success": "کسٹمر کامیابی سے رجسٹر ہو گیا",
       "error": "رجسٹریشن ناکام"
@@ -87,7 +89,14 @@
     "arabic": "عربی",
     "selectLanguage": "زبان منتخب کریں",
     "urdu": "اردو",
-    "telugu": "تیلگو"
+    "telugu": "تیلگو",
+    "hindi": "ہندی",
+    "marathi": "مراٹھی",
+    "tamil": "تامل",
+    "punjabi": "پنجابی",
+    "kannada": "کنڑ",
+    "bengali": "بنگالی",
+    "gujarati": "گجراتی"
   },
   "theme": {
     "light": "روشن",
@@ -179,7 +188,11 @@
     "user": "صارف",
     "updateFailed": "اپ ڈیٹ ناکام",
     "somethingWentWrong": "کچھ غلط ہو گیا",
-    "updatedSuccessfully": "پروفائل کامیابی سے اپ ڈیٹ ہو گیا"
+    "updatedSuccessfully": "پروفائل کامیابی سے اپ ڈیٹ ہو گیا",
+    "profileImage": "پروفائل تصویر",
+    "profileImageHint": "JPG یا PNG، زیادہ سے زیادہ 20 MB",
+    "uploadingImage": "تصویر اپلوڈ ہو رہی ہے...",
+    "imageUploadFailed": "تصویر اپلوڈ ناکام"
   },
   "settings": {
     "title": "سیٹنگز اسکرین"

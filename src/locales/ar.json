@@ -56,9 +56,11 @@
     "confirmPasswordPlaceholder": "أكد كلمة المرور",
     "hasAccount": "لديك حساب بالفعل؟",
     "registrationFailed": "فشل التسجيل",
+    "registrationSuccess": "تم التسجيل بنجاح! يرجى تسجيل الدخول.",
     "passwordsNotMatch": "كلمات المرور غير متطابقة",
     "passwordMinLength": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
     "fillAllFields": "يرجى ملء جميع الحقول",
+    "profileImageLabel": "صورة الملف الشخصي",
     "toast": {
       "success": "تم تسجيل العميل بنجاح",
       "error": "فشل التسجيل"
@@ -87,7 +89,14 @@
     "arabic": "العربية",
     "selectLanguage": "اختر اللغة",
     "urdu": "الأردية",
-    "telugu": "التيلجو"
+    "telugu": "التيلجو",
+    "hindi": "الهندية",
+    "marathi": "الماراثية",
+    "tamil": "التاميلية",
+    "punjabi": "البنجابية",
+    "kannada": "الكانادية",
+    "bengali": "البنغالية",
+    "gujarati": "الغوجاراتية"
   },
   "theme": {
     "light": "فاتح",
@@ -179,7 +188,11 @@
     "user": "مستخدم",
     "updateFailed": "فشل التحديث",
     "somethingWentWrong": "حدث خطأ ما",
-    "updatedSuccessfully": "تم تحديث الملف الشخصي بنجاح"
+    "updatedSuccessfully": "تم تحديث الملف الشخصي بنجاح",
+    "profileImage": "صورة الملف الشخصي",
+    "profileImageHint": "JPG أو PNG، بحد أقصى 20 ميغابايت",
+    "uploadingImage": "جارٍ تحميل الصورة...",
+    "imageUploadFailed": "فشل تحميل الصورة"
   },
   "settings": {
     "title": "شاشة الإعدادات"

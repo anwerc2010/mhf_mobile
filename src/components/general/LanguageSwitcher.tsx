@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TouchableOpacity, Modal } from "react-native";
+import { View, TouchableOpacity, Modal, ScrollView } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { setLanguage } from "../../store/slices/languageSlice";
@@ -22,6 +22,13 @@ export default function LanguageSwitcher() {
     { code: "ar" as const, name: t("language.arabic") },
     { code: "ur" as const, name: t("language.urdu") },
     { code: "tel" as const, name: t("language.telugu") },
+    { code: "hi" as const, name: t("language.hindi") },
+    { code: "mr" as const, name: t("language.marathi") },
+    { code: "ta" as const, name: t("language.tamil") },
+    { code: "pa" as const, name: t("language.punjabi") },
+    { code: "kn" as const, name: t("language.kannada") },
+    { code: "bn" as const, name: t("language.bengali") },
+    { code: "gu" as const, name: t("language.gujarati") },
   ];
 
   const handleLanguageChange = (langCode: AppLanguage) => {
@@ -81,47 +88,54 @@ export default function LanguageSwitcher() {
               {t("language.selectLanguage")}
             </PTText>
 
-            {languages.map((lang) => (
-              <TouchableOpacity
-                key={lang.code}
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  paddingVertical: theme.spacing.md,
-                  paddingHorizontal: theme.spacing.md,
-                  marginBottom: theme.spacing.sm,
-                  borderRadius: theme.borderRadius.md,
-                  backgroundColor:
-                    currentLanguage === lang.code
-                      ? theme.colors.primary
-                      : theme.colors.backgroundSecondary,
-                }}
-                onPress={() => handleLanguageChange(lang.code)}
-                activeOpacity={0.7}
-              >
-                <PTText
-                  variant="body"
-                  color={currentLanguage === lang.code ? "textInverse" : "text"}
-                  style={
-                    currentLanguage === lang.code ? { fontWeight: "600" } : {}
-                  }
+            <ScrollView
+              style={{ maxHeight: 360 }}
+              showsVerticalScrollIndicator={true}
+            >
+              {languages.map((lang) => (
+                <TouchableOpacity
+                  key={lang.code}
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    paddingVertical: theme.spacing.md,
+                    paddingHorizontal: theme.spacing.md,
+                    marginBottom: theme.spacing.sm,
+                    borderRadius: theme.borderRadius.md,
+                    backgroundColor:
+                      currentLanguage === lang.code
+                        ? theme.colors.primary
+                        : theme.colors.backgroundSecondary,
+                  }}
+                  onPress={() => handleLanguageChange(lang.code)}
+                  activeOpacity={0.7}
                 >
-                  {lang.name}
-                </PTText>
-                {currentLanguage === lang.code && (
                   <PTText
-                    style={{
-                      color: theme.colors.textInverse,
-                      fontSize: 18,
-                      fontWeight: "bold",
-                    }}
+                    variant="body"
+                    color="text"
+                    style={
+                      currentLanguage === lang.code
+                        ? { fontWeight: "600", color: theme.colors.textInverse }
+                        : {}
+                    }
                   >
-                    ✓
+                    {lang.name}
                   </PTText>
-                )}
-              </TouchableOpacity>
-            ))}
+                  {currentLanguage === lang.code && (
+                    <PTText
+                      style={{
+                        color: theme.colors.textInverse,
+                        fontSize: 18,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      ✓
+                    </PTText>
+                  )}
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
 
             <TouchableOpacity
               style={{

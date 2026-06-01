@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   Image,
   Modal,
   Pressable,
+  ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Bell } from "phosphor-react-native";
@@ -23,7 +24,7 @@ interface TopNavBarProps {
 const TopNavBar: React.FC<TopNavBarProps> = ({
   notificationCount: propCount,
   onLanguageChange,
-  currentLanguage = "EN",
+  currentLanguage = "en",
 }) => {
   const navigation = useNavigation();
   const { t } = useTranslation();
@@ -42,11 +43,22 @@ const TopNavBar: React.FC<TopNavBarProps> = ({
     return propCount || 0;
   }, [notificationsData, propCount]);
 
+  useEffect(() => {
+    setSelectedLanguage(currentLanguage || "en");
+  }, [currentLanguage]);
+
   const languages = [
     { code: "en" as const, label: t("language.english") },
     { code: "ar" as const, label: t("language.arabic") },
     { code: "ur" as const, label: t("language.urdu") },
     { code: "tel" as const, label: t("language.telugu") },
+    { code: "hi" as const, label: t("language.hindi") },
+    { code: "mr" as const, label: t("language.marathi") },
+    { code: "ta" as const, label: t("language.tamil") },
+    { code: "pa" as const, label: t("language.punjabi") },
+    { code: "kn" as const, label: t("language.kannada") },
+    { code: "bn" as const, label: t("language.bengali") },
+    { code: "gu" as const, label: t("language.gujarati") },
   ];
 
   const handleLanguageSelect = (language: AppLanguage) => {
@@ -127,27 +139,32 @@ const TopNavBar: React.FC<TopNavBarProps> = ({
             <Text style={styles.modalTitle}>
               {t("language.selectLanguage")}
             </Text>
-            {languages.map((language) => (
-              <TouchableOpacity
-                key={language.code}
-                style={[
-                  styles.languageOption,
-                  selectedLanguage === language.code &&
-                    styles.selectedLanguageOption,
-                ]}
-                onPress={() => handleLanguageSelect(language.code)}
-              >
-                <Text
+            <ScrollView
+              style={styles.languageList}
+              showsVerticalScrollIndicator={true}
+            >
+              {languages.map((language) => (
+                <TouchableOpacity
+                  key={language.code}
                   style={[
-                    styles.languageOptionText,
+                    styles.languageOption,
                     selectedLanguage === language.code &&
-                      styles.selectedLanguageText,
+                      styles.selectedLanguageOption,
                   ]}
+                  onPress={() => handleLanguageSelect(language.code)}
                 >
-                  {language.label}
-                </Text>
-              </TouchableOpacity>
-            ))}
+                  <Text
+                    style={[
+                      styles.languageOptionText,
+                      selectedLanguage === language.code &&
+                        styles.selectedLanguageText,
+                    ]}
+                  >
+                    {language.label}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
           </Pressable>
         </Pressable>
       </Modal>
@@ -263,6 +280,9 @@ const styles = StyleSheet.create({
     color: "#1E3A8A",
     marginBottom: 16,
     textAlign: "center",
+  },
+  languageList: {
+    maxHeight: 360,
   },
   languageOption: {
     paddingVertical: 12,
