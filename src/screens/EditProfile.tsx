@@ -180,15 +180,31 @@ export default function EditProfileScreen() {
     imageFile: FileData | FileData[] | null | undefined,
   ): Promise<string | undefined> => {
     const file = Array.isArray(imageFile) ? imageFile[0] : imageFile;
-    if (!file?.uri) return undefined;
+    if (!file?.uri) {
+      console.log("[EditProfile] No image file URI found", { imageFile });
+      return undefined;
+    }
+
+    console.log("[EditProfile] Starting image upload", {
+      uri: file.uri,
+      name: file.name,
+      type: file.type,
+    });
+
     const formData = new FormData();
     formData.append("image", {
       uri: file.uri,
       name: file.name,
       type: file.type,
     } as any);
-    const response = await uploadCustomerImage(formData).unwrap();
-    return response?.image_url || undefined;
+    try {
+      const response = await uploadCustomerImage(formData).unwrap();
+      console.log("[EditProfile] Image upload success", response);
+      return response?.image_url || undefined;
+    } catch (error) {
+      console.log("[EditProfile] Image upload failed", error);
+      throw error;
+    }
   };
 
   const handleSubmit = async (values: Record<string, any>) => {
@@ -201,6 +217,7 @@ export default function EditProfileScreen() {
         const uploaded = await uploadImageIfPresent(raw.image);
         if (uploaded) imageUrl = uploaded;
       } catch {
+        console.log("[EditProfile] handleSubmit upload error", raw.image);
         Alert.alert(t("common.error"), t("profile.imageUploadFailed"));
         return;
       }
@@ -241,6 +258,7 @@ export default function EditProfileScreen() {
         [{ text: "OK", onPress: () => navigation.goBack() }],
       );
     } catch (err: any) {
+      console.log("[EditProfile] updateCustomer failed", err);
       const msg = err?.data?.message;
       const errorText =
         msg && typeof msg === "object"

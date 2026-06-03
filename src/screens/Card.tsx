@@ -17,7 +17,11 @@ import {
 import { useTranslation } from "react-i18next";
 import { useFocusEffect } from "@react-navigation/native";
 import FamilyCard from "../components/general/FamilyCard";
-import { useGetDashboardDetailsQuery } from "@psi/shared-api";
+import {
+  useGetDashboardDetailsQuery,
+  useGetBenefitsQuery,
+  type Benefit,
+} from "@psi/shared-api";
 import { openEmailComposer } from "../utils/emailComposer";
 import {
   downloadHealthCard,
@@ -50,6 +54,21 @@ export default function CardScreen() {
       refetch();
     }, [refetch]),
   );
+
+  const { data: benefitsData, isLoading: benefitsLoading } =
+    useGetBenefitsQuery();
+
+  const apiBenefits = useMemo<Benefit[]>(() => {
+    if (Array.isArray(benefitsData)) {
+      return benefitsData;
+    }
+
+    if (Array.isArray(benefitsData?.data)) {
+      return benefitsData.data as Benefit[];
+    }
+
+    return [];
+  }, [benefitsData]);
 
   const benefits = [
     t(
@@ -340,13 +359,24 @@ Date of Expiry: ${currentCard.dateOfExpiry}`;
       )}
 
       <View style={styles.infoCard}>
-        <Text style={styles.infoTitle}>{t("card.cardBenefits")}</Text>
-        {benefits.map((b, i) => (
-          <View style={styles.benefitRow} key={i}>
-            <CheckCircle color="#10B981" weight="bold" size={16} />
-            <Text style={styles.benefitText}>{b}</Text>
-          </View>
-        ))}
+        <Text style={styles.infoTitle}>
+          {t("card.cardBenefits", "Card Benefits")}
+        </Text>
+        {benefitsLoading ? (
+          <ActivityIndicator size="small" color="#06B6D4" />
+        ) : (
+          apiBenefits.map((b) => (
+            <View style={styles.benefitRow} key={b.id}>
+              <CheckCircle color="#10B981" weight="bold" size={16} />
+              <View style={{ flex: 1, marginLeft: 10 }}>
+                <Text style={styles.benefitText}>{b.title}</Text>
+                {b.description ? (
+                  <Text style={styles.benefitDesc}>{b.description}</Text>
+                ) : null}
+              </View>
+            </View>
+          ))
+        )}
       </View>
 
       <View style={styles.infoCard}>
@@ -432,8 +462,13 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     color: "#111827",
   },
-  benefitRow: { flexDirection: "row", alignItems: "center", marginBottom: 10 },
-  benefitText: { marginLeft: 10, color: "#374151", fontSize: 13, flex: 1 },
+  benefitRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    marginBottom: 10,
+  },
+  benefitText: { color: "#374151", fontSize: 13, fontWeight: "600" },
+  benefitDesc: { color: "#6B7280", fontSize: 12, marginTop: 2 },
   stepRow: { marginBottom: 12 },
   stepNumber: {
     backgroundColor: "#F3F4F6",
