@@ -302,7 +302,7 @@
     "loading": "ਪ੍ਰਦਾਤਾ ਲੋਡ ਹੋ ਰਹੇ ਹਨ...",
     "loadError": "ਪ੍ਰਦਾਤਾ ਲੋਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ",
     "tab": { "providers": "ਪ੍ਰਦਾਤਾ", "blood": "ਖੂਨ", "equipment": "ਉਪਕਰਣ", "ambulance": "ਐਂਬੂਲੈਂਸ", "benefits": "ਲਾਭ" },
-    "categories": { "all": "ਸਾਰੇ", "hospital": "ਹਸਪਤਾਲ", "diagnostics": "ਨਿਦਾਨ", "pharmacy": "ਫਾਰਮੇਸੀ", "clinics": "ਕਲੀਨਿਕ", "rehab": "ਮੁੜ ਵਸੇਬਾ", "labs": "ਲੈਬ", "surgical": "ਸਰਜੀਕਲ" },
+    "categories": { "all": "ਸਾਰੇ", "hospital": "ਹਸਪਤਾਲ", "diagnostics": "ਨਿਦਾਨ", "pharmacy": "ਫਾਰਮੇਸੀ", "clinics": "ਕਲੀਨਿਕ", "rehab": "ਮੁੜ ਵਸੇਬਾ", "labs": "Old Age Home", "oldAgeHome": "Old Age Home", "surgical": "ਸਰਜੀਕਲ" },
     "provider": { "unknown": "ਅਣਜਾਣ ਪ੍ਰਦਾਤਾ", "noAddress": "ਪਤਾ ਉਪਲਬਧ ਨਹੀਂ", "noPhone": "N/A" },
     "blood": { "emergency": "ਐਮਰਜੈਂਸੀ ਖੂਨ ਦੀ ਲੋੜ!", "cta": "ਸਾਡੇ ਦਾਨੀ ਨੈੱਟਵਰਕ ਤੋਂ ਖੂਨ ਦੀ ਬੇਨਤੀ ਕਰੋ", "requestNow": "ਹੁਣੇ ਖੂਨ ਦੀ ਬੇਨਤੀ ਕਰੋ", "loading": "ਖੂਨ ਬੇਨਤੀਆਂ ਲੋਡ ਹੋ ਰਹੀਆਂ ਹਨ...", "loadError": "ਖੂਨ ਬੇਨਤੀਆਂ ਲੋਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ", "noRequests": "ਕੋਈ ਖੂਨ ਬੇਨਤੀਆਂ ਨਹੀਂ ਮਿਲੀਆਂ", "yourRequests": "ਤੁਹਾਡੀਆਂ ਖੂਨ ਬੇਨਤੀਆਂ", "myRequests": "ਮੇਰੀਆਂ ਖੂਨ ਬੇਨਤੀਆਂ", "patient": "ਮਰੀਜ਼", "bloodGroup": "ਖੂਨ ਸਮੂਹ:", "units": "ਯੂਨਿਟ:", "required": "ਲੋੜੀਂਦਾ:", "urgency": "ਜ਼ਰੂਰੀ:", "hospital": "ਹਸਪਤਾਲ:", "contact": "ਸੰਪਰਕ:" },
     "benefits": {

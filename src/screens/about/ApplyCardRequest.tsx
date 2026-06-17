@@ -11,6 +11,7 @@ import {
   useUploadDocumentMutation,
   useLocationDropdowns,
   useGetProfessionsQuery,
+  HealthCardResponseData,
 } from "@psi/shared-api";
 import { FileData } from "../../components/comman/PTFilePicker";
 import { formatToDDMMYYY } from "../../utils/formatDate";
@@ -563,7 +564,7 @@ function ApplyCardRequest() {
       const payment: any = response.data?.payment;
       const healthCard = response.data?.health_card;
       const customer = response.data?.customer;
-      const responseData: any = response?.data ?? {};
+      const responseData: HealthCardResponseData = response?.data ?? {};
       const responseCardRequest: any = responseData?.card_request ?? {};
       const normalizeLower = (value: unknown): string =>
         typeof value === "string" ? value.toLowerCase() : "";
@@ -593,11 +594,16 @@ function ApplyCardRequest() {
         responseData?.can_pay ?? responseCardRequest?.can_pay ?? requestCanPay,
       );
       const cardCreated = Boolean(responseData?.card_created);
+      const zohoSynced: boolean | undefined =
+        typeof responseData?.zoho_synced === "boolean"
+          ? responseData.zoho_synced
+          : undefined;
 
       const isFreeFlow =
         isLockedFreeRequest ||
         normalizedPaymentType === "free" ||
-        normalizedPaymentStatus === "free";
+        normalizedPaymentStatus === "free" ||
+        normalizeLower(healthCard?.mode) === "free";
 
       const isPaidFlow =
         !isFreeFlow &&
@@ -659,7 +665,10 @@ function ApplyCardRequest() {
             {
               text: t("forms.applyCard.viewCard"),
               onPress: () =>
-                navigation.navigate("BottomTabs", { screen: "Card" }),
+                navigation.navigate("BottomTabs", {
+                  screen: "Card",
+                  params: { zohoSynced },
+                }),
             },
           ],
         );

@@ -37,7 +37,7 @@ export const ENV: Environment = getEnvironment();
 export const API_CONFIG = {
   // Base API URL - change based on environment
   BASE_URL: __DEV__
-    ? "http://localhost:3000/api" // Development API
+    ? "http://13.127.77.119:8080/api" // Development API
     : "https://api.production.com/api", // Production API
 
   // API Timeouts
@@ -78,6 +78,7 @@ export const APP_CONFIG = {
   MHF_WEBSITE_URL: "https://mhfglobal.com/",
   MHF_WHATSAPP_NUMBER_E164: "918331960001",
   MHF_WHATSAPP_DISPLAY_NUMBER: "+91 8331960001",
+  MHF_CC_EMAIL: "info@mhfglobal.com", // Update with the actual MHF email address
 } as const;
 
 /**

@@ -22,6 +22,10 @@ function yearOnly(dateStr: string | null | undefined): string {
   return isNaN(year) ? dateStr : String(year);
 }
 
+export const CardText = (props: any) => {
+  return <Text allowFontScaling={false} {...props} />;
+};
+
 export interface FamilyCardData {
   name: string;
   membershipId: string;
@@ -41,11 +45,18 @@ const CARD_ASPECT_RATIO = 1.586; // ISO/IEC 7810 ID-1 standard card ratio
 
 const FamilyCard: React.FC<FamilyCardProps> = ({ data, image }) => {
   const { t } = useTranslation();
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
+
+  const isCompactLayout = width < 360 || height < 700;
 
   // Font scale based on usable card width (screen - 32px padding)
-  const scale = (width - 32) / 340;
+  const scale = Math.max(0.86, Math.min(1.08, (width - 32) / 340));
   const fs = (base: number) => Math.round(base * scale);
+
+  const cardPaddingHorizontal = isCompactLayout ? 12 : 16;
+  const cardPaddingVertical = isCompactLayout ? 10 : 12;
+  const cardTopSpacing = isCompactLayout ? 12 : Math.round(width * 0.16);
+  const columnGap = isCompactLayout ? 8 : 12;
 
   const formattedCreatedAt = yearOnly(data.created_at);
   const maskedAadhaar = maskAadhaar(data.aadharNumber);
@@ -56,70 +67,169 @@ const FamilyCard: React.FC<FamilyCardProps> = ({ data, image }) => {
       style={styles.cardItem}
       imageStyle={styles.cardImageStyle}
     >
-      <View style={styles.cardOverlay}>
-        {/* Card Holder Name */}
-        <View style={styles.cardSection}>
-          <Text style={[styles.cardLabel, { fontSize: fs(10) }]}>
+      <View
+        style={[
+          styles.cardOverlay,
+          {
+            paddingHorizontal: cardPaddingHorizontal,
+            paddingVertical: cardPaddingVertical,
+          },
+        ]}
+      >
+        <View style={[styles.cardSection, { marginTop: cardTopSpacing }]}> 
+          <CardText
+            numberOfLines={1}
+            ellipsizeMode="tail"
+            style={[styles.cardLabel, { fontSize: fs(10) }]}
+          >
             {t("card.cardHolderName")}
-          </Text>
-          <Text style={[styles.cardNameMain, { fontSize: fs(14) }]}>
+          </CardText>
+          <CardText
+            numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.8}
+            style={[styles.cardNameMain, { fontSize: fs(14) }]}
+          >
             {data.name}
-          </Text>
+          </CardText>
         </View>
 
-        {/* Two column layout */}
-        <View style={styles.cardTwoColumn}>
+        <View style={[styles.cardTwoColumn, { gap: columnGap }]}> 
           <View style={styles.cardColumn}>
-            <View style={styles.cardFieldGroup}>
-              <Text style={[styles.cardLabel, { fontSize: fs(10) }]}>
+            <View
+              style={[
+                styles.cardFieldGroup,
+                { marginBottom: isCompactLayout ? 2 : 4 },
+              ]}
+            >
+              <CardText
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={[styles.cardLabel, { fontSize: fs(10) }]}
+              >
                 {t("card.membershipId")}
-              </Text>
-              <Text style={[styles.cardValue, { fontSize: fs(11) }]}>
+              </CardText>
+              <CardText
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                minimumFontScale={0.75}
+                style={[styles.cardValue, { fontSize: fs(11) }]}
+              >
                 {data.membershipId}
-              </Text>
+              </CardText>
             </View>
-            <View style={styles.cardFieldGroup}>
-              <Text style={[styles.cardLabel, { fontSize: fs(10) }]}>
+            <View
+              style={[
+                styles.cardFieldGroup,
+                { marginBottom: isCompactLayout ? 2 : 4 },
+              ]}
+            >
+              <CardText
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={[styles.cardLabel, { fontSize: fs(10) }]}
+              >
                 {t("card.aadharNumber")}
-              </Text>
-              <Text style={[styles.cardValue, { fontSize: fs(11) }]}>
+              </CardText>
+              <CardText
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                minimumFontScale={0.75}
+                style={[styles.cardValue, { fontSize: fs(11) }]}
+              >
                 {maskedAadhaar}
-              </Text>
+              </CardText>
             </View>
-            <View style={styles.cardFieldGroup}>
-              <Text style={[styles.cardLabel, { fontSize: fs(10) }]}>
+            <View
+              style={[
+                styles.cardFieldGroup,
+                { marginBottom: isCompactLayout ? 2 : 4 },
+              ]}
+            >
+              <CardText
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={[styles.cardLabel, { fontSize: fs(10) }]}
+              >
                 {t("card.dateOfIssue")}
-              </Text>
-              <Text style={[styles.cardValue, { fontSize: fs(11) }]}>
+              </CardText>
+              <CardText
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                minimumFontScale={0.75}
+                style={[styles.cardValue, { fontSize: fs(11) }]}
+              >
                 {data.dateOfIssue}
-              </Text>
+              </CardText>
             </View>
           </View>
 
           <View style={styles.cardColumn}>
-            <View style={styles.cardFieldGroup}>
-              <Text style={[styles.cardLabel, { fontSize: fs(10) }]}>
+            <View
+              style={[
+                styles.cardFieldGroup,
+                { marginBottom: isCompactLayout ? 2 : 4 },
+              ]}
+            >
+              <CardText
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={[styles.cardLabel, { fontSize: fs(10) }]}
+              >
                 {t("card.bloodGroup")}
-              </Text>
-              <Text style={[styles.cardValue, { fontSize: fs(11) }]}>
+              </CardText>
+              <CardText
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                minimumFontScale={0.75}
+                style={[styles.cardValue, { fontSize: fs(11) }]}
+              >
                 {data.bloodGroup}
-              </Text>
+              </CardText>
             </View>
-            <View style={styles.cardFieldGroup}>
-              <Text style={[styles.cardLabel, { fontSize: fs(10) }]}>
+            <View
+              style={[
+                styles.cardFieldGroup,
+                { marginBottom: isCompactLayout ? 2 : 4 },
+              ]}
+            >
+              <CardText
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={[styles.cardLabel, { fontSize: fs(10) }]}
+              >
                 {t("card.createdAt")}
-              </Text>
-              <Text style={[styles.cardValue, { fontSize: fs(11) }]}>
+              </CardText>
+              <CardText
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                minimumFontScale={0.75}
+                style={[styles.cardValue, { fontSize: fs(11) }]}
+              >
                 {formattedCreatedAt}
-              </Text>
+              </CardText>
             </View>
-            <View style={styles.cardFieldGroup}>
-              <Text style={[styles.cardLabel, { fontSize: fs(10) }]}>
+            <View
+              style={[
+                styles.cardFieldGroup,
+                { marginBottom: isCompactLayout ? 2 : 4 },
+              ]}
+            >
+              <CardText
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={[styles.cardLabel, { fontSize: fs(10) }]}
+              >
                 {t("card.dateOfExpiry")}
-              </Text>
-              <Text style={[styles.cardValue, { fontSize: fs(11) }]}>
+              </CardText>
+              <CardText
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                minimumFontScale={0.75}
+                style={[styles.cardValue, { fontSize: fs(11) }]}
+              >
                 {data.dateOfExpiry}
-              </Text>
+              </CardText>
             </View>
           </View>
         </View>
@@ -141,28 +251,25 @@ const styles = StyleSheet.create({
   },
   cardOverlay: {
     flex: 1,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
     justifyContent: "space-between",
     backgroundColor: "rgba(27, 73, 104, 0.2)",
   },
-  cardSection: {
-    marginTop: "20%",
-  },
+  cardSection: {},
   cardLabel: {
     fontWeight: "500",
     color: "#B0C4D4",
     letterSpacing: 0.5,
+    flexShrink: 1,
   },
   cardNameMain: {
     fontWeight: "700",
     color: "#fff",
     marginTop: 2,
+    flexShrink: 1,
   },
   cardTwoColumn: {
     flexDirection: "row",
     justifyContent: "space-between",
-    gap: 12,
   },
   cardColumn: {
     flex: 1,
@@ -174,6 +281,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#fff",
     marginTop: 1,
+    flexShrink: 1,
   },
 });
 

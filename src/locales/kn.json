@@ -174,7 +174,7 @@
     "searchPlaceholder": "ಪ್ರದಾತರು, ವಿಶೇಷತೆಗಳು, ಸ್ಥಳ ಹುಡುಕಿ...",
     "resultsFound": "ಪ್ರದಾತರು ಕಂಡುಬಂದರು", "loading": "ಪ್ರದಾತರು ಲೋಡ್ ಆಗುತ್ತಿದ್ದಾರೆ...", "loadError": "ಪ್ರದಾತರನ್ನು ಲೋಡ್ ಮಾಡಲು ವಿಫಲ",
     "tab": { "providers": "ಪ್ರದಾತರು", "blood": "ರಕ್ತ", "equipment": "ಉಪಕರಣಗಳು", "ambulance": "ಆಂಬ್ಯುಲೆನ್ಸ್", "benefits": "ಪ್ರಯೋಜನಗಳು" },
-    "categories": { "all": "ಎಲ್ಲಾ", "hospital": "ಆಸ್ಪತ್ರೆ", "diagnostics": "ರೋಗನಿರ್ಣಯ", "pharmacy": "ಔಷಧಾಲಯ", "clinics": "ಕ್ಲಿನಿಕ್‌ಗಳು", "rehab": "ಪುನರ್ವಸತಿ", "labs": "ಪ್ರಯೋಗಾಲಯಗಳು", "surgical": "ಶಸ್ತ್ರಚಿಕಿತ್ಸೆ" },
+    "categories": { "all": "ಎಲ್ಲಾ", "hospital": "ಆಸ್ಪತ್ರೆ", "diagnostics": "ರೋಗನಿರ್ಣಯ", "pharmacy": "ಔಷಧಾಲಯ", "clinics": "ಕ್ಲಿನಿಕ್‌ಗಳು", "rehab": "ಪುನರ್ವಸತಿ", "labs": "Old Age Home", "oldAgeHome": "Old Age Home", "surgical": "ಶಸ್ತ್ರಚಿಕಿತ್ಸೆ" },
     "provider": { "unknown": "ಅಜ್ಞಾತ ಪ್ರದಾತ", "noAddress": "ವಿಳಾಸ ಲಭ್ಯವಿಲ್ಲ", "noPhone": "N/A" },
     "blood": { "emergency": "ತುರ್ತು ರಕ್ತ ಬೇಕಾಗಿದೆ!", "cta": "ನಮ್ಮ ದಾನಿ ನೆಟ್‌ವರ್ಕ್‌ನಿಂದ ರಕ್ತ ವಿನಂತಿಸಿ", "requestNow": "ಈಗಲೇ ರಕ್ತ ವಿನಂತಿಸಿ", "loading": "ರಕ್ತ ವಿನಂತಿಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...", "loadError": "ರಕ್ತ ವಿನಂತಿಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ವಿಫಲ", "noRequests": "ಯಾವುದೇ ರಕ್ತ ವಿನಂತಿಗಳು ಕಂಡುಬಂದಿಲ್ಲ", "yourRequests": "ನಿಮ್ಮ ರಕ್ತ ವಿನಂತಿಗಳು", "myRequests": "ನನ್ನ ರಕ್ತ ವಿನಂತಿಗಳು", "patient": "ರೋಗಿ", "bloodGroup": "ರಕ್ತ ಗುಂಪು:", "units": "ಘಟಕಗಳು:", "required": "ಅಗತ್ಯ:", "urgency": "ತುರ್ತು:", "hospital": "ಆಸ್ಪತ್ರೆ:", "contact": "ಸಂಪರ್ಕ:" },
     "benefits": {

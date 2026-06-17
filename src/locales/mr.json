@@ -408,7 +408,8 @@
       "pharmacy": "फार्मसी",
       "clinics": "क्लिनिक",
       "rehab": "पुनर्वसन",
-      "labs": "प्रयोगशाळा",
+      "labs": "Old Age Home",
+      "oldAgeHome": "Old Age Home",
       "surgical": "शल्यचिकित्सा"
     },
     "provider": {

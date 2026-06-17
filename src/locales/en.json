@@ -408,7 +408,8 @@
       "pharmacy": "Pharmacy",
       "clinics": "Clinics",
       "rehab": "Rehab",
-      "labs": "Labs",
+      "labs": "Old Age Home",
+      "oldAgeHome": "Old Age Home",
       "surgical": "Surgical"
     },
     "provider": {

@@ -149,7 +149,7 @@
     "searchPlaceholder": "প্রদানকারী, বিশেষত্ব, অবস্থান খুঁজুন...",
     "resultsFound": "প্রদানকারী পাওয়া গেছে", "loading": "প্রদানকারী লোড হচ্ছে...", "loadError": "প্রদানকারী লোডে ব্যর্থ",
     "tab": { "providers": "প্রদানকারী", "blood": "রক্ত", "equipment": "সরঞ্জাম", "ambulance": "অ্যাম্বুলেন্স", "benefits": "সুবিধা" },
-    "categories": { "all": "সব", "hospital": "হাসপাতাল", "diagnostics": "ডায়াগনস্টিক", "pharmacy": "ফার্মেসি", "clinics": "ক্লিনিক", "rehab": "পুনর্বাসন", "labs": "ল্যাব", "surgical": "সার্জিক্যাল" },
+    "categories": { "all": "সব", "hospital": "হাসপাতাল", "diagnostics": "ডায়াগনস্টিক", "pharmacy": "ফার্মেসি", "clinics": "ক্লিনিক", "rehab": "পুনর্বাসন", "labs": "Old Age Home", "oldAgeHome": "Old Age Home", "surgical": "সার্জিক্যাল" },
     "provider": { "unknown": "অজানা প্রদানকারী", "noAddress": "ঠিকানা পাওয়া যাচ্ছে না", "noPhone": "N/A" },
     "blood": { "emergency": "জরুরি রক্ত প্রয়োজন!", "cta": "আমাদের দাতা নেটওয়ার্ক থেকে রক্তের অনুরোধ করুন", "requestNow": "এখনই রক্তের অনুরোধ করুন", "loading": "রক্তের অনুরোধ লোড হচ্ছে...", "loadError": "রক্তের অনুরোধ লোডে ব্যর্থ", "noRequests": "কোনো রক্তের অনুরোধ পাওয়া যায়নি", "yourRequests": "আপনার রক্তের অনুরোধ", "myRequests": "আমার রক্তের অনুরোধ", "patient": "রোগী", "bloodGroup": "রক্তের গ্রুপ:", "units": "একক:", "required": "প্রয়োজন:", "urgency": "জরুরি:", "hospital": "হাসপাতাল:", "contact": "যোগাযোগ:" },
     "benefits": {

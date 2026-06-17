@@ -408,7 +408,8 @@
       "pharmacy": "فارمیسی",
       "clinics": "کلینکس",
       "rehab": "بحالی",
-      "labs": "ل",
+      "labs": "Old Age Home",
+      "oldAgeHome": "Old Age Home",
       "surgical": "سرجیکل"
     },
     "provider": {

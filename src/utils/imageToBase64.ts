@@ -1,4 +1,5 @@
 import { CARD_IMAGE_BASE64 } from './cardImageData';
+import { LOGO_IMAGE_BASE64 } from './logoImageData';
 
 /**
  * Get card image as base64 string (embedded in app bundle)
@@ -9,6 +10,15 @@ export const getCardImageBase64 = async (): Promise<string> => {
     return CARD_IMAGE_BASE64;
   } catch (error) {
     console.warn('Error reading card image:', error);
+    return '';
+  }
+};
+
+export const getLogoImageBase64 = async (): Promise<string> => {
+  try {
+    return LOGO_IMAGE_BASE64;
+  } catch (error) {
+    console.warn('Error reading logo image:', error);
     return '';
   }
 };

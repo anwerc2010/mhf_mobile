@@ -129,6 +129,7 @@ export interface PTDynamicFormRef {
   setFocus: (name: string) => void;
   clearErrors: (name?: string | string[]) => void;
   trigger: (name?: string | string[]) => Promise<boolean>;
+  setError: UseFormReturn["setError"];
   formState: UseFormReturn["formState"];
 }
 
@@ -777,6 +778,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
       reset,
       setFocus,
       clearErrors,
+      setError,
       trigger,
       formState: { errors, isSubmitting, isDirty, isValid },
     } = useForm({
@@ -800,6 +802,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
         watch,
         setFocus,
         clearErrors,
+        setError,
         trigger,
         formState: formState as UseFormReturn["formState"],
       }),
@@ -813,6 +816,7 @@ const PTDynamicForm = React.forwardRef<PTDynamicFormRef, PTDynamicFormProps>(
         watch,
         setFocus,
         clearErrors,
+        setError,
         formState,
       ],
     );

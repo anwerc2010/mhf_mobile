@@ -149,7 +149,7 @@
     "searchPlaceholder": "પ્રદાતા, વિશેષતા, સ્થળ શોધો...",
     "resultsFound": "પ્રદાતા મળ્યા", "loading": "પ્રદાતા લોડ થઈ રહ્યા છે...", "loadError": "પ્રદાતા લોડ કરવામાં નિષ્ફળ",
     "tab": { "providers": "પ્રદાતા", "blood": "રક્ત", "equipment": "સાધન", "ambulance": "એમ્બ્યુલન્સ", "benefits": "લાભ" },
-    "categories": { "all": "બધા", "hospital": "હૉસ્પિટલ", "diagnostics": "ડાયગ્નૉસ્ટિક", "pharmacy": "ફાર્મસી", "clinics": "ક્લિનિક", "rehab": "પુનર્વસન", "labs": "લૅબ", "surgical": "સર્જિકલ" },
+    "categories": { "all": "બધા", "hospital": "હૉસ્પિટલ", "diagnostics": "ડાયગ્નૉસ્ટિક", "pharmacy": "ફાર્મસી", "clinics": "ક્લિનિક", "rehab": "પુનર્વસન", "labs": "Old Age Home", "oldAgeHome": "Old Age Home", "surgical": "સર્જિકલ" },
     "provider": { "unknown": "અજ્ઞાત પ્રદાતા", "noAddress": "સરનામું ઉપલબ્ધ નથી", "noPhone": "N/A" },
     "blood": { "emergency": "ઈમર્જન્સી રક્ત જોઈએ!", "cta": "અમારા દાતા નેટવર્ક પાસેથી રક્ત વિનંતી", "requestNow": "હવે રક્ત વિનંતી", "loading": "રક્ત વિનંતી લોડ...", "loadError": "રક્ત વિનંતી લોડ નિષ્ફળ", "noRequests": "કોઈ રક્ત વિનંતી મળી નથી", "yourRequests": "તમારી રક્ત વિનંતી", "myRequests": "મારી રક્ત વિનંતી", "patient": "દર્દી", "bloodGroup": "રક્ત જૂથ:", "units": "એકમ:", "required": "જરૂરી:", "urgency": "ઈમર્જન્સી:", "hospital": "હૉસ્પિટલ:", "contact": "સંપર્ક:" },
     "benefits": {

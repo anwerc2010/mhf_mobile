@@ -571,7 +571,6 @@ function ApplyNewRelief() {
               mandal: mandalName,
               pincode: values.personal?.pincode || "",
               customer_id: reliefParam?.customer_id,
-              status: "pending",
               declaration: values.declaration?.accepted === "accepted",
             };
 

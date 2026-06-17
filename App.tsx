@@ -20,6 +20,7 @@ import "./src/i18n";
 import React, { useEffect } from "react";
 import { bootstrapAuth } from "./src/services/authBootstrap";
 import { useAppDispatch } from "./src/store/hook";
+import { useFcmToken } from "./src/hooks/useFcmToken";
 
 // Circular spotlight mask with per-step sizing.
 const circularGuideMaskPath = ({ size, position, canvasSize, step }: any) => {
@@ -54,6 +55,8 @@ function AppContent() {
   const currentTheme = useSelector(
     (state: RootState) => state.theme.currentTheme,
   );
+
+  useFcmToken();
 
   // Restore persisted auth session on every app launch (including after swipe-kill)
   useEffect(() => {

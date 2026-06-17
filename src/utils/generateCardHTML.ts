@@ -6,541 +6,306 @@ interface CardData {
   dateOfIssue: string;
   created_at: string;
   dateOfExpiry: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+  city?: string;
+  gender?: string;
 }
 
-// Note: For React Native PDF generation, pass base64Image as parameter
-// Example: generateCardHTMLWithBenefits(cardsData, benefits, steps, base64ImageString)
+// Kept for external callers that still pass benefits — no longer rendered in PDF
+export interface PdfBenefit {
+  title: string;
+  description?: string;
+}
 
-export const generateCardHTML = (cards: CardData[]): string => {
-  const cardsHTML = cards
-    .map(
-      (card, index) => `
-    <div class="card-container" ${
-      index > 0 ? 'style="page-break-before: always;"' : ""
-    }>
-      <div class="health-card">
-        <div class="card-body">
-          <div class="card-details">
-            <div class="detail-row">
-              <span class="label">Card Holder Name:</span>
-              <span class="value">${card.name}</span>
-            </div>
-            
-            <div class="detail-grid">
-              <div class="detail-item">
-                <span class="label">Membership ID:</span>
-                <span class="value">${card.membershipId}</span>
-              </div>
-              <div class="detail-item">
-                <span class="label">Blood Group:</span>
-                <span class="value">${card.bloodGroup}</span>
-              </div>
-              <div class="detail-item">
-                <span class="label">Aadhar Number:</span>
-                <span class="value">${card.aadharNumber}</span>
-              </div>
-              <div class="detail-item">
-                <span class="label">Created At:</span>
-                <span class="value">${card.created_at}</span>
-              </div>
-              <div class="detail-item">
-                <span class="label">Date of Issue:</span>
-                <span class="value">${card.dateOfIssue}</span>
-              </div>
-              <div class="detail-item">
-                <span class="label">Date of Expiry:</span>
-                <span class="value">${card.dateOfExpiry}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card-footer">
-          <div class="qr-code">
-            <svg width="80" height="80" viewBox="0 0 80 80">
-              <rect width="80" height="80" fill="white"/>
-              <rect x="5" y="5" width="15" height="15" fill="black"/>
-              <rect x="60" y="5" width="15" height="15" fill="black"/>
-              <rect x="5" y="60" width="15" height="15" fill="black"/>
-              <rect x="25" y="10" width="5" height="5" fill="black"/>
-              <rect x="35" y="10" width="5" height="5" fill="black"/>
-              <rect x="45" y="10" width="5" height="5" fill="black"/>
-              <rect x="25" y="25" width="10" height="10" fill="black"/>
-              <rect x="45" y="25" width="10" height="10" fill="black"/>
-              <rect x="10" y="35" width="5" height="5" fill="black"/>
-              <rect x="25" y="45" width="10" height="10" fill="black"/>
-              <rect x="45" y="45" width="5" height="5" fill="black"/>
-              <rect x="60" y="45" width="10" height="10" fill="black"/>
-              <rect x="35" y="60" width="15" height="15" fill="black"/>
-            </svg>
-          </div>
-          <p class="footer-text">Scan for verification</p>
-        </div>
-      </div>
-    </div>
-  `,
-    )
-    .join("");
+function maskAadhaar(raw: string): string {
+  const digits = raw.replace(/\s/g, "");
+  if (digits.length < 4) return raw;
+  return "**** **** " + digits.slice(-4);
+}
 
-  return `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Family Health Cards</title>
-      <style>
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-        
-        body {
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-          background: #F6F7FB;
-          padding: 20px;
-        }
-        
-        .card-container {
-          max-width: 800px;
-          margin: 0 auto 30px;
-        }
-        
-        .health-card {
-          background: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);
-          border-radius: 16px;
-          padding: 24px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-          color: white;
-          position: relative;
-          overflow: hidden;
-        }
-        
-        .health-card::before {
-          content: '';
-          position: absolute;
-          top: -50px;
-          right: -50px;
-          width: 200px;
-          height: 200px;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 50%;
-        }
-        
-        .logo {
-          background: rgba(255, 255, 255, 0.2);
-          padding: 8px 16px;
-          border-radius: 8px;
-          font-weight: 700;
-          font-size: 18px;
-        }
-        
-        .card-body {
-          display: flex;
-          gap: 24px;
-          margin-bottom: 24px;
-          position: relative;
-          z-index: 1;
-        }
-        
-        .card-image {
-          flex-shrink: 0;
-        }
-        
-        .card-details {
-          flex: 1;
-        }
-        
-        .detail-row {
-          display: flex;
-          margin-bottom: 12px;
-          align-items: baseline;
-        }
-        
-        .detail-row .label {
-          font-weight: 600;
-          min-width: 140px;
-          font-size: 14px;
-          opacity: 0.9;
-        }
-        
-        .detail-row .value {
-          font-weight: 700;
-          font-size: 16px;
-          flex: 1;
-        }
-        
-        .detail-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 12px;
-          margin-top: 16px;
-        }
-        
-        .detail-item {
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-        }
-        
-        .detail-item .label {
-          font-size: 12px;
-          opacity: 0.8;
-          font-weight: 500;
-        }
-        
-        .detail-item .value {
-          font-size: 14px;
-          font-weight: 700;
-        }
-        
-        .card-footer {
-          border-top: 1px solid rgba(255, 255, 255, 0.3);
-          padding-top: 16px;
-          display: flex;
-          align-items: center;
-          gap: 16px;
-          position: relative;
-          z-index: 1;
-        }
-        
-        .qr-code {
-          background: white;
-          padding: 8px;
-          border-radius: 8px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .footer-text {
-          font-size: 13px;
-          opacity: 0.9;
-          font-weight: 500;
-        }
-        
-        @media print {
-          body {
-            background: white;
-            padding: 0;
-          }
-          
-          .card-container {
-            margin: 0 auto;
-            page-break-inside: avoid;
-          }
-        }
-      </style>
-    </head>
-    <body>
-      ${cardsHTML}
-    </body>
-    </html>
-  `;
-};
+function yearOnly(dateStr: string): string {
+  const year = new Date(dateStr).getFullYear();
+  return isNaN(year) ? dateStr : String(year);
+}
 
 export const generateCardHTMLWithBenefits = (
   cards: CardData[],
-  benefits: string[],
-  steps: string[],
+  _benefits: PdfBenefit[],
+  _steps: string[],
   backgroundImageBase64?: string,
+  logoBase64?: string,
 ): string => {
-  const bgImageStyle = backgroundImageBase64
-    ? `background-image: url('data:image/png;base64,${backgroundImageBase64}'); background-size: cover; background-position: center; background-repeat: no-repeat;`
-    : "background: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);";
+  const headerHTML = `
+  <div class="org-header">
+    ${logoBase64 ? `<img class="org-logo" src="data:image/png;base64,${logoBase64}" />` : ""}
+    <div class="org-text">
+      <span class="org-name">Mujtaba Helping Foundation</span>
+      <span class="org-subtitle">Health Card</span>
+    </div>
+  </div>`;
 
   const cardsHTML = cards
-    .map(
-      (card, index) => `
-    <div class="card-container" ${
-      index > 0 ? 'style="page-break-before: always;"' : ""
-    }>
-      <div class="health-card" style="${bgImageStyle}">
-        <div class="card-body">
-          
-          <div class="card-details">
-            <div class="detail-row">
-              <span class="label">Card Holder Name:</span>
-              <span class="value">${card.name}</span>
+    .map((card, index) => {
+      const maskedAadhaar = maskAadhaar(card.aadharNumber);
+      const validFrom = card.created_at ? yearOnly(card.created_at) : "";
+
+      const sectionLabel = index === 0 ? "Primary Card Holder" : "Family Member";
+
+      return `
+  <div class="card-container" ${index > 0 ? 'style="page-break-before: always;"' : ""}>
+    <p class="card-section-label">${sectionLabel}</p>
+    <div class="card-wrapper">
+      <div class="health-card">
+        ${backgroundImageBase64 ? `<img class="card-bg-img" src="data:image/png;base64,${backgroundImageBase64}" />` : ""}
+        <div class="card-content">
+          <div class="card-top-spacer"></div>
+          <div class="name-section">
+            <span class="field-label">CARD HOLDER NAME</span>
+            <span class="field-name">${card.name}</span>
+          </div>
+          <div class="fields-grid">
+            <div class="field-col">
+              <div class="field">
+                <span class="field-label">MEMBERSHIP ID</span>
+                <span class="field-value">${card.membershipId}</span>
+              </div>
+              <div class="field">
+                <span class="field-label">AADHAR NUMBER</span>
+                <span class="field-value">${maskedAadhaar}</span>
+              </div>
+              <div class="field">
+                <span class="field-label">DATE OF ISSUE</span>
+                <span class="field-value">${card.dateOfIssue}</span>
+              </div>
             </div>
-            
-            <div class="detail-grid">
-              <div class="detail-item">
-                <span class="label">Membership ID:</span>
-                <span class="value">${card.membershipId}</span>
+            <div class="field-col">
+              <div class="field">
+                <span class="field-label">BLOOD GROUP</span>
+                <span class="field-value">${card.bloodGroup}</span>
               </div>
-              <div class="detail-item">
-                <span class="label">Blood Group:</span>
-                <span class="value">${card.bloodGroup}</span>
+              <div class="field">
+                <span class="field-label">VALID FROM</span>
+                <span class="field-value">${validFrom}</span>
               </div>
-              <div class="detail-item">
-                <span class="label">Aadhar Number:</span>
-                <span class="value">${card.aadharNumber}</span>
-              </div>
-              <div class="detail-item">
-                <span class="label">Created At:</span>
-                <span class="value">${card.created_at}</span>
-              </div>
-              <div class="detail-item">
-                <span class="label">Date of Issue:</span>
-                <span class="value">${card.dateOfIssue}</span>
-              </div>
-              <div class="detail-item">
-                <span class="label">Date of Expiry:</span>
-                <span class="value">${card.dateOfExpiry}</span>
+              <div class="field">
+                <span class="field-label">DATE OF EXPIRY</span>
+                <span class="field-value">${card.dateOfExpiry}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  `,
-    )
+  </div>`;
+    })
     .join("");
 
-  const benefitsHTML = benefits
-    .map(
-      (benefit, i) => `
-    <div class="benefit-item">
-      <div class="check-icon">✓</div>
-      <span>${benefit}</span>
-    </div>
-  `,
-    )
-    .join("");
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  const stepsHTML = steps
-    .map(
-      (step, i) => `
-    <div class="step-item">
-      <div class="step-number">Step ${i + 1}</div>
-      <p class="step-text">${step}</p>
-    </div>
-  `,
-    )
-    .join("");
+    html, body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #F6F7FB;
+      padding: 20px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
 
-  return `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <style>
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-        
-        body {
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-          background: #F6F7FB;
-          padding: 20px;
-        }
-        
-        .card-container {
-          max-width: 800px;
-          margin: 0 auto 30px;
-        }
-        
-        .health-card {
-          background: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);
-          border-radius: 16px;
-          padding: 24px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-          color: white;
-          position: relative;
-          overflow: hidden;
-          background-size: cover;
-          background-position: center;
-        }
-        
-        .health-card::before {
-          content: '';
-          position: absolute;
-          top: -50px;
-          right: -50px;
-          width: 200px;
-          height: 200px;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 50%;
-          z-index: 1;
-        }
-        
-        .logo {
-          background: rgba(255, 255, 255, 0.2);
-          padding: 8px 16px;
-          border-radius: 8px;
-          font-weight: 700;
-          font-size: 18px;
-        }
-        
-        .card-body {
-          display: flex;
-          gap: 30px;
-          margin-bottom: 24px;
-          position: relative;
-          z-index: 2;
-        }
-        
-        .card-details {
-          flex: 1;
-          margin-top: 120px;
-          margin-bottom: 100px;
-        }
-        
-        .detail-row {
-          display: flex;
-          margin-bottom: 12px;
-          align-items: baseline;
-        }
-        
-        .detail-row .label {
-          font-weight: 600;
-          min-width: 140px;
-          font-size: 14px;
-          opacity: 0.9;
-        }
-        
-        .detail-row .value {
-          font-weight: 700;
-          font-size: 16px;
-          flex: 1;
-        }
-        
-        .detail-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 12px;
-          margin-top: 16px;
-        }
-        
-        .detail-item {
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-        }
-        
-        .detail-item .label {
-          font-size: 12px;
-          opacity: 0.8;
-          font-weight: 500;
-        }
-        
-        .detail-item .value {
-          font-size: 14px;
-          font-weight: 700;
-        }
-        
-        .card-footer {
-          border-top: 1px solid rgba(255, 255, 255, 0.3);
-          padding-top: 16px;
-          display: flex;
-          align-items: center;
-          gap: 16px;
-          position: relative;
-          z-index: 2;
-        }
-        
-        .qr-code {
-          background: white;
-          padding: 8px;
-          border-radius: 8px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .footer-text {
-          font-size: 13px;
-          opacity: 0.9;
-          font-weight: 500;
-        }
-        
-        .info-section {
-          max-width: 800px;
-          margin: 30px auto;
-          background: white;
-          border-radius: 12px;
-          padding: 24px;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-          page-break-inside: avoid;
-        }
-        
-        .info-section h3 {
-          font-size: 20px;
-          font-weight: 700;
-          color: #111827;
-          margin-bottom: 16px;
-        }
-        
-        .benefit-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-          margin-bottom: 12px;
-          color: #374151;
-        }
-        
-        .check-icon {
-          width: 20px;
-          height: 20px;
-          background: #10B981;
-          color: white;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 12px;
-          font-weight: 700;
-          flex-shrink: 0;
-        }
-        
-        .step-item {
-          margin-bottom: 16px;
-        }
-        
-        .step-number {
-          background: #F3F4F6;
-          display: inline-block;
-          padding: 6px 12px;
-          border-radius: 8px;
-          font-weight: 600;
-          color: #374151;
-          font-size: 14px;
-          margin-bottom: 8px;
-        }
-        
-        .step-text {
-          color: #6B7280;
-          font-size: 14px;
-          line-height: 1.5;
-        }
-        
-        @media print {
-          body {
-            background: white;
-            padding: 0;
-          }
-          
-          .card-container, .info-section {
-            margin: 0 auto 20px;
-            page-break-inside: avoid;
-          }
-        }
-      </style>
-    </head>
-    <body>
-      ${cardsHTML}
-      
-      <div class="info-section">
-        <h3>Card Benefits</h3>
-        ${benefitsHTML}
-      </div>
-      
-      <div class="info-section">
-        <h3>How to Use Your Card</h3>
-        ${stepsHTML}
-      </div>
-    </body>
-    </html>
-  `;
+    /* ── Organisation Header ── */
+    .org-header {
+      max-width: 760px;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-bottom: 16px;
+      border-bottom: 3px solid #1E3A8A;
+    }
+
+    .org-logo {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .org-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .org-name {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1E3A8A;
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+    }
+
+    .org-subtitle {
+      font-size: 13px;
+      font-weight: 500;
+      color: #06B6D4;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ── Card section label ── */
+    .card-section-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #6B7280;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    /* ── Card container ── */
+    .card-container {
+      max-width: 760px;
+      margin: 0 auto 28px;
+    }
+
+    /* Aspect-ratio trick: padding-bottom = 100/1.586 ≈ 63% */
+    .card-wrapper {
+      width: 100%;
+      position: relative;
+      padding-bottom: 63%;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: #1B4968;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .health-card {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+    }
+
+    .card-bg-img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-content {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 3% 4% 5% 4%;
+      background-color: rgba(27, 73, 104, 0.2);
+    }
+
+    .card-top-spacer { flex: 1; }
+
+    .name-section {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 6px;
+    }
+
+    .fields-grid {
+      display: flex;
+      gap: 12px;
+    }
+
+    .field-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .field-label {
+      font-size: 9px;
+      font-weight: 500;
+      color: #B0C4D4;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .field-value {
+      font-size: 11px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .field-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-top: 2px;
+    }
+
+    /* ── Contact details (primary only) ── */
+    .contact-section {
+      background: #fff;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-top: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .contact-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1E3A8A;
+      margin: 0 0 10px 0;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 6px;
+      align-items: flex-start;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #6B7280;
+      min-width: 60px;
+    }
+
+    .contact-value {
+      font-size: 11px;
+      font-weight: 600;
+      color: #111827;
+      flex: 1;
+    }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .card-container { margin: 0 auto 20px; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  ${headerHTML}
+  ${cardsHTML}
+</body>
+</html>`;
+};
+
+// Legacy function kept for compatibility
+export const generateCardHTML = (cards: CardData[]): string => {
+  return generateCardHTMLWithBenefits(cards, [], []);
 };

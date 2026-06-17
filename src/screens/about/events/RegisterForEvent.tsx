@@ -38,7 +38,6 @@ function RegisterForEvent() {
         address: values?.personal?.address ?? "",
         participation_type: participationType,
         declaration: declarationAccepted,
-        status: "",
       };
       console.log("Payload to be sent:", JSON.stringify(payload, null, 2));
       const response = await createEventRegistration(payload).unwrap();

@@ -179,16 +179,6 @@ export default function ReliefScreen() {
   ];
 
   const handleDonatePress = (program: any) => {
-    console.log("[Relief Donate] Selected program:", {
-      id: program?.id,
-      sourceItemId: program?.sourceItemId,
-      reliefWelfareId: program?.reliefWelfareId,
-      backendModuleId: program?.backendModuleId,
-      title: program?.title,
-      status: program?.status,
-      allow_donate: program?.allow_donate,
-      rawProgram: program,
-    });
     setSelectedProgramForDonation(program);
   };
 
@@ -220,8 +210,6 @@ export default function ReliefScreen() {
       actionLabel: "donation" as const,
       amount,
     };
-
-    console.log("[Relief Donate] Navigating to payment with:", campaignPayment);
 
     setSelectedProgramForDonation(null);
     navigation.navigate("Payment", {
@@ -396,11 +384,6 @@ export default function ReliefScreen() {
             ))}
           </View>
         </View>
-        <TouchableOpacity style={styles.requestButton} activeOpacity={0.9}>
-          <Text style={styles.requestButtonText}>
-            {t("relief.requestNewCard")}
-          </Text>
-        </TouchableOpacity>
       </ScrollView>
 
       <Modal
@@ -621,15 +604,6 @@ const styles = StyleSheet.create({
   },
   impactNumber: { fontWeight: "700", color: "#0F172A", marginBottom: 6 },
   impactLabel: { color: "#6B7280", fontSize: 12, textAlign: "center" },
-
-  requestButton: {
-    marginTop: 16,
-    backgroundColor: "#34D399",
-    paddingVertical: 14,
-    borderRadius: 12,
-    alignItems: "center",
-  },
-  requestButtonText: { color: "#fff", fontWeight: "700" },
 
   // Program card styles
   sectionTitle: {

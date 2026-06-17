@@ -408,7 +408,8 @@
       "pharmacy": "వైద్య దుకాణం",
       "clinics": "క్లినిక్‌లు",
       "rehab": "పునరావసరం",
-      "labs": "ల",
+      "labs": "Old Age Home",
+      "oldAgeHome": "Old Age Home",
       "surgical": "శస్త్ర"
     },
     "provider": {

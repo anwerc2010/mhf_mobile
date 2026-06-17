@@ -241,11 +241,10 @@ export default function BloodRequest() {
         },
         {
           id: "email",
-          label: "Email",
+          label: "Email (optional)",
           type: "email",
           placeholder: "Enter email address",
           validations: [
-            { name: "required", value: true },
             {
               name: "pattern",
               value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -377,8 +376,7 @@ export default function BloodRequest() {
       mandals.find((m: { id: number; name: string }) => m.id === mandalId)
         ?.name || "";
 
-    const payload = {
-      email: data.requester?.email,
+    const payload: Record<string, any> = {
       patient_name: data.patient?.name,
       patient_age: data.patient?.age,
       patient_gender: data.patient?.gender,
@@ -402,11 +400,13 @@ export default function BloodRequest() {
       mandal: mandalName,
       pincode: data.address?.pincode,
       remarks: data.remarks?.remarks,
-      status: "pending",
     };
+    if (data.requester?.email) {
+      payload.email = data.requester.email;
+    }
 
     try {
-      const response = await createBloodRequest(payload).unwrap();
+      const response = await createBloodRequest(payload as any).unwrap();
       Alert.alert(
         t("common.success"),
         response?.message ||

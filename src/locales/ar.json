@@ -262,7 +262,8 @@
       "pharmacy": "صيدلية",
       "clinics": "عيادات",
       "rehab": "التأهيل",
-      "labs": "المختبرات",
+      "labs": "Old Age Home",
+      "oldAgeHome": "Old Age Home",
       "surgical": "الجراحية"
     },
     "provider": {

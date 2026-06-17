@@ -21,6 +21,31 @@ import { useGuideController } from "../../../hooks/useGuideController";
 
 const { width } = Dimensions.get("window");
 
+function getEventDisplayStatus(backendStatus: string, eventDate: string | null): string {
+  const s = (backendStatus ?? "").toLowerCase();
+  if (s === "canceled") return "canceled";
+  if (!eventDate) return s || "upcoming";
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const eDate = new Date(eventDate);
+  eDate.setHours(0, 0, 0, 0);
+  if (eDate.getTime() < today.getTime()) return "completed";
+  if (eDate.getTime() === today.getTime()) return "ongoing";
+  return "upcoming";
+}
+
+function formatTimeTo12h(time: string | null | undefined): string {
+  if (!time) return "";
+  const parts = time.split(":");
+  if (parts.length < 2) return time;
+  let hours = parseInt(parts[0], 10);
+  const minutes = parts[1].padStart(2, "0");
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  if (hours === 0) hours = 12;
+  return `${hours}:${minutes} ${ampm}`;
+}
+
 export default function EventsScreen() {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
@@ -86,15 +111,17 @@ export default function EventsScreen() {
     Array.isArray(eventsResponse?.data) ? eventsResponse?.data : []
   ).map((item: any) => {
     const event = item?.event ?? item;
+    const eventDate = event?.event_date ?? null;
+    const displayStatus = getEventDisplayStatus(event?.status ?? "", eventDate);
     return {
       id: event?.id ?? event?.event_id ?? event?.title,
       icon: event?.icon ?? "📌",
       title: event?.event_name,
-      date: event?.event_date,
-      time: event?.start_time,
+      date: eventDate,
+      time: formatTimeTo12h(event?.start_time),
       location: event?.location,
       desc: event?.description,
-      status: event?.status,
+      status: displayStatus,
       mapLink: event?.map_url,
       my_registrations: item?.my_registrations,
     };
@@ -167,7 +194,7 @@ export default function EventsScreen() {
         {!isLoading &&
           !error &&
           events.map((e, idx) => {
-            const status = (e.status ?? "").toString().toLowerCase();
+            const status = e.status;
             const isActive = status === "upcoming" || status === "ongoing";
             const statusLabel = status
               ? status.charAt(0).toUpperCase() + status.slice(1)

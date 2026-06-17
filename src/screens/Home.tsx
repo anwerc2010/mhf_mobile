@@ -371,7 +371,14 @@ export default function HomeScreen() {
                   >
                     <Icon color="#fff" weight="bold" size={20} />
                   </View>
-                  <Text style={styles.actionText}>{label}</Text>
+                  <Text
+                    allowFontScaling={false}
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                    style={styles.actionText}
+                  >
+                    {label}
+                  </Text>
                 </TouchableOpacity>
               </GuideWrapper>
             ))}

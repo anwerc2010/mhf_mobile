@@ -408,7 +408,8 @@
       "pharmacy": "மருந்தகம்",
       "clinics": "கிளினிக்குகள்",
       "rehab": "மறுவாழ்வு",
-      "labs": "ஆய்வகங்கள்",
+      "labs": "Old Age Home",
+      "oldAgeHome": "Old Age Home",
       "surgical": "அறுவை சிகிச்சை"
     },
     "provider": {

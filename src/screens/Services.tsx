@@ -172,6 +172,9 @@ export default function ServicesScreen() {
 
   // Build filtered + sorted provider list
   const filtered = useMemo(() => {
+    const normalizeCategory = (value: string) =>
+      value.toLowerCase().replace(/[\s-]+/g, "_").trim();
+
     // Always use the full list as the base so specialities and all fields are present.
     // Inject distanceKm from the location query (matches the p.distanceKm field in the card UI).
     let providers: any[] = (providersData?.data || []).map((p: any) => ({
@@ -182,9 +185,18 @@ export default function ServicesScreen() {
     // Category chip filter
     if (activeChip !== "All") {
       providers = providers.filter((p: any) => {
-        const category =
-          p.category?.toLowerCase() || p.type?.toLowerCase() || "";
-        return category === activeChip.toLowerCase();
+        const category = normalizeCategory(
+          p.category || p.type || p.sub_type || "",
+        );
+        const selected = normalizeCategory(activeChip);
+
+        if (selected === "old_age_home") {
+          return ["old_age_home", "oldagehome", "old_agehome", "labs", "lab"].includes(
+            category,
+          );
+        }
+
+        return category === selected;
       });
     }
 
@@ -549,21 +561,21 @@ export default function ServicesScreen() {
               <TouchableOpacity
                 style={[
                   styles.chip,
-                  activeChip === "Labs" && styles.chipActive,
+                  activeChip === "old_age_home" && styles.chipActive,
                 ]}
-                onPress={() => setActiveChip("Labs")}
+                onPress={() => setActiveChip("old_age_home")}
               >
                 <Syringe
                   size={14}
-                  color={activeChip === "Labs" ? "#0369A1" : "#0369A1"}
+                  color={activeChip === "old_age_home" ? "#0369A1" : "#0369A1"}
                 />
                 <Text
                   style={[
                     styles.chipText,
-                    activeChip === "Labs" && styles.chipActiveText,
+                    activeChip === "old_age_home" && styles.chipActiveText,
                   ]}
                 >
-                  {t("services.categories.labs")}
+                  {t("services.categories.oldAgeHome", "Old Age Home")}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity

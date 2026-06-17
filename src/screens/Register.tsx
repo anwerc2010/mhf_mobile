@@ -313,9 +313,17 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
           if (errorFields.length > 0) {
             const fieldName = errorFields[0];
             const fieldError = fieldErrors[fieldName];
-            errorMessage = `${fieldName}: ${
-              Array.isArray(fieldError) ? fieldError[0] : fieldError
-            }`;
+            errorMessage = Array.isArray(fieldError) ? fieldError[0] : fieldError;
+
+            if (fieldName === "phone") {
+              formRef.current?.setError("personalDetails.phone", {
+                type: "manual",
+                message: errorMessage,
+              });
+              showToast("error", errorMessage);
+              setPendingNavigate(false);
+              return;
+            }
           }
         }
         Alert.alert(t("register.registrationFailed"), errorMessage, [
@@ -341,8 +349,28 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
       let errorMessage = t("register.toast.error");
 
       // Extract field-specific errors from API response
+      const errorsObj = err?.data?.errors;
       const messageObj = err?.data?.message || err?.message;
-      if (messageObj && typeof messageObj === "object") {
+
+      if (errorsObj && typeof errorsObj === "object") {
+        if (errorsObj.phone) {
+          const phoneMsg = Array.isArray(errorsObj.phone)
+            ? errorsObj.phone[0]
+            : errorsObj.phone;
+          formRef.current?.setError("personalDetails.phone", {
+            type: "manual",
+            message: phoneMsg,
+          });
+          showToast("error", phoneMsg);
+          setPendingNavigate(false);
+          return;
+        }
+        const firstField = Object.keys(errorsObj)[0];
+        if (firstField) {
+          const fieldError = errorsObj[firstField];
+          errorMessage = Array.isArray(fieldError) ? fieldError[0] : fieldError;
+        }
+      } else if (messageObj && typeof messageObj === "object") {
         const fieldErrors = messageObj;
         const errorFields = Object.keys(fieldErrors);
 

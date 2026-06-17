@@ -63,7 +63,6 @@ import BloodRequest from "../screens/blood/BloodRequest";
 import PaymentScreen from "../screens/payment/PaymentScreen";
 import PaymentSuccessScreen from "../screens/payment/PaymentSuccessScreen";
 import PaymentHistoryScreen from "../screens/payment/PaymentHistoryScreen";
-
 // Navigation Types
 export type NavigationType = "stack" | "bottom-tabs" | "top-tabs" | "drawer";
 
