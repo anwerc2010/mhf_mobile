@@ -609,7 +609,7 @@ const ArraySectionComponent: React.FC<ArraySectionProps> = ({
               <Plus size={16} color={theme.colors.textInverse} weight="bold" />
               <PTText
                 variant="caption"
-                color="textTertiary"
+                color="textInverse"
                 style={{ marginLeft: theme.spacing.xs, fontWeight: "600" }}
               >
                 {addButtonText}

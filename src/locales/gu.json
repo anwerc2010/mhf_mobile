@@ -1,15 +1,30 @@
 {
   "common": {
-    "email": "ઇમેઇલ", "password": "પાસવર્ડ", "name": "નામ", "confirmPassword": "પાસવર્ડ પુષ્ટિ કરો",
-    "signIn": "સાઇન ઇન", "signUp": "સાઇન અપ", "signOut": "સાઇન આઉટ",
-    "cancel": "રદ કરો", "save": "સાચવો", "delete": "કાઢી નાખો", "edit": "સંપાદિત કરો",
-    "loading": "લોડ થઈ રહ્યું છે...", "error": "ભૂલ", "success": "સફળ", "step": "પગલું"
+    "email": "ઇમેઇલ",
+    "password": "પાસવર્ડ",
+    "name": "નામ",
+    "confirmPassword": "પાસવર્ડ પુષ્ટિ કરો",
+    "signIn": "સાઇન ઇન",
+    "signUp": "સાઇન અપ",
+    "signOut": "સાઇન આઉટ",
+    "cancel": "રદ કરો",
+    "save": "સાચવો",
+    "delete": "કાઢી નાખો",
+    "edit": "સંપાદિત કરો",
+    "loading": "લોડ થઈ રહ્યું છે...",
+    "error": "ભૂલ",
+    "success": "સફળ",
+    "step": "પગલું"
   },
   "filePicker": {
-    "chooseUploadType": "અપલોડ પ્રકાર પસંદ કરો", "imageFromGallery": "ગેલેરીમાંથી છબી",
-    "file": "ફાઇલ", "uploadFile": "અપલોડ કરવા ટૅપ કરો", "selectFile": "ફાઇલ પસંદ કરો",
+    "chooseUploadType": "અપલોડ પ્રકાર પસંદ કરો",
+    "imageFromGallery": "ગેલેરીમાંથી છબી",
+    "file": "ફાઇલ",
+    "uploadFile": "અપલોડ કરવા ટૅપ કરો",
+    "selectFile": "ફાઇલ પસંદ કરો",
     "simulatedFile": "ડેમો હેતુ માટે એક સિમ્યુલેટેડ ફાઇલ બનાવવામાં આવી છે.",
-    "useSimulatedFile": "સિમ્યુલેટેડ ફાઇલ વાપરો", "noFileSelected": "કોઈ ફાઇલ પસંદ કરવામાં આવી નથી",
+    "useSimulatedFile": "સિમ્યુલેટેડ ફાઇલ વાપરો",
+    "noFileSelected": "કોઈ ફાઇલ પસંદ કરવામાં આવી નથી",
     "pleaseSelectFile": "કૃપા કરીને ઓછામાં ઓછી એક ફાઇલ પસંદ કરો.",
     "fileTooLarge": "ફાઇલ ઘણી મોટી છે",
     "fileExceedsSize": "કેટલીક ફાઇલો {{size}} મહત્તમ કદ કરતાં વધી જાય છે. નાની ફાઇલો પસંદ કરો.",
@@ -22,242 +37,871 @@
     "filePickerFuture": "આ પ્લેટફોર્મ માટે ફાઇલ પિકર ભવિષ્યના અપડેટ સાથે અમલ કરવામાં આવશે."
   },
   "login": {
-    "title": "પાછા સ્વાગત છે", "subtitle": "ચાલુ રાખવા સાઇન ઇન કરો",
-    "emailPlaceholder": "તમારો ઇમેઇલ દાખલ કરો", "passwordPlaceholder": "તમારો પાસવર્ડ દાખલ કરો",
-    "noAccount": "ખાતું નથી?", "loginFailed": "લૉગિન નિષ્ફળ",
-    "invalidCredentials": "ખોટો ઇમેઇલ અથવા પાસવર્ડ", "errorOccurred": "એક ભૂલ આવી. ફરીથી પ્રયાસ કરો.",
+    "title": "પાછા સ્વાગત છે",
+    "subtitle": "ચાલુ રાખવા સાઇન ઇન કરો",
+    "emailPlaceholder": "તમારો ઇમેઇલ દાખલ કરો",
+    "passwordPlaceholder": "તમારો પાસવર્ડ દાખલ કરો",
+    "noAccount": "ખાતું નથી?",
+    "loginFailed": "લૉગિન નિષ્ફળ",
+    "invalidCredentials": "ખોટો ઇમેઇલ અથવા પાસવર્ડ",
+    "errorOccurred": "એક ભૂલ આવી. ફરીથી પ્રયાસ કરો.",
     "fillAllFields": "કૃપા કરીને બધા ક્ષેત્રો ભરો"
   },
   "register": {
-    "title": "ખાતું બનાવો", "subtitle": "શરૂ કરવા સાઇન અપ કરો",
-    "namePlaceholder": "તમારું પૂરું નામ દાખલ કરો", "emailPlaceholder": "તમારો ઇમેઇલ દાખલ કરો",
-    "passwordPlaceholder": "તમારો પાસવર્ડ દાખલ કરો", "confirmPasswordPlaceholder": "તમારો પાસવર્ડ પુષ્ટિ કરો",
-    "hasAccount": "પહેલેથી ખાતું છે?", "registrationFailed": "નોંધણી નિષ્ફળ",
+    "title": "ખાતું બનાવો",
+    "subtitle": "શરૂ કરવા સાઇન અપ કરો",
+    "namePlaceholder": "તમારું પૂરું નામ દાખલ કરો",
+    "emailPlaceholder": "તમારો ઇમેઇલ દાખલ કરો",
+    "passwordPlaceholder": "તમારો પાસવર્ડ દાખલ કરો",
+    "confirmPasswordPlaceholder": "તમારો પાસવર્ડ પુષ્ટિ કરો",
+    "hasAccount": "પહેલેથી ખાતું છે?",
+    "registrationFailed": "નોંધણી નિષ્ફળ",
     "registrationSuccess": "નોંધણી સફળ! કૃપા કરીને લૉગિન કરો.",
-    "passwordsNotMatch": "પાસવર્ડ મેળ ખાતા નથી", "passwordMinLength": "પાસવર્ડ ઓછામાં ઓછો 6 અક્ષરનો હોવો જોઈએ",
-    "fillAllFields": "કૃપા કરીને બધા ક્ષેત્રો ભરો", "profileImageLabel": "પ્રોફાઇલ છબી",
-    "toast": { "success": "ગ્રાહક સફળતાપૂર્વક નોંધાયો", "error": "નોંધણી નિષ્ફળ" },
+    "passwordsNotMatch": "પાસવર્ડ મેળ ખાતા નથી",
+    "passwordMinLength": "પાસવર્ડ ઓછામાં ઓછો 6 અક્ષરનો હોવો જોઈએ",
+    "fillAllFields": "કૃપા કરીને બધા ક્ષેત્રો ભરો",
+    "profileImageLabel": "પ્રોફાઇલ છબી",
+    "toast": {
+      "success": "ગ્રાહક સફળતાપૂર્વક નોંધાયો",
+      "error": "નોંધણી નિષ્ફળ"
+    },
     "validation": {
-      "fullnameRequired": "પૂરું નામ જરૂરી", "ageRequired": "ઉંમર જરૂરી", "agePositive": "ઉંમર સકારાત્મક હોવી જોઈએ",
-      "genderRequired": "લિંગ જરૂરી", "phoneRequired": "ફોન જરૂરી", "addressRequired": "સરનામું જરૂરી",
-      "emailRequired": "ઇમેઇલ જરૂરી", "emailInvalid": "માન્ય ઇમેઇલ દાખલ કરો",
-      "passwordRequired": "પાસવર્ડ જરૂરી", "passwordMin": "પાસવર્ડ ઓછામાં ઓછો 8 અક્ષરનો હોવો જોઈએ",
-      "equipmentTypeRequired": "સાધનનો પ્રકાર જરૂરી", "medicalReasonRequired": "તબીબી કારણ જરૂરી",
-      "durationRequired": "અવધિ જરૂરી", "referenceNameRequired": "સંદર્ભ નામ જરૂરી", "referenceContactRequired": "સંદર્ભ સંપર્ક જરૂરી"
+      "fullnameRequired": "પૂરું નામ જરૂરી",
+      "ageRequired": "ઉંમર જરૂરી",
+      "agePositive": "ઉંમર સકારાત્મક હોવી જોઈએ",
+      "genderRequired": "લિંગ જરૂરી",
+      "phoneRequired": "ફોન જરૂરી",
+      "addressRequired": "સરનામું જરૂરી",
+      "emailRequired": "ઇમેઇલ જરૂરી",
+      "emailInvalid": "માન્ય ઇમેઇલ દાખલ કરો",
+      "passwordRequired": "પાસવર્ડ જરૂરી",
+      "passwordMin": "પાસવર્ડ ઓછામાં ઓછો 8 અક્ષરનો હોવો જોઈએ",
+      "equipmentTypeRequired": "સાધનનો પ્રકાર જરૂરી",
+      "medicalReasonRequired": "તબીબી કારણ જરૂરી",
+      "durationRequired": "અવધિ જરૂરી",
+      "referenceNameRequired": "સંદર્ભ નામ જરૂરી",
+      "referenceContactRequired": "સંદર્ભ સંપર્ક જરૂરી"
     }
   },
   "language": {
-    "changeLanguage": "ભાષા બદલો", "english": "અંગ્રેજી", "arabic": "અરબી",
-    "selectLanguage": "ભાષા પસંદ કરો", "urdu": "ઉર્દૂ", "telugu": "તેલુગુ",
-    "hindi": "હિન્દી", "marathi": "મરાઠી", "tamil": "તમિળ",
-    "punjabi": "પંજાબી", "kannada": "કન્નડ", "bengali": "બંગાળી", "gujarati": "ગુજરાતી"
+    "changeLanguage": "ભાષા બદલો",
+    "english": "અંગ્રેજી",
+    "arabic": "અરબી",
+    "selectLanguage": "ભાષા પસંદ કરો",
+    "urdu": "ઉર્દૂ",
+    "telugu": "તેલુગુ",
+    "hindi": "હિન્દી",
+    "marathi": "મરાઠી",
+    "tamil": "તમિળ",
+    "punjabi": "પંજાબી",
+    "kannada": "કન્નડ",
+    "bengali": "બંગાળી",
+    "gujarati": "ગુજરાતી"
   },
-  "theme": { "light": "આછો", "dark": "ઘેરો", "system": "સિસ્ટમ", "selectTheme": "થીમ પસંદ કરો", "changeTheme": "થીમ બદલો" },
+  "theme": {
+    "light": "આછો",
+    "dark": "ઘેરો",
+    "system": "સિસ્ટમ",
+    "selectTheme": "થીમ પસંદ કરો",
+    "changeTheme": "થીમ બદલો"
+  },
   "home": {
-    "title": "હોમ સ્ક્રીન", "featuredPartners": "વિશિષ્ટ ભાગીદારો", "viewAll": "બધું જુઓ",
-    "welcomeBack": "પાછા સ્વાગત છે,", "education": "શિક્ષણ", "relief": "રાહત",
-    "volunteers": "સ્વયંસેવકો", "events": "કાર્યક્રમો", "familyHealthCards": "કૌટુંબિક આરોગ્ય કાર્ડ",
-    "requestNewCard": "+  નવા કાર્ડ માટે વિનંતી", "errorLoadingData": "ડૅશબોર્ડ ડેટા લોડ કરવામાં ભૂલ",
-    "guest": "મહેમાન", "noCardsFound": "કોઈ કાર્ડ મળ્યા નથી",
-    "cardRequests": "કાર્ડ વિનંતીઓ", "cardRequestDetails": "કાર્ડ વિનંતી વિગત",
-    "requestId": "વિનંતી ID:", "status": "સ્થિતિ:", "requested": "વિનંતી કરી:", "updated": "અપડેટ કર્યો:",
-    "reviewNotes": "સમીક્ષા નોંધો:", "noReviewNotes": "કોઈ સમીક્ષા નોંધો ઉપલબ્ધ નથી",
-    "close": "બંધ કરો", "applyForCard": "કાર્ડ માટે અરજી કરો", "notAvailable": "N/A", "primaryMember": "પ્રાથમિક સભ્ય"
+    "title": "હોમ સ્ક્રીન",
+    "featuredPartners": "વિશિષ્ટ ભાગીદારો",
+    "viewAll": "બધું જુઓ",
+    "welcomeBack": "પાછા સ્વાગત છે,",
+    "education": "શિક્ષણ",
+    "relief": "રાહત",
+    "volunteers": "સ્વયંસેવકો",
+    "events": "કાર્યક્રમો",
+    "familyHealthCards": "કૌટુંબિક આરોગ્ય કાર્ડ",
+    "requestNewCard": "+  નવા કાર્ડ માટે વિનંતી",
+    "errorLoadingData": "ડૅશબોર્ડ ડેટા લોડ કરવામાં ભૂલ",
+    "guest": "મહેમાન",
+    "noCardsFound": "કોઈ કાર્ડ મળ્યા નથી",
+    "cardRequests": "કાર્ડ વિનંતીઓ",
+    "cardRequestDetails": "કાર્ડ વિનંતી વિગત",
+    "requestId": "વિનંતી ID:",
+    "status": "સ્થિતિ:",
+    "requested": "વિનંતી કરી:",
+    "updated": "અપડેટ કર્યો:",
+    "reviewNotes": "સમીક્ષા નોંધો:",
+    "noReviewNotes": "કોઈ સમીક્ષા નોંધો ઉપલબ્ધ નથી",
+    "close": "બંધ કરો",
+    "applyForCard": "કાર્ડ માટે અરજી કરો",
+    "notAvailable": "N/A",
+    "primaryMember": "પ્રાથમિક સભ્ય"
   },
   "card": {
-    "healthCard": "આરોગ્ય કાર્ડ", "cardHolderName": "કાર્ડ ધારકનું નામ", "membershipId": "સભ્યપદ ID",
-    "bloodGroup": "રક્ત જૂથ", "aadharNumber": "આધાર નંબર", "dateOfIssue": "જારી કરવાની તારીખ",
-    "createdAt": "બનાવ્યો", "dateOfExpiry": "સમાપ્તિ તારીખ", "title": "કૌટુંબિક આરોગ્ય કાર્ડ",
-    "downloadCard": "ડાઉનલોડ", "emailCard": "ઇમેઇલ", "loading": "કાર્ડ લોડ થઈ રહ્યાં છે...",
-    "loadError": "કાર્ડ લોડ કરવામાં નિષ્ફળ", "swipeHint": "બધા 4 કુટુંબ સભ્ય કાર્ડ જોવા સ્વાઇપ કરો",
+    "healthCard": "આરોગ્ય કાર્ડ",
+    "cardHolderName": "કાર્ડ ધારકનું નામ",
+    "membershipId": "સભ્યપદ ID",
+    "bloodGroup": "રક્ત જૂથ",
+    "aadharNumber": "આધાર નંબર",
+    "dateOfIssue": "જારી કરવાની તારીખ",
+    "createdAt": "બનાવ્યો",
+    "dateOfExpiry": "સમાપ્તિ તારીખ",
+    "title": "કૌટુંબિક આરોગ્ય કાર્ડ",
+    "downloadCard": "ડાઉનલોડ",
+    "emailCard": "ઇમેઇલ",
+    "loading": "કાર્ડ લોડ થઈ રહ્યાં છે...",
+    "loadError": "કાર્ડ લોડ કરવામાં નિષ્ફળ",
+    "swipeHint": "બધા 4 કુટુંબ સભ્ય કાર્ડ જોવા સ્વાઇપ કરો",
     "cardBenefits": "કાર્ડ લાભો",
-    "benefits": { "freeConsultations": "100+ ભાગીદાર ક્લિનિક્સ પર મફત પરામર્શ", "discount": "દવાઓ પર 50% સુધી ડિસ્કાઉન્ટ", "checkup": "મફત વાર્ષિક આરોગ્ય તપાસ", "helpline": "24/7 ઈમર્જન્સી હેલ્પલાઇન સહાય" },
-    "howToUse": { "title": "કેવી રીતે ઉપયોગ કરવો", "step1": "કોઈ પણ ભાગીદાર આરોગ્ય સુવિધા પર જાઓ", "step2": "તમારું ડિજિટલ આરોગ્ય કાર્ડ અથવા સભ્ય ID બતાવો", "step3": "તમારા કાર્ડ લાભો અનુસાર સેવાઓ મેળવો" }
+    "benefits": {
+      "freeConsultations": "100+ ભાગીદાર ક્લિનિક્સ પર મફત પરામર્શ",
+      "discount": "દવાઓ પર 50% સુધી ડિસ્કાઉન્ટ",
+      "checkup": "મફત વાર્ષિક આરોગ્ય તપાસ",
+      "helpline": "24/7 ઈમર્જન્સી હેલ્પલાઇન સહાય"
+    },
+    "howToUse": {
+      "title": "કેવી રીતે ઉપયોગ કરવો",
+      "step1": "કોઈ પણ ભાગીદાર આરોગ્ય સુવિધા પર જાઓ",
+      "step2": "તમારું ડિજિટલ આરોગ્ય કાર્ડ અથવા સભ્ય ID બતાવો",
+      "step3": "તમારા કાર્ડ લાભો અનુસાર સેવાઓ મેળવો"
+    }
   },
   "profile": {
-    "title": "મારી પ્રોફાઇલ", "memberSince": "સભ્ય બન્યા", "activeMember": "સભ્ય", "memberId": "સભ્ય ID",
-    "bloodGroup": "રક્ત જૂથ", "dateOfBirth": "જન્મ તારીખ", "contact": "સંપર્ક", "email": "ઇમેઇલ",
-    "medicalInfo": "તબીબી માહિતી", "allergies": "એલર્જી", "chronicConditions": "ક્રોનિક સ્થિતિઓ",
-    "emergencyContact": "ઈમર્જન્સી સંપર્ક", "editProfile": "પ્રોફાઇલ સંપાદિત કરો", "logout": "લૉગ આઉટ",
+    "title": "મારી પ્રોફાઇલ",
+    "memberSince": "સભ્ય બન્યા",
+    "activeMember": "સભ્ય",
+    "memberId": "સભ્ય ID",
+    "bloodGroup": "રક્ત જૂથ",
+    "dateOfBirth": "જન્મ તારીખ",
+    "contact": "સંપર્ક",
+    "email": "ઇમેઇલ",
+    "medicalInfo": "તબીબી માહિતી",
+    "allergies": "એલર્જી",
+    "chronicConditions": "ક્રોનિક સ્થિતિઓ",
+    "emergencyContact": "ઈમર્જન્સી સંપર્ક",
+    "editProfile": "પ્રોફાઇલ સંપાદિત કરો",
+    "logout": "લૉગ આઉટ",
     "logoutConfirm": "શું તમે ખરેખર લૉગ આઉટ કરવા માંગો છો?",
-    "about": "MHF ફાઉન્ડેશન વિશે", "aboutMHF": "MHF વિશે", "ourVision": "અમારું દ્રષ્ટિ",
-    "ourMission": "અમારું મિશન", "ourBoard": "અમારું બોર્ડ", "ourTeam": "અમારી ટીમ",
-    "ourVolunteers": "અમારા સ્વયંસેવકો", "contactInfo": "સંપર્ક માહિતી", "user": "વપરાશકર્તા",
-    "updateFailed": "અપડેટ નિષ્ફળ", "somethingWentWrong": "કંઈક ખોટું થઈ ગયું",
+    "about": "MHF ફાઉન્ડેશન વિશે",
+    "aboutMHF": "MHF વિશે",
+    "ourVision": "અમારું દ્રષ્ટિ",
+    "ourMission": "અમારું મિશન",
+    "ourBoard": "અમારું બોર્ડ",
+    "ourTeam": "અમારી ટીમ",
+    "ourVolunteers": "અમારા સ્વયંસેવકો",
+    "contactInfo": "સંપર્ક માહિતી",
+    "user": "વપરાશકર્તા",
+    "updateFailed": "અપડેટ નિષ્ફળ",
+    "somethingWentWrong": "કંઈક ખોટું થઈ ગયું",
     "updatedSuccessfully": "પ્રોફાઇલ સફળતાપૂર્વક અપડેટ થઈ",
-    "profileImage": "પ્રોફાઇલ છબી", "profileImageHint": "JPG અથવા PNG, મહત્તમ 20 MB",
-    "uploadingImage": "છબી અપલોડ થઈ રહી છે...", "imageUploadFailed": "છબી અપલોડ નિષ્ફળ"
+    "profileImage": "પ્રોફાઇલ છબી",
+    "profileImageHint": "JPG અથવા PNG, મહત્તમ 20 MB",
+    "uploadingImage": "છબી અપલોડ થઈ રહી છે...",
+    "imageUploadFailed": "છબી અપલોડ નિષ્ફળ"
   },
-  "settings": { "title": "સેટિંગ્સ સ્ક્રીન" },
+  "settings": {
+    "title": "સેટિંગ્સ સ્ક્રીન"
+  },
   "notifications": {
-    "title": "સૂચનાઓ", "unread": "વાંચ્યા વગરની સૂચના", "unreadPlural": "વાંચ્યા વગરની સૂચનાઓ",
-    "allCaughtUp": "બધું ઠીક છે!", "noNotifications": "કોઈ સૂચનાઓ નથી",
+    "title": "સૂચનાઓ",
+    "unread": "વાંચ્યા વગરની સૂચના",
+    "unreadPlural": "વાંચ્યા વગરની સૂચનાઓ",
+    "allCaughtUp": "બધું ઠીક છે!",
+    "noNotifications": "કોઈ સૂચનાઓ નથી",
     "noNotificationsText": "તમે અપ-ટુ-ડેટ છો! અપડેટ માટે પછી ફરી જુઓ.",
     "samples": {
-      "cardApproved": { "title": "કાર્ડ વિનંતી મંજૂર", "message": "તમારી કાર્ડ વિનંતી મંજૂર કરવામાં આવી છે અને પ્રક્રિયા થઈ રહી છે." },
-      "newEvent": { "title": "નવો કાર્યક્રમ ઉપલબ્ધ", "message": "આરોગ્ય જાગૃતિ શિબિર આગળ અઠવાડિયે નક્કી. હમણાં નોંધો!" },
-      "profileIncomplete": { "title": "પ્રોફાઇલ અપૂર્ણ", "message": "બધી સુવિધાઓ ઍક્સેસ કરવા તમારી પ્રોફાઇલ પૂર્ણ કરો." },
-      "reliefUpdate": { "title": "રાહત અરજી અપડેટ", "message": "તમારી રાહત અરજી સમીક્ષા હેઠળ છે. પ્રક્રિયા થયા પછી જાણ કરવામાં આવશે." },
-      "trainingRegistered": { "title": "તાલીમ નોંધવામાં આવી", "message": "તમે કૌશલ્ય વિકાસ તાલીમ કાર્યક્રમ માટે સફળતાપૂર્વક નોંધ્યા." }
+      "cardApproved": {
+        "title": "કાર્ડ વિનંતી મંજૂર",
+        "message": "તમારી કાર્ડ વિનંતી મંજૂર કરવામાં આવી છે અને પ્રક્રિયા થઈ રહી છે."
+      },
+      "newEvent": {
+        "title": "નવો કાર્યક્રમ ઉપલબ્ધ",
+        "message": "આરોગ્ય જાગૃતિ શિબિર આગળ અઠવાડિયે નક્કી. હમણાં નોંધો!"
+      },
+      "profileIncomplete": {
+        "title": "પ્રોફાઇલ અપૂર્ણ",
+        "message": "બધી સુવિધાઓ ઍક્સેસ કરવા તમારી પ્રોફાઇલ પૂર્ણ કરો."
+      },
+      "reliefUpdate": {
+        "title": "રાહત અરજી અપડેટ",
+        "message": "તમારી રાહત અરજી સમીક્ષા હેઠળ છે. પ્રક્રિયા થયા પછી જાણ કરવામાં આવશે."
+      },
+      "trainingRegistered": {
+        "title": "તાલીમ નોંધવામાં આવી",
+        "message": "તમે કૌશલ્ય વિકાસ તાલીમ કાર્યક્રમ માટે સફળતાપૂર્વક નોંધ્યા."
+      }
     },
-    "timeAgo": { "hoursAgo": "કલાક પહેલા", "dayAgo": "દિવસ પહેલા", "daysAgo": "દિવસ પહેલા" }
+    "timeAgo": {
+      "hoursAgo": "કલાક પહેલા",
+      "dayAgo": "દિવસ પહેલા",
+      "daysAgo": "દિવસ પહેલા"
+    }
   },
-  "network": { "noConnection": "કોઈ ઇન્ટરનેટ કનેક્શન નથી", "connected": "જોડાયેલ", "disconnected": "ડિસ્કનેક્ટ", "wifi": "Wi-Fi", "cellular": "સેલ્યુલર", "ethernet": "ઇથરનેટ", "unknown": "અજ્ઞાત" },
+  "network": {
+    "noConnection": "કોઈ ઇન્ટરનેટ કનેક્શન નથી",
+    "connected": "જોડાયેલ",
+    "disconnected": "ડિસ્કનેક્ટ",
+    "wifi": "Wi-Fi",
+    "cellular": "સેલ્યુલર",
+    "ethernet": "ઇથરનેટ",
+    "unknown": "અજ્ઞાત"
+  },
   "events": {
-    "title": "કાર્યક્રમો અને શિબિર", "subtitle": "અમારા સામુદાયિક આરોગ્ય કાર્યક્રમોમાં જોડાઓ.",
-    "registerHeader": "કાર્યક્રમો માટે નોંધો", "upcoming": "આગામી કાર્યક્રમો", "registerNow": "હમણાં નોંધો",
+    "title": "કાર્યક્રમો અને શિબિર",
+    "subtitle": "અમારા સામુદાયિક આરોગ્ય કાર્યક્રમોમાં જોડાઓ.",
+    "registerHeader": "કાર્યક્રમો માટે નોંધો",
+    "upcoming": "આગામી કાર્યક્રમો",
+    "registerNow": "હમણાં નોંધો",
     "impactTitle": "અમારો પ્રભાવ",
-    "impact": { "events": "આયોજિત કાર્યક્રમો", "people": "સેવા પ્રાપ્ત લોકો", "volunteers": "સક્રિય સ્વયંસેવકો" },
+    "impact": {
+      "events": "આયોજિત કાર્યક્રમો",
+      "people": "સેવા પ્રાપ્ત લોકો",
+      "volunteers": "સક્રિય સ્વયંસેવકો"
+    },
     "register": {
-      "title": "કાર્યક્રમ નોંધણી", "subtitle": "કાર્યક્રમ નોંધણી માટે બધી વિગત ભરો",
-      "personalInfo": "વ્યક્તિગત માહિતી", "fullName": "પૂરું નામ", "fullNamePlaceholder": "તમારું પૂરું નામ દાખલ કરો",
-      "phoneNumber": "ફોન નંબર", "phoneNumberPlaceholder": "+91-XXXXXXXXXX", "phoneInvalid": "માન્ય 10 અંકનો નંબર દાખલ કરો",
-      "emailAddress": "ઇમેઇલ સરનામું", "emailPlaceholder": "your.email@example.com", "emailInvalid": "અમાન્ય ઇમેઇલ સરનામું",
-      "dateOfBirth": "જન્મ તારીખ", "age": "ઉંમર", "gender": "લિંગ",
-      "genderMale": "પુરુષ", "genderFemale": "સ્ત્રી", "genderOther": "અન્ય",
-      "address": "સરનામું", "addressPlaceholder": "તમારું સંપૂર્ણ સરનામું દાખલ કરો",
+      "title": "કાર્યક્રમ નોંધણી",
+      "subtitle": "કાર્યક્રમ નોંધણી માટે બધી વિગત ભરો",
+      "personalInfo": "વ્યક્તિગત માહિતી",
+      "fullName": "પૂરું નામ",
+      "fullNamePlaceholder": "તમારું પૂરું નામ દાખલ કરો",
+      "phoneNumber": "ફોન નંબર",
+      "phoneNumberPlaceholder": "+91-XXXXXXXXXX",
+      "phoneInvalid": "માન્ય 10 અંકનો નંબર દાખલ કરો",
+      "emailAddress": "ઇમેઇલ સરનામું",
+      "emailPlaceholder": "your.email@example.com",
+      "emailInvalid": "અમાન્ય ઇમેઇલ સરનામું",
+      "dateOfBirth": "જન્મ તારીખ",
+      "age": "ઉંમર",
+      "gender": "લિંગ",
+      "genderMale": "પુરુષ",
+      "genderFemale": "સ્ત્રી",
+      "genderOther": "અન્ય",
+      "address": "સરનામું",
+      "addressPlaceholder": "તમારું સંપૂર્ણ સરનામું દાખલ કરો",
       "participationType": "તમે કેવી રીતે ભાગ લેવા માંગો છો તે પસંદ કરો",
-      "participant": "સહભાગી", "volunteer": "સ્વયંસેવક", "declaration": "ઘોષણા",
+      "participant": "સહભાગી",
+      "volunteer": "સ્વયંસેવક",
+      "declaration": "ઘોષણા",
       "declarationText": "હું આ દ્વારા ઘોષણા કરું છું કે આપેલ માહિતી સત્ય છે. હું મુઝ્ઝ્તબા હેલ્પિંગ ફાઉન્ડેશનના સિદ્ધાંતો અને માર્ગદર્શિકાઓ અનુસરવા અને ચૂંટેલ કાર્યક્રમમાં જવાબદારીપૂર્વક ભાગ લેવા સંમત છું.",
-      "iAgree": "હું સંમત છું", "saveDetails": "વિગત સાચવો", "submitting": "સબમિટ થઈ રહ્યું છે...",
-      "successTitle": "સફળ", "successMessage": "કાર્યક્રમ નોંધણી સફળતાપૂર્વક સબમિટ",
-      "errorTitle": "ભૂલ", "errorMessage": "કાર્યક્રમ નોંધણી સબમિટ કરવામાં નિષ્ફળ"
+      "iAgree": "હું સંમત છું",
+      "saveDetails": "વિગત સાચવો",
+      "submitting": "સબમિટ થઈ રહ્યું છે...",
+      "successTitle": "સફળ",
+      "successMessage": "કાર્યક્રમ નોંધણી સફળતાપૂર્વક સબમિટ",
+      "errorTitle": "ભૂલ",
+      "errorMessage": "કાર્યક્રમ નોંધણી સબમિટ કરવામાં નિષ્ફળ"
     },
     "items": {
-      "medical": { "title": "મફત તબીબી આરોગ્ય શિબિર", "date": "નવેમ્બર 26, 2025", "time": "સવારે 10:00 - સાંજે 6:00", "location": "કોમ્યુનિટી સેન્ટર, માલાડ", "desc": "BP, બ્લડ શુગર, BMI, મૂળ પરામર્શ અને નિષ્ણાત સહિત વ્યાપક આરોગ્ય તપાસ.", "tag1": "સામાન્ય તપાસ", "tag2": "લેબ ટેસ્ટ", "tag3": "પરામર્શ", "tag4": "બ્લડ શુગર ટેસ્ટ", "stats": "50 નોંધણી" },
-      "blood": { "title": "રક્તદાન અભિયાન", "date": "નવેમ્બર 28, 2025", "time": "સવારે 10:00 - સાંજે 4:00", "location": "SGP ગાર્ડન, અંધેરી", "desc": "પ્રમાણિત બ્લડ બેંક સાથે સહયોગમાં રક્તદાન શિબિર. સ્થળ પર તબીબી સહાય.", "tag1": "સ્વયંસેવકો જોઈએ", "tag2": "સ્થળ પર ડૉક્ટર", "tag3": "પ્રમાણપત્ર", "tag4": "નાસ્તો", "stats": "100+ દાતાઓ અપેક્ષિત" },
-      "awareness": { "title": "આરોગ્ય જાગૃતિ સત્ર", "date": "નવેમ્બર 30, 2025", "time": "બપોરે 2:00 - સાંજે 5:00", "location": "ઝૂમ પર વર્ચ્યુઅલ", "desc": "પ્રિવેન્ટિવ હેલ્થકેર, પોષણ, સ્વચ્છતા અને માનસિક સ્વાસ્થ્ય પર શૈક્ષણિક સત્ર.", "tag1": "મફત પ્રવેશ", "tag2": "લાઇવ સત્ર", "tag3": "મફત સામગ્રી", "stats": "200+ નોંધણી" }
+      "medical": {
+        "title": "મફત તબીબી આરોગ્ય શિબિર",
+        "date": "નવેમ્બર 26, 2025",
+        "time": "સવારે 10:00 - સાંજે 6:00",
+        "location": "કોમ્યુનિટી સેન્ટર, માલાડ",
+        "desc": "BP, બ્લડ શુગર, BMI, મૂળ પરામર્શ અને નિષ્ણાત સહિત વ્યાપક આરોગ્ય તપાસ.",
+        "tag1": "સામાન્ય તપાસ",
+        "tag2": "લેબ ટેસ્ટ",
+        "tag3": "પરામર્શ",
+        "tag4": "બ્લડ શુગર ટેસ્ટ",
+        "stats": "50 નોંધણી"
+      },
+      "blood": {
+        "title": "રક્તદાન અભિયાન",
+        "date": "નવેમ્બર 28, 2025",
+        "time": "સવારે 10:00 - સાંજે 4:00",
+        "location": "SGP ગાર્ડન, અંધેરી",
+        "desc": "પ્રમાણિત બ્લડ બેંક સાથે સહયોગમાં રક્તદાન શિબિર. સ્થળ પર તબીબી સહાય.",
+        "tag1": "સ્વયંસેવકો જોઈએ",
+        "tag2": "સ્થળ પર ડૉક્ટર",
+        "tag3": "પ્રમાણપત્ર",
+        "tag4": "નાસ્તો",
+        "stats": "100+ દાતાઓ અપેક્ષિત"
+      },
+      "awareness": {
+        "title": "આરોગ્ય જાગૃતિ સત્ર",
+        "date": "નવેમ્બર 30, 2025",
+        "time": "બપોરે 2:00 - સાંજે 5:00",
+        "location": "ઝૂમ પર વર્ચ્યુઅલ",
+        "desc": "પ્રિવેન્ટિવ હેલ્થકેર, પોષણ, સ્વચ્છતા અને માનસિક સ્વાસ્થ્ય પર શૈક્ષણિક સત્ર.",
+        "tag1": "મફત પ્રવેશ",
+        "tag2": "લાઇવ સત્ર",
+        "tag3": "મફત સામગ્રી",
+        "stats": "200+ નોંધણી"
+      }
     }
   },
   "relief": {
-    "apply": "રાહત માટે અરજી કરો", "donate": "હવે દાન કરો",
-    "activePrograms": "સક્રિય રાહત કાર્યક્રમો", "howToApply": "રાહત માટે કેવી રીતે અરજી કરવી",
-    "impactTitle": "રાહત પ્રભાવ", "requestNewCard": "+  નવા કાર્ડ માટે વિનંતી",
-    "steps": { "formTitle": "અરજી ફોર્મ ભરો", "formDesc": "જરૂરી વિગત સાથે તમારી રાહત વિનંતી સબમિટ કરો", "verifyTitle": "ચકાસણી પ્રક્રિયા", "verifyDesc": "અમારી ટીમ તમારી વિનંતી અને દસ્તાવેજો ચકાસશે", "distributeTitle": "રાહત વિતરણ", "distributeDesc": "મંજૂર લાભાર્થીઓને વિતરણ માટે સંપર્ક કરવામાં આવશે" },
-    "impact": { "families": "કુટુંબોને સહાય", "drives": "રાહત અભિયાન", "aid": "સહાયનું મૂલ્ય" },
-    "programs": {
-      "food": { "title": "ખાદ્ય વિતરણ અભિયાન", "locations": "અનેક સ્થળો", "desc": "જરૂરિયાતમંદ કુટુંબો માટે દૈનિક ખાદ્ય વિતરણ.", "tag1": "દૈનિક", "tag2": "અનેક સ્થળો", "tag3": "કૌટુંબિક કિટ", "stats": "500+ કુટુંબોને સહાય" },
-      "flood": { "title": "પૂર રાહત સહાય", "locations": "આફત-પ્રભાવિત વિસ્તારો", "desc": "પૂર-પ્રભાવિત કુટુંબો માટે તાત્કાલિક રાહત.", "tag1": "પૂર રાહત", "tag2": "આশ્રય", "tag3": "તબીબી", "stats": "200+ કુટુંબોને સેવા" },
-      "winter": { "title": "શિયાળો રાહત અભિયાન", "locations": "શહેરી અને ગ્રામ્ય વિસ્તારો", "desc": "જરૂરિયાતમંદોને ધાબળા, સ્વેટર અને જરૂરી ચીજવસ્તુઓ વિતરણ.", "tag1": "ધાબળા", "tag2": "સ્વેટર", "tag3": "વૃદ્ધ", "stats": "300+ લોકોને કવરેજ" },
-      "medical": { "title": "ઈમર્જન્સી તબીબી રાહત", "locations": "બધા રાહત ઝોન", "desc": "દવાઓ, પ્રથમ સહાય અને ગંભીર કેસ માટે તબીબી પરિવહન સહ ઈમર્જન્સી તબીબી સહાય.", "tag1": "તબીબી", "tag2": "ઈમર્જન્સી", "tag3": "એમ્બ્યુલન્સ", "stats": "150+ કેસ" }
+    "apply": "રાહત માટે અરજી કરો",
+    "donate": "હવે દાન કરો",
+    "activePrograms": "સક્રિય રાહત કાર્યક્રમો",
+    "howToApply": "રાહત માટે કેવી રીતે અરજી કરવી",
+    "impactTitle": "રાહત પ્રભાવ",
+    "requestNewCard": "+  નવા કાર્ડ માટે વિનંતી",
+    "steps": {
+      "formTitle": "અરજી ફોર્મ ભરો",
+      "formDesc": "જરૂરી વિગત સાથે તમારી રાહત વિનંતી સબમિટ કરો",
+      "verifyTitle": "ચકાસણી પ્રક્રિયા",
+      "verifyDesc": "અમારી ટીમ તમારી વિનંતી અને દસ્તાવેજો ચકાસશે",
+      "distributeTitle": "રાહત વિતરણ",
+      "distributeDesc": "મંજૂર લાભાર્થીઓને વિતરણ માટે સંપર્ક કરવામાં આવશે"
     },
-    "registrationStatus": "નોંધણી સ્થિતિ", "requestDetails": "રાહત વિનંતી વિગત",
-    "registrationId": "નોંધણી ID:", "noReviewNote": "કોઈ સમીક્ષા નોંધ ઉપલબ્ધ નથી"
+    "impact": {
+      "families": "કુટુંબોને સહાય",
+      "drives": "રાહત અભિયાન",
+      "aid": "સહાયનું મૂલ્ય"
+    },
+    "programs": {
+      "food": {
+        "title": "ખાદ્ય વિતરણ અભિયાન",
+        "locations": "અનેક સ્થળો",
+        "desc": "જરૂરિયાતમંદ કુટુંબો માટે દૈનિક ખાદ્ય વિતરણ.",
+        "tag1": "દૈનિક",
+        "tag2": "અનેક સ્થળો",
+        "tag3": "કૌટુંબિક કિટ",
+        "stats": "500+ કુટુંબોને સહાય"
+      },
+      "flood": {
+        "title": "પૂર રાહત સહાય",
+        "locations": "આફત-પ્રભાવિત વિસ્તારો",
+        "desc": "પૂર-પ્રભાવિત કુટુંબો માટે તાત્કાલિક રાહત.",
+        "tag1": "પૂર રાહત",
+        "tag2": "આশ્રય",
+        "tag3": "તબીબી",
+        "stats": "200+ કુટુંબોને સેવા"
+      },
+      "winter": {
+        "title": "શિયાળો રાહત અભિયાન",
+        "locations": "શહેરી અને ગ્રામ્ય વિસ્તારો",
+        "desc": "જરૂરિયાતમંદોને ધાબળા, સ્વેટર અને જરૂરી ચીજવસ્તુઓ વિતરણ.",
+        "tag1": "ધાબળા",
+        "tag2": "સ્વેટર",
+        "tag3": "વૃદ્ધ",
+        "stats": "300+ લોકોને કવરેજ"
+      },
+      "medical": {
+        "title": "ઈમર્જન્સી તબીબી રાહત",
+        "locations": "બધા રાહત ઝોન",
+        "desc": "દવાઓ, પ્રથમ સહાય અને ગંભીર કેસ માટે તબીબી પરિવહન સહ ઈમર્જન્સી તબીબી સહાય.",
+        "tag1": "તબીબી",
+        "tag2": "ઈમર્જન્સી",
+        "tag3": "એમ્બ્યુલન્સ",
+        "stats": "150+ કેસ"
+      }
+    },
+    "registrationStatus": "નોંધણી સ્થિતિ",
+    "requestDetails": "રાહત વિનંતી વિગત",
+    "registrationId": "નોંધણી ID:",
+    "noReviewNote": "કોઈ સમીક્ષા નોંધ ઉપલબ્ધ નથી"
   },
   "services": {
-    "title": "સેવાઓ અને પ્રદાતાઓ", "subtitle": "તમારી નજીક માન્ય આરોગ્ય સેવા પ્રદાતાઓ શોધો",
+    "title": "સેવાઓ અને પ્રદાતાઓ",
+    "subtitle": "તમારી નજીક માન્ય આરોગ્ય સેવા પ્રદાતાઓ શોધો",
     "searchPlaceholder": "પ્રદાતા, વિશેષતા, સ્થળ શોધો...",
-    "resultsFound": "પ્રદાતા મળ્યા", "loading": "પ્રદાતા લોડ થઈ રહ્યા છે...", "loadError": "પ્રદાતા લોડ કરવામાં નિષ્ફળ",
-    "tab": { "providers": "પ્રદાતા", "blood": "રક્ત", "equipment": "સાધન", "ambulance": "એમ્બ્યુલન્સ", "benefits": "લાભ" },
-    "categories": { "all": "બધા", "hospital": "હૉસ્પિટલ", "diagnostics": "ડાયગ્નૉસ્ટિક", "pharmacy": "ફાર્મસી", "clinics": "ક્લિનિક", "rehab": "પુનર્વસન", "labs": "Old Age Home", "oldAgeHome": "Old Age Home", "surgical": "સર્જિકલ" },
-    "provider": { "unknown": "અજ્ઞાત પ્રદાતા", "noAddress": "સરનામું ઉપલબ્ધ નથી", "noPhone": "N/A" },
-    "blood": { "emergency": "ઈમર્જન્સી રક્ત જોઈએ!", "cta": "અમારા દાતા નેટવર્ક પાસેથી રક્ત વિનંતી", "requestNow": "હવે રક્ત વિનંતી", "loading": "રક્ત વિનંતી લોડ...", "loadError": "રક્ત વિનંતી લોડ નિષ્ફળ", "noRequests": "કોઈ રક્ત વિનંતી મળી નથી", "yourRequests": "તમારી રક્ત વિનંતી", "myRequests": "મારી રક્ત વિનંતી", "patient": "દર્દી", "bloodGroup": "રક્ત જૂથ:", "units": "એકમ:", "required": "જરૂરી:", "urgency": "ઈમર્જન્સી:", "hospital": "હૉસ્પિટલ:", "contact": "સંપર્ક:" },
-    "benefits": {
-      "free": { "title": "મફત પરામર્શ", "subtitle": "સામાન્ય ડૉક્ટર અને નિષ્ણાત સુધી પ્રવેશ" },
-      "medicine": { "title": "દવા સહાય", "subtitle": "ક્રોનિક સ્થિતિ માટે સબ્સિડી દવાઓ" },
-      "emergency": { "title": "ઈમર્જન્સી પરિવહન", "subtitle": "24/7 ઈમર્જન્સી એમ્બ્યુલન્સ સેવા" },
-      "checkups": { "title": "આરોગ્ય તપાસ", "subtitle": "નિયમિત આરોગ્ય દેખરેખ અને ડાયગ્નૉસ્ટિક" },
-      "records": { "title": "તબીબી રેકૉર્ડ", "subtitle": "ડિજિટલ આરોગ્ય રેકૉર્ડ વ્યવસ્થાપન" },
-      "find": { "title": "ક્લિનિક શોધો", "subtitle": "નજીકના ભાગીદાર આરોગ્ય કેન્દ્ર શોધો" }
+    "resultsFound": "પ્રદાતા મળ્યા",
+    "loading": "પ્રદાતા લોડ થઈ રહ્યા છે...",
+    "loadError": "પ્રદાતા લોડ કરવામાં નિષ્ફળ",
+    "tab": {
+      "providers": "પ્રદાતા",
+      "blood": "રક્ત",
+      "equipment": "સાધન",
+      "ambulance": "એમ્બ્યુલન્સ",
+      "benefits": "લાભ"
     },
-    "help": { "title": "સહાય જોઈએ?", "desc": "અમારી સહાય ટીમ મદદ માટે 24/7 ઉપલબ્ધ", "contact": "સહાયનો સંપર્ક કરો" },
+    "categories": {
+      "all": "બધા",
+      "hospital": "હૉસ્પિટલ",
+      "diagnostics": "ડાયગ્નૉસ્ટિક",
+      "pharmacy": "ફાર્મસી",
+      "clinics": "ક્લિનિક",
+      "rehab": "પુનર્વસન",
+      "labs": "Old Age Home",
+      "oldAgeHome": "Old Age Home",
+      "surgical": "સર્જિકલ"
+    },
+    "provider": {
+      "unknown": "અજ્ઞાત પ્રદાતા",
+      "noAddress": "સરનામું ઉપલબ્ધ નથી",
+      "noPhone": "N/A"
+    },
+    "blood": {
+      "emergency": "ઈમર્જન્સી રક્ત જોઈએ!",
+      "cta": "અમારા દાતા નેટવર્ક પાસેથી રક્ત વિનંતી",
+      "requestNow": "હવે રક્ત વિનંતી",
+      "loading": "રક્ત વિનંતી લોડ...",
+      "loadError": "રક્ત વિનંતી લોડ નિષ્ફળ",
+      "noRequests": "કોઈ રક્ત વિનંતી મળી નથી",
+      "yourRequests": "તમારી રક્ત વિનંતી",
+      "myRequests": "મારી રક્ત વિનંતી",
+      "patient": "દર્દી",
+      "bloodGroup": "રક્ત જૂથ:",
+      "units": "એકમ:",
+      "required": "જરૂરી:",
+      "urgency": "ઈમર્જન્સી:",
+      "hospital": "હૉસ્પિટલ:",
+      "contact": "સંપર્ક:"
+    },
+    "benefits": {
+      "free": {
+        "title": "મફત પરામર્શ",
+        "subtitle": "સામાન્ય ડૉક્ટર અને નિષ્ણાત સુધી પ્રવેશ"
+      },
+      "medicine": {
+        "title": "દવા સહાય",
+        "subtitle": "ક્રોનિક સ્થિતિ માટે સબ્સિડી દવાઓ"
+      },
+      "emergency": {
+        "title": "ઈમર્જન્સી પરિવહન",
+        "subtitle": "24/7 ઈમર્જન્સી એમ્બ્યુલન્સ સેવા"
+      },
+      "checkups": {
+        "title": "આરોગ્ય તપાસ",
+        "subtitle": "નિયમિત આરોગ્ય દેખરેખ અને ડાયગ્નૉસ્ટિક"
+      },
+      "records": {
+        "title": "તબીબી રેકૉર્ડ",
+        "subtitle": "ડિજિટલ આરોગ્ય રેકૉર્ડ વ્યવસ્થાપન"
+      },
+      "find": {
+        "title": "ક્લિનિક શોધો",
+        "subtitle": "નજીકના ભાગીદાર આરોગ્ય કેન્દ્ર શોધો"
+      }
+    },
+    "help": {
+      "title": "સહાય જોઈએ?",
+      "desc": "અમારી સહાય ટીમ મદદ માટે 24/7 ઉપલબ્ધ",
+      "contact": "સહાયનો સંપર્ક કરો"
+    },
     "noContactFor": "{{serviceName}} માટે કોઈ સંપર્ક નંબર ઉપલબ્ધ નથી"
   },
   "providerDetails": {
-    "error": "ભૂલ", "phoneError": "ફોન કૉલ કરવામાં અક્ષમ", "mapError": "નકશો ખોલવામાં અક્ષમ",
-    "emailError": "ઇમેઇલ ખોલવામાં અક્ષમ", "shareError": "પ્રદાતા વિગત શેર કરવામાં અક્ષમ",
-    "notFound": "પ્રદાતા વિગત મળી નથી", "contactInfo": "સંપર્ક માહિતી",
-    "phone": "ફોન", "email": "ઇમેઇલ", "address": "સરનામું", "specialities": "વિશેષતા",
-    "benefits": "લાભ", "viewOnMap": "નકશા પર જુઓ", "callNow": "હવે કૉલ કરો"
+    "error": "ભૂલ",
+    "phoneError": "ફોન કૉલ કરવામાં અક્ષમ",
+    "mapError": "નકશો ખોલવામાં અક્ષમ",
+    "emailError": "ઇમેઇલ ખોલવામાં અક્ષમ",
+    "shareError": "પ્રદાતા વિગત શેર કરવામાં અક્ષમ",
+    "notFound": "પ્રદાતા વિગત મળી નથી",
+    "contactInfo": "સંપર્ક માહિતી",
+    "phone": "ફોન",
+    "email": "ઇમેઇલ",
+    "address": "સરનામું",
+    "specialities": "વિશેષતા",
+    "benefits": "લાભ",
+    "viewOnMap": "નકશા પર જુઓ",
+    "callNow": "હવે કૉલ કરો"
   },
   "equipment": {
-    "subtitle": "તમારો સાધન વિનંતી ઇતિહાસ જુઓ", "loading": "વિનંતી લોડ...", "error": "વિનંતી લોડ નિષ્ફળ",
-    "submit": { "success": "સફળ", "successMessage": "સાધન વિનંતી સફળ!", "error": "ભૂલ", "errorMessage": "સાધન વિનંતી સબમિટ નિષ્ફળ. ફરી પ્રયાસ.", "submitting": "સબમિટ...", "submitButton": "વિનંતી સબમિટ" },
-    "need": "તબીબી સાધન જોઈએ?", "needSubtitle": "ઘરની સંભાળ માટે સાધન સહાય", "request": "સાધન વિનંતી", "myRequests": "મારી સાધન વિનંતી", "viewAll": "બધી વિનંતી જુઓ", "items": "વસ્તુ",
-    "details": { "fullName": "પૂરું નામ:", "duration": "અવધિ:", "medicalReason": "તબીબી કારણ:", "requestDetails": "વિનંતી વિગત", "requestId": "વિનંતી ID:", "status": "સ્થિતિ:", "equipment": "સાધન:" }
+    "subtitle": "તમારો સાધન વિનંતી ઇતિહાસ જુઓ",
+    "loading": "વિનંતી લોડ...",
+    "error": "વિનંતી લોડ નિષ્ફળ",
+    "submit": {
+      "success": "સફળ",
+      "successMessage": "સાધન વિનંતી સફળ!",
+      "error": "ભૂલ",
+      "errorMessage": "સાધન વિનંતી સબમિટ નિષ્ફળ. ફરી પ્રયાસ.",
+      "submitting": "સબમિટ...",
+      "submitButton": "વિનંતી સબમિટ"
+    },
+    "need": "તબીબી સાધન જોઈએ?",
+    "needSubtitle": "ઘરની સંભાળ માટે સાધન સહાય",
+    "request": "સાધન વિનંતી",
+    "myRequests": "મારી સાધન વિનંતી",
+    "viewAll": "બધી વિનંતી જુઓ",
+    "items": "વસ્તુ",
+    "details": {
+      "fullName": "પૂરું નામ:",
+      "duration": "અવધિ:",
+      "medicalReason": "તબીબી કારણ:",
+      "requestDetails": "વિનંતી વિગત",
+      "requestId": "વિનંતી ID:",
+      "status": "સ્થિતિ:",
+      "equipment": "સાધન:"
+    }
   },
   "ambulance": {
-    "loading": "એમ્બ્યુલન્સ લોડ...", "error": "એમ્બ્યુલન્સ લોડ નિષ્ફળ",
-    "title": "ઈમર્જન્સી એમ્બ્યુલન્સ સેવા", "subtitle": "24/7 ઈમર્જન્સી એમ્બ્યુલન્સ સહાય", "view": "સેવા જુઓ",
-    "details": { "vehicleType": "વાહન પ્રકાર:", "serviceArea": "સેવા ક્ષેત્ર:", "responseTime": "પ્રતિભાવ સમય:" },
+    "loading": "એમ્બ્યુલન્સ લોડ...",
+    "error": "એમ્બ્યુલન્સ લોડ નિષ્ફળ",
+    "title": "ઈમર્જન્સી એમ્બ્યુલન્સ સેવા",
+    "subtitle": "24/7 ઈમર્જન્સી એમ્બ્યુલન્સ સહાય",
+    "view": "સેવા જુઓ",
+    "details": {
+      "vehicleType": "વાહન પ્રકાર:",
+      "serviceArea": "સેવા ક્ષેત્ર:",
+      "responseTime": "પ્રતિભાવ સમય:"
+    },
     "call": "{{contact}} ને કૉલ"
   },
   "blood": {
-    "requestDetails": "રક્ત વિનંતી વિગત", "hospitalDetails": "હૉસ્પિટલ અને ડૉક્ટર વિગત",
+    "requestDetails": "રક્ત વિનંતી વિગત",
+    "hospitalDetails": "હૉસ્પિટલ અને ડૉક્ટર વિગત",
     "subtitle": "રક્ત વિનંતી માટે નીચે વિગત ભરો",
-    "submit": { "successMessage": "રક્ત વિનંતી સફળ", "errorMessage": "રક્ત વિનંતી સબમિટ નિષ્ફળ. ફરી પ્રયાસ." }
+    "submit": {
+      "successMessage": "રક્ત વિનંતી સફળ",
+      "errorMessage": "રક્ત વિનંતી સબમિટ નિષ્ફળ. ફરી પ્રયાસ."
+    }
   },
   "payment": {
-    "failed": "ચુકવણી નિષ્ફળ", "customerMissing": "વર્તમાન ગ્રાહક ઓળખ અક્ષમ.",
-    "contributionType": "યોગદાન પ્રકાર", "amountPayable": "ચૂકવવાપાત્ર રકમ", "continueUpi": "UPI ચાલુ",
-    "payNow": "હવે ચૂકવો", "receiptGenerateError": "રસીદ છબી બનાવ અક્ષમ.",
-    "receiptTitle": "ચુકવણી રસીદ", "campaignReceipt": "અભિયાન ચુકવણી રસીદ",
-    "healthCardReceipt": "આરોગ્ય કાર્ડ ચુકવણી રસીદ", "receiptShareError": "રસીદ ડાઉનલોડ/શેર અક્ષમ.",
-    "successTitle": "ચુકવણી સફળ!", "downloadReceipt": "રસીદ ડાઉનલોડ",
-    "viewHealthCard": "આરોગ્ય કાર્ડ જુઓ", "goHome": "હોમ જાઓ"
+    "failed": "ચુકવણી નિષ્ફળ",
+    "customerMissing": "વર્તમાન ગ્રાહક ઓળખ અક્ષમ.",
+    "contributionType": "યોગદાન પ્રકાર",
+    "amountPayable": "ચૂકવવાપાત્ર રકમ",
+    "continueUpi": "UPI ચાલુ",
+    "payNow": "હવે ચૂકવો",
+    "receiptGenerateError": "રસીદ છબી બનાવ અક્ષમ.",
+    "receiptTitle": "ચુકવણી રસીદ",
+    "campaignReceipt": "અભિયાન ચુકવણી રસીદ",
+    "healthCardReceipt": "આરોગ્ય કાર્ડ ચુકવણી રસીદ",
+    "receiptShareError": "રસીદ ડાઉનલોડ/શેર અક્ષમ.",
+    "successTitle": "ચુકવણી સફળ!",
+    "downloadReceipt": "રસીદ ડાઉનલોડ",
+    "viewHealthCard": "આરોગ્ય કાર્ડ જુઓ",
+    "goHome": "હોમ જાઓ"
   },
-  "volunteers": { "submitSuccess": "સ્વયંસેવક નોંધણી સફળ", "submitError": "નોંધણી સબમિટ નિષ્ફળ" },
-  "newCard": { "patientDetails": "દર્દી વિગત" },
+  "volunteers": {
+    "submitSuccess": "સ્વયંસેવક નોંધણી સફળ",
+    "submitError": "નોંધણી સબમિટ નિષ્ફળ"
+  },
+  "newCard": {
+    "patientDetails": "દર્દી વિગત"
+  },
   "forms": {
     "common": {
-      "saveDetails": "વિગત સાચવો", "ok": "ઠીક", "submitting": "સબમિટ...", "iAgree": "હું સંમત",
-      "sections": { "locationDetails": "સ્થળ વિગત", "declaration": "ઘોષણા" },
-      "fields": { "state": "રાજ્ય", "district": "જિલ્લો", "block": "બ્લૉક", "mandal": "મંડળ" },
-      "loading": { "states": "રાજ્ય લોડ...", "districts": "જિલ્લો લોડ...", "blocks": "બ્લૉક લોડ...", "mandals": "મંડળ લોડ..." },
-      "select": { "state": "રાજ્ય પસંદ", "stateFirst": "પ્રથમ રાજ્ય", "district": "જિલ્લો પસંદ", "districtFirst": "પ્રથમ જિલ્લો", "block": "બ્લૉક પસંદ", "blockFirst": "પ્રથમ બ્લૉક", "mandal": "મંડળ પસંદ" },
-      "options": { "male": "પુરુષ", "female": "સ્ત્રી", "other": "અન્ય", "single": "અવિવાહિત", "married": "વિવાહિત", "yes": "હા", "no": "ના", "aadhar": "આધાર", "voterId": "મતદાર ID", "panCard": "PAN કાર્ડ" },
-      "validation": { "phone10": "10 અંક નંબર", "invalidEmail": "અમાન્ય ઇમેઇલ", "invalidEmailAddress": "અમાન્ય ઇમેઇલ સરનામું", "pincode6": "6 અંક પિનકોડ" }
+      "saveDetails": "વિગત સાચવો",
+      "ok": "ઠીક",
+      "submitting": "સબમિટ...",
+      "iAgree": "હું સંમત",
+      "sections": {
+        "locationDetails": "સ્થળ વિગત",
+        "declaration": "ઘોષણા"
+      },
+      "fields": {
+        "state": "રાજ્ય",
+        "district": "જિલ્લો",
+        "block": "બ્લૉક",
+        "mandal": "મંડળ"
+      },
+      "loading": {
+        "states": "રાજ્ય લોડ...",
+        "districts": "જિલ્લો લોડ...",
+        "blocks": "બ્લૉક લોડ...",
+        "mandals": "મંડળ લોડ..."
+      },
+      "select": {
+        "state": "રાજ્ય પસંદ",
+        "stateFirst": "પ્રથમ રાજ્ય",
+        "district": "જિલ્લો પસંદ",
+        "districtFirst": "પ્રથમ જિલ્લો",
+        "block": "બ્લૉક પસંદ",
+        "blockFirst": "પ્રથમ બ્લૉક",
+        "mandal": "મંડળ પસંદ"
+      },
+      "options": {
+        "male": "પુરુષ",
+        "female": "સ્ત્રી",
+        "other": "અન્ય",
+        "single": "અવિવાહિત",
+        "married": "વિવાહિત",
+        "yes": "હા",
+        "no": "ના",
+        "aadhar": "આધાર",
+        "voterId": "મતદાર ID",
+        "panCard": "PAN કાર્ડ"
+      },
+      "validation": {
+        "phone10": "10 અંક નંબર",
+        "invalidEmail": "અમાન્ય ઇમેઇલ",
+        "invalidEmailAddress": "અમાન્ય ઇમેઇલ સરનામું",
+        "pincode6": "6 અંક પિનકોડ"
+      }
     },
     "training": {
       "heading": "નોંધણી ફૉર્મ",
-      "sections": { "personalDetails": "વ્યક્તિગત વિગત", "educationalBackground": "શૈક્ષણિક પૃષ્ઠભૂમિ", "courseSelection": "અભ્યાસક્રમ" },
-      "fields": { "fullName": "પૂરું નામ", "dateOfBirth": "જન્મ તારીખ", "age": "ઉંમર", "gender": "લિંગ", "contactNumber": "સંપર્ક (ફોન/WhatsApp)", "parentGuardianContact": "વાલી સંપર્ક", "maritalStatus": "વૈવાહિક સ્થિતિ", "emailAvailable": "ઇમેઇલ ID", "addressWithPincode": "સરનામું (પિનકોડ)", "pincode": "પિનકોડ", "guardianName": "વાલીનું નામ", "idProofType": "ID પ્રૂફ", "identificationNumber": "ID નંબર", "highestQualification": "ઉચ્ચ લાયકાત", "mediumOfInstruction": "શિક્ષણ માધ્યમ", "schoolCollegeName": "શાળા/કૉલેજ", "schoolCollegeLocation": "સ્થળ", "educationGapReason": "ગૅપ/ડ્રૉપ કારણ", "preferredCourses": "પ્રિય તાલીમ" },
-      "placeholders": { "fullName": "પૂરું નામ", "addressWithPincode": "પૂરું સરનામું", "pincode": "પિનકોડ", "idProofType": "આધાર/ID", "educationGapReason": "ગૅપ કારણ" },
-      "options": { "graduation": "સ્નાતક", "hindi": "હિન્દી", "english": "અંગ્રેજી" },
-      "course": { "computer": "કૉમ્પ્યૂટર", "tailoring": "ટેઇલરિંગ", "spokenEnglish": "ઇંગ્લિશ", "handmadeDesigning": "હૅન્ડ ડિઝાઇન", "other": "અન્ય" },
-      "alerts": { "submitSuccess": "નોંધણી સફળ!", "submitFailed": "નોંધણી નિષ્ફળ. ફરી." }
+      "sections": {
+        "personalDetails": "વ્યક્તિગત વિગત",
+        "educationalBackground": "શૈક્ષણિક પૃષ્ઠભૂમિ",
+        "courseSelection": "અભ્યાસક્રમ"
+      },
+      "fields": {
+        "fullName": "પૂરું નામ",
+        "dateOfBirth": "જન્મ તારીખ",
+        "age": "ઉંમર",
+        "gender": "લિંગ",
+        "contactNumber": "સંપર્ક (ફોન/WhatsApp)",
+        "parentGuardianContact": "વાલી સંપર્ક",
+        "maritalStatus": "વૈવાહિક સ્થિતિ",
+        "emailAvailable": "ઇમેઇલ ID",
+        "addressWithPincode": "સરનામું (પિનકોડ)",
+        "pincode": "પિનકોડ",
+        "guardianName": "વાલીનું નામ",
+        "idProofType": "ID પ્રૂફ",
+        "identificationNumber": "ID નંબર",
+        "highestQualification": "ઉચ્ચ લાયકાત",
+        "mediumOfInstruction": "શિક્ષણ માધ્યમ",
+        "schoolCollegeName": "શાળા/કૉલેજ",
+        "schoolCollegeLocation": "સ્થળ",
+        "educationGapReason": "ગૅપ/ડ્રૉપ કારણ",
+        "preferredCourses": "પ્રિય તાલીમ"
+      },
+      "placeholders": {
+        "fullName": "પૂરું નામ",
+        "addressWithPincode": "પૂરું સરનામું",
+        "pincode": "પિનકોડ",
+        "idProofType": "આધાર/ID",
+        "educationGapReason": "ગૅપ કારણ"
+      },
+      "options": {
+        "graduation": "સ્નાતક",
+        "hindi": "હિન્દી",
+        "english": "અંગ્રેજી"
+      },
+      "course": {
+        "computer": "કૉમ્પ્યૂટર",
+        "tailoring": "ટેઇલરિંગ",
+        "spokenEnglish": "ઇંગ્લિશ",
+        "handmadeDesigning": "હૅન્ડ ડિઝાઇન",
+        "other": "અન્ય"
+      },
+      "alerts": {
+        "submitSuccess": "નોંધણી સફળ!",
+        "submitFailed": "નોંધણી નિષ્ફળ. ફરી."
+      }
     },
     "relief": {
       "heading": "સહાય માટે અરજી",
-      "sections": { "personalInformation": "વ્યક્તિગત", "familyAndLivingSituation": "કૌટુંબિક", "reasonForRequest": "કારણ", "assistanceRequired": "શું જોઈએ?" },
-      "fields": { "fullName": "પૂરું નામ", "fatherOrHusbandName": "પિતા/પતિ", "dateOfBirth": "જન્મ", "age": "ઉંમર", "gender": "લિંગ", "mobileNumber": "મોબાઇલ", "alternateNumber": "અન્ય", "emailAvailable": "ઇમેઇલ", "currentAddress": "સરનામું", "pincode": "પિનકોડ", "idProofType": "ID પ્રકાર", "idProofNumber": "ID નંબર", "totalFamilyMembers": "સભ્ય", "earningMembers": "કમાણ", "childrenBelow5": "બાળ <5", "childrenSchoolGoing": "શાળા", "elderlyDisabledMembers": "વૃદ્ધ/અક્ષમ", "elderlyDisabledDetails": "વિગત", "houseType": "ઘર", "reasonForRequest": "કારણ", "assistanceTypes": "ચીજ", "declaration": "ઉપરની માહિતી સત્ય છે." },
-      "placeholders": { "fullName": "નામ", "fatherOrHusbandName": "પિતા/પતિ", "currentAddress": "સરનામું", "pincode": "પિનકોડ", "idProofNumber": "ID", "reasonForRequest": "પરિસ્થિ" },
-      "options": { "foodKit": "ખોરાક", "water": "પાણી", "clothes": "કપડાં", "shelter": "આશ્રય", "medicalHelp": "દવા", "other": "અન્ય", "owned": "સ્વ", "temporary": "અસ્થ", "rented": "ભાડું", "damaged": "ક્ષ" },
-      "alerts": { "submitSuccess": "સફળ!", "submitFailed": "નિષ્ફળ. ફરી." }
+      "sections": {
+        "personalInformation": "વ્યક્તિગત",
+        "familyAndLivingSituation": "કૌટુંબિક",
+        "reasonForRequest": "કારણ",
+        "assistanceRequired": "શું જોઈએ?"
+      },
+      "fields": {
+        "fullName": "પૂરું નામ",
+        "fatherOrHusbandName": "પિતા/પતિ",
+        "dateOfBirth": "જન્મ",
+        "age": "ઉંમર",
+        "gender": "લિંગ",
+        "mobileNumber": "મોબાઇલ",
+        "alternateNumber": "અન્ય",
+        "emailAvailable": "ઇમેઇલ",
+        "currentAddress": "સરનામું",
+        "pincode": "પિનકોડ",
+        "idProofType": "ID પ્રકાર",
+        "idProofNumber": "ID નંબર",
+        "totalFamilyMembers": "સભ્ય",
+        "earningMembers": "કમાણ",
+        "childrenBelow5": "બાળ <5",
+        "childrenSchoolGoing": "શાળા",
+        "elderlyDisabledMembers": "વૃદ્ધ/અક્ષમ",
+        "elderlyDisabledDetails": "વિગત",
+        "houseType": "ઘર",
+        "reasonForRequest": "કારણ",
+        "assistanceTypes": "ચીજ",
+        "declaration": "ઉપરની માહિતી સત્ય છે."
+      },
+      "placeholders": {
+        "fullName": "નામ",
+        "fatherOrHusbandName": "પિતા/પતિ",
+        "currentAddress": "સરનામું",
+        "pincode": "પિનકોડ",
+        "idProofNumber": "ID",
+        "reasonForRequest": "પરિસ્થિ"
+      },
+      "options": {
+        "foodKit": "ખોરાક",
+        "water": "પાણી",
+        "clothes": "કપડાં",
+        "shelter": "આશ્રય",
+        "medicalHelp": "દવા",
+        "other": "અન્ય",
+        "owned": "સ્વ",
+        "temporary": "અસ્થ",
+        "rented": "ભાડું",
+        "damaged": "ક્ષ"
+      },
+      "alerts": {
+        "submitSuccess": "સફળ!",
+        "submitFailed": "નિષ્ફળ. ફરી."
+      }
     },
     "applyCard": {
       "heading": "આરોગ્ય કાર્ડ માટે અરજી કરવા બધી વિગત ભરો",
-      "sections": { "cardHolderDetails": "કાર્ડ ધારક વિગત", "cardDetails": "કાર્ડ વિગત", "familyMembers": "કુટુંબ સભ્ય" },
-      "fields": { "cardHolderName": "કાર્ડ ધારકનું નામ", "aadhaarNumber": "આધાર નંબર", "bloodGroup": "રક્ત જૂથ", "phone": "ફોન", "email": "ઇમેઇલ", "address": "સરનામું", "gender": "લિંગ", "ageCategory": "ઉંમર વર્ગ", "familyHeadImage": "કુટુંબ વડાની છબી", "cardType": "કાર્ડ પ્રકાર", "dateOfIssue": "જારી તારીખ", "dateOfExpiry": "સમાપ્તિ તારીખ", "fullName": "પૂરું નામ", "relationship": "સંબંધ", "dateOfBirth": "જન્મ તારીખ" },
-      "placeholders": { "fullName": "પૂરું નામ દાખલ કરો", "phone": "10 અંકનો નંબર", "email": "ઇમેઇલ સરનામું", "address": "સરનામું" },
-      "options": { "child": "બાળક", "adult": "પ્રૌઢ", "individual": "વ્યક્તિગત", "family": "કુટુંબ", "spouse": "જીવનસાથી", "son": "પુત્ર", "daughter": "પુત્રી", "father": "પિતા", "mother": "માતા", "brother": "ભાઈ", "sister": "બહેન" },
-      "validation": { "aadhaarFormat": "માન્ય આધાર નંબર (XXXX XXXX XXXX)", "aadhaarMaxLength": "આધાર 14 અક્ષર સુધી" },
+      "sections": {
+        "cardHolderDetails": "કાર્ડ ધારક વિગત",
+        "cardDetails": "કાર્ડ વિગત",
+        "familyMembers": "કુટુંબ સભ્ય"
+      },
+      "fields": {
+        "cardHolderName": "કાર્ડ ધારકનું નામ",
+        "aadhaarNumber": "આધાર નંબર",
+        "bloodGroup": "રક્ત જૂથ",
+        "phone": "ફોન",
+        "email": "ઇમેઇલ",
+        "address": "સરનામું",
+        "gender": "લિંગ",
+        "ageCategory": "ઉંમર વર્ગ",
+        "familyHeadImage": "કુટુંબ વડાની છબી",
+        "cardType": "કાર્ડ પ્રકાર",
+        "dateOfIssue": "જારી તારીખ",
+        "dateOfExpiry": "સમાપ્તિ તારીખ",
+        "fullName": "પૂરું નામ",
+        "relationship": "સંબંધ",
+        "dateOfBirth": "જન્મ તારીખ"
+      },
+      "placeholders": {
+        "fullName": "પૂરું નામ દાખલ કરો",
+        "phone": "10 અંકનો નંબર",
+        "email": "ઇમેઇલ સરનામું",
+        "address": "સરનામું"
+      },
+      "options": {
+        "child": "બાળક",
+        "adult": "પ્રૌઢ",
+        "individual": "વ્યક્તિગત",
+        "family": "કુટુંબ",
+        "spouse": "જીવનસાથી",
+        "son": "પુત્ર",
+        "daughter": "પુત્રી",
+        "father": "પિતા",
+        "mother": "માતા",
+        "brother": "ભાઈ",
+        "sister": "બહેન"
+      },
+      "validation": {
+        "aadhaarFormat": "માન્ય આધાર નંબર (XXXX XXXX XXXX)",
+        "aadhaarMaxLength": "આધાર 14 અક્ષર સુધી"
+      },
       "viewCard": "કાર્ડ જુઓ",
-      "alerts": { "createdSuccess": "આરોગ્ય કાર્ડ સફળ!", "failed": "અરજી નિષ્ફળ" }
+      "alerts": {
+        "createdSuccess": "આરોગ્ય કાર્ડ સફળ!",
+        "failed": "અરજી નિષ્ફળ"
+      }
     },
     "newCard": {
       "heading": "આરોગ્ય કાર્ડ માટે બધી વિગત ભરો",
-      "sections": { "treatmentDetails": "સારવાર વિગત", "medicalDocuments": "તબીબી દસ્તાવેજ", "referenceDetails": "સંદર્ભ વિગત (વૈકલ્પિક)" },
-      "fields": { "fullName": "પૂરું નામ", "emailAddress": "ઇમેઇલ સરનામું", "contactNumber": "સંપર્ક નંબર", "healthIssue": "આરોગ્ય સમસ્યા", "hospitalName": "હૉસ્પિટલ નામ", "hospitalAddress": "હૉસ્પિટલ સરનામું", "hospitalType": "હૉસ્પિટલ પ્રકાર", "treatmentDuration": "સારવારના વર્ષ", "medicalReports": "રિપોર્ટ અપલોડ", "referenceName": "સંદર્ભ નામ", "referenceContact": "સંદર્ભ સંપર્ક" },
-      "placeholders": { "fullName": "પૂરું નામ", "emailAddress": "ઇમેઇલ", "healthIssue": "સ્વાસ્થ્ય સ્થિતિ", "hospitalName": "હૉસ્પિટલ નામ", "hospitalAddress": "સ્થળ અને પિનકોડ", "treatmentDuration": "2 વર્ષ, 6 મહિના", "referenceName": "રેફર કરનારનું નામ" },
-      "options": { "governmentHospital": "સરકારી હૉસ્પિટલ", "privateHospital": "ખાનગી હૉસ્પિટલ", "clinic": "ક્લિનિક" },
-      "alerts": { "submitSuccess": "કાર્ડ વિનંતી સફળ", "submitFailed": "નિષ્ફળ. ફરી." }
+      "sections": {
+        "treatmentDetails": "સારવાર વિગત",
+        "medicalDocuments": "તબીબી દસ્તાવેજ",
+        "referenceDetails": "સંદર્ભ વિગત (વૈકલ્પિક)"
+      },
+      "fields": {
+        "fullName": "પૂરું નામ",
+        "emailAddress": "ઇમેઇલ સરનામું",
+        "contactNumber": "સંપર્ક નંબર",
+        "healthIssue": "આરોગ્ય સમસ્યા",
+        "hospitalName": "હૉસ્પિટલ નામ",
+        "hospitalAddress": "હૉસ્પિટલ સરનામું",
+        "hospitalType": "હૉસ્પિટલ પ્રકાર",
+        "treatmentDuration": "સારવારના વર્ષ",
+        "medicalReports": "રિપોર્ટ અપલોડ",
+        "referenceName": "સંદર્ભ નામ",
+        "referenceContact": "સંદર્ભ સંપર્ક"
+      },
+      "placeholders": {
+        "fullName": "પૂરું નામ",
+        "emailAddress": "ઇમેઇલ",
+        "healthIssue": "સ્વાસ્થ્ય સ્થિતિ",
+        "hospitalName": "હૉસ્પિટલ નામ",
+        "hospitalAddress": "સ્થળ અને પિનકોડ",
+        "treatmentDuration": "2 વર્ષ, 6 મહિના",
+        "referenceName": "રેફર કરનારનું નામ"
+      },
+      "options": {
+        "governmentHospital": "સરકારી હૉસ્પિટલ",
+        "privateHospital": "ખાનગી હૉસ્પિટલ",
+        "clinic": "ક્લિનિક"
+      },
+      "alerts": {
+        "submitSuccess": "કાર્ડ વિનંતી સફળ",
+        "submitFailed": "નિષ્ફળ. ફરી."
+      }
     },
     "volunteers": {
       "heading": "મુઝ્ઝ્તબા હેલ્પિંગ ફાઉન્ડેશનમાં સ્વયંસેવક",
-      "sections": { "personalDetails": "વ્યક્તિગત", "professionalDetails": "વ્યાવસાયિક", "volunteeringPreferences": "સ્વ. પ્રાધાન્ય", "experienceAndMotivation": "અનુભવ" },
-      "fields": { "fullName": "પૂરું નામ", "dateOfBirth": "જન્મ", "gender": "લિંગ", "phoneNumber": "ફોન", "alternateContact": "અ. સં.", "emailAddress": "ઇ", "address": "સ", "qualification": "લાયકાત", "employmentStatus": "રોજગાર", "occupation": "ધંધો", "volunteerArea": "ક્ષેત્ર?", "availability": "ઉ.", "previousVolunteering": "પ?", "motivation": "કારણ?", "declaration": "ઉ.મ. ઘ." },
-      "placeholders": { "motivation": "પ્રેરણા..." },
-      "options": { "student": "વિ.", "employee": "ક.", "selfEmployed": "સ્વ.", "healthCamps": "આ.શ.", "awarenessDrives": "જ.અ.", "dataEntry": "ડ.એ.", "socialMedia": "સ.મ.", "fundraising": "ભ.સ.", "communityOutreach": "સ.આ.", "weekdays": "સ.દ.", "weekends": "રવ.", "flexible": "લ." }
+      "sections": {
+        "personalDetails": "વ્યક્તિગત",
+        "professionalDetails": "વ્યાવસાયિક",
+        "volunteeringPreferences": "સ્વ. પ્રાધાન્ય",
+        "experienceAndMotivation": "અનુભવ"
+      },
+      "fields": {
+        "fullName": "પૂરું નામ",
+        "dateOfBirth": "જન્મ",
+        "gender": "લિંગ",
+        "phoneNumber": "ફોન",
+        "alternateContact": "અ. સં.",
+        "emailAddress": "ઇ",
+        "address": "સ",
+        "qualification": "લાયકાત",
+        "employmentStatus": "રોજગાર",
+        "occupation": "ધંધો",
+        "volunteerArea": "ક્ષેત્ર?",
+        "availability": "ઉ.",
+        "previousVolunteering": "પ?",
+        "motivation": "કારણ?",
+        "declaration": "ઉ.મ. ઘ."
+      },
+      "placeholders": {
+        "motivation": "પ્રેરણા..."
+      },
+      "options": {
+        "student": "વિ.",
+        "employee": "ક.",
+        "selfEmployed": "સ્વ.",
+        "healthCamps": "આ.શ.",
+        "awarenessDrives": "જ.અ.",
+        "dataEntry": "ડ.એ.",
+        "socialMedia": "સ.મ.",
+        "fundraising": "ભ.સ.",
+        "communityOutreach": "સ.આ.",
+        "weekdays": "સ.દ.",
+        "weekends": "રવ.",
+        "flexible": "લ."
+      }
     },
     "equipment": {
       "heading": "તબીબી સાધન વિનંતી",
       "submitRequest": "સબ. વિ.",
-      "sections": { "personalInformation": "વ્ય. મ.", "addressDetails": "સ. વ.", "equipmentDetails": "સ. વ.", "referenceDetails": "સં. વ.", "consent": "સ." },
-      "fields": { "fullName": "નામ", "age": "ઉ.", "gender": "લ.", "mobileNumber": "મ.", "email": "ઇ.", "address": "સ.", "pincode": "પ.", "equipmentType": "સ. પ્ર.", "medicalReason": "ક.", "durationRequired": "અ.", "referenceName": "સ.", "referenceContact": "સ.", "consentDeclaration": "ઘ. સ." },
-      "placeholders": { "fullName": "નામ", "age": "ઉ.", "mobileNumber": "મ.", "email": "ઇ.", "address": "સ.", "pincode": "પ.", "medicalReason": "ક.", "durationRequired": "2 સ., 1 મ.", "referenceName": "સ.", "referenceContact": "ફ." },
-      "options": { "bloodPressureMonitor": "BP મૉ.", "glucometer": "ગ્લ.", "oxygenConcentrator": "O2", "wheelchair": "વ્હ.", "walkingAid": "ચ. સ.", "hospitalBed": "બ.", "nebulizer": "ન." },
-      "alerts": { "submitSuccess": "સ. ID:", "submitFailed": "ન. ફ. પ્ર." }
+      "sections": {
+        "personalInformation": "વ્ય. મ.",
+        "addressDetails": "સ. વ.",
+        "equipmentDetails": "સ. વ.",
+        "referenceDetails": "સં. વ.",
+        "consent": "સ."
+      },
+      "fields": {
+        "fullName": "નામ",
+        "age": "ઉ.",
+        "gender": "લ.",
+        "mobileNumber": "મ.",
+        "email": "ઇ.",
+        "address": "સ.",
+        "pincode": "પ.",
+        "equipmentType": "સ. પ્ર.",
+        "medicalReason": "ક.",
+        "durationRequired": "અ.",
+        "referenceName": "સ.",
+        "referenceContact": "સ.",
+        "consentDeclaration": "ઘ. સ."
+      },
+      "placeholders": {
+        "fullName": "નામ",
+        "age": "ઉ.",
+        "mobileNumber": "મ.",
+        "email": "ઇ.",
+        "address": "સ.",
+        "pincode": "પ.",
+        "equipmentType": "સાધનનો પ્રકાર દાખલ કરો (દા.ત., વ્હીલચેર, ગ્લુકોમીટર)",
+        "medicalReason": "ક.",
+        "durationRequired": "2 સ., 1 મ.",
+        "referenceName": "સ.",
+        "referenceContact": "ફ."
+      },
+      "options": {
+        "bloodPressureMonitor": "BP મૉ.",
+        "glucometer": "ગ્લ.",
+        "oxygenConcentrator": "O2",
+        "wheelchair": "વ્હ.",
+        "walkingAid": "ચ. સ.",
+        "hospitalBed": "બ.",
+        "nebulizer": "ન."
+      },
+      "alerts": {
+        "submitSuccess": "સ. ID:",
+        "submitFailed": "ન. ફ. પ્ર."
+      }
     }
   }
 }

@@ -883,6 +883,7 @@
         "email": "Enter email address",
         "address": "Enter your address",
         "pincode": "Enter pincode",
+        "equipmentType": "(e.g., Wheelchair, Glucometer)",
         "medicalReason": "Describe the medical reason for requesting equipment",
         "durationRequired": "e.g., 2 weeks, 1 month",
         "referenceName": "Enter reference person name",

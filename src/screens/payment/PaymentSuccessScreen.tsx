@@ -114,6 +114,19 @@ function PaymentSuccessScreen() {
         ) : null}
       </View>
 
+      {/* Pending admin approval notice — only for health card payments */}
+      {!isCampaignPayment ? (
+        <View style={styles.pendingNotice}>
+          <PTText style={styles.pendingNoticeIcon}>🕐</PTText>
+          <View style={styles.pendingNoticeText}>
+            <PTText style={styles.pendingNoticeTitle}>Pending Admin Approval</PTText>
+            <PTText style={styles.pendingNoticeDesc}>
+              Your payment is received. Your health card will be activated once our team reviews and approves your application.
+            </PTText>
+          </View>
+        </View>
+      ) : null}
+
       {/* Details card (captured as receipt image) */}
       <ViewShot
         ref={receiptRef}
@@ -182,7 +195,7 @@ function PaymentSuccessScreen() {
           activeOpacity={0.8}
         >
           <PTText style={styles.primaryButtonText}>
-            {t("payment.viewHealthCard", "View Health Card")}
+            {t("payment.checkCardStatus", "Check Card Status")}
           </PTText>
         </TouchableOpacity>
       ) : null}
@@ -275,6 +288,21 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   paidBadge: { color: "#16A34A", fontWeight: "700" },
+  pendingNotice: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    backgroundColor: "#FFFBEB",
+    borderRadius: 12,
+    padding: 14,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: "#FDE68A",
+    gap: 10,
+  },
+  pendingNoticeIcon: { fontSize: 20, lineHeight: 24 },
+  pendingNoticeText: { flex: 1 },
+  pendingNoticeTitle: { fontSize: 14, fontWeight: "700", color: "#92400E", marginBottom: 4 },
+  pendingNoticeDesc: { fontSize: 13, color: "#78350F", lineHeight: 19 },
   primaryButton: {
     backgroundColor: "#1E3A8A",
     borderRadius: 10,

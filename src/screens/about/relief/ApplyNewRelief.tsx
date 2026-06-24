@@ -6,7 +6,7 @@ import PTDynamicForm, {
 } from "../../../components/general/DynamicForm/DynamicForm";
 import { useRef } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { PTText } from "../../../components/comman";
+
 import {
   useCreateReliefRequestMutation,
   useLocationDropdowns,
@@ -490,17 +490,7 @@ function ApplyNewRelief() {
 
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
-      <PTText
-        style={{
-          fontSize: 16,
-          padding: 8,
-          fontWeight: "400",
-          marginBottom: 12,
-        }}
-      >
-        {t("forms.relief.heading")}
-      </PTText>
-      <PTDynamicForm
+<PTDynamicForm
         ref={formRef}
         sections={sections}
         initialValues={{}}

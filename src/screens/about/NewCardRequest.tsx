@@ -138,7 +138,7 @@ function NewCardRequest() {
           maxSize: 10 * 1024 * 1024, // 10MB in bytes
           multiple: true,
           maxFiles: 5, // Maximum 5 files
-          validations: [{ name: "required", value: true }],
+          validations: [],
           path: "documents.medicalReports",
         },
       ],

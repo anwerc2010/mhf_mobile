@@ -5,7 +5,7 @@ import PTDynamicForm, {
   PTDynamicFormRef,
   FormSection,
 } from "../../components/general/DynamicForm/DynamicForm";
-import { PTText } from "../../components/comman";
+
 import {
   useApplyHealthCardMutation,
   useUploadDocumentMutation,
@@ -552,14 +552,7 @@ function ApplyCardRequest() {
         })),
       };
 
-      console.log(
-        "Apply card request values:",
-        JSON.stringify(formattedData, null, 2),
-      );
-
       const response = await applyHealthCard(formattedData).unwrap();
-
-      console.log("Health Card Application Response:", response);
 
       const payment: any = response.data?.payment;
       const healthCard = response.data?.health_card;
@@ -594,10 +587,6 @@ function ApplyCardRequest() {
         responseData?.can_pay ?? responseCardRequest?.can_pay ?? requestCanPay,
       );
       const cardCreated = Boolean(responseData?.card_created);
-      const zohoSynced: boolean | undefined =
-        typeof responseData?.zoho_synced === "boolean"
-          ? responseData.zoho_synced
-          : undefined;
 
       const isFreeFlow =
         isLockedFreeRequest ||
@@ -667,7 +656,6 @@ function ApplyCardRequest() {
               onPress: () =>
                 navigation.navigate("BottomTabs", {
                   screen: "Card",
-                  params: { zohoSynced },
                 }),
             },
           ],
@@ -679,7 +667,6 @@ function ApplyCardRequest() {
         );
       }
     } catch (err: any) {
-      console.error("Error submitting health card application:", err);
       Alert.alert(
         t("common.error"),
         err?.data?.message ||
@@ -691,17 +678,7 @@ function ApplyCardRequest() {
 
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
-      <PTText
-        style={{
-          fontSize: 16,
-          padding: 8,
-          fontWeight: "400",
-          marginBottom: 12,
-        }}
-      >
-        {t("forms.applyCard.heading")}
-      </PTText>
-      <PTDynamicForm
+<PTDynamicForm
         ref={formRef}
         sections={sections}
         initialValues={{
@@ -717,8 +694,6 @@ function ApplyCardRequest() {
         submitLoading={isSubmitting}
         onSubmit={handleSubmit}
         onValueChange={(fieldId, value, allValues, fieldPath) => {
-          console.log(`${fieldId} changed to`, value);
-
           if (
             fieldId === "aadhaar_number" &&
             typeof value === "string" &&

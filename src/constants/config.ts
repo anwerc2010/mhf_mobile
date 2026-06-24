@@ -78,7 +78,7 @@ export const APP_CONFIG = {
   MHF_WEBSITE_URL: "https://mhfglobal.com/",
   MHF_WHATSAPP_NUMBER_E164: "918331960001",
   MHF_WHATSAPP_DISPLAY_NUMBER: "+91 8331960001",
-  MHF_CC_EMAIL: "info@mhfglobal.com", // Update with the actual MHF email address
+  MHF_CC_EMAIL: "mujtabahelpingfoundation@gmail.com",
 } as const;
 
 /**

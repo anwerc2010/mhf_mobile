@@ -249,29 +249,8 @@ export default function EquipmentRequest() {
         {
           id: "equipmentType",
           label: t("forms.equipment.fields.equipmentType"),
-          type: "radio",
-          values: [
-            {
-              id: "Blood Pressure Monitor",
-              name: t("forms.equipment.options.bloodPressureMonitor"),
-            },
-            { id: "Glucometer", name: t("forms.equipment.options.glucometer") },
-            {
-              id: "Oxygen Concentrator",
-              name: t("forms.equipment.options.oxygenConcentrator"),
-            },
-            { id: "Wheelchair", name: t("forms.equipment.options.wheelchair") },
-            {
-              id: "Walking Aid",
-              name: t("forms.equipment.options.walkingAid"),
-            },
-            {
-              id: "Hospital Bed",
-              name: t("forms.equipment.options.hospitalBed"),
-            },
-            { id: "Nebulizer", name: t("forms.equipment.options.nebulizer") },
-            { id: "Other", name: t("forms.common.options.other") },
-          ],
+          type: "text",
+          placeholder: t("forms.equipment.placeholders.equipmentType"),
           validations: [{ name: "required", value: true }],
           path: "equipment.equipmentType",
         },

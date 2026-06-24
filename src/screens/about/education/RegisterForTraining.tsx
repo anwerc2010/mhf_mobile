@@ -5,7 +5,7 @@ import PTDynamicForm, {
   FormSection,
 } from "../../../components/general/DynamicForm/DynamicForm";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { PTText } from "../../../components/comman";
+
 import {
   TrainingProgram,
   useLocationDropdowns,
@@ -388,17 +388,7 @@ function RegisterForTraining() {
 
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
-      <PTText
-        style={{
-          fontSize: 16,
-          padding: 8,
-          fontWeight: "400",
-          marginBottom: 12,
-        }}
-      >
-        {t("forms.training.heading")}
-      </PTText>
-      <PTDynamicForm
+<PTDynamicForm
         ref={formRef}
         sections={sections}
         initialValues={{}}

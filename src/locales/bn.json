@@ -1,15 +1,30 @@
 {
   "common": {
-    "email": "ইমেইল", "password": "পাসওয়ার্ড", "name": "নাম", "confirmPassword": "পাসওয়ার্ড নিশ্চিত করুন",
-    "signIn": "সাইন ইন", "signUp": "সাইন আপ", "signOut": "সাইন আউট",
-    "cancel": "বাতিল", "save": "সংরক্ষণ", "delete": "মুছুন", "edit": "সম্পাদনা",
-    "loading": "লোড হচ্ছে...", "error": "ত্রুটি", "success": "সাফল্য", "step": "ধাপ"
+    "email": "ইমেইল",
+    "password": "পাসওয়ার্ড",
+    "name": "নাম",
+    "confirmPassword": "পাসওয়ার্ড নিশ্চিত করুন",
+    "signIn": "সাইন ইন",
+    "signUp": "সাইন আপ",
+    "signOut": "সাইন আউট",
+    "cancel": "বাতিল",
+    "save": "সংরক্ষণ",
+    "delete": "মুছুন",
+    "edit": "সম্পাদনা",
+    "loading": "লোড হচ্ছে...",
+    "error": "ত্রুটি",
+    "success": "সাফল্য",
+    "step": "ধাপ"
   },
   "filePicker": {
-    "chooseUploadType": "আপলোড ধরন বেছে নিন", "imageFromGallery": "গ্যালারি থেকে ছবি",
-    "file": "ফাইল", "uploadFile": "আপলোড করতে ট্যাপ করুন", "selectFile": "ফাইল নির্বাচন করুন",
+    "chooseUploadType": "আপলোড ধরন বেছে নিন",
+    "imageFromGallery": "গ্যালারি থেকে ছবি",
+    "file": "ফাইল",
+    "uploadFile": "আপলোড করতে ট্যাপ করুন",
+    "selectFile": "ফাইল নির্বাচন করুন",
     "simulatedFile": "ডেমো উদ্দেশ্যে একটি সিমুলেটেড ফাইল তৈরি করা হয়েছে।",
-    "useSimulatedFile": "সিমুলেটেড ফাইল ব্যবহার করুন", "noFileSelected": "কোনো ফাইল নির্বাচিত হয়নি",
+    "useSimulatedFile": "সিমুলেটেড ফাইল ব্যবহার করুন",
+    "noFileSelected": "কোনো ফাইল নির্বাচিত হয়নি",
     "pleaseSelectFile": "অনুগ্রহ করে কমপক্ষে একটি ফাইল নির্বাচন করুন।",
     "fileTooLarge": "ফাইল অনেক বড়",
     "fileExceedsSize": "কিছু ফাইল {{size}} সর্বোচ্চ আকার অতিক্রম করে। ছোট ফাইল বেছে নিন।",
@@ -22,243 +37,871 @@
     "filePickerFuture": "এই প্ল্যাটফর্মের জন্য ফাইল পিকার ভবিষ্যৎ আপডেটে প্রয়োগ করা হবে।"
   },
   "login": {
-    "title": "আবার স্বাগতম", "subtitle": "চালিয়ে যেতে সাইন ইন করুন",
-    "emailPlaceholder": "আপনার ইমেইল লিখুন", "passwordPlaceholder": "আপনার পাসওয়ার্ড লিখুন",
-    "noAccount": "অ্যাকাউন্ট নেই?", "loginFailed": "লগইন ব্যর্থ",
-    "invalidCredentials": "ভুল ইমেইল বা পাসওয়ার্ড", "errorOccurred": "একটি ত্রুটি ঘটেছে। আবার চেষ্টা করুন।",
+    "title": "আবার স্বাগতম",
+    "subtitle": "চালিয়ে যেতে সাইন ইন করুন",
+    "emailPlaceholder": "আপনার ইমেইল লিখুন",
+    "passwordPlaceholder": "আপনার পাসওয়ার্ড লিখুন",
+    "noAccount": "অ্যাকাউন্ট নেই?",
+    "loginFailed": "লগইন ব্যর্থ",
+    "invalidCredentials": "ভুল ইমেইল বা পাসওয়ার্ড",
+    "errorOccurred": "একটি ত্রুটি ঘটেছে। আবার চেষ্টা করুন।",
     "fillAllFields": "অনুগ্রহ করে সব ক্ষেত্র পূরণ করুন"
   },
   "register": {
-    "title": "অ্যাকাউন্ট তৈরি করুন", "subtitle": "শুরু করতে সাইন আপ করুন",
-    "namePlaceholder": "আপনার পূর্ণ নাম লিখুন", "emailPlaceholder": "আপনার ইমেইল লিখুন",
-    "passwordPlaceholder": "আপনার পাসওয়ার্ড লিখুন", "confirmPasswordPlaceholder": "আপনার পাসওয়ার্ড নিশ্চিত করুন",
-    "hasAccount": "ইতিমধ্যে অ্যাকাউন্ট আছে?", "registrationFailed": "নিবন্ধন ব্যর্থ",
+    "title": "অ্যাকাউন্ট তৈরি করুন",
+    "subtitle": "শুরু করতে সাইন আপ করুন",
+    "namePlaceholder": "আপনার পূর্ণ নাম লিখুন",
+    "emailPlaceholder": "আপনার ইমেইল লিখুন",
+    "passwordPlaceholder": "আপনার পাসওয়ার্ড লিখুন",
+    "confirmPasswordPlaceholder": "আপনার পাসওয়ার্ড নিশ্চিত করুন",
+    "hasAccount": "ইতিমধ্যে অ্যাকাউন্ট আছে?",
+    "registrationFailed": "নিবন্ধন ব্যর্থ",
     "registrationSuccess": "নিবন্ধন সফল! অনুগ্রহ করে লগইন করুন।",
-    "passwordsNotMatch": "পাসওয়ার্ড মিলছে না", "passwordMinLength": "পাসওয়ার্ড কমপক্ষে ৬ অক্ষর হতে হবে",
-    "fillAllFields": "অনুগ্রহ করে সব ক্ষেত্র পূরণ করুন", "profileImageLabel": "প্রোফাইল ছবি",
-    "toast": { "success": "গ্রাহক সফলভাবে নিবন্ধিত হয়েছেন", "error": "নিবন্ধন ব্যর্থ" },
+    "passwordsNotMatch": "পাসওয়ার্ড মিলছে না",
+    "passwordMinLength": "পাসওয়ার্ড কমপক্ষে ৬ অক্ষর হতে হবে",
+    "fillAllFields": "অনুগ্রহ করে সব ক্ষেত্র পূরণ করুন",
+    "profileImageLabel": "প্রোফাইল ছবি",
+    "toast": {
+      "success": "গ্রাহক সফলভাবে নিবন্ধিত হয়েছেন",
+      "error": "নিবন্ধন ব্যর্থ"
+    },
     "validation": {
-      "fullnameRequired": "পূর্ণ নাম প্রয়োজন", "ageRequired": "বয়স প্রয়োজন", "agePositive": "বয়স ধনাত্মক হতে হবে",
-      "genderRequired": "লিঙ্গ প্রয়োজন", "phoneRequired": "ফোন প্রয়োজন", "addressRequired": "ঠিকানা প্রয়োজন",
-      "emailRequired": "ইমেইল প্রয়োজন", "emailInvalid": "বৈধ ইমেইল লিখুন",
-      "passwordRequired": "পাসওয়ার্ড প্রয়োজন", "passwordMin": "পাসওয়ার্ড কমপক্ষে ৮ অক্ষর হতে হবে",
-      "equipmentTypeRequired": "সরঞ্জামের ধরন প্রয়োজন", "medicalReasonRequired": "চিকিৎসা কারণ প্রয়োজন",
-      "durationRequired": "সময়কাল প্রয়োজন", "referenceNameRequired": "রেফারেন্স নাম প্রয়োজন", "referenceContactRequired": "রেফারেন্স যোগাযোগ প্রয়োজন"
+      "fullnameRequired": "পূর্ণ নাম প্রয়োজন",
+      "ageRequired": "বয়স প্রয়োজন",
+      "agePositive": "বয়স ধনাত্মক হতে হবে",
+      "genderRequired": "লিঙ্গ প্রয়োজন",
+      "phoneRequired": "ফোন প্রয়োজন",
+      "addressRequired": "ঠিকানা প্রয়োজন",
+      "emailRequired": "ইমেইল প্রয়োজন",
+      "emailInvalid": "বৈধ ইমেইল লিখুন",
+      "passwordRequired": "পাসওয়ার্ড প্রয়োজন",
+      "passwordMin": "পাসওয়ার্ড কমপক্ষে ৮ অক্ষর হতে হবে",
+      "equipmentTypeRequired": "সরঞ্জামের ধরন প্রয়োজন",
+      "medicalReasonRequired": "চিকিৎসা কারণ প্রয়োজন",
+      "durationRequired": "সময়কাল প্রয়োজন",
+      "referenceNameRequired": "রেফারেন্স নাম প্রয়োজন",
+      "referenceContactRequired": "রেফারেন্স যোগাযোগ প্রয়োজন"
     }
   },
   "language": {
-    "changeLanguage": "ভাষা পরিবর্তন করুন", "english": "ইংরেজি", "arabic": "আরবি",
-    "selectLanguage": "ভাষা নির্বাচন করুন", "urdu": "উর্দু", "telugu": "তেলুগু",
-    "hindi": "হিন্দি", "marathi": "মারাঠি", "tamil": "তামিল",
-    "punjabi": "পাঞ্জাবি", "kannada": "কন্নড়", "bengali": "বাংলা", "gujarati": "গুজরাটি"
+    "changeLanguage": "ভাষা পরিবর্তন করুন",
+    "english": "ইংরেজি",
+    "arabic": "আরবি",
+    "selectLanguage": "ভাষা নির্বাচন করুন",
+    "urdu": "উর্দু",
+    "telugu": "তেলুগু",
+    "hindi": "হিন্দি",
+    "marathi": "মারাঠি",
+    "tamil": "তামিল",
+    "punjabi": "পাঞ্জাবি",
+    "kannada": "কন্নড়",
+    "bengali": "বাংলা",
+    "gujarati": "গুজরাটি"
   },
-  "theme": { "light": "হালকা", "dark": "গাঢ়", "system": "সিস্টেম", "selectTheme": "থিম নির্বাচন করুন", "changeTheme": "থিম পরিবর্তন করুন" },
+  "theme": {
+    "light": "হালকা",
+    "dark": "গাঢ়",
+    "system": "সিস্টেম",
+    "selectTheme": "থিম নির্বাচন করুন",
+    "changeTheme": "থিম পরিবর্তন করুন"
+  },
   "home": {
-    "title": "হোম স্ক্রিন", "featuredPartners": "বিশেষ অংশীদার", "viewAll": "সব দেখুন",
-    "welcomeBack": "আবার স্বাগতম,", "education": "শিক্ষা", "relief": "ত্রাণ",
-    "volunteers": "স্বেচ্ছাসেবক", "events": "অনুষ্ঠান", "familyHealthCards": "পারিবারিক স্বাস্থ্য কার্ড",
-    "requestNewCard": "+  নতুন কার্ডের অনুরোধ", "errorLoadingData": "ড্যাশবোর্ড ডেটা লোডে ত্রুটি",
-    "guest": "অতিথি", "noCardsFound": "কোনো কার্ড পাওয়া যায়নি",
-    "cardRequests": "কার্ড অনুরোধ", "cardRequestDetails": "কার্ড অনুরোধের বিবরণ",
-    "requestId": "অনুরোধ আইডি:", "status": "অবস্থা:", "requested": "অনুরোধ করা হয়েছে:", "updated": "আপডেট হয়েছে:",
-    "reviewNotes": "পর্যালোচনা নোট:", "noReviewNotes": "কোনো পর্যালোচনা নোট নেই",
-    "close": "বন্ধ করুন", "applyForCard": "কার্ডের জন্য আবেদন করুন", "notAvailable": "N/A", "primaryMember": "প্রাথমিক সদস্য"
+    "title": "হোম স্ক্রিন",
+    "featuredPartners": "বিশেষ অংশীদার",
+    "viewAll": "সব দেখুন",
+    "welcomeBack": "আবার স্বাগতম,",
+    "education": "শিক্ষা",
+    "relief": "ত্রাণ",
+    "volunteers": "স্বেচ্ছাসেবক",
+    "events": "অনুষ্ঠান",
+    "familyHealthCards": "পারিবারিক স্বাস্থ্য কার্ড",
+    "requestNewCard": "+  নতুন কার্ডের অনুরোধ",
+    "errorLoadingData": "ড্যাশবোর্ড ডেটা লোডে ত্রুটি",
+    "guest": "অতিথি",
+    "noCardsFound": "কোনো কার্ড পাওয়া যায়নি",
+    "cardRequests": "কার্ড অনুরোধ",
+    "cardRequestDetails": "কার্ড অনুরোধের বিবরণ",
+    "requestId": "অনুরোধ আইডি:",
+    "status": "অবস্থা:",
+    "requested": "অনুরোধ করা হয়েছে:",
+    "updated": "আপডেট হয়েছে:",
+    "reviewNotes": "পর্যালোচনা নোট:",
+    "noReviewNotes": "কোনো পর্যালোচনা নোট নেই",
+    "close": "বন্ধ করুন",
+    "applyForCard": "কার্ডের জন্য আবেদন করুন",
+    "notAvailable": "N/A",
+    "primaryMember": "প্রাথমিক সদস্য"
   },
   "card": {
-    "healthCard": "স্বাস্থ্য কার্ড", "cardHolderName": "কার্ড ধারকের নাম", "membershipId": "সদস্যপদ আইডি",
-    "bloodGroup": "রক্তের গ্রুপ", "aadharNumber": "আধার নম্বর", "dateOfIssue": "ইস্যুর তারিখ",
-    "createdAt": "তৈরি হয়েছে", "dateOfExpiry": "মেয়াদ শেষের তারিখ", "title": "পারিবারিক স্বাস্থ্য কার্ড",
-    "downloadCard": "ডাউনলোড", "emailCard": "ইমেইল", "loading": "কার্ড লোড হচ্ছে...",
-    "loadError": "কার্ড লোডে ব্যর্থ", "swipeHint": "সব ৪ সদস্যের কার্ড দেখতে সোয়াইপ করুন",
+    "healthCard": "স্বাস্থ্য কার্ড",
+    "cardHolderName": "কার্ড ধারকের নাম",
+    "membershipId": "সদস্যপদ আইডি",
+    "bloodGroup": "রক্তের গ্রুপ",
+    "aadharNumber": "আধার নম্বর",
+    "dateOfIssue": "ইস্যুর তারিখ",
+    "createdAt": "তৈরি হয়েছে",
+    "dateOfExpiry": "মেয়াদ শেষের তারিখ",
+    "title": "পারিবারিক স্বাস্থ্য কার্ড",
+    "downloadCard": "ডাউনলোড",
+    "emailCard": "ইমেইল",
+    "loading": "কার্ড লোড হচ্ছে...",
+    "loadError": "কার্ড লোডে ব্যর্থ",
+    "swipeHint": "সব ৪ সদস্যের কার্ড দেখতে সোয়াইপ করুন",
     "cardBenefits": "কার্ডের সুবিধা",
-    "benefits": { "freeConsultations": "১০০+ অংশীদার ক্লিনিকে বিনামূল্যে পরামর্শ", "discount": "ওষুধে ৫০% পর্যন্ত ছাড়", "checkup": "বিনামূল্যে বার্ষিক স্বাস্থ্য পরীক্ষা", "helpline": "২৪/৭ জরুরি হেল্পলাইন সহায়তা" },
-    "howToUse": { "title": "কীভাবে ব্যবহার করবেন", "step1": "যেকোনো অংশীদার স্বাস্থ্যসেবা কেন্দ্রে যান", "step2": "আপনার ডিজিটাল স্বাস্থ্য কার্ড বা সদস্য আইডি দেখান", "step3": "আপনার কার্ডের সুবিধা অনুযায়ী সেবা নিন" }
+    "benefits": {
+      "freeConsultations": "১০০+ অংশীদার ক্লিনিকে বিনামূল্যে পরামর্শ",
+      "discount": "ওষুধে ৫০% পর্যন্ত ছাড়",
+      "checkup": "বিনামূল্যে বার্ষিক স্বাস্থ্য পরীক্ষা",
+      "helpline": "২৪/৭ জরুরি হেল্পলাইন সহায়তা"
+    },
+    "howToUse": {
+      "title": "কীভাবে ব্যবহার করবেন",
+      "step1": "যেকোনো অংশীদার স্বাস্থ্যসেবা কেন্দ্রে যান",
+      "step2": "আপনার ডিজিটাল স্বাস্থ্য কার্ড বা সদস্য আইডি দেখান",
+      "step3": "আপনার কার্ডের সুবিধা অনুযায়ী সেবা নিন"
+    }
   },
   "profile": {
-    "title": "আমার প্রোফাইল", "memberSince": "সদস্য হয়েছেন", "activeMember": "সদস্য", "memberId": "সদস্য আইডি",
-    "bloodGroup": "রক্তের গ্রুপ", "dateOfBirth": "জন্ম তারিখ", "contact": "যোগাযোগ", "email": "ইমেইল",
-    "medicalInfo": "চিকিৎসা তথ্য", "allergies": "অ্যালার্জি", "chronicConditions": "দীর্ঘস্থায়ী অবস্থা",
-    "emergencyContact": "জরুরি যোগাযোগ", "editProfile": "প্রোফাইল সম্পাদনা করুন", "logout": "লগআউট",
+    "title": "আমার প্রোফাইল",
+    "memberSince": "সদস্য হয়েছেন",
+    "activeMember": "সদস্য",
+    "memberId": "সদস্য আইডি",
+    "bloodGroup": "রক্তের গ্রুপ",
+    "dateOfBirth": "জন্ম তারিখ",
+    "contact": "যোগাযোগ",
+    "email": "ইমেইল",
+    "medicalInfo": "চিকিৎসা তথ্য",
+    "allergies": "অ্যালার্জি",
+    "chronicConditions": "দীর্ঘস্থায়ী অবস্থা",
+    "emergencyContact": "জরুরি যোগাযোগ",
+    "editProfile": "প্রোফাইল সম্পাদনা করুন",
+    "logout": "লগআউট",
     "logoutConfirm": "আপনি কি সত্যিই লগআউট করতে চান?",
-    "about": "MHF ফাউন্ডেশন সম্পর্কে", "aboutMHF": "MHF সম্পর্কে", "ourVision": "আমাদের দৃষ্টিভঙ্গি",
-    "ourMission": "আমাদের লক্ষ্য", "ourBoard": "আমাদের বোর্ড", "ourTeam": "আমাদের দল",
-    "ourVolunteers": "আমাদের স্বেচ্ছাসেবক", "contactInfo": "যোগাযোগের তথ্য", "user": "ব্যবহারকারী",
-    "updateFailed": "আপডেট ব্যর্থ", "somethingWentWrong": "কিছু ভুল হয়েছে",
+    "about": "MHF ফাউন্ডেশন সম্পর্কে",
+    "aboutMHF": "MHF সম্পর্কে",
+    "ourVision": "আমাদের দৃষ্টিভঙ্গি",
+    "ourMission": "আমাদের লক্ষ্য",
+    "ourBoard": "আমাদের বোর্ড",
+    "ourTeam": "আমাদের দল",
+    "ourVolunteers": "আমাদের স্বেচ্ছাসেবক",
+    "contactInfo": "যোগাযোগের তথ্য",
+    "user": "ব্যবহারকারী",
+    "updateFailed": "আপডেট ব্যর্থ",
+    "somethingWentWrong": "কিছু ভুল হয়েছে",
     "updatedSuccessfully": "প্রোফাইল সফলভাবে আপডেট হয়েছে",
-    "profileImage": "প্রোফাইল ছবি", "profileImageHint": "JPG বা PNG, সর্বোচ্চ ২০ MB",
-    "uploadingImage": "ছবি আপলোড হচ্ছে...", "imageUploadFailed": "ছবি আপলোড ব্যর্থ"
+    "profileImage": "প্রোফাইল ছবি",
+    "profileImageHint": "JPG বা PNG, সর্বোচ্চ ২০ MB",
+    "uploadingImage": "ছবি আপলোড হচ্ছে...",
+    "imageUploadFailed": "ছবি আপলোড ব্যর্থ"
   },
-  "settings": { "title": "সেটিংস স্ক্রিন" },
+  "settings": {
+    "title": "সেটিংস স্ক্রিন"
+  },
   "notifications": {
-    "title": "বিজ্ঞপ্তি", "unread": "অপঠিত বিজ্ঞপ্তি", "unreadPlural": "অপঠিত বিজ্ঞপ্তি",
-    "allCaughtUp": "সব ঠিক আছে!", "noNotifications": "কোনো বিজ্ঞপ্তি নেই",
+    "title": "বিজ্ঞপ্তি",
+    "unread": "অপঠিত বিজ্ঞপ্তি",
+    "unreadPlural": "অপঠিত বিজ্ঞপ্তি",
+    "allCaughtUp": "সব ঠিক আছে!",
+    "noNotifications": "কোনো বিজ্ঞপ্তি নেই",
     "noNotificationsText": "আপনি আপডেট আছেন! পরে আপডেটের জন্য আবার দেখুন।",
     "samples": {
-      "cardApproved": { "title": "কার্ড অনুরোধ অনুমোদিত", "message": "আপনার কার্ড অনুরোধ অনুমোদিত হয়েছে এবং প্রক্রিয়া করা হচ্ছে।" },
-      "newEvent": { "title": "নতুন ইভেন্ট পাওয়া যাচ্ছে", "message": "স্বাস্থ্য সচেতনতা শিবির আগামী সপ্তাহে নির্ধারিত। এখনই নিবন্ধন করুন!" },
-      "profileIncomplete": { "title": "প্রোফাইল অসম্পূর্ণ", "message": "সব বৈশিষ্ট্য ব্যবহার করতে আপনার প্রোফাইল সম্পূর্ণ করুন।" },
-      "reliefUpdate": { "title": "ত্রাণ আবেদন আপডেট", "message": "আপনার ত্রাণ আবেদন পর্যালোচনাধীন। প্রক্রিয়া হলে জানানো হবে।" },
-      "trainingRegistered": { "title": "প্রশিক্ষণ নিবন্ধিত", "message": "আপনি দক্ষতা উন্নয়ন প্রশিক্ষণ কার্যক্রমে সফলভাবে নিবন্ধিত হয়েছেন।" }
+      "cardApproved": {
+        "title": "কার্ড অনুরোধ অনুমোদিত",
+        "message": "আপনার কার্ড অনুরোধ অনুমোদিত হয়েছে এবং প্রক্রিয়া করা হচ্ছে।"
+      },
+      "newEvent": {
+        "title": "নতুন ইভেন্ট পাওয়া যাচ্ছে",
+        "message": "স্বাস্থ্য সচেতনতা শিবির আগামী সপ্তাহে নির্ধারিত। এখনই নিবন্ধন করুন!"
+      },
+      "profileIncomplete": {
+        "title": "প্রোফাইল অসম্পূর্ণ",
+        "message": "সব বৈশিষ্ট্য ব্যবহার করতে আপনার প্রোফাইল সম্পূর্ণ করুন।"
+      },
+      "reliefUpdate": {
+        "title": "ত্রাণ আবেদন আপডেট",
+        "message": "আপনার ত্রাণ আবেদন পর্যালোচনাধীন। প্রক্রিয়া হলে জানানো হবে।"
+      },
+      "trainingRegistered": {
+        "title": "প্রশিক্ষণ নিবন্ধিত",
+        "message": "আপনি দক্ষতা উন্নয়ন প্রশিক্ষণ কার্যক্রমে সফলভাবে নিবন্ধিত হয়েছেন।"
+      }
     },
-    "timeAgo": { "hoursAgo": "ঘন্টা আগে", "dayAgo": "দিন আগে", "daysAgo": "দিন আগে" }
+    "timeAgo": {
+      "hoursAgo": "ঘন্টা আগে",
+      "dayAgo": "দিন আগে",
+      "daysAgo": "দিন আগে"
+    }
   },
-  "network": { "noConnection": "কোনো ইন্টারনেট সংযোগ নেই", "connected": "সংযুক্ত", "disconnected": "সংযোগ বিচ্ছিন্ন", "wifi": "ওয়াই-ফাই", "cellular": "সেলুলার", "ethernet": "ইথারনেট", "unknown": "অজানা" },
+  "network": {
+    "noConnection": "কোনো ইন্টারনেট সংযোগ নেই",
+    "connected": "সংযুক্ত",
+    "disconnected": "সংযোগ বিচ্ছিন্ন",
+    "wifi": "ওয়াই-ফাই",
+    "cellular": "সেলুলার",
+    "ethernet": "ইথারনেট",
+    "unknown": "অজানা"
+  },
   "events": {
-    "title": "অনুষ্ঠান ও শিবির", "subtitle": "আমাদের সামুদায়িক স্বাস্থ্য কার্যক্রমে যোগ দিন।",
-    "registerHeader": "অনুষ্ঠানে নিবন্ধন করুন", "upcoming": "আসন্ন অনুষ্ঠান", "registerNow": "এখনই নিবন্ধন করুন",
+    "title": "অনুষ্ঠান ও শিবির",
+    "subtitle": "আমাদের সামুদায়িক স্বাস্থ্য কার্যক্রমে যোগ দিন।",
+    "registerHeader": "অনুষ্ঠানে নিবন্ধন করুন",
+    "upcoming": "আসন্ন অনুষ্ঠান",
+    "registerNow": "এখনই নিবন্ধন করুন",
     "impactTitle": "আমাদের প্রভাব",
-    "impact": { "events": "আয়োজিত অনুষ্ঠান", "people": "সেবা প্রাপ্ত মানুষ", "volunteers": "সক্রিয় স্বেচ্ছাসেবক" },
+    "impact": {
+      "events": "আয়োজিত অনুষ্ঠান",
+      "people": "সেবা প্রাপ্ত মানুষ",
+      "volunteers": "সক্রিয় স্বেচ্ছাসেবক"
+    },
     "register": {
-      "title": "অনুষ্ঠান নিবন্ধন", "subtitle": "অনুষ্ঠান নিবন্ধনের জন্য সব বিবরণ পূরণ করুন",
-      "personalInfo": "ব্যক্তিগত তথ্য", "fullName": "পূর্ণ নাম", "fullNamePlaceholder": "আপনার পূর্ণ নাম লিখুন",
-      "phoneNumber": "ফোন নম্বর", "phoneNumberPlaceholder": "+91-XXXXXXXXXX", "phoneInvalid": "বৈধ ১০ সংখ্যার নম্বর লিখুন",
-      "emailAddress": "ইমেইল ঠিকানা", "emailPlaceholder": "your.email@example.com", "emailInvalid": "অবৈধ ইমেইল ঠিকানা",
-      "dateOfBirth": "জন্ম তারিখ", "age": "বয়স", "gender": "লিঙ্গ",
-      "genderMale": "পুরুষ", "genderFemale": "মহিলা", "genderOther": "অন্যান্য",
-      "address": "ঠিকানা", "addressPlaceholder": "আপনার সম্পূর্ণ ঠিকানা লিখুন",
+      "title": "অনুষ্ঠান নিবন্ধন",
+      "subtitle": "অনুষ্ঠান নিবন্ধনের জন্য সব বিবরণ পূরণ করুন",
+      "personalInfo": "ব্যক্তিগত তথ্য",
+      "fullName": "পূর্ণ নাম",
+      "fullNamePlaceholder": "আপনার পূর্ণ নাম লিখুন",
+      "phoneNumber": "ফোন নম্বর",
+      "phoneNumberPlaceholder": "+91-XXXXXXXXXX",
+      "phoneInvalid": "বৈধ ১০ সংখ্যার নম্বর লিখুন",
+      "emailAddress": "ইমেইল ঠিকানা",
+      "emailPlaceholder": "your.email@example.com",
+      "emailInvalid": "অবৈধ ইমেইল ঠিকানা",
+      "dateOfBirth": "জন্ম তারিখ",
+      "age": "বয়স",
+      "gender": "লিঙ্গ",
+      "genderMale": "পুরুষ",
+      "genderFemale": "মহিলা",
+      "genderOther": "অন্যান্য",
+      "address": "ঠিকানা",
+      "addressPlaceholder": "আপনার সম্পূর্ণ ঠিকানা লিখুন",
       "participationType": "আপনি কীভাবে অংশগ্রহণ করতে চান তা বেছে নিন",
-      "participant": "অংশগ্রহণকারী", "volunteer": "স্বেচ্ছাসেবক", "declaration": "ঘোষণা",
+      "participant": "অংশগ্রহণকারী",
+      "volunteer": "স্বেচ্ছাসেবক",
+      "declaration": "ঘোষণা",
       "declarationText": "আমি এতদ্বারা ঘোষণা করছি যে প্রদত্ত তথ্য সত্য। আমি মুজতাবা হেল্পিং ফাউন্ডেশনের নীতি ও নির্দেশিকা মেনে চলতে এবং নির্বাচিত অনুষ্ঠানে দায়িত্বশীলভাবে অংশগ্রহণ করতে সম্মত।",
-      "iAgree": "আমি সম্মত", "saveDetails": "বিবরণ সংরক্ষণ করুন", "submitting": "জমা হচ্ছে...",
-      "successTitle": "সাফল্য", "successMessage": "অনুষ্ঠান নিবন্ধন সফলভাবে জমা হয়েছে",
-      "errorTitle": "ত্রুটি", "errorMessage": "অনুষ্ঠান নিবন্ধন জমা দিতে ব্যর্থ"
+      "iAgree": "আমি সম্মত",
+      "saveDetails": "বিবরণ সংরক্ষণ করুন",
+      "submitting": "জমা হচ্ছে...",
+      "successTitle": "সাফল্য",
+      "successMessage": "অনুষ্ঠান নিবন্ধন সফলভাবে জমা হয়েছে",
+      "errorTitle": "ত্রুটি",
+      "errorMessage": "অনুষ্ঠান নিবন্ধন জমা দিতে ব্যর্থ"
     },
     "items": {
-      "medical": { "title": "বিনামূল্যে চিকিৎসা স্বাস্থ্য শিবির", "date": "নভেম্বর ২৬, ২০২৫", "time": "সকাল ১০:০০ - সন্ধ্যা ৬:০০", "location": "কমিউনিটি সেন্টার, মালাড", "desc": "BP, রক্তের শর্করা, BMI, বেসিক পরামর্শ ও বিশেষজ্ঞ সহ ব্যাপক স্বাস্থ্য পরীক্ষা।", "tag1": "সাধারণ পরীক্ষা", "tag2": "ল্যাব পরীক্ষা", "tag3": "পরামর্শ", "tag4": "রক্তের শর্করা পরীক্ষা", "stats": "৫০ নিবন্ধন" },
-      "blood": { "title": "রক্তদান অভিযান", "date": "নভেম্বর ২৮, ২০২৫", "time": "সকাল ১০:০০ - বিকেল ৪:০০", "location": "SGP গার্ডেন, অন্ধেরি", "desc": "প্রত্যয়িত ব্লাড ব্যাংকের সহযোগিতায় রক্তদান শিবির। সাইটে চিকিৎসা সহায়তা।", "tag1": "স্বেচ্ছাসেবক দরকার", "tag2": "সাইটে ডাক্তার", "tag3": "সার্টিফিকেট", "tag4": "জলখাবার", "stats": "১০০+ দাতার প্রত্যাশা" },
-      "awareness": { "title": "স্বাস্থ্য সচেতনতা সেশন", "date": "নভেম্বর ৩০, ২০২৫", "time": "দুপুর ২:০০ - সন্ধ্যা ৫:০০", "location": "জুমে ভার্চুয়াল", "desc": "প্রতিরোধমূলক স্বাস্থ্যসেবা, পুষ্টি, স্বাস্থ্যবিধি ও মানসিক স্বাস্থ্যের শিক্ষামূলক সেশন।", "tag1": "বিনামূল্যে প্রবেশ", "tag2": "লাইভ সেশন", "tag3": "বিনামূল্যে উপকরণ", "stats": "২০০+ নিবন্ধন" }
+      "medical": {
+        "title": "বিনামূল্যে চিকিৎসা স্বাস্থ্য শিবির",
+        "date": "নভেম্বর ২৬, ২০২৫",
+        "time": "সকাল ১০:০০ - সন্ধ্যা ৬:০০",
+        "location": "কমিউনিটি সেন্টার, মালাড",
+        "desc": "BP, রক্তের শর্করা, BMI, বেসিক পরামর্শ ও বিশেষজ্ঞ সহ ব্যাপক স্বাস্থ্য পরীক্ষা।",
+        "tag1": "সাধারণ পরীক্ষা",
+        "tag2": "ল্যাব পরীক্ষা",
+        "tag3": "পরামর্শ",
+        "tag4": "রক্তের শর্করা পরীক্ষা",
+        "stats": "৫০ নিবন্ধন"
+      },
+      "blood": {
+        "title": "রক্তদান অভিযান",
+        "date": "নভেম্বর ২৮, ২০২৫",
+        "time": "সকাল ১০:০০ - বিকেল ৪:০০",
+        "location": "SGP গার্ডেন, অন্ধেরি",
+        "desc": "প্রত্যয়িত ব্লাড ব্যাংকের সহযোগিতায় রক্তদান শিবির। সাইটে চিকিৎসা সহায়তা।",
+        "tag1": "স্বেচ্ছাসেবক দরকার",
+        "tag2": "সাইটে ডাক্তার",
+        "tag3": "সার্টিফিকেট",
+        "tag4": "জলখাবার",
+        "stats": "১০০+ দাতার প্রত্যাশা"
+      },
+      "awareness": {
+        "title": "স্বাস্থ্য সচেতনতা সেশন",
+        "date": "নভেম্বর ৩০, ২০২৫",
+        "time": "দুপুর ২:০০ - সন্ধ্যা ৫:০০",
+        "location": "জুমে ভার্চুয়াল",
+        "desc": "প্রতিরোধমূলক স্বাস্থ্যসেবা, পুষ্টি, স্বাস্থ্যবিধি ও মানসিক স্বাস্থ্যের শিক্ষামূলক সেশন।",
+        "tag1": "বিনামূল্যে প্রবেশ",
+        "tag2": "লাইভ সেশন",
+        "tag3": "বিনামূল্যে উপকরণ",
+        "stats": "২০০+ নিবন্ধন"
+      }
     }
   },
   "relief": {
-    "apply": "ত্রাণের জন্য আবেদন করুন", "donate": "এখনই দান করুন",
-    "activePrograms": "সক্রিয় ত্রাণ কর্মসূচি", "howToApply": "ত্রাণের জন্য কীভাবে আবেদন করবেন",
-    "impactTitle": "ত্রাণ প্রভাব", "requestNewCard": "+  নতুন কার্ডের অনুরোধ",
-    "steps": { "formTitle": "আবেদন ফর্ম পূরণ করুন", "formDesc": "প্রয়োজনীয় বিবরণ সহ আপনার ত্রাণ অনুরোধ জমা দিন", "verifyTitle": "যাচাইকরণ প্রক্রিয়া", "verifyDesc": "আমাদের দল আপনার অনুরোধ ও নথি যাচাই করবে", "distributeTitle": "ত্রাণ বিতরণ", "distributeDesc": "অনুমোদিত সুবিধাভোগীদের বিতরণের জন্য যোগাযোগ করা হবে" },
-    "impact": { "families": "পরিবারকে সাহায্য করা হয়েছে", "drives": "ত্রাণ অভিযান", "aid": "সহায়তার মূল্য" },
-    "programs": {
-      "food": { "title": "খাদ্য বিতরণ অভিযান", "locations": "একাধিক স্থান", "desc": "প্রয়োজনগ্রস্ত পরিবারের জন্য দৈনিক খাদ্য বিতরণ।", "tag1": "দৈনিক", "tag2": "একাধিক স্থান", "tag3": "পারিবারিক কিট", "stats": "৫০০+ পরিবারকে সহায়তা" },
-      "flood": { "title": "বন্যা ত্রাণ সহায়তা", "locations": "দুর্যোগ-প্রভাবিত এলাকা", "desc": "বন্যাকবলিত পরিবারের জন্য তাৎক্ষণিক ত্রাণ।", "tag1": "বন্যা ত্রাণ", "tag2": "আশ্রয়", "tag3": "চিকিৎসা", "stats": "২০০+ পরিবারকে সেবা" },
-      "winter": { "title": "শীতকালীন ত্রাণ প্রচারণা", "locations": "শহর ও গ্রামীণ এলাকা", "desc": "প্রয়োজনগ্রস্তদের জন্য কম্বল, সোয়েটার ও প্রয়োজনীয় জিনিস বিতরণ।", "tag1": "কম্বল", "tag2": "সোয়েটার", "tag3": "বয়স্ক", "stats": "৩০০+ মানুষকে কভার" },
-      "medical": { "title": "জরুরি চিকিৎসা ত্রাণ", "locations": "সব ত্রাণ অঞ্চল", "desc": "ওষুধ, প্রাথমিক চিকিৎসা ও সংকটাপন্ন ক্ষেত্রে চিকিৎসা পরিবহন সহ জরুরি চিকিৎসা সহায়তা।", "tag1": "চিকিৎসা", "tag2": "জরুরি", "tag3": "অ্যাম্বুলেন্স", "stats": "১৫০+ ক্ষেত্র" }
+    "apply": "ত্রাণের জন্য আবেদন করুন",
+    "donate": "এখনই দান করুন",
+    "activePrograms": "সক্রিয় ত্রাণ কর্মসূচি",
+    "howToApply": "ত্রাণের জন্য কীভাবে আবেদন করবেন",
+    "impactTitle": "ত্রাণ প্রভাব",
+    "requestNewCard": "+  নতুন কার্ডের অনুরোধ",
+    "steps": {
+      "formTitle": "আবেদন ফর্ম পূরণ করুন",
+      "formDesc": "প্রয়োজনীয় বিবরণ সহ আপনার ত্রাণ অনুরোধ জমা দিন",
+      "verifyTitle": "যাচাইকরণ প্রক্রিয়া",
+      "verifyDesc": "আমাদের দল আপনার অনুরোধ ও নথি যাচাই করবে",
+      "distributeTitle": "ত্রাণ বিতরণ",
+      "distributeDesc": "অনুমোদিত সুবিধাভোগীদের বিতরণের জন্য যোগাযোগ করা হবে"
     },
-    "registrationStatus": "নিবন্ধন অবস্থা", "requestDetails": "ত্রাণ অনুরোধের বিবরণ",
-    "registrationId": "নিবন্ধন আইডি:", "noReviewNote": "কোনো পর্যালোচনা নোট নেই"
+    "impact": {
+      "families": "পরিবারকে সাহায্য করা হয়েছে",
+      "drives": "ত্রাণ অভিযান",
+      "aid": "সহায়তার মূল্য"
+    },
+    "programs": {
+      "food": {
+        "title": "খাদ্য বিতরণ অভিযান",
+        "locations": "একাধিক স্থান",
+        "desc": "প্রয়োজনগ্রস্ত পরিবারের জন্য দৈনিক খাদ্য বিতরণ।",
+        "tag1": "দৈনিক",
+        "tag2": "একাধিক স্থান",
+        "tag3": "পারিবারিক কিট",
+        "stats": "৫০০+ পরিবারকে সহায়তা"
+      },
+      "flood": {
+        "title": "বন্যা ত্রাণ সহায়তা",
+        "locations": "দুর্যোগ-প্রভাবিত এলাকা",
+        "desc": "বন্যাকবলিত পরিবারের জন্য তাৎক্ষণিক ত্রাণ।",
+        "tag1": "বন্যা ত্রাণ",
+        "tag2": "আশ্রয়",
+        "tag3": "চিকিৎসা",
+        "stats": "২০০+ পরিবারকে সেবা"
+      },
+      "winter": {
+        "title": "শীতকালীন ত্রাণ প্রচারণা",
+        "locations": "শহর ও গ্রামীণ এলাকা",
+        "desc": "প্রয়োজনগ্রস্তদের জন্য কম্বল, সোয়েটার ও প্রয়োজনীয় জিনিস বিতরণ।",
+        "tag1": "কম্বল",
+        "tag2": "সোয়েটার",
+        "tag3": "বয়স্ক",
+        "stats": "৩০০+ মানুষকে কভার"
+      },
+      "medical": {
+        "title": "জরুরি চিকিৎসা ত্রাণ",
+        "locations": "সব ত্রাণ অঞ্চল",
+        "desc": "ওষুধ, প্রাথমিক চিকিৎসা ও সংকটাপন্ন ক্ষেত্রে চিকিৎসা পরিবহন সহ জরুরি চিকিৎসা সহায়তা।",
+        "tag1": "চিকিৎসা",
+        "tag2": "জরুরি",
+        "tag3": "অ্যাম্বুলেন্স",
+        "stats": "১৫০+ ক্ষেত্র"
+      }
+    },
+    "registrationStatus": "নিবন্ধন অবস্থা",
+    "requestDetails": "ত্রাণ অনুরোধের বিবরণ",
+    "registrationId": "নিবন্ধন আইডি:",
+    "noReviewNote": "কোনো পর্যালোচনা নোট নেই"
   },
   "services": {
-    "title": "সেবা ও প্রদানকারী", "subtitle": "আপনার কাছে অনুমোদিত স্বাস্থ্যসেবা প্রদানকারী খুঁজুন",
+    "title": "সেবা ও প্রদানকারী",
+    "subtitle": "আপনার কাছে অনুমোদিত স্বাস্থ্যসেবা প্রদানকারী খুঁজুন",
     "searchPlaceholder": "প্রদানকারী, বিশেষত্ব, অবস্থান খুঁজুন...",
-    "resultsFound": "প্রদানকারী পাওয়া গেছে", "loading": "প্রদানকারী লোড হচ্ছে...", "loadError": "প্রদানকারী লোডে ব্যর্থ",
-    "tab": { "providers": "প্রদানকারী", "blood": "রক্ত", "equipment": "সরঞ্জাম", "ambulance": "অ্যাম্বুলেন্স", "benefits": "সুবিধা" },
-    "categories": { "all": "সব", "hospital": "হাসপাতাল", "diagnostics": "ডায়াগনস্টিক", "pharmacy": "ফার্মেসি", "clinics": "ক্লিনিক", "rehab": "পুনর্বাসন", "labs": "Old Age Home", "oldAgeHome": "Old Age Home", "surgical": "সার্জিক্যাল" },
-    "provider": { "unknown": "অজানা প্রদানকারী", "noAddress": "ঠিকানা পাওয়া যাচ্ছে না", "noPhone": "N/A" },
-    "blood": { "emergency": "জরুরি রক্ত প্রয়োজন!", "cta": "আমাদের দাতা নেটওয়ার্ক থেকে রক্তের অনুরোধ করুন", "requestNow": "এখনই রক্তের অনুরোধ করুন", "loading": "রক্তের অনুরোধ লোড হচ্ছে...", "loadError": "রক্তের অনুরোধ লোডে ব্যর্থ", "noRequests": "কোনো রক্তের অনুরোধ পাওয়া যায়নি", "yourRequests": "আপনার রক্তের অনুরোধ", "myRequests": "আমার রক্তের অনুরোধ", "patient": "রোগী", "bloodGroup": "রক্তের গ্রুপ:", "units": "একক:", "required": "প্রয়োজন:", "urgency": "জরুরি:", "hospital": "হাসপাতাল:", "contact": "যোগাযোগ:" },
-    "benefits": {
-      "free": { "title": "বিনামূল্যে পরামর্শ", "subtitle": "সাধারণ চিকিৎসক ও বিশেষজ্ঞদের কাছে প্রবেশ" },
-      "medicine": { "title": "ওষুধ সহায়তা", "subtitle": "দীর্ঘস্থায়ী অবস্থার জন্য ভর্তুকি ওষুধ" },
-      "emergency": { "title": "জরুরি পরিবহন", "subtitle": "২৪/৭ জরুরি অ্যাম্বুলেন্স সেবা" },
-      "checkups": { "title": "স্বাস্থ্য পরীক্ষা", "subtitle": "নিয়মিত স্বাস্থ্য পর্যবেক্ষণ ও ডায়াগনস্টিক" },
-      "records": { "title": "চিকিৎসা রেকর্ড", "subtitle": "ডিজিটাল স্বাস্থ্য রেকর্ড ব্যবস্থাপনা" },
-      "find": { "title": "ক্লিনিক খুঁজুন", "subtitle": "কাছের অংশীদার স্বাস্থ্যসেবা কেন্দ্র খুঁজুন" }
+    "resultsFound": "প্রদানকারী পাওয়া গেছে",
+    "loading": "প্রদানকারী লোড হচ্ছে...",
+    "loadError": "প্রদানকারী লোডে ব্যর্থ",
+    "tab": {
+      "providers": "প্রদানকারী",
+      "blood": "রক্ত",
+      "equipment": "সরঞ্জাম",
+      "ambulance": "অ্যাম্বুলেন্স",
+      "benefits": "সুবিধা"
     },
-    "help": { "title": "সাহায্য দরকার?", "desc": "আমাদের সহায়তা দল আপনাকে সাহায্য করতে ২৪/৭ উপলব্ধ", "contact": "সহায়তায় যোগাযোগ করুন" },
+    "categories": {
+      "all": "সব",
+      "hospital": "হাসপাতাল",
+      "diagnostics": "ডায়াগনস্টিক",
+      "pharmacy": "ফার্মেসি",
+      "clinics": "ক্লিনিক",
+      "rehab": "পুনর্বাসন",
+      "labs": "Old Age Home",
+      "oldAgeHome": "Old Age Home",
+      "surgical": "সার্জিক্যাল"
+    },
+    "provider": {
+      "unknown": "অজানা প্রদানকারী",
+      "noAddress": "ঠিকানা পাওয়া যাচ্ছে না",
+      "noPhone": "N/A"
+    },
+    "blood": {
+      "emergency": "জরুরি রক্ত প্রয়োজন!",
+      "cta": "আমাদের দাতা নেটওয়ার্ক থেকে রক্তের অনুরোধ করুন",
+      "requestNow": "এখনই রক্তের অনুরোধ করুন",
+      "loading": "রক্তের অনুরোধ লোড হচ্ছে...",
+      "loadError": "রক্তের অনুরোধ লোডে ব্যর্থ",
+      "noRequests": "কোনো রক্তের অনুরোধ পাওয়া যায়নি",
+      "yourRequests": "আপনার রক্তের অনুরোধ",
+      "myRequests": "আমার রক্তের অনুরোধ",
+      "patient": "রোগী",
+      "bloodGroup": "রক্তের গ্রুপ:",
+      "units": "একক:",
+      "required": "প্রয়োজন:",
+      "urgency": "জরুরি:",
+      "hospital": "হাসপাতাল:",
+      "contact": "যোগাযোগ:"
+    },
+    "benefits": {
+      "free": {
+        "title": "বিনামূল্যে পরামর্শ",
+        "subtitle": "সাধারণ চিকিৎসক ও বিশেষজ্ঞদের কাছে প্রবেশ"
+      },
+      "medicine": {
+        "title": "ওষুধ সহায়তা",
+        "subtitle": "দীর্ঘস্থায়ী অবস্থার জন্য ভর্তুকি ওষুধ"
+      },
+      "emergency": {
+        "title": "জরুরি পরিবহন",
+        "subtitle": "২৪/৭ জরুরি অ্যাম্বুলেন্স সেবা"
+      },
+      "checkups": {
+        "title": "স্বাস্থ্য পরীক্ষা",
+        "subtitle": "নিয়মিত স্বাস্থ্য পর্যবেক্ষণ ও ডায়াগনস্টিক"
+      },
+      "records": {
+        "title": "চিকিৎসা রেকর্ড",
+        "subtitle": "ডিজিটাল স্বাস্থ্য রেকর্ড ব্যবস্থাপনা"
+      },
+      "find": {
+        "title": "ক্লিনিক খুঁজুন",
+        "subtitle": "কাছের অংশীদার স্বাস্থ্যসেবা কেন্দ্র খুঁজুন"
+      }
+    },
+    "help": {
+      "title": "সাহায্য দরকার?",
+      "desc": "আমাদের সহায়তা দল আপনাকে সাহায্য করতে ২৪/৭ উপলব্ধ",
+      "contact": "সহায়তায় যোগাযোগ করুন"
+    },
     "noContactFor": "{{serviceName}} এর জন্য কোনো যোগাযোগ নম্বর নেই"
   },
   "providerDetails": {
-    "error": "ত্রুটি", "phoneError": "ফোন কল করতে অক্ষম", "mapError": "মানচিত্র খুলতে অক্ষম",
-    "emailError": "ইমেইল খুলতে অক্ষম", "shareError": "প্রদানকারীর বিবরণ শেয়ার করতে অক্ষম",
-    "notFound": "প্রদানকারীর বিবরণ পাওয়া যায়নি", "contactInfo": "যোগাযোগের তথ্য",
-    "phone": "ফোন", "email": "ইমেইল", "address": "ঠিকানা", "specialities": "বিশেষত্ব",
-    "benefits": "সুবিধা", "viewOnMap": "মানচিত্রে দেখুন", "callNow": "এখনই কল করুন"
+    "error": "ত্রুটি",
+    "phoneError": "ফোন কল করতে অক্ষম",
+    "mapError": "মানচিত্র খুলতে অক্ষম",
+    "emailError": "ইমেইল খুলতে অক্ষম",
+    "shareError": "প্রদানকারীর বিবরণ শেয়ার করতে অক্ষম",
+    "notFound": "প্রদানকারীর বিবরণ পাওয়া যায়নি",
+    "contactInfo": "যোগাযোগের তথ্য",
+    "phone": "ফোন",
+    "email": "ইমেইল",
+    "address": "ঠিকানা",
+    "specialities": "বিশেষত্ব",
+    "benefits": "সুবিধা",
+    "viewOnMap": "মানচিত্রে দেখুন",
+    "callNow": "এখনই কল করুন"
   },
   "equipment": {
-    "subtitle": "আপনার সরঞ্জাম অনুরোধের ইতিহাস দেখুন", "loading": "অনুরোধ লোড হচ্ছে...", "error": "অনুরোধ লোডে ব্যর্থ",
-    "submit": { "success": "সাফল্য", "successMessage": "সরঞ্জাম অনুরোধ সফলভাবে জমা হয়েছে!", "error": "ত্রুটি", "errorMessage": "সরঞ্জাম অনুরোধ জমা দিতে ব্যর্থ। আবার চেষ্টা করুন।", "submitting": "জমা হচ্ছে...", "submitButton": "অনুরোধ জমা দিন" },
-    "need": "চিকিৎসা সরঞ্জাম দরকার?", "needSubtitle": "গৃহ পরিচর্যার জন্য সরঞ্জাম সহায়তার অনুরোধ করুন",
-    "request": "সরঞ্জামের অনুরোধ করুন", "myRequests": "আমার সরঞ্জাম অনুরোধ", "viewAll": "সব অনুরোধ দেখুন", "items": "আইটেম",
-    "details": { "fullName": "পূর্ণ নাম:", "duration": "সময়কাল:", "medicalReason": "চিকিৎসা কারণ:", "requestDetails": "অনুরোধের বিবরণ", "requestId": "অনুরোধ আইডি:", "status": "অবস্থা:", "equipment": "সরঞ্জাম:" }
+    "subtitle": "আপনার সরঞ্জাম অনুরোধের ইতিহাস দেখুন",
+    "loading": "অনুরোধ লোড হচ্ছে...",
+    "error": "অনুরোধ লোডে ব্যর্থ",
+    "submit": {
+      "success": "সাফল্য",
+      "successMessage": "সরঞ্জাম অনুরোধ সফলভাবে জমা হয়েছে!",
+      "error": "ত্রুটি",
+      "errorMessage": "সরঞ্জাম অনুরোধ জমা দিতে ব্যর্থ। আবার চেষ্টা করুন।",
+      "submitting": "জমা হচ্ছে...",
+      "submitButton": "অনুরোধ জমা দিন"
+    },
+    "need": "চিকিৎসা সরঞ্জাম দরকার?",
+    "needSubtitle": "গৃহ পরিচর্যার জন্য সরঞ্জাম সহায়তার অনুরোধ করুন",
+    "request": "সরঞ্জামের অনুরোধ করুন",
+    "myRequests": "আমার সরঞ্জাম অনুরোধ",
+    "viewAll": "সব অনুরোধ দেখুন",
+    "items": "আইটেম",
+    "details": {
+      "fullName": "পূর্ণ নাম:",
+      "duration": "সময়কাল:",
+      "medicalReason": "চিকিৎসা কারণ:",
+      "requestDetails": "অনুরোধের বিবরণ",
+      "requestId": "অনুরোধ আইডি:",
+      "status": "অবস্থা:",
+      "equipment": "সরঞ্জাম:"
+    }
   },
   "ambulance": {
-    "loading": "অ্যাম্বুলেন্স লোড হচ্ছে...", "error": "অ্যাম্বুলেন্স লোডে ব্যর্থ",
-    "title": "জরুরি অ্যাম্বুলেন্স সেবা", "subtitle": "২৪/৭ জরুরি অ্যাম্বুলেন্স সহায়তা", "view": "সেবা দেখুন",
-    "details": { "vehicleType": "যানবাহনের ধরন:", "serviceArea": "সেবা এলাকা:", "responseTime": "প্রতিক্রিয়া সময়:" },
+    "loading": "অ্যাম্বুলেন্স লোড হচ্ছে...",
+    "error": "অ্যাম্বুলেন্স লোডে ব্যর্থ",
+    "title": "জরুরি অ্যাম্বুলেন্স সেবা",
+    "subtitle": "২৪/৭ জরুরি অ্যাম্বুলেন্স সহায়তা",
+    "view": "সেবা দেখুন",
+    "details": {
+      "vehicleType": "যানবাহনের ধরন:",
+      "serviceArea": "সেবা এলাকা:",
+      "responseTime": "প্রতিক্রিয়া সময়:"
+    },
     "call": "{{contact}} কল করুন"
   },
   "blood": {
-    "requestDetails": "রক্তের অনুরোধের বিবরণ", "hospitalDetails": "হাসপাতাল ও ডাক্তারের বিবরণ",
+    "requestDetails": "রক্তের অনুরোধের বিবরণ",
+    "hospitalDetails": "হাসপাতাল ও ডাক্তারের বিবরণ",
     "subtitle": "রক্তের অনুরোধ করতে নিচের বিবরণ পূরণ করুন",
-    "submit": { "successMessage": "রক্তের অনুরোধ সফলভাবে জমা হয়েছে", "errorMessage": "রক্তের অনুরোধ জমা দিতে ব্যর্থ। আবার চেষ্টা করুন।" }
+    "submit": {
+      "successMessage": "রক্তের অনুরোধ সফলভাবে জমা হয়েছে",
+      "errorMessage": "রক্তের অনুরোধ জমা দিতে ব্যর্থ। আবার চেষ্টা করুন।"
+    }
   },
   "payment": {
-    "failed": "পেমেন্ট ব্যর্থ", "customerMissing": "বর্তমান গ্রাহককে শনাক্ত করতে অক্ষম।",
-    "contributionType": "অবদানের ধরন", "amountPayable": "প্রদেয় পরিমাণ", "continueUpi": "UPI তে চালিয়ে যান",
-    "payNow": "এখনই পেমেন্ট করুন", "receiptGenerateError": "রসিদ ছবি তৈরি করতে অক্ষম।",
-    "receiptTitle": "পেমেন্ট রসিদ", "campaignReceipt": "প্রচারণা পেমেন্ট রসিদ",
-    "healthCardReceipt": "স্বাস্থ্য কার্ড পেমেন্ট রসিদ", "receiptShareError": "রসিদ ছবি ডাউনলোড/শেয়ার করতে অক্ষম।",
-    "successTitle": "পেমেন্ট সফল!", "downloadReceipt": "রসিদ ডাউনলোড করুন",
-    "viewHealthCard": "স্বাস্থ্য কার্ড দেখুন", "goHome": "হোমে যান"
+    "failed": "পেমেন্ট ব্যর্থ",
+    "customerMissing": "বর্তমান গ্রাহককে শনাক্ত করতে অক্ষম।",
+    "contributionType": "অবদানের ধরন",
+    "amountPayable": "প্রদেয় পরিমাণ",
+    "continueUpi": "UPI তে চালিয়ে যান",
+    "payNow": "এখনই পেমেন্ট করুন",
+    "receiptGenerateError": "রসিদ ছবি তৈরি করতে অক্ষম।",
+    "receiptTitle": "পেমেন্ট রসিদ",
+    "campaignReceipt": "প্রচারণা পেমেন্ট রসিদ",
+    "healthCardReceipt": "স্বাস্থ্য কার্ড পেমেন্ট রসিদ",
+    "receiptShareError": "রসিদ ছবি ডাউনলোড/শেয়ার করতে অক্ষম।",
+    "successTitle": "পেমেন্ট সফল!",
+    "downloadReceipt": "রসিদ ডাউনলোড করুন",
+    "viewHealthCard": "স্বাস্থ্য কার্ড দেখুন",
+    "goHome": "হোমে যান"
   },
-  "volunteers": { "submitSuccess": "স্বেচ্ছাসেবক নিবন্ধন সফলভাবে জমা হয়েছে", "submitError": "নিবন্ধন জমা দিতে ব্যর্থ" },
-  "newCard": { "patientDetails": "রোগীর বিবরণ" },
+  "volunteers": {
+    "submitSuccess": "স্বেচ্ছাসেবক নিবন্ধন সফলভাবে জমা হয়েছে",
+    "submitError": "নিবন্ধন জমা দিতে ব্যর্থ"
+  },
+  "newCard": {
+    "patientDetails": "রোগীর বিবরণ"
+  },
   "forms": {
     "common": {
-      "saveDetails": "বিবরণ সংরক্ষণ করুন", "ok": "ঠিক আছে", "submitting": "জমা হচ্ছে...", "iAgree": "আমি সম্মত",
-      "sections": { "locationDetails": "অবস্থানের বিবরণ", "declaration": "ঘোষণা" },
-      "fields": { "state": "রাজ্য", "district": "জেলা", "block": "ব্লক", "mandal": "মণ্ডল" },
-      "loading": { "states": "রাজ্য লোড হচ্ছে...", "districts": "জেলা লোড হচ্ছে...", "blocks": "ব্লক লোড হচ্ছে...", "mandals": "মণ্ডল লোড হচ্ছে..." },
-      "select": { "state": "রাজ্য নির্বাচন করুন", "stateFirst": "প্রথমে রাজ্য নির্বাচন করুন", "district": "জেলা নির্বাচন করুন", "districtFirst": "প্রথমে জেলা নির্বাচন করুন", "block": "ব্লক নির্বাচন করুন", "blockFirst": "প্রথমে ব্লক নির্বাচন করুন", "mandal": "মণ্ডল নির্বাচন করুন" },
-      "options": { "male": "পুরুষ", "female": "মহিলা", "other": "অন্যান্য", "single": "অবিবাহিত", "married": "বিবাহিত", "yes": "হ্যাঁ", "no": "না", "aadhar": "আধার", "voterId": "ভোটার আইডি", "panCard": "PAN কার্ড" },
-      "validation": { "phone10": "বৈধ ১০ সংখ্যার নম্বর লিখুন", "invalidEmail": "অবৈধ ইমেইল", "invalidEmailAddress": "অবৈধ ইমেইল ঠিকানা", "pincode6": "বৈধ ৬ সংখ্যার পিনকোড লিখুন" }
+      "saveDetails": "বিবরণ সংরক্ষণ করুন",
+      "ok": "ঠিক আছে",
+      "submitting": "জমা হচ্ছে...",
+      "iAgree": "আমি সম্মত",
+      "sections": {
+        "locationDetails": "অবস্থানের বিবরণ",
+        "declaration": "ঘোষণা"
+      },
+      "fields": {
+        "state": "রাজ্য",
+        "district": "জেলা",
+        "block": "ব্লক",
+        "mandal": "মণ্ডল"
+      },
+      "loading": {
+        "states": "রাজ্য লোড হচ্ছে...",
+        "districts": "জেলা লোড হচ্ছে...",
+        "blocks": "ব্লক লোড হচ্ছে...",
+        "mandals": "মণ্ডল লোড হচ্ছে..."
+      },
+      "select": {
+        "state": "রাজ্য নির্বাচন করুন",
+        "stateFirst": "প্রথমে রাজ্য নির্বাচন করুন",
+        "district": "জেলা নির্বাচন করুন",
+        "districtFirst": "প্রথমে জেলা নির্বাচন করুন",
+        "block": "ব্লক নির্বাচন করুন",
+        "blockFirst": "প্রথমে ব্লক নির্বাচন করুন",
+        "mandal": "মণ্ডল নির্বাচন করুন"
+      },
+      "options": {
+        "male": "পুরুষ",
+        "female": "মহিলা",
+        "other": "অন্যান্য",
+        "single": "অবিবাহিত",
+        "married": "বিবাহিত",
+        "yes": "হ্যাঁ",
+        "no": "না",
+        "aadhar": "আধার",
+        "voterId": "ভোটার আইডি",
+        "panCard": "PAN কার্ড"
+      },
+      "validation": {
+        "phone10": "বৈধ ১০ সংখ্যার নম্বর লিখুন",
+        "invalidEmail": "অবৈধ ইমেইল",
+        "invalidEmailAddress": "অবৈধ ইমেইল ঠিকানা",
+        "pincode6": "বৈধ ৬ সংখ্যার পিনকোড লিখুন"
+      }
     },
     "training": {
       "heading": "নিবন্ধন ফর্ম",
-      "sections": { "personalDetails": "ব্যক্তিগত বিবরণ", "educationalBackground": "শিক্ষাগত পটভূমি", "courseSelection": "কোর্স নির্বাচন" },
-      "fields": { "fullName": "পূর্ণ নাম", "dateOfBirth": "জন্ম তারিখ", "age": "বয়স", "gender": "লিঙ্গ", "contactNumber": "যোগাযোগ নম্বর (ফোন / হোয়াটসঅ্যাপ)", "parentGuardianContact": "অভিভাবকের যোগাযোগ নম্বর", "maritalStatus": "বৈবাহিক অবস্থা", "emailAvailable": "ইমেইল আইডি (পাওয়া গেলে)", "addressWithPincode": "ঠিকানা (পিনকোড সহ)", "pincode": "পিনকোড", "guardianName": "অভিভাবকের নাম (থাকলে)", "idProofType": "পরিচয় প্রমাণ (আধার / অন্যান্য)", "identificationNumber": "পরিচয় নম্বর", "highestQualification": "সর্বোচ্চ যোগ্যতা", "mediumOfInstruction": "শিক্ষার মাধ্যম", "schoolCollegeName": "স্কুল / কলেজের নাম", "schoolCollegeLocation": "অবস্থান", "educationGapReason": "শিক্ষায় বিরতি / ঝরে পড়ার কারণ", "preferredCourses": "আপনার পছন্দের প্রশিক্ষণ বেছে নিন" },
-      "placeholders": { "fullName": "আপনার পূর্ণ নাম লিখুন", "addressWithPincode": "পিনকোড সহ আপনার সম্পূর্ণ ঠিকানা লিখুন", "pincode": "আপনার পিনকোড লিখুন", "idProofType": "আধার নম্বর বা অন্য পরিচয় প্রমাণ নম্বর", "educationGapReason": "কোনো বিরতি বা ঝরে পড়া থাকলে কারণ উল্লেখ করুন" },
-      "options": { "graduation": "স্নাতক", "hindi": "হিন্দি", "english": "ইংরেজি" },
-      "course": { "computer": "কম্পিউটার", "tailoring": "সেলাই", "spokenEnglish": "কথ্য ইংরেজি", "handmadeDesigning": "হাতে তৈরি ডিজাইন", "other": "অন্যান্য (উল্লেখ করুন)" },
-      "alerts": { "submitSuccess": "নিবন্ধন সফলভাবে জমা হয়েছে!", "submitFailed": "নিবন্ধন জমা দিতে ব্যর্থ। আবার চেষ্টা করুন।" }
+      "sections": {
+        "personalDetails": "ব্যক্তিগত বিবরণ",
+        "educationalBackground": "শিক্ষাগত পটভূমি",
+        "courseSelection": "কোর্স নির্বাচন"
+      },
+      "fields": {
+        "fullName": "পূর্ণ নাম",
+        "dateOfBirth": "জন্ম তারিখ",
+        "age": "বয়স",
+        "gender": "লিঙ্গ",
+        "contactNumber": "যোগাযোগ নম্বর (ফোন / হোয়াটসঅ্যাপ)",
+        "parentGuardianContact": "অভিভাবকের যোগাযোগ নম্বর",
+        "maritalStatus": "বৈবাহিক অবস্থা",
+        "emailAvailable": "ইমেইল আইডি (পাওয়া গেলে)",
+        "addressWithPincode": "ঠিকানা (পিনকোড সহ)",
+        "pincode": "পিনকোড",
+        "guardianName": "অভিভাবকের নাম (থাকলে)",
+        "idProofType": "পরিচয় প্রমাণ (আধার / অন্যান্য)",
+        "identificationNumber": "পরিচয় নম্বর",
+        "highestQualification": "সর্বোচ্চ যোগ্যতা",
+        "mediumOfInstruction": "শিক্ষার মাধ্যম",
+        "schoolCollegeName": "স্কুল / কলেজের নাম",
+        "schoolCollegeLocation": "অবস্থান",
+        "educationGapReason": "শিক্ষায় বিরতি / ঝরে পড়ার কারণ",
+        "preferredCourses": "আপনার পছন্দের প্রশিক্ষণ বেছে নিন"
+      },
+      "placeholders": {
+        "fullName": "আপনার পূর্ণ নাম লিখুন",
+        "addressWithPincode": "পিনকোড সহ আপনার সম্পূর্ণ ঠিকানা লিখুন",
+        "pincode": "আপনার পিনকোড লিখুন",
+        "idProofType": "আধার নম্বর বা অন্য পরিচয় প্রমাণ নম্বর",
+        "educationGapReason": "কোনো বিরতি বা ঝরে পড়া থাকলে কারণ উল্লেখ করুন"
+      },
+      "options": {
+        "graduation": "স্নাতক",
+        "hindi": "হিন্দি",
+        "english": "ইংরেজি"
+      },
+      "course": {
+        "computer": "কম্পিউটার",
+        "tailoring": "সেলাই",
+        "spokenEnglish": "কথ্য ইংরেজি",
+        "handmadeDesigning": "হাতে তৈরি ডিজাইন",
+        "other": "অন্যান্য (উল্লেখ করুন)"
+      },
+      "alerts": {
+        "submitSuccess": "নিবন্ধন সফলভাবে জমা হয়েছে!",
+        "submitFailed": "নিবন্ধন জমা দিতে ব্যর্থ। আবার চেষ্টা করুন।"
+      }
     },
     "relief": {
       "heading": "সহায়তার জন্য আবেদন করুন",
-      "sections": { "personalInformation": "ব্যক্তিগত তথ্য", "familyAndLivingSituation": "পারিবারিক ও জীবনযাত্রার পরিস্থিতি", "reasonForRequest": "অনুরোধের কারণ", "assistanceRequired": "আপনার কী দরকার?" },
-      "fields": { "fullName": "পূর্ণ নাম", "fatherOrHusbandName": "পিতা / স্বামীর নাম", "dateOfBirth": "জন্ম তারিখ", "age": "বয়স", "gender": "লিঙ্গ", "mobileNumber": "মোবাইল নম্বর", "alternateNumber": "বিকল্প নম্বর", "emailAvailable": "ইমেইল আইডি (পাওয়া গেলে)", "currentAddress": "বর্তমান ঠিকানা (পিনকোড সহ)", "pincode": "পিনকোড", "idProofType": "পরিচয় প্রমাণের ধরন", "idProofNumber": "পরিচয় প্রমাণ নম্বর", "totalFamilyMembers": "মোট পরিবারের সদস্য", "earningMembers": "উপার্জনকারী সদস্য", "childrenBelow5": "শিশু (৫ বছরের নিচে)", "childrenSchoolGoing": "শিশু (স্কুলগামী)", "elderlyDisabledMembers": "বয়স্ক / প্রতিবন্ধী সদস্য", "elderlyDisabledDetails": "বয়স্ক / প্রতিবন্ধী বিবরণ", "houseType": "বাড়ির ধরন", "reasonForRequest": "অনুরোধের কারণ (ঐচ্ছিক কিন্তু সহায়ক)", "assistanceTypes": "আপনি যে আইটেমগুলি চাইছেন তা বেছে নিন", "declaration": "আমি ঘোষণা করি যে উপরে প্রদত্ত তথ্য আমার জ্ঞান অনুসারে সত্য ও সঠিক।" },
-      "placeholders": { "fullName": "আপনার পূর্ণ নাম লিখুন", "fatherOrHusbandName": "পিতা বা স্বামীর নাম লিখুন", "currentAddress": "পিনকোড সহ আপনার সম্পূর্ণ ঠিকানা লিখুন", "pincode": "আপনার পিনকোড লিখুন", "idProofNumber": "পরিচয় প্রমাণ নম্বর লিখুন", "reasonForRequest": "আপনার পরিস্থিতি এবং কেন সাহায্য দরকার তা বর্ণনা করুন" },
-      "options": { "foodKit": "খাদ্য কিট", "water": "পানি", "clothes": "কাপড়", "shelter": "আশ্রয় / অস্থায়ী বাসস্থান", "medicalHelp": "ওষুধ / চিকিৎসা সাহায্য", "other": "অন্যান্য (উল্লেখ করুন)", "owned": "নিজস্ব", "temporary": "অস্থায়ী", "rented": "ভাড়া", "damaged": "ক্ষতিগ্রস্ত" },
-      "alerts": { "submitSuccess": "আপনার ত্রাণ অনুরোধ সফলভাবে জমা হয়েছে!", "submitFailed": "ত্রাণ অনুরোধ জমা দিতে ব্যর্থ। আবার চেষ্টা করুন।" }
+      "sections": {
+        "personalInformation": "ব্যক্তিগত তথ্য",
+        "familyAndLivingSituation": "পারিবারিক ও জীবনযাত্রার পরিস্থিতি",
+        "reasonForRequest": "অনুরোধের কারণ",
+        "assistanceRequired": "আপনার কী দরকার?"
+      },
+      "fields": {
+        "fullName": "পূর্ণ নাম",
+        "fatherOrHusbandName": "পিতা / স্বামীর নাম",
+        "dateOfBirth": "জন্ম তারিখ",
+        "age": "বয়স",
+        "gender": "লিঙ্গ",
+        "mobileNumber": "মোবাইল নম্বর",
+        "alternateNumber": "বিকল্প নম্বর",
+        "emailAvailable": "ইমেইল আইডি (পাওয়া গেলে)",
+        "currentAddress": "বর্তমান ঠিকানা (পিনকোড সহ)",
+        "pincode": "পিনকোড",
+        "idProofType": "পরিচয় প্রমাণের ধরন",
+        "idProofNumber": "পরিচয় প্রমাণ নম্বর",
+        "totalFamilyMembers": "মোট পরিবারের সদস্য",
+        "earningMembers": "উপার্জনকারী সদস্য",
+        "childrenBelow5": "শিশু (৫ বছরের নিচে)",
+        "childrenSchoolGoing": "শিশু (স্কুলগামী)",
+        "elderlyDisabledMembers": "বয়স্ক / প্রতিবন্ধী সদস্য",
+        "elderlyDisabledDetails": "বয়স্ক / প্রতিবন্ধী বিবরণ",
+        "houseType": "বাড়ির ধরন",
+        "reasonForRequest": "অনুরোধের কারণ (ঐচ্ছিক কিন্তু সহায়ক)",
+        "assistanceTypes": "আপনি যে আইটেমগুলি চাইছেন তা বেছে নিন",
+        "declaration": "আমি ঘোষণা করি যে উপরে প্রদত্ত তথ্য আমার জ্ঞান অনুসারে সত্য ও সঠিক।"
+      },
+      "placeholders": {
+        "fullName": "আপনার পূর্ণ নাম লিখুন",
+        "fatherOrHusbandName": "পিতা বা স্বামীর নাম লিখুন",
+        "currentAddress": "পিনকোড সহ আপনার সম্পূর্ণ ঠিকানা লিখুন",
+        "pincode": "আপনার পিনকোড লিখুন",
+        "idProofNumber": "পরিচয় প্রমাণ নম্বর লিখুন",
+        "reasonForRequest": "আপনার পরিস্থিতি এবং কেন সাহায্য দরকার তা বর্ণনা করুন"
+      },
+      "options": {
+        "foodKit": "খাদ্য কিট",
+        "water": "পানি",
+        "clothes": "কাপড়",
+        "shelter": "আশ্রয় / অস্থায়ী বাসস্থান",
+        "medicalHelp": "ওষুধ / চিকিৎসা সাহায্য",
+        "other": "অন্যান্য (উল্লেখ করুন)",
+        "owned": "নিজস্ব",
+        "temporary": "অস্থায়ী",
+        "rented": "ভাড়া",
+        "damaged": "ক্ষতিগ্রস্ত"
+      },
+      "alerts": {
+        "submitSuccess": "আপনার ত্রাণ অনুরোধ সফলভাবে জমা হয়েছে!",
+        "submitFailed": "ত্রাণ অনুরোধ জমা দিতে ব্যর্থ। আবার চেষ্টা করুন।"
+      }
     },
     "applyCard": {
       "heading": "স্বাস্থ্য কার্ডের জন্য আবেদন করতে সব বিবরণ পূরণ করুন",
-      "sections": { "cardHolderDetails": "কার্ড ধারকের বিবরণ", "cardDetails": "কার্ডের বিবরণ", "familyMembers": "পরিবারের সদস্য" },
-      "fields": { "cardHolderName": "কার্ড ধারকের নাম", "aadhaarNumber": "আধার নম্বর", "bloodGroup": "রক্তের গ্রুপ", "phone": "ফোন", "email": "ইমেইল", "address": "ঠিকানা", "gender": "লিঙ্গ", "ageCategory": "বয়সের বিভাগ", "familyHeadImage": "পরিবারের প্রধানের ছবি", "cardType": "কার্ডের ধরন", "dateOfIssue": "ইস্যুর তারিখ", "dateOfExpiry": "মেয়াদ শেষের তারিখ", "fullName": "পূর্ণ নাম", "relationship": "সম্পর্ক", "dateOfBirth": "জন্ম তারিখ" },
-      "placeholders": { "fullName": "পূর্ণ নাম লিখুন", "phone": "১০ সংখ্যার নম্বর লিখুন", "email": "ইমেইল ঠিকানা লিখুন", "address": "ঠিকানা লিখুন" },
-      "options": { "child": "শিশু", "adult": "প্রাপ্তবয়স্ক", "individual": "ব্যক্তিগত", "family": "পরিবার", "spouse": "জীবনসঙ্গী", "son": "পুত্র", "daughter": "কন্যা", "father": "পিতা", "mother": "মাতা", "brother": "ভাই", "sister": "বোন" },
-      "validation": { "aadhaarFormat": "বৈধ আধার নম্বর লিখুন (XXXX XXXX XXXX)", "aadhaarMaxLength": "আধার নম্বর ১৪ অক্ষরের বেশি হতে পারবে না" },
+      "sections": {
+        "cardHolderDetails": "কার্ড ধারকের বিবরণ",
+        "cardDetails": "কার্ডের বিবরণ",
+        "familyMembers": "পরিবারের সদস্য"
+      },
+      "fields": {
+        "cardHolderName": "কার্ড ধারকের নাম",
+        "aadhaarNumber": "আধার নম্বর",
+        "bloodGroup": "রক্তের গ্রুপ",
+        "phone": "ফোন",
+        "email": "ইমেইল",
+        "address": "ঠিকানা",
+        "gender": "লিঙ্গ",
+        "ageCategory": "বয়সের বিভাগ",
+        "familyHeadImage": "পরিবারের প্রধানের ছবি",
+        "cardType": "কার্ডের ধরন",
+        "dateOfIssue": "ইস্যুর তারিখ",
+        "dateOfExpiry": "মেয়াদ শেষের তারিখ",
+        "fullName": "পূর্ণ নাম",
+        "relationship": "সম্পর্ক",
+        "dateOfBirth": "জন্ম তারিখ"
+      },
+      "placeholders": {
+        "fullName": "পূর্ণ নাম লিখুন",
+        "phone": "১০ সংখ্যার নম্বর লিখুন",
+        "email": "ইমেইল ঠিকানা লিখুন",
+        "address": "ঠিকানা লিখুন"
+      },
+      "options": {
+        "child": "শিশু",
+        "adult": "প্রাপ্তবয়স্ক",
+        "individual": "ব্যক্তিগত",
+        "family": "পরিবার",
+        "spouse": "জীবনসঙ্গী",
+        "son": "পুত্র",
+        "daughter": "কন্যা",
+        "father": "পিতা",
+        "mother": "মাতা",
+        "brother": "ভাই",
+        "sister": "বোন"
+      },
+      "validation": {
+        "aadhaarFormat": "বৈধ আধার নম্বর লিখুন (XXXX XXXX XXXX)",
+        "aadhaarMaxLength": "আধার নম্বর ১৪ অক্ষরের বেশি হতে পারবে না"
+      },
       "viewCard": "কার্ড দেখুন",
-      "alerts": { "createdSuccess": "আপনার স্বাস্থ্য কার্ড সফলভাবে তৈরি হয়েছে!", "failed": "আবেদন জমা দিতে ব্যর্থ" }
+      "alerts": {
+        "createdSuccess": "আপনার স্বাস্থ্য কার্ড সফলভাবে তৈরি হয়েছে!",
+        "failed": "আবেদন জমা দিতে ব্যর্থ"
+      }
     },
     "newCard": {
       "heading": "স্বাস্থ্য কার্ডের জন্য আবেদন করতে সব বিবরণ পূরণ করুন",
-      "sections": { "treatmentDetails": "চিকিৎসার বিবরণ", "medicalDocuments": "চিকিৎসা নথি", "referenceDetails": "রেফারেন্স বিবরণ (ঐচ্ছিক)" },
-      "fields": { "fullName": "পূর্ণ নাম", "emailAddress": "ইমেইল ঠিকানা", "contactNumber": "যোগাযোগ নম্বর", "healthIssue": "স্বাস্থ্য সমস্যা / চিকিৎসা অবস্থা", "hospitalName": "চিকিৎসা নেওয়া হাসপাতালের নাম", "hospitalAddress": "হাসপাতালের ঠিকানা", "hospitalType": "হাসপাতালের ধরন", "treatmentDuration": "আপনার চিকিৎসা কত বছর ধরে", "medicalReports": "প্রেসক্রিপশন / চিকিৎসা রিপোর্ট আপলোড করুন", "referenceName": "রেফারেন্সের নাম ও বিবরণ", "referenceContact": "রেফারেন্সের যোগাযোগ নম্বর" },
-      "placeholders": { "fullName": "আপনার পূর্ণ নাম লিখুন", "emailAddress": "আপনার ইমেইল ঠিকানা লিখুন", "healthIssue": "আপনার স্বাস্থ্য অবস্থা বর্ণনা করুন", "hospitalName": "হাসপাতালের নাম লিখুন", "hospitalAddress": "শহর ও পিনকোড সহ সম্পূর্ণ হাসপাতালের ঠিকানা লিখুন", "treatmentDuration": "যেমন, ২ বছর, ৬ মাস", "referenceName": "আপনাকে রেফার করা ব্যক্তির নাম" },
-      "options": { "governmentHospital": "সরকারি হাসপাতাল", "privateHospital": "বেসরকারি হাসপাতাল", "clinic": "ক্লিনিক" },
-      "alerts": { "submitSuccess": "কার্ড অনুরোধ সফলভাবে জমা হয়েছে", "submitFailed": "কার্ড অনুরোধ জমা দিতে ব্যর্থ। আবার চেষ্টা করুন।" }
+      "sections": {
+        "treatmentDetails": "চিকিৎসার বিবরণ",
+        "medicalDocuments": "চিকিৎসা নথি",
+        "referenceDetails": "রেফারেন্স বিবরণ (ঐচ্ছিক)"
+      },
+      "fields": {
+        "fullName": "পূর্ণ নাম",
+        "emailAddress": "ইমেইল ঠিকানা",
+        "contactNumber": "যোগাযোগ নম্বর",
+        "healthIssue": "স্বাস্থ্য সমস্যা / চিকিৎসা অবস্থা",
+        "hospitalName": "চিকিৎসা নেওয়া হাসপাতালের নাম",
+        "hospitalAddress": "হাসপাতালের ঠিকানা",
+        "hospitalType": "হাসপাতালের ধরন",
+        "treatmentDuration": "আপনার চিকিৎসা কত বছর ধরে",
+        "medicalReports": "প্রেসক্রিপশন / চিকিৎসা রিপোর্ট আপলোড করুন",
+        "referenceName": "রেফারেন্সের নাম ও বিবরণ",
+        "referenceContact": "রেফারেন্সের যোগাযোগ নম্বর"
+      },
+      "placeholders": {
+        "fullName": "আপনার পূর্ণ নাম লিখুন",
+        "emailAddress": "আপনার ইমেইল ঠিকানা লিখুন",
+        "healthIssue": "আপনার স্বাস্থ্য অবস্থা বর্ণনা করুন",
+        "hospitalName": "হাসপাতালের নাম লিখুন",
+        "hospitalAddress": "শহর ও পিনকোড সহ সম্পূর্ণ হাসপাতালের ঠিকানা লিখুন",
+        "treatmentDuration": "যেমন, ২ বছর, ৬ মাস",
+        "referenceName": "আপনাকে রেফার করা ব্যক্তির নাম"
+      },
+      "options": {
+        "governmentHospital": "সরকারি হাসপাতাল",
+        "privateHospital": "বেসরকারি হাসপাতাল",
+        "clinic": "ক্লিনিক"
+      },
+      "alerts": {
+        "submitSuccess": "কার্ড অনুরোধ সফলভাবে জমা হয়েছে",
+        "submitFailed": "কার্ড অনুরোধ জমা দিতে ব্যর্থ। আবার চেষ্টা করুন।"
+      }
     },
     "volunteers": {
       "heading": "মুজতাবা হেল্পিং ফাউন্ডেশনে স্বেচ্ছাসেবক হিসেবে যোগ দিন",
-      "sections": { "personalDetails": "ব্যক্তিগত বিবরণ", "professionalDetails": "পেশাগত বিবরণ", "volunteeringPreferences": "স্বেচ্ছাসেবা পছন্দ", "experienceAndMotivation": "অভিজ্ঞতা ও অনুপ্রেরণা" },
-      "fields": { "fullName": "পূর্ণ নাম", "dateOfBirth": "জন্ম তারিখ", "gender": "লিঙ্গ", "phoneNumber": "ফোন নম্বর", "alternateContact": "বিকল্প যোগাযোগ নং.", "emailAddress": "ইমেইল ঠিকানা", "address": "ঠিকানা", "qualification": "যোগ্যতা", "employmentStatus": "কর্মসংস্থান অবস্থা", "occupation": "পেশা", "volunteerArea": "আপনি কোন ক্ষেত্রে স্বেচ্ছাসেবা করতে চান?", "availability": "উপলব্ধতা", "previousVolunteering": "আপনি কি আগে স্বেচ্ছাসেবা করেছেন?", "motivation": "আপনি কেন মুজতাবা হেল্পিং ফাউন্ডেশনে স্বেচ্ছাসেবক হিসেবে যোগ দিতে চান?", "declaration": "আমি এতদ্বারা ঘোষণা করছি যে প্রদত্ত তথ্য সত্য এবং দায়িত্বশীলভাবে স্বেচ্ছাসেবা করতে সম্মত।" },
-      "placeholders": { "motivation": "আমাদের সাথে স্বেচ্ছাসেবা করার আপনার অনুপ্রেরণা শেয়ার করুন..." },
-      "options": { "student": "ছাত্র", "employee": "কর্মচারী", "selfEmployed": "স্ব-নিযুক্ত", "healthCamps": "স্বাস্থ্য শিবির", "awarenessDrives": "সচেতনতা অভিযান", "dataEntry": "ডেটা এন্ট্রি / অফিস কাজ", "socialMedia": "সোশ্যাল মিডিয়া প্রচার", "fundraising": "তহবিল সংগ্রহ", "communityOutreach": "সামুদায়িক আউটরিচ", "weekdays": "সপ্তাহের দিন", "weekends": "সাপ্তাহিক ছুটি", "flexible": "নমনীয়" }
+      "sections": {
+        "personalDetails": "ব্যক্তিগত বিবরণ",
+        "professionalDetails": "পেশাগত বিবরণ",
+        "volunteeringPreferences": "স্বেচ্ছাসেবা পছন্দ",
+        "experienceAndMotivation": "অভিজ্ঞতা ও অনুপ্রেরণা"
+      },
+      "fields": {
+        "fullName": "পূর্ণ নাম",
+        "dateOfBirth": "জন্ম তারিখ",
+        "gender": "লিঙ্গ",
+        "phoneNumber": "ফোন নম্বর",
+        "alternateContact": "বিকল্প যোগাযোগ নং.",
+        "emailAddress": "ইমেইল ঠিকানা",
+        "address": "ঠিকানা",
+        "qualification": "যোগ্যতা",
+        "employmentStatus": "কর্মসংস্থান অবস্থা",
+        "occupation": "পেশা",
+        "volunteerArea": "আপনি কোন ক্ষেত্রে স্বেচ্ছাসেবা করতে চান?",
+        "availability": "উপলব্ধতা",
+        "previousVolunteering": "আপনি কি আগে স্বেচ্ছাসেবা করেছেন?",
+        "motivation": "আপনি কেন মুজতাবা হেল্পিং ফাউন্ডেশনে স্বেচ্ছাসেবক হিসেবে যোগ দিতে চান?",
+        "declaration": "আমি এতদ্বারা ঘোষণা করছি যে প্রদত্ত তথ্য সত্য এবং দায়িত্বশীলভাবে স্বেচ্ছাসেবা করতে সম্মত।"
+      },
+      "placeholders": {
+        "motivation": "আমাদের সাথে স্বেচ্ছাসেবা করার আপনার অনুপ্রেরণা শেয়ার করুন..."
+      },
+      "options": {
+        "student": "ছাত্র",
+        "employee": "কর্মচারী",
+        "selfEmployed": "স্ব-নিযুক্ত",
+        "healthCamps": "স্বাস্থ্য শিবির",
+        "awarenessDrives": "সচেতনতা অভিযান",
+        "dataEntry": "ডেটা এন্ট্রি / অফিস কাজ",
+        "socialMedia": "সোশ্যাল মিডিয়া প্রচার",
+        "fundraising": "তহবিল সংগ্রহ",
+        "communityOutreach": "সামুদায়িক আউটরিচ",
+        "weekdays": "সপ্তাহের দিন",
+        "weekends": "সাপ্তাহিক ছুটি",
+        "flexible": "নমনীয়"
+      }
     },
     "equipment": {
       "heading": "চিকিৎসা সরঞ্জামের অনুরোধ করতে নিচের বিবরণ পূরণ করুন",
       "submitRequest": "অনুরোধ জমা দিন",
-      "sections": { "personalInformation": "ব্যক্তিগত তথ্য", "addressDetails": "ঠিকানার বিবরণ", "equipmentDetails": "সরঞ্জামের বিবরণ", "referenceDetails": "রেফারেন্স বিবরণ", "consent": "সম্মতি" },
-      "fields": { "fullName": "পূর্ণ নাম", "age": "বয়স", "gender": "লিঙ্গ", "mobileNumber": "মোবাইল নম্বর", "email": "ইমেইল", "address": "ঠিকানা", "pincode": "পিনকোড", "equipmentType": "সরঞ্জামের ধরন", "medicalReason": "চিকিৎসা কারণ", "durationRequired": "প্রয়োজনীয় সময়কাল", "referenceName": "রেফারেন্সের নাম", "referenceContact": "রেফারেন্সের যোগাযোগ", "consentDeclaration": "আমি এতদ্বারা ঘোষণা করছি যে প্রদত্ত তথ্য সত্য ও সঠিক" },
-      "placeholders": { "fullName": "আপনার পূর্ণ নাম লিখুন", "age": "আপনার বয়স লিখুন", "mobileNumber": "মোবাইল নম্বর লিখুন", "email": "ইমেইল ঠিকানা লিখুন", "address": "আপনার ঠিকানা লিখুন", "pincode": "পিনকোড লিখুন", "medicalReason": "সরঞ্জামের অনুরোধের চিকিৎসা কারণ বর্ণনা করুন", "durationRequired": "যেমন, ২ সপ্তাহ, ১ মাস", "referenceName": "রেফারেন্স ব্যক্তির নাম লিখুন", "referenceContact": "রেফারেন্সের যোগাযোগ নম্বর লিখুন" },
-      "options": { "bloodPressureMonitor": "রক্তচাপ মনিটর", "glucometer": "গ্লুকোমিটার", "oxygenConcentrator": "অক্সিজেন কনসেন্ট্রেটর", "wheelchair": "হুইলচেয়ার", "walkingAid": "হাঁটার সহায়", "hospitalBed": "হাসপাতালের বিছানা", "nebulizer": "নেবুলাইজার" },
-      "alerts": { "submitSuccess": "সরঞ্জাম অনুরোধ সফলভাবে জমা হয়েছে! অনুরোধ আইডি:", "submitFailed": "সরঞ্জাম অনুরোধ জমা দিতে ব্যর্থ। আবার চেষ্টা করুন।" }
+      "sections": {
+        "personalInformation": "ব্যক্তিগত তথ্য",
+        "addressDetails": "ঠিকানার বিবরণ",
+        "equipmentDetails": "সরঞ্জামের বিবরণ",
+        "referenceDetails": "রেফারেন্স বিবরণ",
+        "consent": "সম্মতি"
+      },
+      "fields": {
+        "fullName": "পূর্ণ নাম",
+        "age": "বয়স",
+        "gender": "লিঙ্গ",
+        "mobileNumber": "মোবাইল নম্বর",
+        "email": "ইমেইল",
+        "address": "ঠিকানা",
+        "pincode": "পিনকোড",
+        "equipmentType": "সরঞ্জামের ধরন",
+        "medicalReason": "চিকিৎসা কারণ",
+        "durationRequired": "প্রয়োজনীয় সময়কাল",
+        "referenceName": "রেফারেন্সের নাম",
+        "referenceContact": "রেফারেন্সের যোগাযোগ",
+        "consentDeclaration": "আমি এতদ্বারা ঘোষণা করছি যে প্রদত্ত তথ্য সত্য ও সঠিক"
+      },
+      "placeholders": {
+        "fullName": "আপনার পূর্ণ নাম লিখুন",
+        "age": "আপনার বয়স লিখুন",
+        "mobileNumber": "মোবাইল নম্বর লিখুন",
+        "email": "ইমেইল ঠিকানা লিখুন",
+        "address": "আপনার ঠিকানা লিখুন",
+        "pincode": "পিনকোড লিখুন",
+        "equipmentType": "সরঞ্জামের ধরন লিখুন (যেমন: হুইলচেয়ার, গ্লুকোমিটার)",
+        "medicalReason": "সরঞ্জামের অনুরোধের চিকিৎসা কারণ বর্ণনা করুন",
+        "durationRequired": "যেমন, ২ সপ্তাহ, ১ মাস",
+        "referenceName": "রেফারেন্স ব্যক্তির নাম লিখুন",
+        "referenceContact": "রেফারেন্সের যোগাযোগ নম্বর লিখুন"
+      },
+      "options": {
+        "bloodPressureMonitor": "রক্তচাপ মনিটর",
+        "glucometer": "গ্লুকোমিটার",
+        "oxygenConcentrator": "অক্সিজেন কনসেন্ট্রেটর",
+        "wheelchair": "হুইলচেয়ার",
+        "walkingAid": "হাঁটার সহায়",
+        "hospitalBed": "হাসপাতালের বিছানা",
+        "nebulizer": "নেবুলাইজার"
+      },
+      "alerts": {
+        "submitSuccess": "সরঞ্জাম অনুরোধ সফলভাবে জমা হয়েছে! অনুরোধ আইডি:",
+        "submitFailed": "সরঞ্জাম অনুরোধ জমা দিতে ব্যর্থ। আবার চেষ্টা করুন।"
+      }
     }
   }
 }

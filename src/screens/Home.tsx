@@ -17,6 +17,8 @@ import {
   HeartIcon,
   UsersIcon,
   CalendarBlankIcon,
+  Clock,
+  ShieldCheck,
 } from "phosphor-react-native";
 import { useTranslation } from "react-i18next";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
@@ -67,9 +69,24 @@ export default function HomeScreen() {
     );
   }, [dashboardData?.card_requests]);
 
+  const healthCardStatus = dashboardData?.health_card?.status;
+  const cardExpiryDate = dashboardData?.health_card?.date_of_expiry;
+  const isExpiredByDate = cardExpiryDate
+    ? new Date(cardExpiryDate) < new Date()
+    : false;
+  const isCardPending = healthCardStatus === 'pending';
+  const isCardRejected = healthCardStatus === 'rejected';
+  const isCardExpired =
+    healthCardStatus === 'expired' ||
+    (isExpiredByDate && !isCardPending && !isCardRejected);
+  const isCardVisible =
+    (healthCardStatus === 'approved' || healthCardStatus === 'active') &&
+    !isExpiredByDate;
+
   // Create merged array combining health card object with family members array
+  // Only build when card is approved/active — pending/rejected cards should not be shown
   const familyCardsData = useMemo(() => {
-    if (!dashboardData?.health_card) {
+    if (!dashboardData?.health_card || !isCardVisible) {
       return [];
     }
 
@@ -388,7 +405,62 @@ export default function HomeScreen() {
         {/* Family Health Cards header */}
         <Text style={styles.smallHeader}>{t("home.familyHealthCards")}</Text>
 
-        {familyCardsData.length > 0 ? (
+        {isCardPending ? (
+          <View style={styles.hcPendingCard}>
+            <View style={styles.hcPendingIcon}>
+              <Clock size={22} color="#D97706" weight="fill" />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.hcPendingTitle}>Verification in Progress</Text>
+              <Text style={styles.hcPendingDesc}>
+                Mujtaba Helping Foundation is reviewing your details. Once verified and approved, your card will appear here automatically.
+              </Text>
+            </View>
+          </View>
+        ) : isCardRejected ? (
+          <View style={[styles.hcPendingCard, { borderLeftColor: '#EF4444', backgroundColor: '#FFF5F5' }]}>
+            <View style={[styles.hcPendingIcon, { backgroundColor: '#FEE2E2' }]}>
+              <ShieldCheck size={22} color="#DC2626" weight="fill" />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.hcPendingTitle, { color: '#991B1B' }]}>Application Not Approved</Text>
+              <Text style={styles.hcPendingDesc}>
+                Please contact Mujtaba Helping Foundation for more information.
+              </Text>
+            </View>
+          </View>
+        ) : isCardExpired ? (
+          <View style={[styles.hcPendingCard, { borderLeftColor: '#EA580C', backgroundColor: '#FFF7ED' }]}>
+            <View style={[styles.hcPendingIcon, { backgroundColor: '#FFEDD5' }]}>
+              <Clock size={22} color="#EA580C" weight="fill" />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.hcPendingTitle, { color: '#9A3412' }]}>Card Expired</Text>
+              <Text style={styles.hcPendingDesc}>
+                Your health card has expired. Renew it now to continue enjoying health benefits.
+              </Text>
+              <TouchableOpacity
+                style={styles.renewButton}
+                activeOpacity={0.8}
+                onPress={() =>
+                  navigation.navigate('Payment', {
+                    customerId:
+                      dashboardData?.health_card?.customer_id ??
+                      dashboardData?.customer?.id,
+                    healthCardId: dashboardData?.health_card?.id,
+                    cardType:
+                      (dashboardData?.health_card?.type || 'individual') as
+                        | 'individual'
+                        | 'family',
+                    purpose: 'renewal' as const,
+                  })
+                }
+              >
+                <Text style={styles.renewButtonText}>Renew Card</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        ) : familyCardsData.length > 0 ? (
           <>
             <ScrollView
               horizontal
@@ -438,7 +510,7 @@ export default function HomeScreen() {
           </View>
         )}
 
-        {!dashboardData?.health_card && !hasCardRequests && (
+        {!dashboardData?.health_card && !isCardPending && !isCardRejected && !isCardExpired && !hasCardRequests && (
           <GuideWrapper
             step={findGuideStep("HomeScreen", "applyForCardBtn")}
             borderRadius={24}
@@ -461,7 +533,7 @@ export default function HomeScreen() {
           </GuideWrapper>
         )}
 
-        {!dashboardData?.health_card && hasCardRequests && (
+        {!dashboardData?.health_card && !isCardPending && !isCardRejected && !isCardExpired && hasCardRequests && (
           <View style={styles.cardRequestsCard}>
             <Text style={styles.cardRequestsTitle}>
               {t("home.cardRequests")}
@@ -881,6 +953,50 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   noCardsText: { fontSize: 16, fontWeight: "500", color: "#6B7280" },
+  hcPendingCard: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    gap: 12,
+    backgroundColor: "#FFFBEB",
+    borderLeftWidth: 4,
+    borderLeftColor: "#F59E0B",
+    borderRadius: 12,
+    padding: 14,
+    marginTop: 8,
+    marginBottom: 4,
+  },
+  hcPendingIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "#FEF3C7",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  hcPendingTitle: {
+    fontSize: 13,
+    fontWeight: "700",
+    color: "#92400E",
+    marginBottom: 3,
+  },
+  hcPendingDesc: {
+    fontSize: 12,
+    color: "#78350F",
+    lineHeight: 18,
+  },
+  renewButton: {
+    marginTop: 10,
+    backgroundColor: "#EA580C",
+    borderRadius: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    alignSelf: "flex-start",
+  },
+  renewButtonText: {
+    color: "#fff",
+    fontWeight: "700",
+    fontSize: 13,
+  },
   requestButton: {
     marginTop: 12,
     width: "100%",
