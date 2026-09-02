@@ -86,34 +86,40 @@ export default function BloodRequest() {
 
   const sections: FormSection[] = [
     {
-      title: "Patient Details",
+      title: t("blood.patientDetailsTitle", "Patient Details"),
       id: "patientDetails",
       type: "object",
       fields: [
         {
           id: "patientName",
-          label: "Patient Name",
+          label: t("blood.fields.patientName", "Patient Name"),
           type: "text",
-          placeholder: "Enter patient name",
+          placeholder: t(
+            "blood.fields.patientNamePlaceholder",
+            "Enter patient name",
+          ),
           validations: [{ name: "required", value: true }],
           path: "patient.name",
         },
         {
           id: "patientAge",
-          label: "Patient Age",
+          label: t("blood.fields.patientAge", "Patient Age"),
           type: "number",
-          placeholder: "Enter patient age",
+          placeholder: t(
+            "blood.fields.patientAgePlaceholder",
+            "Enter patient age",
+          ),
           validations: [{ name: "required", value: true }],
           path: "patient.age",
         },
         {
           id: "patientGender",
-          label: "Patient Gender",
+          label: t("blood.fields.patientGender", "Patient Gender"),
           type: "radio",
           values: [
-            { id: "male", name: "Male" },
-            { id: "female", name: "Female" },
-            { id: "other", name: "Other" },
+            { id: "male", name: t("forms.common.options.male") },
+            { id: "female", name: t("forms.common.options.female") },
+            { id: "other", name: t("forms.common.options.other") },
           ],
           validations: [{ name: "required", value: true }],
           path: "patient.gender",
@@ -127,7 +133,7 @@ export default function BloodRequest() {
       fields: [
         {
           id: "requiredBloodGroup",
-          label: "Required Blood Group",
+          label: t("blood.fields.requiredBloodGroup", "Required Blood Group"),
           type: "select",
           options: [
             { label: "A+", value: "A+" },
@@ -144,15 +150,18 @@ export default function BloodRequest() {
         },
         {
           id: "unitsRequired",
-          label: "Units Required",
+          label: t("blood.fields.unitsRequired", "Units Required"),
           type: "number",
-          placeholder: "Enter units required",
+          placeholder: t(
+            "blood.fields.unitsRequiredPlaceholder",
+            "Enter units required",
+          ),
           validations: [{ name: "required", value: true }],
           path: "request.unitsRequired",
         },
         {
           id: "requiredDatetime",
-          label: "Required Date & Time",
+          label: t("blood.fields.requiredDatetime", "Required Date & Time"),
           type: "date",
           placeholder: "YYYY-MM-DD HH:mm:ss",
           validations: [{ name: "required", value: true }],
@@ -160,13 +169,16 @@ export default function BloodRequest() {
         },
         {
           id: "urgencyLevel",
-          label: "Urgency Level",
+          label: t("blood.fields.urgencyLevel", "Urgency Level"),
           type: "select",
           options: [
-            { label: "Low", value: "Low" },
-            { label: "Medium", value: "Medium" },
-            { label: "High", value: "High" },
-            { label: "Critical", value: "Critical" },
+            { label: t("blood.urgency.low", "Low"), value: "Low" },
+            { label: t("blood.urgency.medium", "Medium"), value: "Medium" },
+            { label: t("blood.urgency.high", "High"), value: "High" },
+            {
+              label: t("blood.urgency.critical", "Critical"),
+              value: "Critical",
+            },
           ],
           validations: [{ name: "required", value: true }],
           path: "request.urgencyLevel",
@@ -180,31 +192,40 @@ export default function BloodRequest() {
       fields: [
         {
           id: "hospitalName",
-          label: "Hospital Name",
+          label: t("blood.fields.hospitalName", "Hospital Name"),
           type: "text",
-          placeholder: "Enter hospital name",
+          placeholder: t(
+            "blood.fields.hospitalNamePlaceholder",
+            "Enter hospital name",
+          ),
           validations: [{ name: "required", value: true }],
           path: "hospital.name",
         },
         {
           id: "doctorName",
-          label: "Doctor Name",
+          label: t("blood.fields.doctorName", "Doctor Name"),
           type: "text",
-          placeholder: "Enter doctor name",
+          placeholder: t(
+            "blood.fields.doctorNamePlaceholder",
+            "Enter doctor name",
+          ),
           validations: [{ name: "required", value: true }],
           path: "hospital.doctorName",
         },
         {
           id: "doctorContact",
-          label: "Doctor Contact",
+          label: t("blood.fields.doctorContact", "Doctor Contact"),
           type: "tel",
-          placeholder: "Enter doctor contact number",
+          placeholder: t(
+            "blood.fields.doctorContactPlaceholder",
+            "Enter doctor contact number",
+          ),
           validations: [
             { name: "required", value: true },
             {
               name: "pattern",
               value: /^[0-9]{10}$/,
-              message: "Enter valid 10 digit number",
+              message: t("forms.common.validation.phone10"),
             },
           ],
           path: "hospital.doctorContact",
@@ -212,43 +233,52 @@ export default function BloodRequest() {
       ],
     },
     {
-      title: "Requester Details",
+      title: t("blood.requesterDetailsTitle", "Requester Details"),
       id: "requesterDetails",
       type: "object",
       fields: [
         {
           id: "requesterName",
-          label: "Requester Name",
+          label: t("blood.fields.requesterName", "Requester Name"),
           type: "text",
-          placeholder: "Enter requester name",
+          placeholder: t(
+            "blood.fields.requesterNamePlaceholder",
+            "Enter requester name",
+          ),
           validations: [{ name: "required", value: true }],
           path: "requester.name",
         },
         {
           id: "requesterMobile",
-          label: "Requester Mobile",
+          label: t("blood.fields.requesterMobile", "Requester Mobile"),
           type: "tel",
-          placeholder: "Enter requester mobile number",
+          placeholder: t(
+            "blood.fields.requesterMobilePlaceholder",
+            "Enter requester mobile number",
+          ),
           validations: [
             { name: "required", value: true },
             {
               name: "pattern",
               value: /^[0-9]{10}$/,
-              message: "Enter valid 10 digit number",
+              message: t("forms.common.validation.phone10"),
             },
           ],
           path: "requester.mobile",
         },
         {
           id: "email",
-          label: "Email (optional)",
+          label: t("blood.fields.email", "Email (optional)"),
           type: "email",
-          placeholder: "Enter email address",
+          placeholder: t(
+            "blood.fields.emailPlaceholder",
+            "Enter email address",
+          ),
           validations: [
             {
               name: "pattern",
               value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: "Enter valid email address",
+              message: t("forms.common.validation.invalidEmailAddress"),
             },
           ],
           path: "requester.email",
@@ -256,19 +286,21 @@ export default function BloodRequest() {
       ],
     },
     {
-      title: "Address Details",
+      title: t("blood.addressDetailsTitle", "Address Details"),
       id: "addressDetails",
       type: "object",
       fields: [
         {
           id: "state_id",
-          label: "State",
+          label: t("forms.common.fields.state"),
           type: "select",
           options: states.map((s: { id: number; name: string }) => ({
             label: s.name,
             value: s.id,
           })),
-          placeholder: statesLoading ? "Loading states..." : "Select state",
+          placeholder: statesLoading
+            ? t("forms.common.loading.states")
+            : t("forms.common.select.state"),
           validations: [{ name: "required", value: true }],
           path: "address.state_id",
           disabled: statesLoading,
@@ -276,17 +308,17 @@ export default function BloodRequest() {
         },
         {
           id: "district_id",
-          label: "District",
+          label: t("forms.common.fields.district"),
           type: "select",
           options: districts.map((d: { id: number; name: string }) => ({
             label: d.name,
             value: d.id,
           })),
           placeholder: !stateId
-            ? "Select state first"
+            ? t("forms.common.select.stateFirst")
             : districtsLoading
-            ? "Loading districts..."
-            : "Select district",
+            ? t("forms.common.loading.districts")
+            : t("forms.common.select.district"),
           validations: [{ name: "required", value: true }],
           path: "address.district_id",
           disabled: !stateId || districtsLoading,
@@ -294,17 +326,17 @@ export default function BloodRequest() {
         },
         {
           id: "block_id",
-          label: "Block",
+          label: t("forms.common.fields.block"),
           type: "select",
           options: blocks.map((b: { id: number; name: string }) => ({
             label: b.name,
             value: b.id,
           })),
           placeholder: !districtId
-            ? "Select district first"
+            ? t("forms.common.select.districtFirst")
             : blocksLoading
-            ? "Loading blocks..."
-            : "Select block",
+            ? t("forms.common.loading.blocks")
+            : t("forms.common.select.block"),
           validations: [{ name: "required", value: true }],
           path: "address.block_id",
           disabled: !districtId || blocksLoading,
@@ -312,17 +344,17 @@ export default function BloodRequest() {
         },
         {
           id: "mandal_id",
-          label: "Mandal",
+          label: t("forms.common.fields.mandal"),
           type: "select",
           options: mandals.map((m: { id: number; name: string }) => ({
             label: m.name,
             value: m.id,
           })),
           placeholder: !blockId
-            ? "Select block first"
+            ? t("forms.common.select.blockFirst")
             : mandalsLoading
-            ? "Loading mandals..."
-            : "Select mandal",
+            ? t("forms.common.loading.mandals")
+            : t("forms.common.select.mandal"),
           validations: [{ name: "required", value: true }],
           path: "address.mandal_id",
           disabled: !blockId || mandalsLoading,
@@ -330,32 +362,35 @@ export default function BloodRequest() {
         },
         {
           id: "address",
-          label: "Address",
+          label: t("blood.fields.address", "Address"),
           type: "textarea",
-          placeholder: "Enter address",
+          placeholder: t("blood.fields.addressPlaceholder", "Enter address"),
           validations: [{ name: "required", value: true }],
           path: "address.address",
         },
         {
           id: "pincode",
-          label: "Pincode",
+          label: t("blood.fields.pincode", "Pincode"),
           type: "text",
-          placeholder: "Enter pincode",
+          placeholder: t("blood.fields.pincodePlaceholder", "Enter pincode"),
           validations: [{ name: "required", value: true }],
           path: "address.pincode",
         },
       ],
     },
     {
-      title: "Remarks",
+      title: t("blood.remarksTitle", "Remarks"),
       id: "remarksSection",
       type: "object",
       fields: [
         {
           id: "remarks",
-          label: "Remarks",
+          label: t("blood.fields.remarks", "Remarks"),
           type: "textarea",
-          placeholder: "Enter remarks or additional details",
+          placeholder: t(
+            "blood.fields.remarksPlaceholder",
+            "Enter remarks or additional details",
+          ),
           path: "remarks.remarks",
         },
       ],
@@ -363,6 +398,7 @@ export default function BloodRequest() {
   ];
 
   const handleSubmit = async (data: Record<string, any>) => {
+    console.log('[BloodRequest] form data:', JSON.stringify(data));
     const stateName =
       states.find((s: { id: number; name: string }) => s.id === stateId)
         ?.name || "";
@@ -405,8 +441,11 @@ export default function BloodRequest() {
       payload.email = data.requester.email;
     }
 
+    console.log('[BloodRequest] payload:', JSON.stringify(payload));
+
     try {
       const response = await createBloodRequest(payload as any).unwrap();
+      console.log('[BloodRequest] success response:', JSON.stringify(response));
       Alert.alert(
         t("common.success"),
         response?.message ||
@@ -414,9 +453,10 @@ export default function BloodRequest() {
             "blood.submit.successMessage",
             "Blood request submitted successfully",
           ),
-        [{ text: "OK", onPress: () => navigation.goBack() }],
+        [{ text: t("forms.common.ok"), onPress: () => navigation.goBack() }],
       );
     } catch (error: any) {
+      console.log('[BloodRequest] error:', JSON.stringify(error));
       Alert.alert(
         t("common.error"),
         error?.data?.message ||
@@ -450,7 +490,11 @@ export default function BloodRequest() {
         sections={sections}
         initialValues={{}}
         mode="onBlur"
-        submitButtonText={isLoading ? "Submitting..." : "Submit Request"}
+        submitButtonText={
+          isLoading
+            ? t("forms.common.submitting")
+            : t("blood.submitButton", "Submit Request")
+        }
         onSubmit={handleSubmit}
       />
     </View>

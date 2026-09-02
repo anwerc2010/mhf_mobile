@@ -96,10 +96,23 @@ export default function CardScreen() {
 
 
   const steps = [
-    t("card.howToUse.step1", "Visit any partner healthcare facility"),
-    t("card.howToUse.step2", "Show your digital health card or Member ID"),
-    t("card.howToUse.step3", "Receive services as per your card benefits"),
+    t(
+      "card.howToUse.step1",
+      "Visit any of our trusted partner healthcare facilities and enjoy exclusive health card benefits",
+    ),
+    t(
+      "card.howToUse.step2",
+      "Show your digital health card and share it with the hospital's email ID for verification",
+    ),
+    t(
+      "card.howToUse.step3",
+      "Receive healthcare services with care, ensuring support when you need it most",
+    ),
   ];
+  const howToUseNote = t(
+    "card.howToUse.note",
+    "Note: If you are an existing patient, the card will not be accepted at the hospitals",
+  );
 
   const providerCategories = [
     { key: "all", label: t("services.categories.all", "All") },
@@ -322,26 +335,27 @@ export default function CardScreen() {
     try {
       const pdfPath = await createPdf();
 
-      const subject = `Hospital Visit – Mujtaba Helping Foundation Health Card | ${currentCard.membershipId}`;
+      const subject = `${t("card.providerEmailSubjectPrefix", "Hospital Visit – Mujtaba Helping Foundation Health Card")} | ${currentCard.membershipId}`;
       const addressLine = [currentCard.address, currentCard.city].filter(Boolean).join(", ");
-      const body = `Dear ${provider.provider_name || "Healthcare Provider"},
+      const notAvailable = t("home.notAvailable", "N/A");
+      const body = `${t("card.providerEmailGreeting", "Dear {{name}},", { name: provider.provider_name || t("card.healthcareProvider", "Healthcare Provider") })}
 
-I am a Mujtaba Helping Foundation member and will be visiting your facility. Please find my Mujtaba Helping Foundation Health Card PDF attached for your reference.
+${t("card.providerEmailIntro", "I am a Mujtaba Helping Foundation member and will be visiting your facility. Please find my Mujtaba Helping Foundation Health Card PDF attached for your reference.")}
 
-HEALTH CARD DETAILS
+${t("card.healthCardDetailsHeading", "HEALTH CARD DETAILS")}
 -------------------
-Card Holder  : ${currentCard.name}
-Membership ID: ${currentCard.membershipId}
-Blood Group  : ${currentCard.bloodGroup}
-Date of Issue: ${currentCard.dateOfIssue}
-Date of Expiry: ${currentCard.dateOfExpiry}
-${currentCard.phone ? `Phone        : ${currentCard.phone}\n` : ""}${currentCard.email ? `Email        : ${currentCard.email}\n` : ""}${addressLine ? `Address      : ${addressLine}\n` : ""}
-VISITING PROVIDER
+${t("card.cardHolderLabel", "Card Holder")}  : ${currentCard.name}
+${t("card.membershipIdLabel", "Membership ID")}: ${currentCard.membershipId}
+${t("card.bloodGroupLabel", "Blood Group")}  : ${currentCard.bloodGroup}
+${t("card.dateOfIssueLabel", "Date of Issue")}: ${currentCard.dateOfIssue}
+${t("card.dateOfExpiryLabel", "Date of Expiry")}: ${currentCard.dateOfExpiry}
+${currentCard.phone ? `${t("common.phone", "Phone")}        : ${currentCard.phone}\n` : ""}${currentCard.email ? `${t("common.email")}        : ${currentCard.email}\n` : ""}${addressLine ? `${t("common.address", "Address")}      : ${addressLine}\n` : ""}
+${t("card.visitingProviderHeading", "VISITING PROVIDER")}
 -----------------
-Provider : ${provider.provider_name || "N/A"}
-Address  : ${provider.address || "N/A"}
+${t("card.providerLabel", "Provider")} : ${provider.provider_name || notAvailable}
+${t("common.address", "Address")}  : ${provider.address || notAvailable}
 
-Thank you.`;
+${t("card.thankYou", "Thank you.")}`;
 
       await RNShare.shareSingle({
         social: RNShare.Social.EMAIL,
@@ -450,7 +464,9 @@ Thank you.`;
           {/* Header stripe */}
           <View style={styles.statusCardHeader}>
             <Clock size={28} color="#FFFFFF" weight="fill" />
-            <Text style={styles.statusCardHeaderText}>Under Review</Text>
+            <Text style={styles.statusCardHeaderText}>
+              {t("card.underReview", "Under Review")}
+            </Text>
           </View>
 
           <View style={styles.statusCardBody}>
@@ -459,32 +475,43 @@ Thank you.`;
             <View style={styles.dividerLine} />
 
             <Text style={styles.statusMainMsg}>
-              is reviewing your details
+              {t("card.pendingReviewMsg", "is reviewing your details")}
             </Text>
             <Text style={styles.statusSubMsg}>
-              Once your card is verified, it will be approved and become visible here automatically. No action needed from your side.
+              {t(
+                "card.pendingReviewSubMsg",
+                "Once your card is verified, it will be approved and become visible here automatically. No action needed from your side.",
+              )}
             </Text>
 
             <View style={styles.stepsList}>
               <View style={styles.stepRow}>
                 <View style={[styles.stepDot, { backgroundColor: '#10B981' }]} />
-                <Text style={styles.stepText}>Application submitted</Text>
+                <Text style={styles.stepText}>
+                  {t("card.stepApplicationSubmitted", "Application submitted")}
+                </Text>
               </View>
               <View style={styles.stepConnector} />
               <View style={styles.stepRow}>
                 <View style={[styles.stepDot, { backgroundColor: '#F59E0B' }]} />
-                <Text style={[styles.stepText, { color: '#92400E', fontWeight: '700' }]}>Admin verification in progress</Text>
+                <Text style={[styles.stepText, { color: '#92400E', fontWeight: '700' }]}>
+                  {t("card.stepAdminVerification", "Admin verification in progress")}
+                </Text>
               </View>
               <View style={styles.stepConnector} />
               <View style={styles.stepRow}>
                 <View style={[styles.stepDot, { backgroundColor: '#CBD5E1' }]} />
-                <Text style={[styles.stepText, { color: '#94A3B8' }]}>Card activated</Text>
+                <Text style={[styles.stepText, { color: '#94A3B8' }]}>
+                  {t("card.stepCardActivated", "Card activated")}
+                </Text>
               </View>
             </View>
 
             <View style={styles.pendingBadge}>
               <Clock size={12} color="#92400E" weight="fill" />
-              <Text style={styles.pendingBadgeText}>Pending Approval</Text>
+              <Text style={styles.pendingBadgeText}>
+                {t("card.pendingApproval", "Pending Approval")}
+              </Text>
             </View>
           </View>
         </View>
@@ -493,7 +520,9 @@ Thank you.`;
           {/* Header stripe */}
           <View style={[styles.statusCardHeader, { backgroundColor: '#DC2626' }]}>
             <Warning size={28} color="#FFFFFF" weight="fill" />
-            <Text style={styles.statusCardHeaderText}>Application Not Approved</Text>
+            <Text style={styles.statusCardHeaderText}>
+              {t("card.applicationNotApproved", "Application Not Approved")}
+            </Text>
           </View>
 
           <View style={styles.statusCardBody}>
@@ -501,15 +530,20 @@ Thank you.`;
             <View style={[styles.dividerLine, { backgroundColor: '#FECACA' }]} />
 
             <Text style={[styles.statusMainMsg, { color: '#7F1D1D' }]}>
-              was unable to approve your card
+              {t("card.rejectedMsg", "was unable to approve your card")}
             </Text>
             <Text style={styles.statusSubMsg}>
-              Please contact us for more information about your application status.
+              {t(
+                "card.rejectedSubMsg",
+                "Please contact us for more information about your application status.",
+              )}
             </Text>
 
             {/* Contact buttons */}
             <View style={styles.contactSection}>
-              <Text style={styles.contactLabel}>Get in touch with us</Text>
+              <Text style={styles.contactLabel}>
+                {t("card.getInTouch", "Get in touch with us")}
+              </Text>
 
               <TouchableOpacity
                 style={styles.contactBtn}
@@ -518,7 +552,9 @@ Thank you.`;
               >
                 <Phone size={18} color="#1E3A8A" weight="fill" />
                 <View style={styles.contactBtnText}>
-                  <Text style={styles.contactBtnTitle}>Call Us</Text>
+                  <Text style={styles.contactBtnTitle}>
+                    {t("card.callUs", "Call Us")}
+                  </Text>
                   <Text style={styles.contactBtnValue}>{MHF.MHF_WHATSAPP_DISPLAY_NUMBER}</Text>
                 </View>
               </TouchableOpacity>
@@ -530,7 +566,9 @@ Thank you.`;
               >
                 <EnvelopeSimple size={18} color="#1E3A8A" weight="fill" />
                 <View style={styles.contactBtnText}>
-                  <Text style={styles.contactBtnTitle}>Email Us</Text>
+                  <Text style={styles.contactBtnTitle}>
+                    {t("card.emailUs", "Email Us")}
+                  </Text>
                   <Text style={styles.contactBtnValue}>{MHF.MHF_CC_EMAIL}</Text>
                 </View>
               </TouchableOpacity>
@@ -542,7 +580,9 @@ Thank you.`;
               >
                 <WhatsappLogo size={18} color="#15803D" weight="fill" />
                 <View style={styles.contactBtnText}>
-                  <Text style={[styles.contactBtnTitle, { color: '#14532D' }]}>WhatsApp</Text>
+                  <Text style={[styles.contactBtnTitle, { color: '#14532D' }]}>
+                    {t("card.whatsapp", "WhatsApp")}
+                  </Text>
                   <Text style={[styles.contactBtnValue, { color: '#15803D' }]}>{MHF.MHF_WHATSAPP_DISPLAY_NUMBER}</Text>
                 </View>
               </TouchableOpacity>
@@ -553,7 +593,9 @@ Thank you.`;
         <View style={styles.statusCard}>
           <View style={[styles.statusCardHeader, { backgroundColor: '#EA580C' }]}>
             <XCircle size={28} color="#FFFFFF" weight="fill" />
-            <Text style={styles.statusCardHeaderText}>Card Expired</Text>
+            <Text style={styles.statusCardHeaderText}>
+              {t("card.cardExpiredTitle", "Card Expired")}
+            </Text>
           </View>
 
           <View style={styles.statusCardBody}>
@@ -561,15 +603,20 @@ Thank you.`;
             <View style={[styles.dividerLine, { backgroundColor: '#FED7AA' }]} />
 
             <Text style={[styles.statusMainMsg, { color: '#7C2D12' }]}>
-              Your health card has expired
+              {t("card.expiredMsg", "Your health card has expired")}
             </Text>
             <Text style={styles.statusSubMsg}>
-              Renew your card to continue enjoying health benefits. After payment, our team will verify and activate your card.
+              {t(
+                "card.expiredSubMsg",
+                "Renew your card to continue enjoying health benefits. After payment, our team will verify and activate your card.",
+              )}
             </Text>
 
             <View style={[styles.pendingBadge, { borderColor: '#FED7AA', backgroundColor: '#FFF7ED' }]}>
               <XCircle size={12} color="#9A3412" weight="fill" />
-              <Text style={[styles.pendingBadgeText, { color: '#9A3412' }]}>Renewal Required</Text>
+              <Text style={[styles.pendingBadgeText, { color: '#9A3412' }]}>
+                {t("card.renewalRequired", "Renewal Required")}
+              </Text>
             </View>
 
             <TouchableOpacity
@@ -589,11 +636,16 @@ Thank you.`;
                 })
               }
             >
-              <Text style={styles.renewCardBtnText}>Renew Card Now</Text>
+              <Text style={styles.renewCardBtnText}>
+                {t("card.renewCardNow", "Renew Card Now")}
+              </Text>
             </TouchableOpacity>
 
             <Text style={styles.renewCardHint}>
-              After payment, your renewal will be reviewed and approved by our team.
+              {t(
+                "card.renewalHint",
+                "After payment, your renewal will be reviewed and approved by our team.",
+              )}
             </Text>
           </View>
         </View>
@@ -683,6 +735,9 @@ Thank you.`;
             <Text style={styles.howToUseText}>{s}</Text>
           </View>
         ))}
+        <View style={styles.howToUseNoteBox}>
+          <Text style={styles.howToUseNoteText}>{howToUseNote}</Text>
+        </View>
       </View>
 
       {/* PDF Preview Modal */}
@@ -726,23 +781,29 @@ Thank you.`;
                 {(card.phone || card.email || card.address || card.city || card.gender) && (
                   <View style={styles.pdfPreviewContactBox}>
                     <Text style={styles.pdfPreviewContactTitle}>
-                      Member Contact Details
+                      {t("card.memberContactDetails", "Member Contact Details")}
                     </Text>
                     {card.phone ? (
                       <View style={styles.pdfPreviewContactRow}>
-                        <Text style={styles.pdfPreviewContactLabel}>Phone</Text>
+                        <Text style={styles.pdfPreviewContactLabel}>
+                          {t("common.phone", "Phone")}
+                        </Text>
                         <Text style={styles.pdfPreviewContactValue}>{card.phone}</Text>
                       </View>
                     ) : null}
                     {card.email ? (
                       <View style={styles.pdfPreviewContactRow}>
-                        <Text style={styles.pdfPreviewContactLabel}>Email</Text>
+                        <Text style={styles.pdfPreviewContactLabel}>
+                          {t("common.email")}
+                        </Text>
                         <Text style={styles.pdfPreviewContactValue}>{card.email}</Text>
                       </View>
                     ) : null}
                     {(card.address || card.city) ? (
                       <View style={styles.pdfPreviewContactRow}>
-                        <Text style={styles.pdfPreviewContactLabel}>Address</Text>
+                        <Text style={styles.pdfPreviewContactLabel}>
+                          {t("common.address", "Address")}
+                        </Text>
                         <Text style={styles.pdfPreviewContactValue}>
                           {[card.address, card.city].filter(Boolean).join(", ")}
                         </Text>
@@ -750,7 +811,9 @@ Thank you.`;
                     ) : null}
                     {card.gender ? (
                       <View style={styles.pdfPreviewContactRow}>
-                        <Text style={styles.pdfPreviewContactLabel}>Gender</Text>
+                        <Text style={styles.pdfPreviewContactLabel}>
+                          {t("common.gender", "Gender")}
+                        </Text>
                         <Text style={styles.pdfPreviewContactValue}>{card.gender}</Text>
                       </View>
                     ) : null}
@@ -1240,6 +1303,15 @@ const styles = StyleSheet.create({
   },
   stepNumberText: { color: "#374151", fontWeight: "600" },
   howToUseText: { color: "#6B7280", fontSize: 13 },
+  howToUseNoteBox: {
+    marginTop: 4,
+    backgroundColor: "#FFFBEB",
+    borderWidth: 1,
+    borderColor: "#FDE68A",
+    borderRadius: 8,
+    padding: 10,
+  },
+  howToUseNoteText: { color: "#92400E", fontSize: 12, fontWeight: "600" },
   renewCardBtn: {
     marginTop: 14,
     backgroundColor: "#EA580C",

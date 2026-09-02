@@ -257,6 +257,7 @@ function ApplyCardRequest() {
           values: [
             { id: "Male", name: t("forms.common.options.male") },
             { id: "Female", name: t("forms.common.options.female") },
+            { id: "Other", name: t("forms.common.options.other") },
           ],
           validations: [{ name: "required", value: true }],
           path: "card_holder.gender",
@@ -428,6 +429,7 @@ function ApplyCardRequest() {
           values: [
             { id: "Male", name: t("forms.common.options.male") },
             { id: "Female", name: t("forms.common.options.female") },
+            { id: "Other", name: t("forms.common.options.other") },
           ],
           validations: [{ name: "required", value: true }],
         },

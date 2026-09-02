@@ -18,8 +18,8 @@ import {
   loginSuccess,
   logout,
   useLoginMutation,
-  useSaveNotificationTokenMutation,
 } from "@psi/shared-api";
+import { API_CONFIG } from "../constants/config";
 import { useLazyGetTermsVersionQuery } from "../api/legalApi";
 import { setLegalTermsRequired } from "../store/slices/legalSlice";
 import { logger } from "../utils/logger";
@@ -82,7 +82,6 @@ function LoginScreen({ navigation }: LoginScreenProps) {
   const [password, setPassword] = useState(""); //('Test@123');
   const [fcmToken, setFcmToken] = useState<string | null>(null);
   const [loginMutation, { isLoading, error }] = useLoginMutation();
-  const [saveNotificationToken] = useSaveNotificationTokenMutation();
   const [triggerGetTermsVersion] = useLazyGetTermsVersionQuery();
 
   useEffect(() => {
@@ -152,9 +151,14 @@ function LoginScreen({ navigation }: LoginScreenProps) {
       const tokenToSave = fcmToken || (await getFCMToken());
       if (tokenToSave) {
         try {
-          await saveNotificationToken({
-            notification_token: tokenToSave,
-          }).unwrap();
+          await fetch(`${API_CONFIG.BASE_URL}/customer/save-fcm-token`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${result.access_token}`,
+            },
+            body: JSON.stringify({ fcm_token: tokenToSave }),
+          });
         } catch (saveTokenError) {
           logger.error("Failed to save notification token:", saveTokenError);
         }

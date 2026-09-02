@@ -39,35 +39,50 @@ import { APP_CONFIG } from "../constants/config";
 
 const { width } = Dimensions.get("window");
 
-const ABOUT_IMPACT_STATS = [
-  {
-    key: "families",
-    icon: Users,
-    title: "37,000 Families Impacted",
-    subtitle: "Help and hope delivered across communities",
-    color: "#2563EB",
-    bg: "#EFF6FF",
-  },
-  {
-    key: "perFamily",
-    icon: HandHeart,
-    title: "2,500 per Family / Year",
-    subtitle: "Average annual support improving daily life",
-    color: "#10B981",
-    bg: "#ECFDF5",
-  },
-  {
-    key: "annualBenefit",
-    icon: TrendUp,
-    title: "9.25 Crores Annual Benefit",
-    subtitle: "Direct value reaching people who need it most",
-    color: "#7C3AED",
-    bg: "#F5F3FF",
-  },
-];
-
 export default function ProfileScreen() {
   const { t } = useTranslation();
+
+  const ABOUT_IMPACT_STATS = [
+    {
+      key: "families",
+      icon: Users,
+      title: t("profile.impactStats.families.title", "37,000 Families Impacted"),
+      subtitle: t(
+        "profile.impactStats.families.subtitle",
+        "Help and hope delivered across communities",
+      ),
+      color: "#2563EB",
+      bg: "#EFF6FF",
+    },
+    {
+      key: "perFamily",
+      icon: HandHeart,
+      title: t(
+        "profile.impactStats.perFamily.title",
+        "2,500 per Family / Year",
+      ),
+      subtitle: t(
+        "profile.impactStats.perFamily.subtitle",
+        "Average annual support improving daily life",
+      ),
+      color: "#10B981",
+      bg: "#ECFDF5",
+    },
+    {
+      key: "annualBenefit",
+      icon: TrendUp,
+      title: t(
+        "profile.impactStats.annualBenefit.title",
+        "9.25 Crores Annual Benefit",
+      ),
+      subtitle: t(
+        "profile.impactStats.annualBenefit.subtitle",
+        "Direct value reaching people who need it most",
+      ),
+      color: "#7C3AED",
+      bg: "#F5F3FF",
+    },
+  ];
   const [expanded, setExpanded] = useState<{ [k: string]: boolean }>({});
   const [imageModalVisible, setImageModalVisible] = useState(false);
   const navigation = useNavigation<any>();
@@ -117,10 +132,16 @@ export default function ProfileScreen() {
       if (canOpen) {
         await Linking.openURL(websiteUrl);
       } else {
-        Alert.alert("Error", "Unable to open website");
+        Alert.alert(
+          t("common.error"),
+          t("profile.unableToOpenWebsite", "Unable to open website"),
+        );
       }
     } catch {
-      Alert.alert("Error", "Unable to open website");
+      Alert.alert(
+        t("common.error"),
+        t("profile.unableToOpenWebsite", "Unable to open website"),
+      );
     }
   };
 
@@ -436,38 +457,44 @@ export default function ProfileScreen() {
                         <Sparkle size={18} color="#1D4ED8" />
                       </View>
                       <View style={{ flex: 1 }}>
-                        <Text style={styles.aboutHeading}>About Us</Text>
+                        <Text style={styles.aboutHeading}>
+                          {t("profile.aboutHeading", "About Us")}
+                        </Text>
                         <Text style={styles.aboutSubheading}>
-                          A Personal Story That Turned Grief Into a Mission of
-                          Health and Hope
+                          {t(
+                            "profile.aboutSubheading",
+                            "A Personal Story That Turned Grief Into a Mission of Health and Hope",
+                          )}
                         </Text>
                       </View>
                     </View>
 
                     <Text style={styles.aboutParagraph}>
-                      Founded in 2018 by Mr. SM Mustafa Ahmed, Mujtaba Helping
-                      Foundation (MHF) was born from a deeply personal tragedy
-                      that changed one family forever.
+                      {t(
+                        "profile.aboutParagraph1",
+                        "Founded in 2018 by Mr. SM Mustafa Ahmed, Mujtaba Helping Foundation (MHF) was born from a deeply personal tragedy that changed one family forever.",
+                      )}
                     </Text>
                     <Text style={styles.aboutParagraph}>
-                      Mr. Ahmed lost his 8-year-old son in a tragic
-                      electrocution accident, a pain no parent should ever face.
-                      From that heartbreak came a powerful promise: to protect
-                      other families from preventable loss.
+                      {t(
+                        "profile.aboutParagraph2",
+                        "Mr. Ahmed lost his 8-year-old son in a tragic electrocution accident, a pain no parent should ever face. From that heartbreak came a powerful promise: to protect other families from preventable loss.",
+                      )}
                     </Text>
                     <Text style={styles.aboutParagraphLast}>
-                      Today, MHF works to make healthcare affordable and
-                      accessible for underprivileged and middle-class families
-                      so that no one is left behind due to lack of access,
-                      support, or awareness.
+                      {t(
+                        "profile.aboutParagraph3",
+                        "Today, MHF works to make healthcare affordable and accessible for underprivileged and middle-class families so that no one is left behind due to lack of access, support, or awareness.",
+                      )}
                     </Text>
 
                     <View style={styles.promiseRow}>
                       <ShieldCheck size={18} color="#047857" />
                       <Text style={styles.promiseText}>
-                        Our mission is simple: protect lives, restore dignity,
-                        and create healthier futures for every family we can
-                        reach.
+                        {t(
+                          "profile.aboutPromise",
+                          "Our mission is simple: protect lives, restore dignity, and create healthier futures for every family we can reach.",
+                        )}
                       </Text>
                     </View>
 
@@ -507,18 +534,23 @@ export default function ProfileScreen() {
                         <Target size={18} color="#2563EB" />
                       </View>
                       <View style={{ flex: 1 }}>
-                        <Text style={styles.aboutHeading}>OUR MISSION</Text>
+                        <Text style={styles.aboutHeading}>
+                          {t("profile.missionHeading", "OUR MISSION")}
+                        </Text>
                         <Text style={styles.aboutSubheading}>
-                          Building health equity through affordable and
-                          accessible care
+                          {t(
+                            "profile.missionSubheading",
+                            "Building health equity through affordable and accessible care",
+                          )}
                         </Text>
                       </View>
                     </View>
 
                     <Text style={styles.aboutParagraphLast}>
-                      To make healthcare accessible and affordable for
-                      underprivileged families, reducing financial burdens and
-                      promoting health equity.
+                      {t(
+                        "profile.missionParagraph",
+                        "To make healthcare accessible and affordable for underprivileged families, reducing financial burdens and promoting health equity.",
+                      )}
                     </Text>
                   </View>
                 )}
@@ -535,16 +567,23 @@ export default function ProfileScreen() {
                         <Eye size={18} color="#10B981" />
                       </View>
                       <View style={{ flex: 1 }}>
-                        <Text style={styles.aboutHeading}>OUR VISION</Text>
+                        <Text style={styles.aboutHeading}>
+                          {t("profile.visionHeading", "OUR VISION")}
+                        </Text>
                         <Text style={styles.aboutSubheading}>
-                          Inclusive healthcare for every individual and family
+                          {t(
+                            "profile.visionSubheading",
+                            "Inclusive healthcare for every individual and family",
+                          )}
                         </Text>
                       </View>
                     </View>
 
                     <Text style={styles.aboutParagraphLast}>
-                      To build a healthcare ecosystem where no one suffers due
-                      to inaccessibility or lack of resources.
+                      {t(
+                        "profile.visionParagraph",
+                        "To build a healthcare ecosystem where no one suffers due to inaccessibility or lack of resources.",
+                      )}
                     </Text>
                   </View>
                 )}
@@ -561,19 +600,20 @@ export default function ProfileScreen() {
                         <UsersThree size={18} color="#EA580C" />
                       </View>
                       <View style={{ flex: 1 }}>
-                        <Text style={styles.aboutHeading}>What We Do?</Text>
-                        <Text style={styles.aboutSubheading}>Our Services</Text>
+                        <Text style={styles.aboutHeading}>
+                          {t("profile.teamHeading", "What We Do?")}
+                        </Text>
+                        <Text style={styles.aboutSubheading}>
+                          {t("profile.teamSubheading", "Our Services")}
+                        </Text>
                       </View>
                     </View>
 
                     <Text style={styles.aboutParagraphLast}>
-                      We provide essential humanitarian services, including
-                      healthcare, education for underprivileged children,
-                      emergency relief, food and blanket distribution, and
-                      orphan care. Our mission is to support vulnerable
-                      communities with compassion and commitment, ensuring
-                      access to vital resources and a better quality of life for
-                      those in need.
+                      {t(
+                        "profile.teamParagraph",
+                        "We provide essential humanitarian services, including healthcare, education for underprivileged children, emergency relief, food and blanket distribution, and orphan care. Our mission is to support vulnerable communities with compassion and commitment, ensuring access to vital resources and a better quality of life for those in need.",
+                      )}
                     </Text>
                   </View>
                 )}
@@ -590,25 +630,35 @@ export default function ProfileScreen() {
                         <Users size={18} color="#7C3AED" />
                       </View>
                       <View style={{ flex: 1 }}>
-                        <Text style={styles.aboutHeading}>OUR BOARD</Text>
+                        <Text style={styles.aboutHeading}>
+                          {t("profile.boardHeading", "OUR BOARD")}
+                        </Text>
                         <Text style={styles.aboutSubheading}>
-                          A foundation built on service and community impact
+                          {t(
+                            "profile.boardSubheading",
+                            "A foundation built on service and community impact",
+                          )}
                         </Text>
                       </View>
                     </View>
 
                     <Text style={styles.aboutParagraph}>
-                      MHF was officially established in 2015 at Khairtabad,
-                      Hyderabad, Telangana.
+                      {t(
+                        "profile.boardParagraph1",
+                        "MHF was officially established in 2015 at Khairtabad, Hyderabad, Telangana.",
+                      )}
                     </Text>
                     <Text style={styles.aboutParagraph}>
-                      The aim of creating this organization is to help mankind
-                      with every possible effort within our hands.
+                      {t(
+                        "profile.boardParagraph2",
+                        "The aim of creating this organization is to help mankind with every possible effort within our hands.",
+                      )}
                     </Text>
                     <Text style={styles.aboutParagraphLast}>
-                      We focus on making the maximum meaningful contribution to
-                      the community. Our members and volunteers carry the
-                      momentum that drives lasting change for the cause.
+                      {t(
+                        "profile.boardParagraph3",
+                        "We focus on making the maximum meaningful contribution to the community. Our members and volunteers carry the momentum that drives lasting change for the cause.",
+                      )}
                     </Text>
                   </View>
                 )}
@@ -625,9 +675,14 @@ export default function ProfileScreen() {
                         <Phone size={18} color="#0369A1" />
                       </View>
                       <View style={{ flex: 1 }}>
-                        <Text style={styles.aboutHeading}>Contact</Text>
+                        <Text style={styles.aboutHeading}>
+                          {t("profile.contact")}
+                        </Text>
                         <Text style={styles.aboutSubheading}>
-                          Reach us for support, services, and partnerships
+                          {t(
+                            "profile.contactSubheading",
+                            "Reach us for support, services, and partnerships",
+                          )}
                         </Text>
                       </View>
                     </View>
@@ -642,8 +697,10 @@ export default function ProfileScreen() {
                         <MapPin size={16} color="#1D4ED8" />
                       </View>
                       <Text style={styles.contactText}>
-                        #6-3-1240/219/4, 3rd Floor, M.S Maqtha, Raj Bhavan,
-                        Somajiguda, Hyderabad, Telangana, India - 500082
+                        {t(
+                          "profile.contactAddress",
+                          "#6-3-1240/219/4, 3rd Floor, M.S Maqtha, Raj Bhavan, Somajiguda, Hyderabad, Telangana, India - 500082",
+                        )}
                       </Text>
                     </View>
 
@@ -681,7 +738,7 @@ export default function ProfileScreen() {
                       onPress={handleOpenWebsite}
                     >
                       <Text style={styles.websiteLinkText}>
-                        Visit Our Website
+                        {t("profile.visitWebsite", "Visit Our Website")}
                       </Text>
                     </TouchableOpacity>
                   </View>

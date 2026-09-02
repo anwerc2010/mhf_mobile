@@ -14,7 +14,10 @@
     "loading": "جاري التحميل...",
     "error": "خطأ",
     "success": "نجح",
-    "step": "خطوة"
+    "step": "خطوة",
+    "phone": "هاتف",
+    "address": "عنوان",
+    "gender": "الجنس"
   },
   "filePicker": {
     "chooseUploadType": "اختر نوع التحميل",
@@ -156,10 +159,45 @@
     },
     "howToUse": {
       "title": "كيفية الاستخدام",
-      "step1": "قم بزيارة أي منشأة رعاية صحية شريكة",
-      "step2": "أظهر بطاقتك الصحية الرقمية أو معرف العضو",
-      "step3": "احصل على الخدمات وفقًا لمزايا بطاقتك"
-    }
+      "step1": "قم بزيارة أي من منشآت الرعاية الصحية الشريكة الموثوقة واستمتع بالمزايا الحصرية لبطاقتك الصحية",
+      "step2": "أظهر بطاقتك الصحية الرقمية وشاركها مع البريد الإلكتروني للمستشفى للتحقق",
+      "step3": "احصل على الخدمات الصحية بعناية، لضمان الدعم عند الحاجة إليه",
+      "note": "ملاحظة: إذا كنت مريضًا حاليًا، فلن يتم قبول البطاقة في المستشفيات"
+    },
+    "underReview": "قيد المراجعة",
+    "pendingReviewMsg": "تقوم بمراجعة بياناتك",
+    "pendingReviewSubMsg": "بمجرد التحقق من بطاقتك، ستتم الموافقة عليها وستظهر هنا تلقائيًا. لا حاجة لأي إجراء من جانبك.",
+    "stepApplicationSubmitted": "تم تقديم الطلب",
+    "stepAdminVerification": "التحقق الإداري قيد التقدم",
+    "stepCardActivated": "تم تفعيل البطاقة",
+    "pendingApproval": "بانتظار الموافقة",
+    "applicationNotApproved": "لم تتم الموافقة على الطلب",
+    "rejectedMsg": "تعذر عليها الموافقة على بطاقتك",
+    "rejectedSubMsg": "يرجى التواصل معنا لمزيد من المعلومات حول حالة طلبك.",
+    "getInTouch": "تواصل معنا",
+    "callUs": "اتصل بنا",
+    "emailUs": "راسلنا عبر البريد الإلكتروني",
+    "whatsapp": "واتساب",
+    "cardExpiredTitle": "انتهت صلاحية البطاقة",
+    "expiredMsg": "انتهت صلاحية بطاقتك الصحية",
+    "expiredSubMsg": "جدد بطاقتك للاستمرار في الاستفادة من المزايا الصحية. بعد الدفع، سيقوم فريقنا بالتحقق وتفعيل بطاقتك.",
+    "renewalRequired": "التجديد مطلوب",
+    "renewCardNow": "جدد البطاقة الآن",
+    "renewalHint": "بعد الدفع، ستتم مراجعة تجديدك والموافقة عليه من قبل فريقنا.",
+    "memberContactDetails": "بيانات التواصل الخاصة بالعضو",
+    "providerEmailSubjectPrefix": "زيارة المستشفى – بطاقة مؤسسة Mujtaba Helping Foundation الصحية",
+    "providerEmailGreeting": "عزيزي {{name}}،",
+    "healthcareProvider": "مقدم الرعاية الصحية",
+    "providerEmailIntro": "أنا عضو في مؤسسة Mujtaba Helping Foundation وسأزور منشأتكم. يرجى الاطلاع على ملف بطاقتي الصحية المرفق بصيغة PDF.",
+    "healthCardDetailsHeading": "تفاصيل البطاقة الصحية",
+    "cardHolderLabel": "صاحب البطاقة",
+    "membershipIdLabel": "رقم العضوية",
+    "bloodGroupLabel": "فصيلة الدم",
+    "dateOfIssueLabel": "تاريخ الإصدار",
+    "dateOfExpiryLabel": "تاريخ الانتهاء",
+    "visitingProviderHeading": "مقدم الرعاية الذي ستتم زيارته",
+    "providerLabel": "مقدم الرعاية",
+    "thankYou": "شكرًا لكم."
   },
   "profile": {
     "title": "ملفي الشخصي",
@@ -192,7 +230,47 @@
     "profileImage": "صورة الملف الشخصي",
     "profileImageHint": "JPG أو PNG، بحد أقصى 20 ميغابايت",
     "uploadingImage": "جارٍ تحميل الصورة...",
-    "imageUploadFailed": "فشل تحميل الصورة"
+    "imageUploadFailed": "فشل تحميل الصورة",
+    "joiningDate": "تاريخ الانضمام",
+    "cardNumber": "رقم البطاقة",
+    "unableToOpenWebsite": "تعذر فتح الموقع الإلكتروني",
+    "impactStats": {
+      "families": {
+        "title": "37,000 عائلة استفادت",
+        "subtitle": "المساعدة والأمل يصلان إلى المجتمعات"
+      },
+      "perFamily": {
+        "title": "2,500 لكل عائلة / سنة",
+        "subtitle": "متوسط الدعم السنوي الذي يحسن الحياة اليومية"
+      },
+      "annualBenefit": {
+        "title": "9.25 كرور فائدة سنوية",
+        "subtitle": "قيمة مباشرة تصل إلى من هم في أشد الحاجة إليها"
+      }
+    },
+    "aboutHeading": "من نحن",
+    "aboutSubheading": "قصة شخصية حولت الحزن إلى مهمة من الصحة والأمل",
+    "aboutParagraph1": "تأسست مؤسسة Mujtaba Helping Foundation (MHF) عام 2018 على يد السيد إس إم مصطفى أحمد، وُلدت من مأساة شخصية عميقة غيّرت حياة عائلة إلى الأبد.",
+    "aboutParagraph2": "فقد السيد أحمد ابنه البالغ من العمر 8 سنوات في حادث صعق كهربائي مأساوي، وهو ألم لا ينبغي لأي والد أن يواجهه. ومن ذلك الحزن جاء وعد قوي: حماية العائلات الأخرى من الخسارة التي يمكن تجنبها.",
+    "aboutParagraph3": "اليوم، تعمل MHF على جعل الرعاية الصحية ميسورة التكلفة ومتاحة للعائلات المحرومة والطبقة المتوسطة حتى لا يُترك أحد بسبب نقص الوصول أو الدعم أو الوعي.",
+    "aboutPromise": "مهمتنا بسيطة: حماية الأرواح، واستعادة الكرامة، وخلق مستقبل صحي أفضل لكل عائلة يمكننا الوصول إليها.",
+    "missionHeading": "مهمتنا",
+    "missionSubheading": "بناء العدالة الصحية من خلال رعاية ميسورة التكلفة ومتاحة",
+    "missionParagraph": "جعل الرعاية الصحية متاحة وميسورة التكلفة للعائلات المحرومة، مما يقلل الأعباء المالية ويعزز العدالة الصحية.",
+    "visionHeading": "رؤيتنا",
+    "visionSubheading": "رعاية صحية شاملة لكل فرد وعائلة",
+    "visionParagraph": "بناء نظام رعاية صحية بيئي حيث لا يعاني أحد بسبب نقص الوصول أو نقص الموارد.",
+    "teamHeading": "ماذا نفعل؟",
+    "teamSubheading": "خدماتنا",
+    "teamParagraph": "نقدم خدمات إنسانية أساسية، بما في ذلك الرعاية الصحية والتعليم للأطفال المحرومين والإغاثة الطارئة وتوزيع الطعام والبطانيات ورعاية الأيتام. مهمتنا هي دعم المجتمعات الضعيفة بالتعاطف والالتزام، وضمان الوصول إلى الموارد الحيوية وحياة أفضل لمن هم في حاجة.",
+    "boardHeading": "مجلس إدارتنا",
+    "boardSubheading": "مؤسسة مبنية على الخدمة والأثر المجتمعي",
+    "boardParagraph1": "تأسست MHF رسميًا عام 2015 في خيرة أباد، حيدر أباد، تيلانجانا.",
+    "boardParagraph2": "الهدف من إنشاء هذه المنظمة هو مساعدة البشرية بكل جهد ممكن في متناول أيدينا.",
+    "boardParagraph3": "نركز على تقديم أقصى مساهمة ذات معنى للمجتمع. أعضاؤنا ومتطوعونا يحملون الزخم الذي يقود التغيير الدائم من أجل القضية.",
+    "contactSubheading": "تواصل معنا للحصول على الدعم والخدمات والشراكات",
+    "contactAddress": "#6-3-1240/219/4, 3rd Floor, M.S Maqtha, Raj Bhavan, Somajiguda, Hyderabad, Telangana, India - 500082",
+    "visitWebsite": "زيارة موقعنا الإلكتروني"
   },
   "settings": {
     "title": "شاشة الإعدادات"
@@ -230,7 +308,15 @@
       "hoursAgo": "منذ ساعات",
       "dayAgo": "منذ يوم",
       "daysAgo": "منذ أيام"
-    }
+    },
+    "count": "{{count}} إشعار",
+    "count_plural": "{{count}} إشعارات",
+    "subtitleEmpty": "لا توجد إشعارات",
+    "loadingTitle": "جارٍ تحميل الإشعارات",
+    "loadingText": "يرجى الانتظار بينما نجلب التحديثات الخاصة بك.",
+    "unableToLoadTitle": "تعذر تحميل الإشعارات",
+    "unableToLoadText": "يرجى المحاولة مرة أخرى بعد لحظات.",
+    "dismissError": "تعذر إغلاق هذا الإشعار. يرجى المحاولة مرة أخرى."
   },
   "network": {
     "noConnection": "لا يوجد اتصال بالإنترنت",
@@ -263,7 +349,7 @@
       "clinics": "عيادات",
       "rehab": "التأهيل",
       "labs": "Old Age Home",
-      "oldAgeHome": "Old Age Home",
+      "oldAgeHome": "دار المسنين",
       "surgical": "الجراحية"
     },
     "provider": {
@@ -335,7 +421,12 @@
     "specialities": "التخصصات",
     "benefits": "المزايا",
     "viewOnMap": "عرض على الخريطة",
-    "callNow": "اتصل الآن"
+    "callNow": "اتصل الآن",
+    "genericProvider": "مقدم الرعاية الصحية",
+    "enquirySubjectPrefix": "استفسار",
+    "enquiryIntro": "وجدت منشأتكم من خلال تطبيق Mujtaba Helping Foundation وأود التواصل معكم.",
+    "providerDetailsHeading": "تفاصيل مقدم الرعاية",
+    "type": "النوع"
   },
   "equipment": {
     "subtitle": "عرض سجل طلبات المعدات الخاصة بك",
@@ -407,7 +498,7 @@
       "gender": "الجنس",
       "genderMale": "ذكر",
       "genderFemale": "أنثى",
-      "genderOther": "آخر",
+      "genderOther": "أفضل عدم الإفصاح",
       "address": "العنوان",
       "addressPlaceholder": "أدخل عنوانك الكامل",
       "participationType": "اختر كيف تريد المشاركة",
@@ -468,6 +559,47 @@
     "submit": {
       "successMessage": "تم إرسال طلب الدم بنجاح",
       "errorMessage": "فشل في إرسال طلب الدم. يرجى المحاولة مرة أخرى."
+    },
+    "patientDetailsTitle": "تفاصيل المريض",
+    "requesterDetailsTitle": "تفاصيل مقدم الطلب",
+    "addressDetailsTitle": "تفاصيل العنوان",
+    "remarksTitle": "ملاحظات",
+    "submitButton": "إرسال الطلب",
+    "fields": {
+      "patientName": "اسم المريض",
+      "patientNamePlaceholder": "أدخل اسم المريض",
+      "patientAge": "عمر المريض",
+      "patientAgePlaceholder": "أدخل عمر المريض",
+      "patientGender": "جنس المريض",
+      "requiredBloodGroup": "فصيلة الدم المطلوبة",
+      "unitsRequired": "عدد الوحدات المطلوبة",
+      "unitsRequiredPlaceholder": "أدخل عدد الوحدات المطلوبة",
+      "requiredDatetime": "التاريخ والوقت المطلوب",
+      "urgencyLevel": "مستوى الأولوية",
+      "hospitalName": "اسم المستشفى",
+      "hospitalNamePlaceholder": "أدخل اسم المستشفى",
+      "doctorName": "اسم الطبيب",
+      "doctorNamePlaceholder": "أدخل اسم الطبيب",
+      "doctorContact": "رقم تواصل الطبيب",
+      "doctorContactPlaceholder": "أدخل رقم تواصل الطبيب",
+      "requesterName": "اسم مقدم الطلب",
+      "requesterNamePlaceholder": "أدخل اسم مقدم الطلب",
+      "requesterMobile": "رقم جوال مقدم الطلب",
+      "requesterMobilePlaceholder": "أدخل رقم جوال مقدم الطلب",
+      "email": "البريد الإلكتروني (اختياري)",
+      "emailPlaceholder": "أدخل عنوان البريد الإلكتروني",
+      "address": "العنوان",
+      "addressPlaceholder": "أدخل العنوان",
+      "pincode": "الرمز البريدي",
+      "pincodePlaceholder": "أدخل الرمز البريدي",
+      "remarks": "ملاحظات",
+      "remarksPlaceholder": "أدخل ملاحظات أو تفاصيل إضافية"
+    },
+    "urgency": {
+      "low": "منخفضة",
+      "medium": "متوسطة",
+      "high": "عالية",
+      "critical": "حرجة"
     }
   },
   "relief": {
@@ -591,7 +723,7 @@
       "options": {
         "male": "ذكر",
         "female": "أنثى",
-        "other": "أخرى",
+        "other": "أفضل عدم الإفصاح",
         "single": "أعزب",
         "married": "متزوج",
         "yes": "نعم",
@@ -903,5 +1035,28 @@
         "submitFailed": "فشل في تقديم طلب المعدات. يرجى المحاولة مرة أخرى."
       }
     }
+  },
+  "terms": {
+    "beforeContinue": "قبل المتابعة",
+    "reviewPrompt": "يرجى مراجعة الشروط والأحكام والموافقة عليها لاستخدام خدمات مؤسسة Mujtaba Helping Foundation.",
+    "acceptContinue": "أوافق ومتابعة",
+    "mustAccept": "يجب عليك الموافقة للمتابعة في استخدام التطبيق",
+    "acceptError": "فشل في قبول الشروط. يرجى التحقق من اتصالك والمحاولة مرة أخرى.",
+    "title": "الشروط والأحكام",
+    "accessibilityLabel": "الشروط والأحكام",
+    "intro": "باستخدامك لخدمات مؤسسة Mujtaba Helping Foundation، فإنك توافق على ما يلي:",
+    "points": [
+      "ستقدم معلومات دقيقة وكاملة.",
+      "أنت مسؤول عن الحفاظ على أمان حسابك.",
+      "تُقدَّم الخدمات للاستخدام الخيري وغير التجاري فقط.",
+      "لن تسيء استخدام المنصة أو تعطلها.",
+      "سيتواصل فريقنا معك خلال 24 ساعة.",
+      "سيتم التعامل مع بياناتك الشخصية والصحية وفقًا لسياسة الخصوصية الخاصة بنا.",
+      "تُقدَّم الخدمات على أساس بذل أفضل جهد ولا يمكن ضمان التوفر.",
+      "يجوز لنا تعليق الحسابات التي تنتهك هذه الشروط."
+    ],
+    "checkboxLabel": "لقد قرأت ووافقت على الشروط والأحكام وسياسة الخصوصية.",
+    "collapsedHint": "اضغط للمراجعة والموافقة",
+    "agreed": "لقد وافقت على الشروط والأحكام"
   }
 }

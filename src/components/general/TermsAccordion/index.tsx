@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { useTheme } from "../../../hooks/useTheme";
 import { spacing } from "../../../constants/spacing";
+import { useTranslation } from "react-i18next";
 
 // Enable LayoutAnimation on Android
 if (
@@ -20,7 +21,7 @@ if (
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-const NGO_TERMS_POINTS = [
+const NGO_TERMS_POINTS_FALLBACK = [
   "You will provide accurate and complete information.",
   "You are responsible for maintaining your account security.",
   "Services are provided for charitable and non-commercial use only.",
@@ -43,8 +44,13 @@ export default function TermsAccordion({
   onChange,
 }: TermsAccordionProps) {
   const theme = useTheme();
+  const { t } = useTranslation();
   const [expanded, setExpanded] = React.useState(false);
   const rotateAnim = useRef(new Animated.Value(0)).current;
+
+  const ngoTermsPoints = NGO_TERMS_POINTS_FALLBACK.map((fallback, index) =>
+    t(`terms.points.${index}`, fallback),
+  );
 
   const toggleExpand = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -78,7 +84,10 @@ export default function TermsAccordion({
         activeOpacity={0.7}
         accessibilityRole="button"
         accessibilityState={{ expanded }}
-        accessibilityLabel="Terms and Conditions"
+        accessibilityLabel={t(
+          "terms.accessibilityLabel",
+          "Terms and Conditions",
+        )}
       >
         <View style={styles.headerLeft}>
           <View
@@ -90,7 +99,7 @@ export default function TermsAccordion({
             <Text style={styles.iconText}>📋</Text>
           </View>
           <Text style={[styles.headerTitle, { color: theme.colors.text }]}>
-            Terms & Conditions
+            {t("terms.title", "Terms & Conditions")}
           </Text>
         </View>
 
@@ -111,11 +120,14 @@ export default function TermsAccordion({
           <Text
             style={[styles.introText, { color: theme.colors.textSecondary }]}
           >
-            By using MH Foundation services, you agree to the following:
+            {t(
+              "terms.intro",
+              "By using MH Foundation services, you agree to the following:",
+            )}
           </Text>
 
           {/* Bullet points */}
-          {NGO_TERMS_POINTS.map((point, index) => (
+          {ngoTermsPoints.map((point, index) => (
             <View key={index} style={styles.bulletRow}>
               <Text style={[styles.bullet, { color: theme.colors.primary }]}>
                 •
@@ -152,8 +164,10 @@ export default function TermsAccordion({
               {value && <Text style={styles.checkmark}>✓</Text>}
             </View>
             <Text style={[styles.checkboxLabel, { color: theme.colors.text }]}>
-              I have read and agree to the Terms & Conditions and Privacy
-              Policy.
+              {t(
+                "terms.checkboxLabel",
+                "I have read and agree to the Terms & Conditions and Privacy Policy.",
+              )}
             </Text>
           </TouchableOpacity>
         </View>
@@ -164,7 +178,7 @@ export default function TermsAccordion({
         <Text
           style={[styles.collapsedHint, { color: theme.colors.textSecondary }]}
         >
-          Tap to review and agree
+          {t("terms.collapsedHint", "Tap to review and agree")}
         </Text>
       )}
 
@@ -172,7 +186,7 @@ export default function TermsAccordion({
       {!expanded && value && (
         <View style={styles.agreedRow}>
           <Text style={[styles.agreedText, { color: theme.colors.success }]}>
-            ✓ You have agreed to the Terms & Conditions
+            ✓ {t("terms.agreed", "You have agreed to the Terms & Conditions")}
           </Text>
         </View>
       )}

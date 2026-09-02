@@ -14,7 +14,10 @@
     "loading": "Loading...",
     "error": "Error",
     "success": "Success",
-    "step": "Step"
+    "step": "Step",
+    "phone": "Phone",
+    "address": "Address",
+    "gender": "Gender"
   },
   "filePicker": {
     "chooseUploadType": "Choose Upload Type",
@@ -156,10 +159,45 @@
     },
     "howToUse": {
       "title": "How to Use",
-      "step1": "Visit any partner healthcare facility",
-      "step2": "Show your digital health card or Member ID",
-      "step3": "Receive services as per your card benefits"
-    }
+      "step1": "Visit any of our trusted partner healthcare facilities and enjoy exclusive health card benefits",
+      "step2": "Show your digital health card and share it with the hospital's email ID for verification",
+      "step3": "Receive healthcare services with care, ensuring support when you need it most",
+      "note": "Note: If you are an existing patient, the card will not be accepted at the hospitals"
+    },
+    "underReview": "Under Review",
+    "pendingReviewMsg": "is reviewing your details",
+    "pendingReviewSubMsg": "Once your card is verified, it will be approved and become visible here automatically. No action needed from your side.",
+    "stepApplicationSubmitted": "Application submitted",
+    "stepAdminVerification": "Admin verification in progress",
+    "stepCardActivated": "Card activated",
+    "pendingApproval": "Pending Approval",
+    "applicationNotApproved": "Application Not Approved",
+    "rejectedMsg": "was unable to approve your card",
+    "rejectedSubMsg": "Please contact us for more information about your application status.",
+    "getInTouch": "Get in touch with us",
+    "callUs": "Call Us",
+    "emailUs": "Email Us",
+    "whatsapp": "WhatsApp",
+    "cardExpiredTitle": "Card Expired",
+    "expiredMsg": "Your health card has expired",
+    "expiredSubMsg": "Renew your card to continue enjoying health benefits. After payment, our team will verify and activate your card.",
+    "renewalRequired": "Renewal Required",
+    "renewCardNow": "Renew Card Now",
+    "renewalHint": "After payment, your renewal will be reviewed and approved by our team.",
+    "memberContactDetails": "Member Contact Details",
+    "providerEmailSubjectPrefix": "Hospital Visit – Mujtaba Helping Foundation Health Card",
+    "providerEmailGreeting": "Dear {{name}},",
+    "healthcareProvider": "Healthcare Provider",
+    "providerEmailIntro": "I am a Mujtaba Helping Foundation member and will be visiting your facility. Please find my Mujtaba Helping Foundation Health Card PDF attached for your reference.",
+    "healthCardDetailsHeading": "HEALTH CARD DETAILS",
+    "cardHolderLabel": "Card Holder",
+    "membershipIdLabel": "Membership ID",
+    "bloodGroupLabel": "Blood Group",
+    "dateOfIssueLabel": "Date of Issue",
+    "dateOfExpiryLabel": "Date of Expiry",
+    "visitingProviderHeading": "VISITING PROVIDER",
+    "providerLabel": "Provider",
+    "thankYou": "Thank you."
   },
   "profile": {
     "title": "My Profile",
@@ -192,7 +230,47 @@
     "profileImage": "Profile Image",
     "profileImageHint": "JPG or PNG, max 20 MB",
     "uploadingImage": "Uploading image...",
-    "imageUploadFailed": "Image upload failed"
+    "imageUploadFailed": "Image upload failed",
+    "joiningDate": "Joining Date",
+    "cardNumber": "Card Number",
+    "unableToOpenWebsite": "Unable to open website",
+    "impactStats": {
+      "families": {
+        "title": "37,000 Families Impacted",
+        "subtitle": "Help and hope delivered across communities"
+      },
+      "perFamily": {
+        "title": "2,500 per Family / Year",
+        "subtitle": "Average annual support improving daily life"
+      },
+      "annualBenefit": {
+        "title": "9.25 Crores Annual Benefit",
+        "subtitle": "Direct value reaching people who need it most"
+      }
+    },
+    "aboutHeading": "About Us",
+    "aboutSubheading": "A Personal Story That Turned Grief Into a Mission of Health and Hope",
+    "aboutParagraph1": "Founded in 2018 by Mr. SM Mustafa Ahmed, Mujtaba Helping Foundation (MHF) was born from a deeply personal tragedy that changed one family forever.",
+    "aboutParagraph2": "Mr. Ahmed lost his 8-year-old son in a tragic electrocution accident, a pain no parent should ever face. From that heartbreak came a powerful promise: to protect other families from preventable loss.",
+    "aboutParagraph3": "Today, MHF works to make healthcare affordable and accessible for underprivileged and middle-class families so that no one is left behind due to lack of access, support, or awareness.",
+    "aboutPromise": "Our mission is simple: protect lives, restore dignity, and create healthier futures for every family we can reach.",
+    "missionHeading": "OUR MISSION",
+    "missionSubheading": "Building health equity through affordable and accessible care",
+    "missionParagraph": "To make healthcare accessible and affordable for underprivileged families, reducing financial burdens and promoting health equity.",
+    "visionHeading": "OUR VISION",
+    "visionSubheading": "Inclusive healthcare for every individual and family",
+    "visionParagraph": "To build a healthcare ecosystem where no one suffers due to inaccessibility or lack of resources.",
+    "teamHeading": "What We Do?",
+    "teamSubheading": "Our Services",
+    "teamParagraph": "We provide essential humanitarian services, including healthcare, education for underprivileged children, emergency relief, food and blanket distribution, and orphan care. Our mission is to support vulnerable communities with compassion and commitment, ensuring access to vital resources and a better quality of life for those in need.",
+    "boardHeading": "OUR BOARD",
+    "boardSubheading": "A foundation built on service and community impact",
+    "boardParagraph1": "MHF was officially established in 2015 at Khairtabad, Hyderabad, Telangana.",
+    "boardParagraph2": "The aim of creating this organization is to help mankind with every possible effort within our hands.",
+    "boardParagraph3": "We focus on making the maximum meaningful contribution to the community. Our members and volunteers carry the momentum that drives lasting change for the cause.",
+    "contactSubheading": "Reach us for support, services, and partnerships",
+    "contactAddress": "#6-3-1240/219/4, 3rd Floor, M.S Maqtha, Raj Bhavan, Somajiguda, Hyderabad, Telangana, India - 500082",
+    "visitWebsite": "Visit Our Website"
   },
   "settings": {
     "title": "Settings Screen"
@@ -230,7 +308,15 @@
       "hoursAgo": "hours ago",
       "dayAgo": "day ago",
       "daysAgo": "days ago"
-    }
+    },
+    "count": "{{count}} notification",
+    "count_plural": "{{count}} notifications",
+    "subtitleEmpty": "No notifications",
+    "loadingTitle": "Loading Notifications",
+    "loadingText": "Please wait while we fetch your updates.",
+    "unableToLoadTitle": "Unable to Load Notifications",
+    "unableToLoadText": "Please try again in a moment.",
+    "dismissError": "Couldn't dismiss this notification. Please try again."
   },
   "network": {
     "noConnection": "No Internet Connection",
@@ -270,7 +356,7 @@
       "gender": "Gender",
       "genderMale": "Male",
       "genderFemale": "Female",
-      "genderOther": "Other",
+      "genderOther": "Prefer not to declare",
       "address": "Address",
       "addressPlaceholder": "Enter your complete address",
       "participationType": "Choose how you want to participate",
@@ -481,7 +567,12 @@
     "specialities": "Specialities",
     "benefits": "Benefits",
     "viewOnMap": "View on Map",
-    "callNow": "Call Now"
+    "callNow": "Call Now",
+    "genericProvider": "Healthcare Provider",
+    "enquirySubjectPrefix": "Enquiry",
+    "enquiryIntro": "I found your facility through the Mujtaba Helping Foundation app and would like to get in touch.",
+    "providerDetailsHeading": "PROVIDER DETAILS",
+    "type": "Type"
   },
   "equipment": {
     "subtitle": "View your equipment request history",
@@ -531,6 +622,47 @@
     "submit": {
       "successMessage": "Blood request submitted successfully",
       "errorMessage": "Failed to submit blood request. Please try again."
+    },
+    "patientDetailsTitle": "Patient Details",
+    "requesterDetailsTitle": "Requester Details",
+    "addressDetailsTitle": "Address Details",
+    "remarksTitle": "Remarks",
+    "submitButton": "Submit Request",
+    "fields": {
+      "patientName": "Patient Name",
+      "patientNamePlaceholder": "Enter patient name",
+      "patientAge": "Patient Age",
+      "patientAgePlaceholder": "Enter patient age",
+      "patientGender": "Patient Gender",
+      "requiredBloodGroup": "Required Blood Group",
+      "unitsRequired": "Units Required",
+      "unitsRequiredPlaceholder": "Enter units required",
+      "requiredDatetime": "Required Date & Time",
+      "urgencyLevel": "Urgency Level",
+      "hospitalName": "Hospital Name",
+      "hospitalNamePlaceholder": "Enter hospital name",
+      "doctorName": "Doctor Name",
+      "doctorNamePlaceholder": "Enter doctor name",
+      "doctorContact": "Doctor Contact",
+      "doctorContactPlaceholder": "Enter doctor contact number",
+      "requesterName": "Requester Name",
+      "requesterNamePlaceholder": "Enter requester name",
+      "requesterMobile": "Requester Mobile",
+      "requesterMobilePlaceholder": "Enter requester mobile number",
+      "email": "Email (optional)",
+      "emailPlaceholder": "Enter email address",
+      "address": "Address",
+      "addressPlaceholder": "Enter address",
+      "pincode": "Pincode",
+      "pincodePlaceholder": "Enter pincode",
+      "remarks": "Remarks",
+      "remarksPlaceholder": "Enter remarks or additional details"
+    },
+    "urgency": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "critical": "Critical"
     }
   },
   "payment": {
@@ -591,7 +723,7 @@
       "options": {
         "male": "Male",
         "female": "Female",
-        "other": "Other",
+        "other": "Prefer not to declare",
         "single": "Single",
         "married": "Married",
         "yes": "Yes",
@@ -903,5 +1035,28 @@
         "submitFailed": "Failed to submit equipment request. Please try again."
       }
     }
+  },
+  "terms": {
+    "beforeContinue": "Before You Continue",
+    "reviewPrompt": "Please review and accept our Terms & Conditions to use MH Foundation services.",
+    "acceptContinue": "Accept & Continue",
+    "mustAccept": "You must accept to continue using the app",
+    "acceptError": "Failed to accept terms. Please check your connection and try again.",
+    "title": "Terms & Conditions",
+    "accessibilityLabel": "Terms and Conditions",
+    "intro": "By using MH Foundation services, you agree to the following:",
+    "points": [
+      "You will provide accurate and complete information.",
+      "You are responsible for maintaining your account security.",
+      "Services are provided for charitable and non-commercial use only.",
+      "You will not misuse or disrupt the platform.",
+      "Our team will follow up with you within 24 hours.",
+      "Your personal and health data will be handled as per our Privacy Policy.",
+      "Services are provided on a best-effort basis and availability is not guaranteed.",
+      "We may suspend accounts that violate these terms."
+    ],
+    "checkboxLabel": "I have read and agree to the Terms & Conditions and Privacy Policy.",
+    "collapsedHint": "Tap to review and agree",
+    "agreed": "You have agreed to the Terms & Conditions"
   }
 }

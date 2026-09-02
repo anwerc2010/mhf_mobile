@@ -21,6 +21,7 @@ import {
 import { useRoute } from "@react-navigation/native";
 import { openEmailComposer } from "../utils/emailComposer";
 import { useTranslation } from "react-i18next";
+import { APP_CONFIG } from "../constants/config";
 
 export default function ProviderDetailsScreen() {
   const { t } = useTranslation();
@@ -77,14 +78,41 @@ export default function ProviderDetailsScreen() {
   };
 
   const handleEmail = () => {
-    if (provider.email) {
-      Linking.openURL(`mailto:${provider.email}`).catch(() => {
+    if (!provider.email) return;
+
+    const providerName =
+      provider.provider_name ||
+      t("providerDetails.genericProvider", "Healthcare Provider");
+    const notAvailable = t("home.notAvailable", "N/A");
+    const subject = `${t("providerDetails.enquirySubjectPrefix", "Enquiry")} – ${providerName} | Mujtaba Helping Foundation`;
+    const body = `${t("card.providerEmailGreeting", "Dear {{name}},", { name: providerName })}
+
+${t(
+      "providerDetails.enquiryIntro",
+      "I found your facility through the Mujtaba Helping Foundation app and would like to get in touch.",
+    )}
+
+${t("providerDetails.providerDetailsHeading", "PROVIDER DETAILS")}
+----------------
+${t("common.name", "Name")}   : ${provider.provider_name || notAvailable}
+${provider.type ? `${t("providerDetails.type", "Type")}   : ${provider.type}\n` : ""}${
+      provider.phone ? `${t("common.phone", "Phone")}  : ${provider.phone}\n` : ""
+    }${provider.address ? `${t("common.address", "Address")}: ${provider.address}\n` : ""}
+${t("card.thankYou", "Thank you.")}`;
+
+    openEmailComposer({
+      to: provider.email,
+      cc: APP_CONFIG.MHF_CC_EMAIL,
+      subject,
+      body,
+    }).then((success) => {
+      if (!success) {
         Alert.alert(
           t("providerDetails.error"),
           t("providerDetails.emailError"),
         );
-      });
-    }
+      }
+    });
   };
 
   const handleShare = async () => {

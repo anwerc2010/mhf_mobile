@@ -6,12 +6,14 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
+  Image,
+  Dimensions,
   Alert,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import {
   useGetNotificationsQuery,
-  useMarkNotificationAsReadMutation,
+  useDismissNotificationMutation,
 } from "@psi/shared-api";
 import {
   Bell,
@@ -22,6 +24,30 @@ import {
   CaretDown,
 } from "phosphor-react-native";
 import { formatRelativeTime } from "../utils/formatDate";
+import { useTranslation } from "react-i18next";
+
+const SCREEN_WIDTH = Dimensions.get("window").width;
+const IMAGE_WIDTH = SCREEN_WIDTH - 64;
+
+function AutoHeightImage({ uri }: { uri: string }) {
+  const [height, setHeight] = React.useState(200);
+
+  React.useEffect(() => {
+    Image.getSize(
+      uri,
+      (w, h) => setHeight(Math.round((h / w) * IMAGE_WIDTH)),
+      () => setHeight(200),
+    );
+  }, [uri]);
+
+  return (
+    <Image
+      source={{ uri }}
+      style={{ width: IMAGE_WIDTH, height, borderRadius: 8, marginTop: 8 }}
+      resizeMode="contain"
+    />
+  );
+}
 
 interface Notification {
   id: number;
@@ -36,24 +62,14 @@ interface Notification {
 }
 
 export default function NotificationsScreen() {
+  const { t } = useTranslation();
   const [notifications, setNotifications] = React.useState<Notification[]>([]);
-  const {
-    data,
-    isLoading,
-    isError,
-    error: queryError,
-    refetch,
-  } = useGetNotificationsQuery();
-  const [markAsRead] = useMarkNotificationAsReadMutation();
+  const [dismissing, setDismissing] = React.useState<number | null>(null);
 
-  console.log("Notifications query:", {
-    data,
-    isLoading,
-    isError,
-    error: queryError,
-  });
+  const [dismissNotification] = useDismissNotificationMutation();
 
-  // Refetch notifications when screen is focused
+  const { data, isLoading, isError, refetch } = useGetNotificationsQuery();
+
   useFocusEffect(
     React.useCallback(() => {
       refetch();
@@ -61,42 +77,27 @@ export default function NotificationsScreen() {
   );
 
   React.useEffect(() => {
-    if (!data?.data) {
-      return;
-    }
+    if (!data?.data) return;
 
     const mapTypeFromReason = (reason: string): Notification["type"] => {
-      const normalizedReason = reason.toLowerCase();
-      if (
-        normalizedReason.includes("approve") ||
-        normalizedReason.includes("success") ||
-        normalizedReason.includes("complete")
-      ) {
-        return "success";
-      }
-      if (
-        normalizedReason.includes("warning") ||
-        normalizedReason.includes("incomplete") ||
-        normalizedReason.includes("failed")
-      ) {
-        return "warning";
-      }
+      const r = reason.toLowerCase();
+      if (r.includes("emergency")) return "warning";
       return "info";
     };
 
-    const mappedNotifications: Notification[] = data.data.map((item) => ({
+    const mapped: Notification[] = data.data.map((item) => ({
       id: item.id,
       type: mapTypeFromReason(item.reason || ""),
       title: item.title,
       message: item.message,
       reason: item.reason,
-      image: item.image,
+      image: item.image ?? null,
       timestamp: formatRelativeTime(item.created_at),
       created_at: item.created_at,
       isExpanded: false,
     }));
 
-    setNotifications(mappedNotifications);
+    setNotifications(mapped);
   }, [data]);
 
   const getIconByType = (type: Notification["type"]) => {
@@ -105,7 +106,6 @@ export default function NotificationsScreen() {
         return <CheckCircle size={24} color="#10B981" weight="fill" />;
       case "warning":
         return <Warning size={24} color="#F59E0B" weight="fill" />;
-      case "info":
       default:
         return <Info size={24} color="#0369A1" weight="fill" />;
     }
@@ -113,57 +113,61 @@ export default function NotificationsScreen() {
 
   const getColorByType = (type: Notification["type"]) => {
     switch (type) {
-      case "success":
-        return "#D1FAE5";
-      case "warning":
-        return "#FEF3C7";
-      case "info":
-      default:
-        return "#DBEAFE";
+      case "success": return "#D1FAE5";
+      case "warning": return "#FEF3C7";
+      default:        return "#DBEAFE";
     }
   };
 
-  const handleRemoveNotification = (id: number) => {
+  const handleDismiss = async (id: number) => {
+    const dismissed = notifications.find((n) => n.id === id);
     setNotifications((prev) => prev.filter((n) => n.id !== id));
+    setDismissing(id);
+    try {
+      await dismissNotification(id).unwrap();
+    } catch {
+      // Dismiss failed server-side — put it back so it isn't silently lost,
+      // and let the user know rather than have it mysteriously reappear later.
+      if (dismissed) {
+        setNotifications((prev) =>
+          [...prev, dismissed].sort(
+            (a, b) =>
+              new Date(b.created_at).getTime() -
+              new Date(a.created_at).getTime(),
+          ),
+        );
+      }
+      Alert.alert(
+        t("common.error"),
+        t(
+          "notifications.dismissError",
+          "Couldn't dismiss this notification. Please try again.",
+        ),
+      );
+    } finally {
+      setDismissing(null);
+    }
   };
 
-  const toggleExpandNotification = (id: number) => {
+  const toggleExpand = (id: number) => {
     setNotifications((prev) =>
       prev.map((n) => (n.id === id ? { ...n, isExpanded: !n.isExpanded } : n)),
     );
   };
 
-  const handleMarkAsRead = async (id: number) => {
-    try {
-      const response = await markAsRead(id).unwrap();
-      if (response.success) {
-        Alert.alert("Success", response.message);
-        // Refetch to update notification status
-        refetch();
-      }
-    } catch (error: any) {
-      console.error("Error marking notification as read:", error);
-      Alert.alert(
-        "Error",
-        error?.data?.message || "Failed to mark notification as read",
-      );
-    }
-  };
-
   return (
     <View style={styles.container}>
-      {/* Header Stats */}
       <View style={styles.header}>
         <View style={styles.headerContent}>
           <Bell size={28} color="#0369A1" weight="fill" />
           <View style={styles.headerTextContainer}>
-            <Text style={styles.headerTitle}>Notifications</Text>
+            <Text style={styles.headerTitle}>
+              {t("notifications.title", "Notifications")}
+            </Text>
             <Text style={styles.headerSubtitle}>
               {notifications.length > 0
-                ? `${notifications.length} notification${
-                    notifications.length > 1 ? "s" : ""
-                  }`
-                : "No notifications"}
+                ? `${notifications.length} notification${notifications.length > 1 ? "s" : ""}`
+                : t("notifications.subtitleEmpty", "No notifications")}
             </Text>
           </View>
         </View>
@@ -186,12 +190,8 @@ export default function NotificationsScreen() {
             ) : isError ? (
               <>
                 <Bell size={64} color="#D1D5DB" weight="thin" />
-                <Text style={styles.emptyTitle}>
-                  Unable to Load Notifications
-                </Text>
-                <Text style={styles.emptyText}>
-                  Please try again in a moment.
-                </Text>
+                <Text style={styles.emptyTitle}>Unable to Load Notifications</Text>
+                <Text style={styles.emptyText}>Please try again in a moment.</Text>
               </>
             ) : (
               <>
@@ -209,10 +209,7 @@ export default function NotificationsScreen() {
               <View key={notification.id} style={styles.notificationWrapper}>
                 <TouchableOpacity
                   style={styles.notificationCard}
-                  onPress={() => {
-                    handleMarkAsRead(notification.id);
-                    toggleExpandNotification(notification.id);
-                  }}
+                  onPress={() => toggleExpand(notification.id)}
                   activeOpacity={0.7}
                 >
                   <View
@@ -225,12 +222,10 @@ export default function NotificationsScreen() {
                   </View>
 
                   <View style={styles.notificationContent}>
-                    <View style={styles.notificationHeader}>
-                      <Text style={styles.notificationTitle}>
-                        {notification.title}
-                      </Text>
-                    </View>
-                    <Text style={styles.notificationMessage}>
+                    <Text style={styles.notificationTitle} numberOfLines={1}>
+                      {notification.title}
+                    </Text>
+                    <Text style={styles.notificationMessage} numberOfLines={2}>
                       {notification.message}
                     </Text>
                     <Text style={styles.notificationTime}>
@@ -241,89 +236,49 @@ export default function NotificationsScreen() {
                   <View style={styles.actionContainer}>
                     <TouchableOpacity
                       style={styles.expandButton}
-                      onPress={() => {
-                        handleMarkAsRead(notification.id);
-                        toggleExpandNotification(notification.id);
-                      }}
+                      onPress={() => toggleExpand(notification.id)}
                     >
                       <CaretDown
-                        size={20}
+                        size={18}
                         color="#6B7280"
                         weight="bold"
                         style={{
                           transform: [
-                            {
-                              rotate: notification.isExpanded
-                                ? "180deg"
-                                : "0deg",
-                            },
+                            { rotate: notification.isExpanded ? "180deg" : "0deg" },
                           ],
                         }}
                       />
                     </TouchableOpacity>
                     <TouchableOpacity
                       style={styles.removeButton}
-                      onPress={(e) => {
-                        e.stopPropagation();
-                        handleRemoveNotification(notification.id);
-                      }}
+                      onPress={() => handleDismiss(notification.id)}
+                      disabled={dismissing === notification.id}
                     >
-                      <X size={20} color="#9CA3AF" />
+                      <X size={18} color="#9CA3AF" />
                     </TouchableOpacity>
                   </View>
                 </TouchableOpacity>
 
                 {notification.isExpanded && (
                   <View style={styles.expandedContent}>
-                    <View style={styles.fieldRow}>
-                      <Text style={styles.fieldLabel}>ID:</Text>
-                      <Text style={styles.fieldValue}>{notification.id}</Text>
-                    </View>
-                    <View style={styles.fieldRow}>
-                      <Text style={styles.fieldLabel}>Title:</Text>
-                      <Text style={styles.fieldValue}>
-                        {notification.title}
-                      </Text>
-                    </View>
-                    <View style={styles.fieldRow}>
-                      <Text style={styles.fieldLabel}>Message:</Text>
-                      <Text style={styles.fieldValue}>
-                        {notification.message}
-                      </Text>
-                    </View>
-                    <View style={styles.fieldRow}>
-                      <Text style={styles.fieldLabel}>Reason:</Text>
-                      <Text style={styles.fieldValue}>
-                        {notification.reason}
-                      </Text>
-                    </View>
-                    <View style={styles.fieldRow}>
-                      <Text style={styles.fieldLabel}>Created At:</Text>
-                      <Text style={styles.fieldValue}>
-                        {(() => {
-                          try {
-                            const d = new Date(notification.created_at);
-                            const dd = String(d.getDate()).padStart(2, "0");
-                            const mm = String(d.getMonth() + 1).padStart(
-                              2,
-                              "0",
-                            );
-                            const yyyy = d.getFullYear();
-                            return `${dd}-${mm}-${yyyy}`;
-                          } catch {
-                            return notification.created_at;
-                          }
-                        })()}
-                      </Text>
-                    </View>
-                    {notification.image && (
-                      <View style={styles.fieldRow}>
-                        <Text style={styles.fieldLabel}>Image:</Text>
-                        <Text style={styles.fieldValue}>
-                          {notification.image}
-                        </Text>
-                      </View>
-                    )}
+                    <Text style={styles.expandedMessage}>
+                      {notification.message}
+                    </Text>
+
+                    {notification.image ? (
+                      <AutoHeightImage uri={notification.image} />
+                    ) : null}
+
+                    <Text style={styles.expandedTime}>
+                      {(() => {
+                        try {
+                          const d = new Date(notification.created_at);
+                          return `${String(d.getDate()).padStart(2, "0")}-${String(d.getMonth() + 1).padStart(2, "0")}-${d.getFullYear()}`;
+                        } catch {
+                          return notification.created_at;
+                        }
+                      })()}
+                    </Text>
                   </View>
                 )}
               </View>
@@ -390,7 +345,6 @@ const styles = StyleSheet.create({
   },
   notificationsList: {
     padding: 16,
-    gap: 12,
   },
   notificationWrapper: {
     marginBottom: 12,
@@ -419,32 +373,27 @@ const styles = StyleSheet.create({
   },
   notificationContent: {
     flex: 1,
-  },
-  notificationHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    marginBottom: 6,
+    gap: 4,
   },
   notificationTitle: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: "600",
     color: "#0F172A",
-    flex: 1,
   },
   notificationMessage: {
-    fontSize: 14,
+    fontSize: 13,
     color: "#6B7280",
-    lineHeight: 20,
-    marginBottom: 8,
+    lineHeight: 18,
   },
   notificationTime: {
-    fontSize: 12,
+    fontSize: 11,
     color: "#9CA3AF",
+    marginTop: 2,
   },
   actionContainer: {
     flexDirection: "row",
-    gap: 8,
+    gap: 4,
+    alignItems: "center",
   },
   expandButton: {
     padding: 4,
@@ -462,23 +411,14 @@ const styles = StyleSheet.create({
     borderColor: "#E5E7EB",
     gap: 12,
   },
-  fieldRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: "#E5E7EB",
+  expandedMessage: {
+    fontSize: 14,
+    color: "#374151",
+    lineHeight: 22,
   },
-  fieldLabel: {
-    fontSize: 13,
-    fontWeight: "600",
-    color: "#475569",
-    flex: 0.35,
-  },
-  fieldValue: {
-    fontSize: 13,
-    color: "#334155",
-    flex: 0.65,
-    textAlign: "right",
+  expandedTime: {
+    fontSize: 12,
+    color: "#9CA3AF",
+    marginTop: 4,
   },
 });

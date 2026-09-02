@@ -58,7 +58,7 @@ const CHIP_WIDTH = Math.floor(
     CHIP_COLS,
 );
 
-const TABS = ["Providers", "Blood", "Equipment", "Ambulance", "Benefits"];
+const TABS = ["Providers", "Blood", "Equipment", "Ambulance" /*, "Benefits" */];
 
 /** Map tab names to guide target keys in guideConfig */
 const TAB_GUIDE_MAP: Record<string, string> = {

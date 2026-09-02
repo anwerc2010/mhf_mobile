@@ -16,9 +16,11 @@ import { setLegalTermsRequired } from "../store/slices/legalSlice";
 import { spacing } from "../constants/spacing";
 import { useTheme } from "../hooks/useTheme";
 import TermsAccordion from "../components/general/TermsAccordion";
+import { useTranslation } from "react-i18next";
 
 export default function TermsScreen() {
   const theme = useTheme();
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const serverTermsVersion = useAppSelector(
     (state) => state.legal.serverTermsVersion,
@@ -45,8 +47,10 @@ export default function TermsScreen() {
       dispatch(setLegalTermsRequired({ required: false }));
     } catch (err: any) {
       const raw = err?.data?.message;
-      let message =
-        "Failed to accept terms. Please check your connection and try again.";
+      let message = t(
+        "terms.acceptError",
+        "Failed to accept terms. Please check your connection and try again.",
+      );
       if (typeof raw === "string") {
         message = raw;
       } else if (raw && typeof raw === "object") {
@@ -56,7 +60,7 @@ export default function TermsScreen() {
           message = `${keys[0]}: ${Array.isArray(val) ? val[0] : val}`;
         }
       }
-      Alert.alert("Error", String(message));
+      Alert.alert(t("common.error"), String(message));
     }
   };
 
@@ -84,14 +88,16 @@ export default function TermsScreen() {
 
         {/* Heading */}
         <Text style={[styles.heading, { color: theme.colors.text }]}>
-          Before You Continue
+          {t("terms.beforeContinue", "Before You Continue")}
         </Text>
 
         <Text
           style={[styles.subheading, { color: theme.colors.textSecondary }]}
         >
-          Please review and accept our Terms & Conditions to use MH Foundation
-          services.
+          {t(
+            "terms.reviewPrompt",
+            "Please review and accept our Terms & Conditions to use MH Foundation services.",
+          )}
         </Text>
 
         {/* Accordion */}
@@ -132,7 +138,7 @@ export default function TermsScreen() {
                 },
               ]}
             >
-              Accept & Continue
+              {t("terms.acceptContinue", "Accept & Continue")}
             </Text>
           )}
         </TouchableOpacity>
@@ -140,7 +146,7 @@ export default function TermsScreen() {
         <Text
           style={[styles.footerNote, { color: theme.colors.textSecondary }]}
         >
-          You must accept to continue using the app
+          {t("terms.mustAccept", "You must accept to continue using the app")}
         </Text>
       </View>
     </SafeAreaView>
