@@ -30,24 +30,54 @@ const SCREEN_WIDTH = Dimensions.get("window").width;
 const IMAGE_WIDTH = SCREEN_WIDTH - 64;
 
 function AutoHeightImage({ uri }: { uri: string }) {
+  const { t } = useTranslation();
   const [height, setHeight] = React.useState(200);
+  const [failed, setFailed] = React.useState(false);
 
   React.useEffect(() => {
+    let cancelled = false;
+    setFailed(false);
     Image.getSize(
       uri,
-      (w, h) => setHeight(Math.round((h / w) * IMAGE_WIDTH)),
-      () => setHeight(200),
+      (w, h) => {
+        if (!cancelled && w > 0) {
+          setHeight(Math.round((h / w) * IMAGE_WIDTH));
+        }
+      },
+      () => {
+        if (!cancelled) setHeight(200);
+      },
     );
+    return () => {
+      cancelled = true;
+    };
   }, [uri]);
+
+  if (failed) {
+    return (
+      <View style={styles.imageFallback}>
+        <Text style={styles.imageFallbackText}>
+          {t("notifications.imageUnavailable", "Image unavailable")}
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <Image
       source={{ uri }}
       style={{ width: IMAGE_WIDTH, height, borderRadius: 8, marginTop: 8 }}
       resizeMode="contain"
+      onError={() => setFailed(true)}
     />
   );
 }
+
+const mapTypeFromReason = (reason: string): Notification["type"] => {
+  const r = reason.toLowerCase();
+  if (r.includes("emergency")) return "warning";
+  return "info";
+};
 
 interface Notification {
   id: number;
@@ -63,8 +93,16 @@ interface Notification {
 
 export default function NotificationsScreen() {
   const { t } = useTranslation();
-  const [notifications, setNotifications] = React.useState<Notification[]>([]);
   const [dismissing, setDismissing] = React.useState<number | null>(null);
+  // Ids the user dismissed this session. Kept separate from the query cache so a
+  // refetch (triggered by invalidatesTags or screen focus) can't resurrect them
+  // while the server catches up. Pruned once the server stops returning them.
+  const [dismissedIds, setDismissedIds] = React.useState<Set<number>>(
+    () => new Set(),
+  );
+  const [expandedIds, setExpandedIds] = React.useState<Set<number>>(
+    () => new Set(),
+  );
 
   const [dismissNotification] = useDismissNotificationMutation();
 
@@ -76,29 +114,40 @@ export default function NotificationsScreen() {
     }, [refetch]),
   );
 
+  // Drop local overrides for notifications the server no longer returns, so the
+  // dismissed/expanded sets don't grow unbounded across a session.
   React.useEffect(() => {
     if (!data?.data) return;
-
-    const mapTypeFromReason = (reason: string): Notification["type"] => {
-      const r = reason.toLowerCase();
-      if (r.includes("emergency")) return "warning";
-      return "info";
+    const serverIds = new Set(data.data.map((item) => item.id));
+    const prune = (prev: Set<number>) => {
+      let changed = false;
+      const next = new Set<number>();
+      prev.forEach((id) => {
+        if (serverIds.has(id)) next.add(id);
+        else changed = true;
+      });
+      return changed ? next : prev;
     };
-
-    const mapped: Notification[] = data.data.map((item) => ({
-      id: item.id,
-      type: mapTypeFromReason(item.reason || ""),
-      title: item.title,
-      message: item.message,
-      reason: item.reason,
-      image: item.image ?? null,
-      timestamp: formatRelativeTime(item.created_at),
-      created_at: item.created_at,
-      isExpanded: false,
-    }));
-
-    setNotifications(mapped);
+    setDismissedIds(prune);
+    setExpandedIds(prune);
   }, [data]);
+
+  const notifications = React.useMemo<Notification[]>(() => {
+    if (!data?.data) return [];
+    return data.data
+      .filter((item) => !dismissedIds.has(item.id))
+      .map((item) => ({
+        id: item.id,
+        type: mapTypeFromReason(item.reason || ""),
+        title: item.title,
+        message: item.message,
+        reason: item.reason,
+        image: item.image ?? null,
+        timestamp: formatRelativeTime(item.created_at),
+        created_at: item.created_at,
+        isExpanded: expandedIds.has(item.id),
+      }));
+  }, [data, dismissedIds, expandedIds]);
 
   const getIconByType = (type: Notification["type"]) => {
     switch (type) {
@@ -120,23 +169,19 @@ export default function NotificationsScreen() {
   };
 
   const handleDismiss = async (id: number) => {
-    const dismissed = notifications.find((n) => n.id === id);
-    setNotifications((prev) => prev.filter((n) => n.id !== id));
     setDismissing(id);
+    // Optimistically hide it; the query cache stays untouched.
+    setDismissedIds((prev) => new Set(prev).add(id));
     try {
       await dismissNotification(id).unwrap();
     } catch {
-      // Dismiss failed server-side — put it back so it isn't silently lost,
+      // Dismiss failed server-side — un-hide it so it isn't silently lost,
       // and let the user know rather than have it mysteriously reappear later.
-      if (dismissed) {
-        setNotifications((prev) =>
-          [...prev, dismissed].sort(
-            (a, b) =>
-              new Date(b.created_at).getTime() -
-              new Date(a.created_at).getTime(),
-          ),
-        );
-      }
+      setDismissedIds((prev) => {
+        const next = new Set(prev);
+        next.delete(id);
+        return next;
+      });
       Alert.alert(
         t("common.error"),
         t(
@@ -150,9 +195,12 @@ export default function NotificationsScreen() {
   };
 
   const toggleExpand = (id: number) => {
-    setNotifications((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, isExpanded: !n.isExpanded } : n)),
-    );
+    setExpandedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
   };
 
   return (
@@ -420,5 +468,20 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#9CA3AF",
     marginTop: 4,
+  },
+  imageFallback: {
+    width: IMAGE_WIDTH,
+    height: 120,
+    borderRadius: 8,
+    marginTop: 8,
+    backgroundColor: "#F3F4F6",
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  imageFallbackText: {
+    fontSize: 13,
+    color: "#9CA3AF",
   },
 });

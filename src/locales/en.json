@@ -316,7 +316,8 @@
     "loadingText": "Please wait while we fetch your updates.",
     "unableToLoadTitle": "Unable to Load Notifications",
     "unableToLoadText": "Please try again in a moment.",
-    "dismissError": "Couldn't dismiss this notification. Please try again."
+    "dismissError": "Couldn't dismiss this notification. Please try again.",
+    "imageUnavailable": "Image unavailable"
   },
   "network": {
     "noConnection": "No Internet Connection",
