@@ -176,10 +176,10 @@ export default function ProviderFilterSheet({
             />
           )}
 
-          {/* Block — only once district is picked */}
+          {/* Assembly — only once district is picked */}
           {value.districtId !== null && (
             <FilterSection
-              label="Block"
+              label="Assembly"
               loading={blocksLoading}
               items={blocks}
               selectedId={value.blockId}
@@ -187,7 +187,7 @@ export default function ProviderFilterSheet({
             />
           )}
 
-          {/* Mandal — only once block is picked */}
+          {/* Mandal — only once assembly is picked */}
           {value.blockId !== null && (
             <FilterSection
               label="Mandal"

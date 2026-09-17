@@ -77,7 +77,6 @@ function RegisterForEvent() {
           type: "tel",
           placeholder: t("events.register.phoneNumberPlaceholder"),
           validations: [
-            { name: "required", value: true },
             {
               name: "pattern",
               value: /^[0-9]{10}$/,
@@ -105,7 +104,7 @@ function RegisterForEvent() {
           id: "date_of_birth",
           label: t("events.register.dateOfBirth"),
           type: "date",
-          validations: [{ name: "required", value: true }],
+          validations: [],
           path: "personal.date_of_birth",
         },
         {

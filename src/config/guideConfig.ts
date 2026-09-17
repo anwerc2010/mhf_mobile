@@ -79,7 +79,7 @@ export const GUIDE_CONFIG: GuideConfig = {
     },
     {
       id: "services_provider_filter",
-      text: "Tap here to filter providers by State, District, Block and Mandal. Find providers closest to your location.",
+      text: "Tap here to filter providers by State, District, Assembly and Mandal. Find providers closest to your location.",
       order: 5,
       target: "providerFilterBtn",
     },

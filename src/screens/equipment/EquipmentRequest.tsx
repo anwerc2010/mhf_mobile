@@ -115,7 +115,6 @@ export default function EquipmentRequest() {
           type: "tel",
           placeholder: t("forms.equipment.placeholders.mobileNumber"),
           validations: [
-            { name: "required", value: true },
             {
               name: "pattern",
               value: /^[0-9]{10}$/,
@@ -282,7 +281,7 @@ export default function EquipmentRequest() {
           label: t("forms.equipment.fields.referenceName"),
           type: "text",
           placeholder: t("forms.equipment.placeholders.referenceName"),
-          validations: [{ name: "required", value: true }],
+          validations: [],
           path: "reference.referenceName",
         },
         {
@@ -291,7 +290,6 @@ export default function EquipmentRequest() {
           type: "tel",
           placeholder: t("forms.equipment.placeholders.referenceContact"),
           validations: [
-            { name: "required", value: true },
             {
               name: "pattern",
               value: /^[0-9]{10}$/,

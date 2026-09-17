@@ -74,9 +74,9 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
         },
         {
           id: "date_of_birth",
-          label: "Date of Birth",
+          label: "Date of Birth (Optional)",
           type: "date",
-          validations: [{ name: "required", value: true }],
+          validations: [],
           path: "personalDetails.date_of_birth",
         },
         {
@@ -88,16 +88,10 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
         },
         {
           id: "phone",
-          label: "Phone",
+          label: "Phone (Optional)",
           type: "phone",
           placeholder: "Enter phone number",
-          validations: [
-            {
-              name: "required",
-              value: true,
-              message: t("register.validation.phoneRequired"),
-            },
-          ],
+          validations: [],
           path: "personalDetails.phone",
         },
         {
@@ -163,7 +157,7 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
         },
         {
           id: "blood_group",
-          label: "Blood Group",
+          label: "Blood Group (Optional)",
           type: "select",
           options: [
             { id: "A+", name: "A+" },
@@ -175,7 +169,7 @@ function RegisterScreen({ navigation }: RegisterScreenProps) {
             { id: "AB+", name: "AB+" },
             { id: "AB-", name: "AB-" },
           ],
-          validations: [{ name: "required", value: true }],
+          validations: [],
           path: "personalDetails.blood_group",
         },
         {

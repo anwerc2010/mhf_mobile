@@ -60,7 +60,6 @@ function NewCardRequest() {
           type: "tel",
           placeholder: "+91-XXXXXXXXXX",
           validations: [
-            { name: "required", value: true },
             {
               name: "pattern",
               value: /^[0-9]{10}$/,

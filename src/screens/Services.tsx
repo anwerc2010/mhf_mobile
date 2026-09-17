@@ -147,6 +147,9 @@ export default function ServicesScreen() {
     error: bloodError,
     refetch: refetchBlood,
   } = useGetBloodRequestsQuery();
+  if (bloodError) {
+    console.log("[Services] GET blood requests failed:", JSON.stringify(bloodError, null, 2));
+  }
   const {
     data: ambulancesResponse,
     isLoading: ambulanceLoading,

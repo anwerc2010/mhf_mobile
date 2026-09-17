@@ -128,7 +128,7 @@ function ApplyNewRelief() {
             id: "dob",
             label: t("forms.relief.fields.dateOfBirth"),
             type: "date",
-            validations: [{ name: "required", value: true }],
+            validations: [],
             path: "personal.dob",
           },
           {
@@ -156,7 +156,6 @@ function ApplyNewRelief() {
             type: "tel",
             placeholder: "+91-XXXXXXXXXX",
             validations: [
-              { name: "required", value: true },
               {
                 name: "pattern",
                 value: /^[0-9]{10}$/,
@@ -584,6 +583,10 @@ function ApplyNewRelief() {
             );
           } catch (error: any) {
             console.error("Relief request submission failed:", error);
+            console.log(
+              "[ApplyNewRelief] POST /relief-requests failed:",
+              JSON.stringify(error, null, 2),
+            );
 
             Alert.alert(
               t("common.error"),

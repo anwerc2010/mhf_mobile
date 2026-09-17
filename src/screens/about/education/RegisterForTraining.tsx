@@ -122,7 +122,7 @@ function RegisterForTraining() {
           id: "date_of_birth",
           label: t("forms.training.fields.dateOfBirth"),
           type: "date",
-          validations: [{ name: "required", value: true }],
+          validations: [],
           path: "personal.date_of_birth",
         },
         {
@@ -150,7 +150,6 @@ function RegisterForTraining() {
           type: "tel",
           placeholder: "+91-XXXXXXXXXX",
           validations: [
-            { name: "required", value: true },
             {
               name: "pattern",
               value: /^[0-9]{10}$/,

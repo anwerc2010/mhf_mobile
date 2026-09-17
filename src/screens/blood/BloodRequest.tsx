@@ -214,14 +214,13 @@ export default function BloodRequest() {
         },
         {
           id: "doctorContact",
-          label: t("blood.fields.doctorContact", "Doctor Contact"),
+          label: t("blood.fields.doctorContact", "Doctor Contact (Optional)"),
           type: "tel",
           placeholder: t(
             "blood.fields.doctorContactPlaceholder",
             "Enter doctor contact number",
           ),
           validations: [
-            { name: "required", value: true },
             {
               name: "pattern",
               value: /^[0-9]{10}$/,
@@ -250,14 +249,13 @@ export default function BloodRequest() {
         },
         {
           id: "requesterMobile",
-          label: t("blood.fields.requesterMobile", "Requester Mobile"),
+          label: t("blood.fields.requesterMobile", "Requester Mobile (Optional)"),
           type: "tel",
           placeholder: t(
             "blood.fields.requesterMobilePlaceholder",
             "Enter requester mobile number",
           ),
           validations: [
-            { name: "required", value: true },
             {
               name: "pattern",
               value: /^[0-9]{10}$/,

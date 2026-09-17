@@ -702,13 +702,13 @@
       "fields": {
         "state": "રાજ્ય",
         "district": "જિલ્લો",
-        "block": "બ્લૉક",
+        "block": "વિધાનસભા",
         "mandal": "મંડળ"
       },
       "loading": {
         "states": "રાજ્ય લોડ...",
         "districts": "જિલ્લો લોડ...",
-        "blocks": "બ્લૉક લોડ...",
+        "blocks": "વિધાનસભા લોડ...",
         "mandals": "મંડળ લોડ..."
       },
       "select": {
@@ -716,8 +716,8 @@
         "stateFirst": "પ્રથમ રાજ્ય",
         "district": "જિલ્લો પસંદ",
         "districtFirst": "પ્રથમ જિલ્લો",
-        "block": "બ્લૉક પસંદ",
-        "blockFirst": "પ્રથમ બ્લૉક",
+        "block": "વિધાનસભા પસંદ",
+        "blockFirst": "પ્રથમ વિધાનસભા",
         "mandal": "મંડળ પસંદ"
       },
       "options": {

@@ -111,7 +111,6 @@ function ApplyCardRequest() {
           type: "tel",
           placeholder: t("forms.applyCard.placeholders.phone"),
           validations: [
-            { name: "required", value: true },
             {
               name: "pattern",
               value: /^[0-9]{10}$/,
@@ -169,7 +168,7 @@ function ApplyCardRequest() {
             { id: "AB+", name: "AB+" },
             { id: "AB-", name: "AB-" },
           ],
-          validations: [{ name: "required", value: true }],
+          validations: [],
           path: "card_holder.blood_group",
         },
         {

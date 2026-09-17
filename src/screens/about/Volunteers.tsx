@@ -65,6 +65,10 @@ export default function VolunteersScreen() {
       );
     } catch (err: any) {
       console.error("Error submitting volunteer registration:", err);
+      console.log(
+        "[Volunteers] POST /volunteer-registrations failed:",
+        JSON.stringify(err, null, 2),
+      );
       Alert.alert(
         t("common.error"),
         err?.data?.message ||
@@ -94,7 +98,7 @@ export default function VolunteersScreen() {
           id: "date_of_birth",
           label: t("forms.volunteers.fields.dateOfBirth"),
           type: "date",
-          validations: [{ name: "required", value: true }],
+          validations: [],
           path: "date_of_birth",
         },
         {
@@ -115,7 +119,6 @@ export default function VolunteersScreen() {
           type: "tel",
           placeholder: "+91-XXXXXXXXXX",
           validations: [
-            { name: "required", value: true },
             {
               name: "pattern",
               value: /^[0-9]{10}$/,

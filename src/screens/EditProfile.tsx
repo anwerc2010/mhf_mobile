@@ -68,12 +68,10 @@ export default function EditProfileScreen() {
         },
         {
           id: "phone",
-          label: "Phone",
+          label: "Phone (Optional)",
           type: "phone",
           placeholder: "Enter phone number",
-          validations: [
-            { name: "required", value: true, message: "Phone is required" },
-          ],
+          validations: [],
           path: "profile.phone",
         },
         {
@@ -92,9 +90,9 @@ export default function EditProfileScreen() {
         },
         {
           id: "date_of_birth",
-          label: "Date of Birth",
+          label: "Date of Birth (Optional)",
           type: "date",
-          validations: [{ name: "required", value: true }],
+          validations: [],
           path: "profile.date_of_birth",
         },
         {
@@ -106,7 +104,7 @@ export default function EditProfileScreen() {
         },
         {
           id: "blood_group",
-          label: "Blood Group",
+          label: "Blood Group (Optional)",
           type: "select",
           options: [
             { id: "A+", name: "A+" },
@@ -118,7 +116,7 @@ export default function EditProfileScreen() {
             { id: "AB+", name: "AB+" },
             { id: "AB-", name: "AB-" },
           ],
-          validations: [{ name: "required", value: true }],
+          validations: [],
           path: "profile.blood_group",
         },
         {
